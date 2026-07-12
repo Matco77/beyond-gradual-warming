@@ -1,0 +1,29 @@
+                               m_bm                m_2w                m_dr
+                  Benchmark (1-way)     Two-way cluster  Drop snapped EL62*
+Dependent Var.:            ln_yield            ln_yield            ln_yield
+                                                                           
+gdd_mj            -0.0004. (0.0002)   -0.0004* (0.0001)   -0.0004. (0.0002)
+heat_mj           0.0002. (9.81e-5)  0.0002** (5.24e-5)    0.0002. (0.0001)
+frost_mj          -0.0076* (0.0028)   -0.0076* (0.0030)   -0.0074* (0.0028)
+precip_mj          0.0014. (0.0007)    0.0014. (0.0007)    0.0015. (0.0007)
+precip_mj2      -2.29e-6. (1.01e-6) -2.29e-6. (1.02e-6) -2.32e-6. (1.02e-6)
+Fixed-Effects:  ------------------- ------------------- -------------------
+NUTS_ID                         Yes                 Yes                 Yes
+year                            Yes                 Yes                 Yes
+Varying Slopes: ------------------- ------------------- -------------------
+t (NUTS_ID)                     Yes                 Yes                 Yes
+t2 (NUTS_ID)                    Yes                 Yes                 Yes
+_______________ ___________________ ___________________ ___________________
+S.E.: Clustered            by: cntr     by: cntr & year            by: cntr
+Observations                  7,282               7,282               7,238
+R2                          0.79257             0.79257             0.79023
+---
+Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+wild-cluster bootstrap (restricted, Rademacher, 999 reps, 15 country clusters):
+        term          coef       crv_se         t wcb_p
+1     gdd_mj -3.722567e-04 1.383396e-04 -2.690891 0.006
+2    heat_mj  2.080415e-04 8.619612e-05  2.413583 0.144
+3   frost_mj -7.552074e-03 2.465636e-03 -3.062932 0.061
+4  precip_mj  1.445467e-03 6.373651e-04  2.267880 0.017
+5 precip_mj2 -2.288272e-06 8.904687e-07 -2.569738 0.045

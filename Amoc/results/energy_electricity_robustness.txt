@@ -1,0 +1,25 @@
+                               m_bm2                  m_2w                 m_dr
+                           Benchmark       Two-way cluster     Drop Malta (MLT)
+Dependent Var.:         ln_energy_pc          ln_energy_pc         ln_energy_pc
+                                                                               
+hdd_calendar    6.52e-5*** (1.55e-5)  6.52e-5*** (1.63e-5) 5.25e-5*** (1.11e-5)
+cdd_jja            0.0002* (5.58e-5)    0.0002** (5.06e-5)    0.0001* (3.83e-5)
+ln_price           -0.0928. (0.0500)     -0.0928. (0.0487)    -0.0473. (0.0265)
+Fixed-Effects:  --------------------  -------------------- --------------------
+country_id                       Yes                   Yes                  Yes
+year                             Yes                   Yes                  Yes
+Varying Slopes: --------------------  -------------------- --------------------
+t (country_id)                   Yes                   Yes                  Yes
+t2 (country_id)                  Yes                   Yes                  Yes
+_______________ ____________________  ____________________ ____________________
+S.E.: Clustered       by: country_id by: country_id & year       by: country_id
+Observations                     844                   844                  812
+R2                           0.99398               0.99398              0.99503
+---
+Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+wild-cluster bootstrap (restricted, Rademacher, 999 reps, 29 country clusters):
+          term          coef       crv_se         t wcb_p
+1 hdd_calendar  6.523452e-05 1.438728e-05  4.534181 0.001
+2      cdd_jja  1.526566e-04 5.166950e-05  2.954482 0.006
+3     ln_price -9.284456e-02 4.627132e-02 -2.006525 0.037

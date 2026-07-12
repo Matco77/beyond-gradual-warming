@@ -1,0 +1,34 @@
+# --- OS / editor cruft ---
+.DS_Store
+*.tmp
+.Rhistory
+.Rproj.user/
+__pycache__/
+
+# --- Claude Code / agent tooling (not thesis content) ---
+.agents/
+.claude/
+skills-lock.json
+Econometrictookit pipeline/
+
+# --- Large raw climate datasets (~58 GB) — NOT for GitHub ---
+# Ignore everything directly under Amoc/datasets/ (all the raw-data SUBDIRECTORIES:
+# CMIP6_piControl, anomaly_output, NAHosMIP, EOBS, GISCO_population_grid, Isimip,
+# shapefiles, ...), then re-include only the small/medium PREPARED files that live
+# loose in that folder (the numbered pipeline outputs + source CSVs, all < 100 MB).
+Amoc/datasets/*
+!Amoc/datasets/*.csv
+!Amoc/datasets/*.gpkg
+!Amoc/datasets/*.rds
+!Amoc/datasets/*.py
+
+# Safety net: never commit heavy binary grids even if they appear elsewhere
+*.nc
+*.nc4
+*.grib
+*.grb
+*.tif
+*.tiff
+*.zip
+*.h5
+*.hdf5

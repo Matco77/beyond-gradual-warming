@@ -1,0 +1,4003 @@
+Country,Year,Fuel,Energy_Use_Household_ktoe
+Albania,1990,Electricity,61.393
+Albania,1991,Electricity,45.486
+Albania,1992,Electricity,50.129
+Albania,1993,Electricity,65.262
+Albania,1994,Electricity,67.068
+Albania,1995,Electricity,75.924
+Albania,1996,Electricity,101.032
+Albania,1997,Electricity,95.013
+Albania,1998,Electricity,128.977
+Albania,1999,Electricity,190.972
+Albania,2000,Electricity,211.78
+Albania,2001,Electricity,206.793
+Albania,2002,Electricity,201.978
+Albania,2003,Electricity,203.009
+Albania,2004,Electricity,239.983
+Albania,2005,Electricity,234.996
+Albania,2006,Electricity,169.991
+Albania,2007,Electricity,177.988
+Albania,2008,Electricity,200
+Albania,2009,Electricity,223.99
+Albania,2010,Electricity,222.528
+Albania,2011,Electricity,233.19
+Albania,2012,Electricity,262.253
+Albania,2013,Electricity,331.9
+Albania,2014,Electricity,300.946
+Albania,2015,Electricity,274.377
+Albania,2016,Electricity,257.18
+Albania,2017,Electricity,252.325
+Albania,2018,Electricity,270.591
+Albania,2019,Electricity,268.293
+Albania,2020,Electricity,298.287
+Albania,2021,Electricity,301.346
+Albania,2022,Electricity,288.807
+Albania,2023,Electricity,282.396
+Albania,2024,Electricity,293.025
+Austria,1990,Electricity,1021.324
+Austria,1991,Electricity,1083.663
+Austria,1992,Electricity,1098.194
+Austria,1993,Electricity,1129.923
+Austria,1994,Electricity,1115.993
+Austria,1995,Electricity,1168.616
+Austria,1996,Electricity,1220.894
+Austria,1997,Electricity,1193.809
+Austria,1998,Electricity,1199.14
+Austria,1999,Electricity,1257.61
+Austria,2000,Electricity,1286.5
+Austria,2001,Electricity,1393.723
+Austria,2002,Electricity,1438.521
+Austria,2003,Electricity,1485.383
+Austria,2004,Electricity,1471.969
+Austria,2005,Electricity,1411.666
+Austria,2006,Electricity,1413.728
+Austria,2007,Electricity,1417.359
+Austria,2008,Electricity,1428.793
+Austria,2009,Electricity,1481.794
+Austria,2010,Electricity,1518.271
+Austria,2011,Electricity,1485.266
+Austria,2012,Electricity,1508.282
+Austria,2013,Electricity,1517.555
+Austria,2014,Electricity,1445.877
+Austria,2015,Electricity,1480.249
+Austria,2016,Electricity,1533.864
+Austria,2017,Electricity,1547.568
+Austria,2018,Electricity,1542.786
+Austria,2019,Electricity,1586.985
+Austria,2020,Electricity,1757.162
+Austria,2021,Electricity,1894.03
+Austria,2022,Electricity,1818.532
+Austria,2023,Electricity,1929.29
+Austria,2024,Electricity,1878.914
+Bosnia and Herzegovina,2014,Electricity,395.959
+Bosnia and Herzegovina,2015,Electricity,406.363
+Bosnia and Herzegovina,2016,Electricity,406.965
+Bosnia and Herzegovina,2017,Electricity,408.942
+Bosnia and Herzegovina,2018,Electricity,402.837
+Bosnia and Herzegovina,2019,Electricity,406.363
+Bosnia and Herzegovina,2020,Electricity,412.296
+Bosnia and Herzegovina,2021,Electricity,422.356
+Bosnia and Herzegovina,2022,Electricity,423.818
+Bosnia and Herzegovina,2023,Electricity,429.923
+Bosnia and Herzegovina,2024,Electricity,450.731
+Belgium,1990,Electricity,1583.319
+Belgium,1991,Electricity,1710.834
+Belgium,1992,Electricity,1740.757
+Belgium,1993,Electricity,1813.414
+Belgium,1994,Electricity,1836.457
+Belgium,1995,Electricity,1901.032
+Belgium,1996,Electricity,1997.334
+Belgium,1997,Electricity,1971.883
+Belgium,1998,Electricity,2011.006
+Belgium,1999,Electricity,2019.089
+Belgium,2000,Electricity,2041.101
+Belgium,2001,Electricity,2097.678
+Belgium,2002,Electricity,2228.805
+Belgium,2003,Electricity,2237.833
+Belgium,2004,Electricity,1659.991
+Belgium,2005,Electricity,1635.125
+Belgium,2006,Electricity,1662.27
+Belgium,2007,Electricity,1651.255
+Belgium,2008,Electricity,1677.868
+Belgium,2009,Electricity,1678.917
+Belgium,2010,Electricity,1701.66
+Belgium,2011,Electricity,1630.894
+Belgium,2012,Electricity,1650.301
+Belgium,2013,Electricity,1654.136
+Belgium,2014,Electricity,1572.227
+Belgium,2015,Electricity,1561.281
+Belgium,2016,Electricity,1549.175
+Belgium,2017,Electricity,1516.311
+Belgium,2018,Electricity,1498.34
+Belgium,2019,Electricity,1480.782
+Belgium,2020,Electricity,1505.537
+Belgium,2021,Electricity,1510.499
+Belgium,2022,Electricity,1392.657
+Belgium,2023,Electricity,1364.832
+Belgium,2024,Electricity,1402.855
+Bulgaria,1990,Electricity,900.602
+Bulgaria,1991,Electricity,894.669
+Bulgaria,1992,Electricity,859.673
+Bulgaria,1993,Electricity,861.651
+Bulgaria,1994,Electricity,843.164
+Bulgaria,1995,Electricity,942.046
+Bulgaria,1996,Electricity,987.618
+Bulgaria,1997,Electricity,849.699
+Bulgaria,1998,Electricity,906.277
+Bulgaria,1999,Electricity,869.733
+Bulgaria,2000,Electricity,847.635
+Bulgaria,2001,Electricity,838.435
+Bulgaria,2002,Electricity,800.172
+Bulgaria,2003,Electricity,800.602
+Bulgaria,2004,Electricity,754.084
+Bulgaria,2005,Electricity,777.816
+Bulgaria,2006,Electricity,800.086
+Bulgaria,2007,Electricity,806.191
+Bulgaria,2008,Electricity,862.167
+Bulgaria,2009,Electricity,885.813
+Bulgaria,2010,Electricity,907.911
+Bulgaria,2011,Electricity,938.263
+Bulgaria,2012,Electricity,931.9
+Bulgaria,2013,Electricity,906.019
+Bulgaria,2014,Electricity,910.576
+Bulgaria,2015,Electricity,915.219
+Bulgaria,2016,Electricity,922.872
+Bulgaria,2017,Electricity,957.656
+Bulgaria,2018,Electricity,942.65
+Bulgaria,2019,Electricity,932.407
+Bulgaria,2020,Electricity,976.456
+Bulgaria,2021,Electricity,1027.798
+Bulgaria,2022,Electricity,1029.208
+Bulgaria,2023,Electricity,1058.619
+Bulgaria,2024,Electricity,1109.891
+Cyprus,1990,Electricity,38.607
+Cyprus,1991,Electricity,40.585
+Cyprus,1992,Electricity,50.473
+Cyprus,1993,Electricity,55.976
+Cyprus,1994,Electricity,58.04
+Cyprus,1995,Electricity,65.262
+Cyprus,1996,Electricity,70.851
+Cyprus,1997,Electricity,71.711
+Cyprus,1998,Electricity,77.73
+Cyprus,1999,Electricity,81.857
+Cyprus,2000,Electricity,90.714
+Cyprus,2001,Electricity,89.596
+Cyprus,2002,Electricity,99.484
+Cyprus,2003,Electricity,111.35
+Cyprus,2004,Electricity,113.156
+Cyprus,2005,Electricity,123.216
+Cyprus,2006,Electricity,128.977
+Cyprus,2007,Electricity,138.263
+Cyprus,2008,Electricity,144.712
+Cyprus,2009,Electricity,148.065
+Cyprus,2010,Electricity,149.441
+Cyprus,2011,Electricity,148.151
+Cyprus,2012,Electricity,143.852
+Cyprus,2013,Electricity,123.56
+Cyprus,2014,Electricity,122.528
+Cyprus,2015,Electricity,130.267
+Cyprus,2016,Electricity,136.285
+Cyprus,2017,Electricity,143.119
+Cyprus,2018,Electricity,145.166
+Cyprus,2019,Electricity,152.338
+Cyprus,2020,Electricity,155.274
+Cyprus,2021,Electricity,156.269
+Cyprus,2022,Electricity,152.905
+Cyprus,2023,Electricity,145.615
+Cyprus,2024,Electricity,161.337
+Czechia,1990,Electricity,827.429
+Czechia,1991,Electricity,848.925
+Czechia,1992,Electricity,889.338
+Czechia,1993,Electricity,980.138
+Czechia,1994,Electricity,1133.62
+Czechia,1995,Electricity,1276.612
+Czechia,1996,Electricity,1376.698
+Czechia,1997,Electricity,1333.018
+Czechia,1998,Electricity,1247.291
+Czechia,1999,Electricity,1207.911
+Czechia,2000,Electricity,1188.478
+Czechia,2001,Electricity,1224.334
+Czechia,2002,Electricity,1214.187
+Czechia,2003,Electricity,1247.463
+Czechia,2004,Electricity,1248.925
+Czechia,2005,Electricity,1265.606
+Czechia,2006,Electricity,1306.793
+Czechia,2007,Electricity,1259.329
+Czechia,2008,Electricity,1264.23
+Czechia,2009,Electricity,1262.855
+Czechia,2010,Electricity,1292.175
+Czechia,2011,Electricity,1220.98
+Czechia,2012,Electricity,1253.74
+Czechia,2013,Electricity,1265.348
+Czechia,2014,Electricity,1214.531
+Czechia,2015,Electricity,1236.629
+Czechia,2016,Electricity,1284.179
+Czechia,2017,Electricity,1307.934
+Czechia,2018,Electricity,1294.027
+Czechia,2019,Electricity,1311.852
+Czechia,2020,Electricity,1373.386
+Czechia,2021,Electricity,1484.089
+Czechia,2022,Electricity,1350.146
+Czechia,2023,Electricity,1330.754
+Czechia,2024,Electricity,1344.332
+Germany,1990,Electricity,11784.523
+Germany,1991,Electricity,10503.353
+Germany,1992,Electricity,10559.157
+Germany,1993,Electricity,10842.046
+Germany,1994,Electricity,10707.911
+Germany,1995,Electricity,10935.168
+Germany,1996,Electricity,11534.91
+Germany,1997,Electricity,11247.807
+Germany,1998,Electricity,11218.917
+Germany,1999,Electricity,11288.134
+Germany,2000,Electricity,11220.98
+Germany,2001,Electricity,11521.926
+Germany,2002,Electricity,11736.887
+Germany,2003,Electricity,11960.447
+Germany,2004,Electricity,12072.227
+Germany,2005,Electricity,12149.613
+Germany,2006,Electricity,12166.81
+Germany,2007,Electricity,12046.432
+Germany,2008,Electricity,11994.841
+Germany,2009,Electricity,11969.046
+Germany,2010,Electricity,12184.007
+Germany,2011,Electricity,11745.486
+Germany,2012,Electricity,11779.88
+Germany,2013,Electricity,11693.895
+Germany,2014,Electricity,11143.594
+Germany,2015,Electricity,11066.208
+Germany,2016,Electricity,11023.216
+Germany,2017,Electricity,11257.438
+Germany,2018,Electricity,10995.701
+Germany,2019,Electricity,10880.396
+Germany,2020,Electricity,10956.664
+Germany,2021,Electricity,11306.965
+Germany,2022,Electricity,11533.62
+Germany,2023,Electricity,11303.009
+Germany,2024,Electricity,11387.618
+Denmark,1990,Electricity,831.47
+Denmark,1991,Electricity,871.453
+Denmark,1992,Electricity,877.816
+Denmark,1993,Electricity,888.392
+Denmark,1994,Electricity,896.647
+Denmark,1995,Electricity,885.211
+Denmark,1996,Electricity,911.092
+Denmark,1997,Electricity,887.102
+Denmark,1998,Electricity,882.459
+Denmark,1999,Electricity,884.265
+Denmark,2000,Electricity,878.332
+Denmark,2001,Electricity,873.517
+Denmark,2002,Electricity,876.182
+Denmark,2003,Electricity,882.373
+Denmark,2004,Electricity,888.392
+Denmark,2005,Electricity,898.452
+Denmark,2006,Electricity,909.114
+Denmark,2007,Electricity,889.854
+Denmark,2008,Electricity,883.921
+Denmark,2009,Electricity,868.1
+Denmark,2010,Electricity,893.293
+Denmark,2011,Electricity,869.39
+Denmark,2012,Electricity,858.899
+Denmark,2013,Electricity,886.242
+Denmark,2014,Electricity,868.788
+Denmark,2015,Electricity,875.035
+Denmark,2016,Electricity,883.099
+Denmark,2017,Electricity,845.793
+Denmark,2018,Electricity,837.647
+Denmark,2019,Electricity,880.624
+Denmark,2020,Electricity,887.07
+Denmark,2021,Electricity,939.659
+Denmark,2022,Electricity,833.966
+Denmark,2023,Electricity,831.93
+Denmark,2024,Electricity,885.075
+Estonia,1990,Electricity,75.752
+Estonia,1991,Electricity,79.45
+Estonia,1992,Electricity,105.761
+Estonia,1993,Electricity,94.153
+Estonia,1994,Electricity,109.2
+Estonia,1995,Electricity,91.745
+Estonia,1996,Electricity,106.105
+Estonia,1997,Electricity,103.611
+Estonia,1998,Electricity,115.993
+Estonia,1999,Electricity,117.197
+Estonia,2000,Electricity,126.053
+Estonia,2001,Electricity,136.285
+Estonia,2002,Electricity,136.199
+Estonia,2003,Electricity,137.059
+Estonia,2004,Electricity,139.123
+Estonia,2005,Electricity,139.295
+Estonia,2006,Electricity,144.024
+Estonia,2007,Electricity,152.451
+Estonia,2008,Electricity,158.641
+Estonia,2009,Electricity,161.995
+Estonia,2010,Electricity,173.947
+Estonia,2011,Electricity,166.294
+Estonia,2012,Electricity,168.186
+Estonia,2013,Electricity,160.361
+Estonia,2014,Electricity,149.527
+Estonia,2015,Electricity,148.581
+Estonia,2016,Electricity,164.488
+Estonia,2017,Electricity,166.81
+Estonia,2018,Electricity,159.931
+Estonia,2019,Electricity,177.988
+Estonia,2020,Electricity,171.797
+Estonia,2021,Electricity,191.66
+Estonia,2022,Electricity,169.121
+Estonia,2023,Electricity,186.004
+Estonia,2024,Electricity,201.634
+Greece,1990,Electricity,780.224
+Greece,1991,Electricity,861.049
+Greece,1992,Electricity,912.468
+Greece,1993,Electricity,901.204
+Greece,1994,Electricity,939.983
+Greece,1995,Electricity,989.51
+Greece,1996,Electricity,1053.568
+Greece,1997,Electricity,1068.186
+Greece,1998,Electricity,1099.398
+Greece,1999,Electricity,1159.415
+Greece,2000,Electricity,1221.582
+Greece,2001,Electricity,1250.731
+Greece,2002,Electricity,1356.406
+Greece,2003,Electricity,1413.929
+Greece,2004,Electricity,1449.011
+Greece,2005,Electricity,1450.989
+Greece,2006,Electricity,1519.862
+Greece,2007,Electricity,1544.024
+Greece,2008,Electricity,1558.555
+Greece,2009,Electricity,1558.985
+Greece,2010,Electricity,1558.899
+Greece,2011,Electricity,1515.735
+Greece,2012,Electricity,1638.693
+Greece,2013,Electricity,1500.086
+Greece,2014,Electricity,1474.721
+Greece,2015,Electricity,1507.997
+Greece,2016,Electricity,1719.433
+Greece,2017,Electricity,1687.691
+Greece,2018,Electricity,1441.325
+Greece,2019,Electricity,1494.199
+Greece,2020,Electricity,1503.543
+Greece,2021,Electricity,1523.556
+Greece,2022,Electricity,1425.755
+Greece,2023,Electricity,1300.883
+Greece,2024,Electricity,1482.674
+Spain,1990,Electricity,2597.592
+Spain,1991,Electricity,2656.234
+Spain,1992,Electricity,2700.516
+Spain,1993,Electricity,2782.631
+Spain,1994,Electricity,2989.854
+Spain,1995,Electricity,3094.411
+Spain,1996,Electricity,3225.709
+Spain,1997,Electricity,3448.409
+Spain,1998,Electricity,3585.555
+Spain,1999,Electricity,3907.395
+Spain,2000,Electricity,3750.559
+Spain,2001,Electricity,4272.141
+Spain,2002,Electricity,4353.912
+Spain,2003,Electricity,4663.371
+Spain,2004,Electricity,4991.058
+Spain,2005,Electricity,5381.255
+Spain,2006,Electricity,5836.801
+Spain,2007,Electricity,5865.348
+Spain,2008,Electricity,5970.593
+Spain,2009,Electricity,6140.241
+Spain,2010,Electricity,6507.223
+Spain,2011,Electricity,6544.024
+Spain,2012,Electricity,6456.406
+Spain,2013,Electricity,6110.06
+Spain,2014,Electricity,6079.966
+Spain,2015,Electricity,6024.85
+Spain,2016,Electricity,5988.65
+Spain,2017,Electricity,6138.693
+Spain,2018,Electricity,6449.355
+Spain,2019,Electricity,6275.236
+Spain,2020,Electricity,6296.131
+Spain,2021,Electricity,6289.682
+Spain,2022,Electricity,6273.345
+Spain,2023,Electricity,6289.905
+Spain,2024,Electricity,6462.428
+European Union - 27 countries (from 2020),1990,Electricity,44266.12
+European Union - 27 countries (from 2020),1991,Electricity,45082.461
+European Union - 27 countries (from 2020),1992,Electricity,45633.449
+European Union - 27 countries (from 2020),1993,Electricity,46481.085
+European Union - 27 countries (from 2020),1994,Electricity,47032.158
+European Union - 27 countries (from 2020),1995,Electricity,47708.683
+European Union - 27 countries (from 2020),1996,Electricity,50451.415
+European Union - 27 countries (from 2020),1997,Electricity,50104.556
+European Union - 27 countries (from 2020),1998,Electricity,50909.801
+European Union - 27 countries (from 2020),1999,Electricity,51850.903
+European Union - 27 countries (from 2020),2000,Electricity,52082.486
+European Union - 27 countries (from 2020),2001,Electricity,53879.385
+European Union - 27 countries (from 2020),2002,Electricity,54646.556
+European Union - 27 countries (from 2020),2003,Electricity,56873.548
+European Union - 27 countries (from 2020),2004,Electricity,57108.81
+European Union - 27 countries (from 2020),2005,Electricity,57538.767
+European Union - 27 countries (from 2020),2006,Electricity,58937.365
+European Union - 27 countries (from 2020),2007,Electricity,58540.455
+European Union - 27 countries (from 2020),2008,Electricity,59858.086
+European Union - 27 countries (from 2020),2009,Electricity,60159.129
+European Union - 27 countries (from 2020),2010,Electricity,62772.392
+European Union - 27 countries (from 2020),2011,Electricity,60509.195
+European Union - 27 countries (from 2020),2012,Electricity,61776.075
+European Union - 27 countries (from 2020),2013,Electricity,61502.998
+European Union - 27 countries (from 2020),2014,Electricity,58568.063
+European Union - 27 countries (from 2020),2015,Electricity,59439.068
+European Union - 27 countries (from 2020),2016,Electricity,60450.651
+European Union - 27 countries (from 2020),2017,Electricity,60851.719
+European Union - 27 countries (from 2020),2018,Electricity,60613.044
+European Union - 27 countries (from 2020),2019,Electricity,60429.75
+European Union - 27 countries (from 2020),2020,Electricity,61244.839
+European Union - 27 countries (from 2020),2021,Electricity,63585.938
+European Union - 27 countries (from 2020),2022,Electricity,60779.311
+European Union - 27 countries (from 2020),2023,Electricity,59863.494
+European Union - 27 countries (from 2020),2024,Electricity,61265.039
+Finland,1990,Electricity,1255.288
+Finland,1991,Electricity,1344.798
+Finland,1992,Electricity,1363.457
+Finland,1993,Electricity,1402.666
+Finland,1994,Electricity,1460.275
+Finland,1995,Electricity,1397.85
+Finland,1996,Electricity,1481.943
+Finland,1997,Electricity,1498.022
+Finland,1998,Electricity,1559.931
+Finland,1999,Electricity,1586.414
+Finland,2000,Electricity,1499.656
+Finland,2001,Electricity,1603.439
+Finland,2002,Electricity,1641.788
+Finland,2003,Electricity,1712.21
+Finland,2004,Electricity,1701.29
+Finland,2005,Electricity,1742.992
+Finland,2006,Electricity,1777.816
+Finland,2007,Electricity,1776.956
+Finland,2008,Electricity,1753.654
+Finland,2009,Electricity,1835.426
+Finland,2010,Electricity,1969.39
+Finland,2011,Electricity,1842.304
+Finland,2012,Electricity,1924.506
+Finland,2013,Electricity,1849.527
+Finland,2014,Electricity,1828.375
+Finland,2015,Electricity,1798.624
+Finland,2016,Electricity,1936.199
+Finland,2017,Electricity,1935.684
+Finland,2018,Electricity,1954.514
+Finland,2019,Electricity,1938.607
+Finland,2020,Electricity,1895.099
+Finland,2021,Electricity,2086.071
+Finland,2022,Electricity,1945.486
+Finland,2023,Electricity,1885.211
+Finland,2024,Electricity,1894.669
+France,1990,Electricity,8332.588
+France,1991,Electricity,9184.609
+France,1992,Electricity,9423.302
+France,1993,Electricity,9584.695
+France,1994,Electricity,9563.285
+France,1995,Electricity,9358.727
+France,1996,Electricity,10361.909
+France,1997,Electricity,10239.381
+France,1998,Electricity,10588.736
+France,1999,Electricity,10914.273
+France,2000,Electricity,11067.928
+France,2001,Electricity,11512.21
+France,2002,Electricity,11435.77
+France,2003,Electricity,12171.453
+France,2004,Electricity,12328.461
+France,2005,Electricity,11907.395
+France,2006,Electricity,12323.904
+France,2007,Electricity,12174.463
+France,2008,Electricity,13125.709
+France,2009,Electricity,12814.445
+France,2010,Electricity,13888.22
+France,2011,Electricity,12728.305
+France,2012,Electricity,13765.106
+France,2013,Electricity,14456.511
+France,2014,Electricity,12967.755
+France,2015,Electricity,13525.513
+France,2016,Electricity,14024.428
+France,2017,Electricity,13854.075
+France,2018,Electricity,13777.804
+France,2019,Electricity,13733.627
+France,2020,Electricity,13886.374
+France,2021,Electricity,14575.679
+France,2022,Electricity,13344.612
+France,2023,Electricity,12960.987
+France,2024,Electricity,12978.485
+Georgia,2013,Electricity,193.809
+Georgia,2014,Electricity,211.952
+Georgia,2015,Electricity,211.694
+Georgia,2016,Electricity,208.34
+Georgia,2017,Electricity,211.599
+Georgia,2018,Electricity,213.586
+Georgia,2019,Electricity,211.608
+Georgia,2020,Electricity,220.55
+Georgia,2021,Electricity,227.085
+Georgia,2022,Electricity,230.61
+Georgia,2023,Electricity,236.543
+Georgia,2024,Electricity,254.428
+Croatia,1990,Electricity,383.921
+Croatia,1991,Electricity,383.577
+Croatia,1992,Electricity,348.065
+Croatia,1993,Electricity,356.492
+Croatia,1994,Electricity,361.909
+Croatia,1995,Electricity,397.334
+Croatia,1996,Electricity,421.152
+Croatia,1997,Electricity,446.174
+Croatia,1998,Electricity,452.88
+Croatia,1999,Electricity,493.723
+Croatia,2000,Electricity,492.605
+Croatia,2001,Electricity,478.074
+Croatia,2002,Electricity,511.952
+Croatia,2003,Electricity,489.596
+Croatia,2004,Electricity,522.098
+Croatia,2005,Electricity,544.54
+Croatia,2006,Electricity,560.619
+Croatia,2007,Electricity,549.613
+Croatia,2008,Electricity,577.042
+Croatia,2009,Electricity,556.406
+Croatia,2010,Electricity,573.001
+Croatia,2011,Electricity,562.425
+Croatia,2012,Electricity,557.696
+Croatia,2013,Electricity,536.285
+Croatia,2014,Electricity,518.745
+Croatia,2015,Electricity,533.276
+Croatia,2016,Electricity,526.913
+Croatia,2017,Electricity,538.753
+Croatia,2018,Electricity,533.25
+Croatia,2019,Electricity,533.611
+Croatia,2020,Electricity,522.519
+Croatia,2021,Electricity,567.016
+Croatia,2022,Electricity,555.83
+Croatia,2023,Electricity,552.115
+Croatia,2024,Electricity,586.244
+Hungary,1990,Electricity,790.112
+Hungary,1991,Electricity,839.897
+Hungary,1992,Electricity,904.041
+Hungary,1993,Electricity,835.942
+Hungary,1994,Electricity,846.346
+Hungary,1995,Electricity,841.531
+Hungary,1996,Electricity,864.402
+Hungary,1997,Electricity,840.929
+Hungary,1998,Electricity,857.782
+Hungary,1999,Electricity,845.486
+Hungary,2000,Electricity,841.96
+Hungary,2001,Electricity,871.023
+Hungary,2002,Electricity,897.678
+Hungary,2003,Electricity,951.247
+Hungary,2004,Electricity,948.581
+Hungary,2005,Electricity,955.718
+Hungary,2006,Electricity,984.609
+Hungary,2007,Electricity,967.326
+Hungary,2008,Electricity,985.383
+Hungary,2009,Electricity,966.036
+Hungary,2010,Electricity,963.199
+Hungary,2011,Electricity,972.657
+Hungary,2012,Electricity,913.156
+Hungary,2013,Electricity,909.716
+Hungary,2014,Electricity,896.217
+Hungary,2015,Electricity,931.986
+Hungary,2016,Electricity,941.874
+Hungary,2017,Electricity,967.24
+Hungary,2018,Electricity,977.644
+Hungary,2019,Electricity,998.968
+Hungary,2020,Electricity,1055.46
+Hungary,2021,Electricity,1072.657
+Hungary,2022,Electricity,1061.737
+Hungary,2023,Electricity,1077.558
+Hungary,2024,Electricity,1107.137
+Ireland,1990,Electricity,356.148
+Ireland,1991,Electricity,374.119
+Ireland,1992,Electricity,396.045
+Ireland,1993,Electricity,402.923
+Ireland,1994,Electricity,415.305
+Ireland,1995,Electricity,426.483
+Ireland,1996,Electricity,448.753
+Ireland,1997,Electricity,457.868
+Ireland,1998,Electricity,473.861
+Ireland,1999,Electricity,516.681
+Ireland,2000,Electricity,548.151
+Ireland,2001,Electricity,578.504
+Ireland,2002,Electricity,565.692
+Ireland,2003,Electricity,598.968
+Ireland,2004,Electricity,631.642
+Ireland,2005,Electricity,645.881
+Ireland,2006,Electricity,694.989
+Ireland,2007,Electricity,693.288
+Ireland,2008,Electricity,733.074
+Ireland,2009,Electricity,698.467
+Ireland,2010,Electricity,734.821
+Ireland,2011,Electricity,712.229
+Ireland,2012,Electricity,698.234
+Ireland,2013,Electricity,683.383
+Ireland,2014,Electricity,662.407
+Ireland,2015,Electricity,677.623
+Ireland,2016,Electricity,676.934
+Ireland,2017,Electricity,683.822
+Ireland,2018,Electricity,701.938
+Ireland,2019,Electricity,696.991
+Ireland,2020,Electricity,746.591
+Ireland,2021,Electricity,751.653
+Ireland,2022,Electricity,705.707
+Ireland,2023,Electricity,696.799
+Ireland,2024,Electricity,719.776
+Iceland,1990,Electricity,49.441
+Iceland,1991,Electricity,44.454
+Iceland,1992,Electricity,46.604
+Iceland,1993,Electricity,48.065
+Iceland,1994,Electricity,47.807
+Iceland,1995,Electricity,48.065
+Iceland,1996,Electricity,48.409
+Iceland,1997,Electricity,49.699
+Iceland,1998,Electricity,48.409
+Iceland,1999,Electricity,49.957
+Iceland,2000,Electricity,52.107
+Iceland,2001,Electricity,52.279
+Iceland,2002,Electricity,54.772
+Iceland,2003,Electricity,52.623
+Iceland,2004,Electricity,57.782
+Iceland,2005,Electricity,59.329
+Iceland,2006,Electricity,68.53
+Iceland,2007,Electricity,71.109
+Iceland,2008,Electricity,73.947
+Iceland,2009,Electricity,75.838
+Iceland,2010,Electricity,79.88
+Iceland,2011,Electricity,73.861
+Iceland,2012,Electricity,73.259
+Iceland,2013,Electricity,71.969
+Iceland,2014,Electricity,72.306
+Iceland,2015,Electricity,70.699
+Iceland,2016,Electricity,72.099
+Iceland,2017,Electricity,69.707
+Iceland,2018,Electricity,72.9
+Iceland,2019,Electricity,71.059
+Iceland,2020,Electricity,74.788
+Iceland,2021,Electricity,75.752
+Iceland,2022,Electricity,74.235
+Iceland,2023,Electricity,74.517
+Iceland,2024,Electricity,85.189
+Italy,1990,Electricity,4533.964
+Italy,1991,Electricity,4701.548
+Italy,1992,Electricity,4792.691
+Italy,1993,Electricity,4850.559
+Italy,1994,Electricity,4903.181
+Italy,1995,Electricity,4922.098
+Italy,1996,Electricity,4986.844
+Italy,1997,Electricity,5028.805
+Italy,1998,Electricity,5096.733
+Italy,1999,Electricity,5220.722
+Italy,2000,Electricity,5254.686
+Italy,2001,Electricity,5292.605
+Italy,2002,Electricity,5413.328
+Italy,2003,Electricity,5590.37
+Italy,2004,Electricity,5725.881
+Italy,2005,Electricity,5757.524
+Italy,2006,Electricity,5815.563
+Italy,2007,Electricity,5779.88
+Italy,2008,Electricity,5880.396
+Italy,2009,Electricity,5926.397
+Italy,2010,Electricity,5980.224
+Italy,2011,Electricity,6030.954
+Italy,2012,Electricity,5972.227
+Italy,2013,Electricity,5759.501
+Italy,2014,Electricity,5524.936
+Italy,2015,Electricity,5691.058
+Italy,2016,Electricity,5529.149
+Italy,2017,Electricity,5631.186
+Italy,2018,Electricity,5600.842
+Italy,2019,Electricity,5639.553
+Italy,2020,Electricity,5693.177
+Italy,2021,Electricity,5771.254
+Italy,2022,Electricity,5558.042
+Italy,2023,Electricity,5452.535
+Italy,2024,Electricity,5659.687
+Lithuania,1990,Electricity,151.505
+Lithuania,1991,Electricity,157.868
+Lithuania,1992,Electricity,154.428
+Lithuania,1993,Electricity,133.878
+Lithuania,1994,Electricity,132.502
+Lithuania,1995,Electricity,132.76
+Lithuania,1996,Electricity,138.091
+Lithuania,1997,Electricity,147.893
+Lithuania,1998,Electricity,149.871
+Lithuania,1999,Electricity,162.167
+Lithuania,2000,Electricity,151.935
+Lithuania,2001,Electricity,156.32
+Lithuania,2002,Electricity,155.718
+Lithuania,2003,Electricity,164.918
+Lithuania,2004,Electricity,179.708
+Lithuania,2005,Electricity,185.899
+Lithuania,2006,Electricity,204.127
+Lithuania,2007,Electricity,214.015
+Lithuania,2008,Electricity,234.738
+Lithuania,2009,Electricity,234.308
+Lithuania,2010,Electricity,222.7
+Lithuania,2011,Electricity,225.107
+Lithuania,2012,Electricity,227.171
+Lithuania,2013,Electricity,222.786
+Lithuania,2014,Electricity,228.375
+Lithuania,2015,Electricity,228.719
+Lithuania,2016,Electricity,238.607
+Lithuania,2017,Electricity,243.99
+Lithuania,2018,Electricity,256.621
+Lithuania,2019,Electricity,250.447
+Lithuania,2020,Electricity,261.754
+Lithuania,2021,Electricity,293.216
+Lithuania,2022,Electricity,282.812
+Lithuania,2023,Electricity,270.619
+Lithuania,2024,Electricity,280.241
+Luxembourg,1990,Electricity,49.441
+Luxembourg,1991,Electricity,51.677
+Luxembourg,1992,Electricity,52.88
+Luxembourg,1993,Electricity,55.546
+Luxembourg,1994,Electricity,55.804
+Luxembourg,1995,Electricity,56.836
+Luxembourg,1996,Electricity,56.836
+Luxembourg,1997,Electricity,54.514
+Luxembourg,1998,Electricity,56.664
+Luxembourg,1999,Electricity,56.664
+Luxembourg,2000,Electricity,68.128
+Luxembourg,2001,Electricity,68.895
+Luxembourg,2002,Electricity,69.515
+Luxembourg,2003,Electricity,70.712
+Luxembourg,2004,Electricity,72.121
+Luxembourg,2005,Electricity,72.664
+Luxembourg,2006,Electricity,71.452
+Luxembourg,2007,Electricity,72.534
+Luxembourg,2008,Electricity,66.761
+Luxembourg,2009,Electricity,77.768
+Luxembourg,2010,Electricity,70.09
+Luxembourg,2011,Electricity,73.225
+Luxembourg,2012,Electricity,78.8
+Luxembourg,2013,Electricity,84.195
+Luxembourg,2014,Electricity,86.922
+Luxembourg,2015,Electricity,85.063
+Luxembourg,2016,Electricity,83.902
+Luxembourg,2017,Electricity,83.355
+Luxembourg,2018,Electricity,79.821
+Luxembourg,2019,Electricity,78.192
+Luxembourg,2020,Electricity,81.67
+Luxembourg,2021,Electricity,80.873
+Luxembourg,2022,Electricity,80.314
+Luxembourg,2023,Electricity,78.575
+Luxembourg,2024,Electricity,75.774
+Latvia,1990,Electricity,110.576
+Latvia,1991,Electricity,111.694
+Latvia,1992,Electricity,101.806
+Latvia,1993,Electricity,74.205
+Latvia,1994,Electricity,81.685
+Latvia,1995,Electricity,99.828
+Latvia,1996,Electricity,93.981
+Latvia,1997,Electricity,93.035
+Latvia,1998,Electricity,95.529
+Latvia,1999,Electricity,98.624
+Latvia,2000,Electricity,102.236
+Latvia,2001,Electricity,106.535
+Latvia,2002,Electricity,113.242
+Latvia,2003,Electricity,122.184
+Latvia,2004,Electricity,126.139
+Latvia,2005,Electricity,135.168
+Latvia,2006,Electricity,148.581
+Latvia,2007,Electricity,154.256
+Latvia,2008,Electricity,174.635
+Latvia,2009,Electricity,171.969
+Latvia,2010,Electricity,166.638
+Latvia,2011,Electricity,152.365
+Latvia,2012,Electricity,152.709
+Latvia,2013,Electricity,153.31
+Latvia,2014,Electricity,150.215
+Latvia,2015,Electricity,151.247
+Latvia,2016,Electricity,154.17
+Latvia,2017,Electricity,142.431
+Latvia,2018,Electricity,143.601
+Latvia,2019,Electricity,141.821
+Latvia,2020,Electricity,150.56
+Latvia,2021,Electricity,154.427
+Latvia,2022,Electricity,144.894
+Latvia,2023,Electricity,141.858
+Latvia,2024,Electricity,149.643
+Moldova,2010,Electricity,130.181
+Moldova,2011,Electricity,133.19
+Moldova,2012,Electricity,135.512
+Moldova,2013,Electricity,138.521
+Moldova,2014,Electricity,142.648
+Moldova,2015,Electricity,143.594
+Moldova,2016,Electricity,140.499
+Moldova,2017,Electricity,140.671
+Moldova,2018,Electricity,141.187
+Moldova,2019,Electricity,143.68
+Moldova,2020,Electricity,148.753
+Moldova,2021,Electricity,156.922
+Moldova,2022,Electricity,150.129
+Moldova,2023,Electricity,143.508
+Moldova,2024,Electricity,159.355
+Montenegro,2005,Electricity,95.357
+Montenegro,2006,Electricity,94.325
+Montenegro,2007,Electricity,96.991
+Montenegro,2008,Electricity,101.29
+Montenegro,2009,Electricity,109.028
+Montenegro,2010,Electricity,110.06
+Montenegro,2011,Electricity,103.181
+Montenegro,2012,Electricity,112.64
+Montenegro,2013,Electricity,109.802
+Montenegro,2014,Electricity,101.634
+Montenegro,2015,Electricity,106.879
+Montenegro,2016,Electricity,107.567
+Montenegro,2017,Electricity,110.567
+Montenegro,2018,Electricity,109.381
+Montenegro,2019,Electricity,110.954
+Montenegro,2020,Electricity,106.715
+Montenegro,2021,Electricity,114.91
+Montenegro,2022,Electricity,118.083
+Montenegro,2023,Electricity,125.916
+Montenegro,2024,Electricity,133.276
+North Macedonia,1990,Electricity,143.766
+North Macedonia,1991,Electricity,159.329
+North Macedonia,1992,Electricity,168.014
+North Macedonia,1993,Electricity,187.876
+North Macedonia,1994,Electricity,191.23
+North Macedonia,1995,Electricity,204.815
+North Macedonia,1996,Electricity,213.758
+North Macedonia,1997,Electricity,215.735
+North Macedonia,1998,Electricity,219.69
+North Macedonia,1999,Electricity,226.225
+North Macedonia,2000,Electricity,228.117
+North Macedonia,2001,Electricity,223.474
+North Macedonia,2002,Electricity,230.61
+North Macedonia,2003,Electricity,249.441
+North Macedonia,2004,Electricity,249.699
+North Macedonia,2005,Electricity,256.836
+North Macedonia,2006,Electricity,262.081
+North Macedonia,2007,Electricity,261.221
+North Macedonia,2008,Electricity,269.475
+North Macedonia,2009,Electricity,283.663
+North Macedonia,2010,Electricity,277.988
+North Macedonia,2011,Electricity,287.618
+North Macedonia,2012,Electricity,280.567
+North Macedonia,2013,Electricity,263.543
+North Macedonia,2014,Electricity,261.909
+North Macedonia,2015,Electricity,270.163
+North Macedonia,2016,Electricity,262.894
+North Macedonia,2017,Electricity,266.258
+North Macedonia,2018,Electricity,257.848
+North Macedonia,2019,Electricity,261.358
+North Macedonia,2020,Electricity,274.386
+North Macedonia,2021,Electricity,285.194
+North Macedonia,2022,Electricity,264.853
+North Macedonia,2023,Electricity,257.871
+North Macedonia,2024,Electricity,270.881
+Malta,1990,Electricity,22.528
+Malta,1991,Electricity,23.216
+Malta,1992,Electricity,24.076
+Malta,1993,Electricity,24.334
+Malta,1994,Electricity,32.846
+Malta,1995,Electricity,34.394
+Malta,1996,Electricity,37.231
+Malta,1997,Electricity,39.725
+Malta,1998,Electricity,42.992
+Malta,1999,Electricity,46.518
+Malta,2000,Electricity,48.065
+Malta,2001,Electricity,46.432
+Malta,2002,Electricity,49.011
+Malta,2003,Electricity,54.084
+Malta,2004,Electricity,52.88
+Malta,2005,Electricity,53.568
+Malta,2006,Electricity,56.664
+Malta,2007,Electricity,56.578
+Malta,2008,Electricity,55.46
+Malta,2009,Electricity,49.011
+Malta,2010,Electricity,50.645
+Malta,2011,Electricity,51.075
+Malta,2012,Electricity,52.794
+Malta,2013,Electricity,52.365
+Malta,2014,Electricity,52.88
+Malta,2015,Electricity,56.406
+Malta,2016,Electricity,57.261
+Malta,2017,Electricity,62.59
+Malta,2018,Electricity,67.849
+Malta,2019,Electricity,73.532
+Malta,2020,Electricity,76.416
+Malta,2021,Electricity,81.498
+Malta,2022,Electricity,88.708
+Malta,2023,Electricity,87.659
+Malta,2024,Electricity,93.408
+Netherlands,1990,Electricity,1347.721
+Netherlands,1991,Electricity,1396.733
+Netherlands,1992,Electricity,1429.407
+Netherlands,1993,Electricity,1462.081
+Netherlands,1994,Electricity,1511.092
+Netherlands,1995,Electricity,1555.03
+Netherlands,1996,Electricity,1578.762
+Netherlands,1997,Electricity,1610.404
+Netherlands,1998,Electricity,1642.046
+Netherlands,1999,Electricity,1685.641
+Netherlands,2000,Electricity,1721.324
+Netherlands,2001,Electricity,1745.4
+Netherlands,2002,Electricity,1800.946
+Netherlands,2003,Electricity,1841.617
+Netherlands,2004,Electricity,1850.215
+Netherlands,2005,Electricity,1874.119
+Netherlands,2006,Electricity,1898.624
+Netherlands,2007,Electricity,1914.703
+Netherlands,2008,Electricity,1934.738
+Netherlands,2009,Electricity,1966.638
+Netherlands,2010,Electricity,1977.128
+Netherlands,2011,Electricity,1981.341
+Netherlands,2012,Electricity,2008.885
+Netherlands,2013,Electricity,2008.681
+Netherlands,2014,Electricity,1962.967
+Netherlands,2015,Electricity,1907.304
+Netherlands,2016,Electricity,1890.683
+Netherlands,2017,Electricity,1875.405
+Netherlands,2018,Electricity,1856.495
+Netherlands,2019,Electricity,1856.737
+Netherlands,2020,Electricity,1888.682
+Netherlands,2021,Electricity,1932.055
+Netherlands,2022,Electricity,1872.894
+Netherlands,2023,Electricity,1808.062
+Netherlands,2024,Electricity,1860.323
+Norway,1990,Electricity,2605.245
+Norway,1991,Electricity,2804.299
+Norway,1992,Electricity,2807.395
+Norway,1993,Electricity,2819.175
+Norway,1994,Electricity,2924.764
+Norway,1995,Electricity,2977.386
+Norway,1996,Electricity,3034.222
+Norway,1997,Electricity,2921.582
+Norway,1998,Electricity,3013.586
+Norway,1999,Electricity,3013.414
+Norway,2000,Electricity,2978.59
+Norway,2001,Electricity,3084.781
+Norway,2002,Electricity,2979.106
+Norway,2003,Electricity,2753.482
+Norway,2004,Electricity,2786.328
+Norway,2005,Electricity,2923.99
+Norway,2006,Electricity,2893.035
+Norway,2007,Electricity,3004.987
+Norway,2008,Electricity,2999.914
+Norway,2009,Electricity,3122.356
+Norway,2010,Electricity,3416.27
+Norway,2011,Electricity,3100.314
+Norway,2012,Electricity,3288.621
+Norway,2013,Electricity,3344.971
+Norway,2014,Electricity,3170.349
+Norway,2015,Electricity,3316.415
+Norway,2016,Electricity,3425.891
+Norway,2017,Electricity,3450.786
+Norway,2018,Electricity,3474.166
+Norway,2019,Electricity,3440.037
+Norway,2020,Electricity,3429.407
+Norway,2021,Electricity,3575.041
+Norway,2022,Electricity,3125.336
+Norway,2023,Electricity,3340.09
+Norway,2024,Electricity,3358.047
+Poland,1990,Electricity,1738.263
+Poland,1991,Electricity,1737.403
+Poland,1992,Electricity,1629.149
+Poland,1993,Electricity,1565.434
+Poland,1994,Electricity,1565.434
+Poland,1995,Electricity,1554.17
+Poland,1996,Electricity,1652.966
+Poland,1997,Electricity,1700
+Poland,1998,Electricity,1746.69
+Poland,1999,Electricity,1788.478
+Poland,2000,Electricity,1808.598
+Poland,2001,Electricity,1838.005
+Poland,2002,Electricity,1862.339
+Poland,2003,Electricity,2136.887
+Poland,2004,Electricity,2190.542
+Poland,2005,Electricity,2171.367
+Poland,2006,Electricity,2275.752
+Poland,2007,Electricity,2267.326
+Poland,2008,Electricity,2331.47
+Poland,2009,Electricity,2367.498
+Poland,2010,Electricity,2460.447
+Poland,2011,Electricity,2429.751
+Poland,2012,Electricity,2434.91
+Poland,2013,Electricity,2445.572
+Poland,2014,Electricity,2414.703
+Poland,2015,Electricity,2431.642
+Poland,2016,Electricity,2485.727
+Poland,2017,Electricity,2509.114
+Poland,2018,Electricity,2517.971
+Poland,2019,Electricity,2527.367
+Poland,2020,Electricity,2580.053
+Poland,2021,Electricity,2630.267
+Poland,2022,Electricity,2481.513
+Poland,2023,Electricity,2476.956
+Poland,2024,Electricity,2796.531
+Portugal,1990,Electricity,509.028
+Portugal,1991,Electricity,567.412
+Portugal,1992,Electricity,584.437
+Portugal,1993,Electricity,611.866
+Portugal,1994,Electricity,636.285
+Portugal,1995,Electricity,676.182
+Portugal,1996,Electricity,725.709
+Portugal,1997,Electricity,724.248
+Portugal,1998,Electricity,755.288
+Portugal,1999,Electricity,818.831
+Portugal,2000,Electricity,864.66
+Portugal,2001,Electricity,913.586
+Portugal,2002,Electricity,978.676
+Portugal,2003,Electricity,1017.627
+Portugal,2004,Electricity,1068.96
+Portugal,2005,Electricity,1138.607
+Portugal,2006,Electricity,1152.709
+Portugal,2007,Electricity,1192.003
+Portugal,2008,Electricity,1155.976
+Portugal,2009,Electricity,1220.12
+Portugal,2010,Electricity,1248.667
+Portugal,2011,Electricity,1182.459
+Portugal,2012,Electricity,1109.028
+Portugal,2013,Electricity,1058.813
+Portugal,2014,Electricity,1024.506
+Portugal,2015,Electricity,1029.579
+Portugal,2016,Electricity,1115.45
+Portugal,2017,Electricity,1082.517
+Portugal,2018,Electricity,1136.073
+Portugal,2019,Electricity,1137.004
+Portugal,2020,Electricity,1174.204
+Portugal,2021,Electricity,1227.68
+Portugal,2022,Electricity,1195.532
+Portugal,2023,Electricity,1253.779
+Portugal,2024,Electricity,1269.77
+Romania,1990,Electricity,460.361
+Romania,1991,Electricity,580.138
+Romania,1992,Electricity,653.138
+Romania,1993,Electricity,603.869
+Romania,1994,Electricity,571.453
+Romania,1995,Electricity,611.866
+Romania,1996,Electricity,698.366
+Romania,1997,Electricity,683.233
+Romania,1998,Electricity,680.739
+Romania,1999,Electricity,677.816
+Romania,2000,Electricity,657.954
+Romania,2001,Electricity,664.144
+Romania,2002,Electricity,668.186
+Romania,2003,Electricity,708.77
+Romania,2004,Electricity,691.574
+Romania,2005,Electricity,793.981
+Romania,2006,Electricity,859.759
+Romania,2007,Electricity,893.293
+Romania,2008,Electricity,894.239
+Romania,2009,Electricity,947.635
+Romania,2010,Electricity,974.119
+Romania,2011,Electricity,995.443
+Romania,2012,Electricity,1034.824
+Romania,2013,Electricity,1022.872
+Romania,2014,Electricity,1024.076
+Romania,2015,Electricity,1039.983
+Romania,2016,Electricity,1037.575
+Romania,2017,Electricity,1083.119
+Romania,2018,Electricity,1098.872
+Romania,2019,Electricity,1116.448
+Romania,2020,Electricity,1171.091
+Romania,2021,Electricity,1224.782
+Romania,2022,Electricity,1160.562
+Romania,2023,Electricity,1125.709
+Romania,2024,Electricity,1195.815
+Serbia,1990,Electricity,916.939
+Serbia,1991,Electricity,1041.101
+Serbia,1992,Electricity,1031.814
+Serbia,1993,Electricity,1326.483
+Serbia,1994,Electricity,1376.096
+Serbia,1995,Electricity,1385.555
+Serbia,1996,Electricity,1419.776
+Serbia,1997,Electricity,1502.064
+Serbia,1998,Electricity,1466.724
+Serbia,1999,Electricity,1338.263
+Serbia,2000,Electricity,1401.548
+Serbia,2001,Electricity,1404.815
+Serbia,2002,Electricity,1401.548
+Serbia,2003,Electricity,1401.548
+Serbia,2004,Electricity,1171.625
+Serbia,2005,Electricity,1220.206
+Serbia,2006,Electricity,1209.114
+Serbia,2007,Electricity,1198.022
+Serbia,2008,Electricity,1212.21
+Serbia,2009,Electricity,1239.209
+Serbia,2010,Electricity,1259.243
+Serbia,2011,Electricity,1260.963
+Serbia,2012,Electricity,1248.237
+Serbia,2013,Electricity,1216.337
+Serbia,2014,Electricity,1186.758
+Serbia,2015,Electricity,1209.114
+Serbia,2016,Electricity,1197.85
+Serbia,2017,Electricity,1187.877
+Serbia,2018,Electricity,1153.445
+Serbia,2019,Electricity,1147.048
+Serbia,2020,Electricity,1179.547
+Serbia,2021,Electricity,1193.176
+Serbia,2022,Electricity,1150.405
+Serbia,2023,Electricity,1118.505
+Serbia,2024,Electricity,1137.179
+Sweden,1990,Electricity,3275.58
+Sweden,1991,Electricity,3541.96
+Sweden,1992,Electricity,3457.438
+Sweden,1993,Electricity,3597.248
+Sweden,1994,Electricity,3655.632
+Sweden,1995,Electricity,3644.712
+Sweden,1996,Electricity,3724.936
+Sweden,1997,Electricity,3660.791
+Sweden,1998,Electricity,3653.998
+Sweden,1999,Electricity,3453.396
+Sweden,2000,Electricity,3613.07
+Sweden,2001,Electricity,3626.827
+Sweden,2002,Electricity,3566.036
+Sweden,2003,Electricity,3611.178
+Sweden,2004,Electricity,3557.61
+Sweden,2005,Electricity,3668.358
+Sweden,2006,Electricity,3567.498
+Sweden,2007,Electricity,3408.255
+Sweden,2008,Electricity,3347.291
+Sweden,2009,Electricity,3520.722
+Sweden,2010,Electricity,3953.74
+Sweden,2011,Electricity,3641.788
+Sweden,2012,Electricity,3775.494
+Sweden,2013,Electricity,3740.671
+Sweden,2014,Electricity,3551.161
+Sweden,2015,Electricity,3696.217
+Sweden,2016,Electricity,3827.945
+Sweden,2017,Electricity,3880.653
+Sweden,2018,Electricity,3875.15
+Sweden,2019,Electricity,3771.195
+Sweden,2020,Electricity,3660.619
+Sweden,2021,Electricity,3972.485
+Sweden,2022,Electricity,3494.067
+Sweden,2023,Electricity,3400.688
+Sweden,2024,Electricity,3419.776
+Slovenia,1990,Electricity,192.003
+Slovenia,1991,Electricity,208.684
+Slovenia,1992,Electricity,206.707
+Slovenia,1993,Electricity,214.101
+Slovenia,1994,Electricity,222.27
+Slovenia,1995,Electricity,219.518
+Slovenia,1996,Electricity,226.053
+Slovenia,1997,Electricity,230.782
+Slovenia,1998,Electricity,231.298
+Slovenia,1999,Electricity,205.159
+Slovenia,2000,Electricity,223.646
+Slovenia,2001,Electricity,230.009
+Slovenia,2002,Electricity,232.502
+Slovenia,2003,Electricity,258.641
+Slovenia,2004,Electricity,258.985
+Slovenia,2005,Electricity,253.74
+Slovenia,2006,Electricity,262.683
+Slovenia,2007,Electricity,259.759
+Slovenia,2008,Electricity,273.603
+Slovenia,2009,Electricity,269.733
+Slovenia,2010,Electricity,276.784
+Slovenia,2011,Electricity,276.096
+Slovenia,2012,Electricity,273.345
+Slovenia,2013,Electricity,277.644
+Slovenia,2014,Electricity,268.702
+Slovenia,2015,Electricity,275.58
+Slovenia,2016,Electricity,280.31
+Slovenia,2017,Electricity,286.072
+Slovenia,2018,Electricity,289.58
+Slovenia,2019,Electricity,293.969
+Slovenia,2020,Electricity,312.477
+Slovenia,2021,Electricity,326.962
+Slovenia,2022,Electricity,320.811
+Slovenia,2023,Electricity,350.706
+Slovenia,2024,Electricity,365.387
+Slovakia,1990,Electricity,316.251
+Slovakia,1991,Electricity,326.913
+Slovakia,1992,Electricity,318.229
+Slovakia,1993,Electricity,355.718
+Slovakia,1994,Electricity,385.985
+Slovakia,1995,Electricity,429.751
+Slovakia,1996,Electricity,468.702
+Slovakia,1997,Electricity,473.517
+Slovakia,1998,Electricity,480.997
+Slovakia,1999,Electricity,487.704
+Slovakia,2000,Electricity,465.95
+Slovakia,2001,Electricity,449.011
+Slovakia,2002,Electricity,443.422
+Slovakia,2003,Electricity,433.276
+Slovakia,2004,Electricity,414.187
+Slovakia,2005,Electricity,404.213
+Slovakia,2006,Electricity,393.551
+Slovakia,2007,Electricity,395.701
+Slovakia,2008,Electricity,389.596
+Slovakia,2009,Electricity,380.739
+Slovakia,2010,Electricity,375.752
+Slovakia,2011,Electricity,387.188
+Slovakia,2012,Electricity,407.051
+Slovakia,2013,Electricity,423.904
+Slovakia,2014,Electricity,422.786
+Slovakia,2015,Electricity,432.932
+Slovakia,2016,Electricity,438.263
+Slovakia,2017,Electricity,422.7
+Slovakia,2018,Electricity,438.091
+Slovakia,2019,Electricity,468.874
+Slovakia,2020,Electricity,505.073
+Slovakia,2021,Electricity,513.156
+Slovakia,2022,Electricity,506.535
+Slovakia,2023,Electricity,502.837
+Slovakia,2024,Electricity,495.615
+Türkiye,1990,Electricity,779.02
+Türkiye,1991,Electricity,931.47
+Türkiye,1992,Electricity,987.274
+Türkiye,1993,Electricity,1079.88
+Türkiye,1994,Electricity,1156.492
+Türkiye,1995,Electricity,1246.088
+Türkiye,1996,Electricity,1412.726
+Türkiye,1997,Electricity,1591.917
+Türkiye,1998,Electricity,1722.614
+Türkiye,1999,Electricity,1941.874
+Türkiye,2000,Electricity,2053.998
+Türkiye,2001,Electricity,2025.537
+Türkiye,2002,Electricity,2025.709
+Türkiye,2003,Electricity,2166.38
+Türkiye,2004,Electricity,2374.807
+Türkiye,2005,Electricity,2659.931
+Türkiye,2006,Electricity,2963.543
+Türkiye,2007,Electricity,3136.457
+Türkiye,2008,Electricity,3403.611
+Türkiye,2009,Electricity,3366.122
+Türkiye,2010,Electricity,3560.619
+Türkiye,2011,Electricity,3806.621
+Türkiye,2012,Electricity,3901.548
+Türkiye,2013,Electricity,3866.896
+Türkiye,2014,Electricity,3971.625
+Türkiye,2015,Electricity,4118.745
+Türkiye,2016,Electricity,4402.752
+Türkiye,2017,Electricity,4664.773
+Türkiye,2018,Electricity,4693.94
+Türkiye,2019,Electricity,4831.824
+Türkiye,2020,Electricity,5218.698
+Türkiye,2021,Electricity,5287.964
+Türkiye,2022,Electricity,5306.144
+Türkiye,2023,Electricity,5635.553
+Türkiye,2024,Electricity,6417.842
+Ukraine,1990,Electricity,1478.418
+Ukraine,1991,Electricity,1719.089
+Ukraine,1992,Electricity,2845.4
+Ukraine,1993,Electricity,2991.316
+Ukraine,1994,Electricity,2990.456
+Ukraine,1995,Electricity,3092.003
+Ukraine,1996,Electricity,2828.719
+Ukraine,1997,Electricity,2693.293
+Ukraine,1998,Electricity,2662.769
+Ukraine,1999,Electricity,2734.222
+Ukraine,2000,Electricity,2590.112
+Ukraine,2001,Electricity,1856.922
+Ukraine,2002,Electricity,1870.851
+Ukraine,2003,Electricity,1986.672
+Ukraine,2004,Electricity,2083.405
+Ukraine,2005,Electricity,2241.101
+Ukraine,2006,Electricity,2379.88
+Ukraine,2007,Electricity,2429.149
+Ukraine,2008,Electricity,2687.876
+Ukraine,2009,Electricity,2885.899
+Ukraine,2010,Electricity,3159.071
+Ukraine,2011,Electricity,3306.965
+Ukraine,2012,Electricity,3302.236
+Ukraine,2013,Electricity,3557.868
+Ukraine,2014,Electricity,3350.989
+Ukraine,2015,Electricity,3182.975
+Ukraine,2016,Electricity,3088.306
+Ukraine,2017,Electricity,3013.121
+Ukraine,2018,Electricity,3090.886
+Ukraine,2019,Electricity,3029.751
+Ukraine,2020,Electricity,3143.087
+United Kingdom,1990,Electricity,8064.746
+United Kingdom,1991,Electricity,8434.91
+United Kingdom,1992,Electricity,8553.912
+United Kingdom,1993,Electricity,8637.661
+United Kingdom,1994,Electricity,8719.433
+United Kingdom,1995,Electricity,8788.478
+United Kingdom,1996,Electricity,9244.454
+United Kingdom,1997,Electricity,8981.513
+United Kingdom,1998,Electricity,9407.567
+United Kingdom,1999,Electricity,9484.781
+United Kingdom,2000,Electricity,9616.681
+United Kingdom,2001,Electricity,9917.197
+United Kingdom,2002,Electricity,9848.151
+United Kingdom,2003,Electricity,10576.182
+United Kingdom,2004,Electricity,10679.278
+United Kingdom,2005,Electricity,10809.2
+United Kingdom,2006,Electricity,10722.614
+United Kingdom,2007,Electricity,10582.631
+United Kingdom,2008,Electricity,10300.946
+United Kingdom,2009,Electricity,10192.691
+United Kingdom,2010,Electricity,10217.713
+United Kingdom,2011,Electricity,9594.669
+United Kingdom,2012,Electricity,9859.243
+United Kingdom,2013,Electricity,9751.677
+United Kingdom,2014,Electricity,9292.863
+United Kingdom,2015,Electricity,9266.023
+United Kingdom,2016,Electricity,9288.482
+United Kingdom,2017,Electricity,9060.009
+United Kingdom,2018,Electricity,9033.925
+United Kingdom,2019,Electricity,8927.331
+Kosovo*,2000,Electricity,145.4
+Kosovo*,2001,Electricity,183.921
+Kosovo*,2002,Electricity,182.717
+Kosovo*,2003,Electricity,178.504
+Kosovo*,2004,Electricity,188.22
+Kosovo*,2005,Electricity,203.267
+Kosovo*,2006,Electricity,211.092
+Kosovo*,2007,Electricity,198.882
+Kosovo*,2008,Electricity,191.66
+Kosovo*,2009,Electricity,184.265
+Kosovo*,2010,Electricity,192.777
+Kosovo*,2011,Electricity,215.563
+Kosovo*,2012,Electricity,210.146
+Kosovo*,2013,Electricity,229.321
+Kosovo*,2014,Electricity,219.69
+Kosovo*,2015,Electricity,203.525
+Kosovo*,2016,Electricity,181.857
+Kosovo*,2017,Electricity,196.987
+Kosovo*,2018,Electricity,202.54
+Kosovo*,2019,Electricity,217.366
+Kosovo*,2020,Electricity,238.839
+Kosovo*,2021,Electricity,287.447
+Kosovo*,2022,Electricity,291.37
+Kosovo*,2023,Electricity,269.09
+Kosovo*,2024,Electricity,261.561
+Albania,1990,Natural gas,9.093
+Albania,1991,Natural gas,9.544
+Albania,1992,Natural gas,9.544
+Albania,1993,Natural gas,8.598
+Albania,1994,Natural gas,6.062
+Albania,1995,Natural gas,3.332
+Albania,1996,Natural gas,2.773
+Albania,1997,Natural gas,0
+Albania,1998,Natural gas,0
+Albania,1999,Natural gas,0
+Albania,2000,Natural gas,0
+Albania,2001,Natural gas,0
+Albania,2002,Natural gas,0
+Albania,2003,Natural gas,0
+Albania,2004,Natural gas,0
+Albania,2005,Natural gas,0
+Albania,2006,Natural gas,0
+Albania,2007,Natural gas,0
+Albania,2008,Natural gas,0
+Albania,2009,Natural gas,0
+Albania,2010,Natural gas,0
+Albania,2011,Natural gas,0
+Albania,2012,Natural gas,0
+Albania,2013,Natural gas,0
+Albania,2014,Natural gas,0
+Albania,2015,Natural gas,0
+Albania,2016,Natural gas,0
+Albania,2017,Natural gas,0
+Albania,2018,Natural gas,0
+Albania,2019,Natural gas,0
+Albania,2020,Natural gas,0
+Albania,2021,Natural gas,0
+Albania,2022,Natural gas,0
+Albania,2023,Natural gas,0
+Albania,2024,Natural gas,0
+Austria,1990,Natural gas,796.26
+Austria,1991,Natural gas,951.01
+Austria,1992,Natural gas,926.44
+Austria,1993,Natural gas,1011.93
+Austria,1994,Natural gas,959.566
+Austria,1995,Natural gas,1031.449
+Austria,1996,Natural gas,1160.275
+Austria,1997,Natural gas,1158.813
+Austria,1998,Natural gas,1226.913
+Austria,1999,Natural gas,1215.972
+Austria,2000,Natural gas,1134.308
+Austria,2001,Natural gas,1268.422
+Austria,2002,Natural gas,1185.942
+Austria,2003,Natural gas,1252.837
+Austria,2004,Natural gas,1222.764
+Austria,2005,Natural gas,1569.523
+Austria,2006,Natural gas,1516.431
+Austria,2007,Natural gas,1375.61
+Austria,2008,Natural gas,1413
+Austria,2009,Natural gas,1442.274
+Austria,2010,Natural gas,1563.7
+Austria,2011,Natural gas,1389.56
+Austria,2012,Natural gas,1414.45
+Austria,2013,Natural gas,1429.039
+Austria,2014,Natural gas,1251.537
+Austria,2015,Natural gas,1357.578
+Austria,2016,Natural gas,1500.408
+Austria,2017,Natural gas,1468.812
+Austria,2018,Natural gas,1344.24
+Austria,2019,Natural gas,1426.372
+Austria,2020,Natural gas,1439.275
+Austria,2021,Natural gas,1562.29
+Austria,2022,Natural gas,1298.999
+Austria,2023,Natural gas,1180.186
+Austria,2024,Natural gas,1088.842
+Bosnia and Herzegovina,2014,Natural gas,26.87
+Bosnia and Herzegovina,2015,Natural gas,33.169
+Bosnia and Herzegovina,2016,Natural gas,34.544
+Bosnia and Herzegovina,2017,Natural gas,37.704
+Bosnia and Herzegovina,2018,Natural gas,35.985
+Bosnia and Herzegovina,2019,Natural gas,38.758
+Bosnia and Herzegovina,2020,Natural gas,40.606
+Bosnia and Herzegovina,2021,Natural gas,46.174
+Bosnia and Herzegovina,2022,Natural gas,41.359
+Bosnia and Herzegovina,2023,Natural gas,36.909
+Bosnia and Herzegovina,2024,Natural gas,35.985
+Belgium,1990,Natural gas,2483.32
+Belgium,1991,Natural gas,2919.838
+Belgium,1992,Natural gas,2878.265
+Belgium,1993,Natural gas,3035.164
+Belgium,1994,Natural gas,2930.134
+Belgium,1995,Natural gas,3126.723
+Belgium,1996,Natural gas,3665.455
+Belgium,1997,Natural gas,3195.83
+Belgium,1998,Natural gas,3376.741
+Belgium,1999,Natural gas,3273.72
+Belgium,2000,Natural gas,3292.586
+Belgium,2001,Natural gas,3621.97
+Belgium,2002,Natural gas,3456.44
+Belgium,2003,Natural gas,3598.699
+Belgium,2004,Natural gas,3552.896
+Belgium,2005,Natural gas,3493.804
+Belgium,2006,Natural gas,3487.293
+Belgium,2007,Natural gas,3264.498
+Belgium,2008,Natural gas,3480.735
+Belgium,2009,Natural gas,3493.405
+Belgium,2010,Natural gas,3985.656
+Belgium,2011,Natural gas,3113.432
+Belgium,2012,Natural gas,3469.626
+Belgium,2013,Natural gas,3738.559
+Belgium,2014,Natural gas,2914.752
+Belgium,2015,Natural gas,3211.42
+Belgium,2016,Natural gas,3394.755
+Belgium,2017,Natural gas,3325.523
+Belgium,2018,Natural gas,3324.986
+Belgium,2019,Natural gas,3308.226
+Belgium,2020,Natural gas,3124.269
+Belgium,2021,Natural gas,3659.629
+Belgium,2022,Natural gas,2908.734
+Belgium,2023,Natural gas,2855.854
+Belgium,2024,Natural gas,2918.972
+Bulgaria,1990,Natural gas,0
+Bulgaria,1991,Natural gas,0
+Bulgaria,1992,Natural gas,0
+Bulgaria,1993,Natural gas,0
+Bulgaria,1994,Natural gas,0
+Bulgaria,1995,Natural gas,0
+Bulgaria,1996,Natural gas,0
+Bulgaria,1997,Natural gas,0
+Bulgaria,1998,Natural gas,0
+Bulgaria,1999,Natural gas,0
+Bulgaria,2000,Natural gas,0.193
+Bulgaria,2001,Natural gas,0.795
+Bulgaria,2002,Natural gas,1.268
+Bulgaria,2003,Natural gas,3.095
+Bulgaria,2004,Natural gas,5.761
+Bulgaria,2005,Natural gas,14.08
+Bulgaria,2006,Natural gas,24.463
+Bulgaria,2007,Natural gas,32.76
+Bulgaria,2008,Natural gas,38.908
+Bulgaria,2009,Natural gas,50.795
+Bulgaria,2010,Natural gas,49.334
+Bulgaria,2011,Natural gas,55.954
+Bulgaria,2012,Natural gas,53.44
+Bulgaria,2013,Natural gas,44.949
+Bulgaria,2014,Natural gas,45.186
+Bulgaria,2015,Natural gas,51.763
+Bulgaria,2016,Natural gas,58.899
+Bulgaria,2017,Natural gas,68.064
+Bulgaria,2018,Natural gas,77.28
+Bulgaria,2019,Natural gas,78.685
+Bulgaria,2020,Natural gas,96.069
+Bulgaria,2021,Natural gas,113.423
+Bulgaria,2022,Natural gas,86.989
+Bulgaria,2023,Natural gas,71.096
+Bulgaria,2024,Natural gas,81.161
+Cyprus,1990,Natural gas,0
+Cyprus,1991,Natural gas,0
+Cyprus,1992,Natural gas,0
+Cyprus,1993,Natural gas,0
+Cyprus,1994,Natural gas,0
+Cyprus,1995,Natural gas,0
+Cyprus,1996,Natural gas,0
+Cyprus,1997,Natural gas,0
+Cyprus,1998,Natural gas,0
+Cyprus,1999,Natural gas,0
+Cyprus,2000,Natural gas,0
+Cyprus,2001,Natural gas,0
+Cyprus,2002,Natural gas,0
+Cyprus,2003,Natural gas,0
+Cyprus,2004,Natural gas,0
+Cyprus,2005,Natural gas,0
+Cyprus,2006,Natural gas,0
+Cyprus,2007,Natural gas,0
+Cyprus,2008,Natural gas,0
+Cyprus,2009,Natural gas,0
+Cyprus,2010,Natural gas,0
+Cyprus,2011,Natural gas,0
+Cyprus,2012,Natural gas,0
+Cyprus,2013,Natural gas,0
+Cyprus,2014,Natural gas,0
+Cyprus,2015,Natural gas,0
+Cyprus,2016,Natural gas,0
+Cyprus,2017,Natural gas,0
+Cyprus,2018,Natural gas,0
+Cyprus,2019,Natural gas,0
+Cyprus,2020,Natural gas,0
+Cyprus,2021,Natural gas,0
+Cyprus,2022,Natural gas,0
+Cyprus,2023,Natural gas,0
+Cyprus,2024,Natural gas,0
+Czechia,1990,Natural gas,918.293
+Czechia,1991,Natural gas,983.018
+Czechia,1992,Natural gas,1000.666
+Czechia,1993,Natural gas,1190.198
+Czechia,1994,Natural gas,1370.4
+Czechia,1995,Natural gas,1565.843
+Czechia,1996,Natural gas,2114.703
+Czechia,1997,Natural gas,2021.668
+Czechia,1998,Natural gas,2076.849
+Czechia,1999,Natural gas,2069.347
+Czechia,2000,Natural gas,2049.312
+Czechia,2001,Natural gas,2377.042
+Czechia,2002,Natural gas,2229.579
+Czechia,2003,Natural gas,2401.978
+Czechia,2004,Natural gas,2351.075
+Czechia,2005,Natural gas,2310.555
+Czechia,2006,Natural gas,2275.473
+Czechia,2007,Natural gas,2036.071
+Czechia,2008,Natural gas,2047.42
+Czechia,2009,Natural gas,2059.265
+Czechia,2010,Natural gas,2382.373
+Czechia,2011,Natural gas,2002.408
+Czechia,2012,Natural gas,2023.345
+Czechia,2013,Natural gas,2029.944
+Czechia,2014,Natural gas,1645.013
+Czechia,2015,Natural gas,1789.402
+Czechia,2016,Natural gas,1993.686
+Czechia,2017,Natural gas,2004.471
+Czechia,2018,Natural gas,1878.843
+Czechia,2019,Natural gas,1795.387
+Czechia,2020,Natural gas,1855.994
+Czechia,2021,Natural gas,2081.591
+Czechia,2022,Natural gas,1662.033
+Czechia,2023,Natural gas,1486.08
+Czechia,2024,Natural gas,1460.038
+Germany,1990,Natural gas,13409.544
+Germany,1991,Natural gas,15919.11
+Germany,1992,Natural gas,16386.93
+Germany,1993,Natural gas,18535.361
+Germany,1994,Natural gas,18611.887
+Germany,1995,Natural gas,20950.946
+Germany,1996,Natural gas,24755.89
+Germany,1997,Natural gas,22797.85
+Germany,1998,Natural gas,23048.839
+Germany,1999,Natural gas,22699.914
+Germany,2000,Natural gas,23430.782
+Germany,2001,Natural gas,24720.55
+Germany,2002,Natural gas,24720.55
+Germany,2003,Natural gas,24788.79
+Germany,2004,Natural gas,24070.161
+Germany,2005,Natural gas,23290.696
+Germany,2006,Natural gas,22668.372
+Germany,2007,Natural gas,21071.647
+Germany,2008,Natural gas,22165.563
+Germany,2009,Natural gas,21849.46
+Germany,2010,Natural gas,23906.985
+Germany,2011,Natural gas,19757.918
+Germany,2012,Natural gas,21618.703
+Germany,2013,Natural gas,22509.462
+Germany,2014,Natural gas,18298.055
+Germany,2015,Natural gas,19738.844
+Germany,2016,Natural gas,22092.35
+Germany,2017,Natural gas,21598.464
+Germany,2018,Natural gas,22264.75
+Germany,2019,Natural gas,22379.522
+Germany,2020,Natural gas,21745.669
+Germany,2021,Natural gas,25128.124
+Germany,2022,Natural gas,21370.549
+Germany,2023,Natural gas,19369.614
+Germany,2024,Natural gas,19264.67
+Denmark,1990,Natural gas,384.071
+Denmark,1991,Natural gas,456.32
+Denmark,1992,Natural gas,482.76
+Denmark,1993,Natural gas,565.821
+Denmark,1994,Natural gas,565.563
+Denmark,1995,Natural gas,619.583
+Denmark,1996,Natural gas,703.805
+Denmark,1997,Natural gas,658.448
+Denmark,1998,Natural gas,680.417
+Denmark,1999,Natural gas,677.709
+Denmark,2000,Natural gas,658.468
+Denmark,2001,Natural gas,698.927
+Denmark,2002,Natural gas,670.731
+Denmark,2003,Natural gas,717.086
+Denmark,2004,Natural gas,713.132
+Denmark,2005,Natural gas,705.167
+Denmark,2006,Natural gas,682.776
+Denmark,2007,Natural gas,634.673
+Denmark,2008,Natural gas,633.433
+Denmark,2009,Natural gas,637.602
+Denmark,2010,Natural gas,751.231
+Denmark,2011,Natural gas,649.342
+Denmark,2012,Natural gas,649.88
+Denmark,2013,Natural gas,649.907
+Denmark,2014,Natural gas,565.667
+Denmark,2015,Natural gas,598.165
+Denmark,2016,Natural gas,639.619
+Denmark,2017,Natural gas,619.369
+Denmark,2018,Natural gas,612.337
+Denmark,2019,Natural gas,613.079
+Denmark,2020,Natural gas,589.666
+Denmark,2021,Natural gas,576.617
+Denmark,2022,Natural gas,471.76
+Denmark,2023,Natural gas,443.166
+Denmark,2024,Natural gas,425.614
+Estonia,1990,Natural gas,56.9
+Estonia,1991,Natural gas,68.444
+Estonia,1992,Natural gas,56.191
+Estonia,1993,Natural gas,61.93
+Estonia,1994,Natural gas,65.821
+Estonia,1995,Natural gas,47.721
+Estonia,1996,Natural gas,36.801
+Estonia,1997,Natural gas,36.522
+Estonia,1998,Natural gas,43.422
+Estonia,1999,Natural gas,41.488
+Estonia,2000,Natural gas,41.917
+Estonia,2001,Natural gas,41.638
+Estonia,2002,Natural gas,36.844
+Estonia,2003,Natural gas,37.339
+Estonia,2004,Natural gas,38.586
+Estonia,2005,Natural gas,44.97
+Estonia,2006,Natural gas,45.658
+Estonia,2007,Natural gas,48.861
+Estonia,2008,Natural gas,49.162
+Estonia,2009,Natural gas,50.666
+Estonia,2010,Natural gas,54.901
+Estonia,2011,Natural gas,51.677
+Estonia,2012,Natural gas,55.331
+Estonia,2013,Natural gas,52.279
+Estonia,2014,Natural gas,52.214
+Estonia,2015,Natural gas,49.312
+Estonia,2016,Natural gas,57.868
+Estonia,2017,Natural gas,53.814
+Estonia,2018,Natural gas,54.981
+Estonia,2019,Natural gas,57.781
+Estonia,2020,Natural gas,56.208
+Estonia,2021,Natural gas,60.358
+Estonia,2022,Natural gas,48.706
+Estonia,2023,Natural gas,55.17
+Estonia,2024,Natural gas,58.936
+Greece,1990,Natural gas,0
+Greece,1991,Natural gas,0
+Greece,1992,Natural gas,0
+Greece,1993,Natural gas,0
+Greece,1994,Natural gas,0
+Greece,1995,Natural gas,0
+Greece,1996,Natural gas,0
+Greece,1997,Natural gas,0
+Greece,1998,Natural gas,0
+Greece,1999,Natural gas,3.891
+Greece,2000,Natural gas,4.858
+Greece,2001,Natural gas,5.224
+Greece,2002,Natural gas,8.556
+Greece,2003,Natural gas,18.702
+Greece,2004,Natural gas,34.652
+Greece,2005,Natural gas,73.217
+Greece,2006,Natural gas,139.296
+Greece,2007,Natural gas,176.611
+Greece,2008,Natural gas,207.503
+Greece,2009,Natural gas,255.931
+Greece,2010,Natural gas,254.619
+Greece,2011,Natural gas,348.002
+Greece,2012,Natural gas,310.316
+Greece,2013,Natural gas,232.439
+Greece,2014,Natural gas,231.578
+Greece,2015,Natural gas,355.694
+Greece,2016,Natural gas,329.084
+Greece,2017,Natural gas,360.665
+Greece,2018,Natural gas,331.327
+Greece,2019,Natural gas,384.376
+Greece,2020,Natural gas,441.991
+Greece,2021,Natural gas,499.31
+Greece,2022,Natural gas,465.659
+Greece,2023,Natural gas,364.268
+Greece,2024,Natural gas,354.082
+Spain,1990,Natural gas,387.721
+Spain,1991,Natural gas,579.658
+Spain,1992,Natural gas,725.017
+Spain,1993,Natural gas,821.548
+Spain,1994,Natural gas,884.165
+Spain,1995,Natural gas,953.456
+Spain,1996,Natural gas,1115.836
+Spain,1997,Natural gas,1218.09
+Spain,1998,Natural gas,1433.167
+Spain,1999,Natural gas,1752.329
+Spain,2000,Natural gas,1972.211
+Spain,2001,Natural gas,2238.911
+Spain,2002,Natural gas,2512.253
+Spain,2003,Natural gas,2940.474
+Spain,2004,Natural gas,3010.766
+Spain,2005,Natural gas,3160.786
+Spain,2006,Natural gas,3637.008
+Spain,2007,Natural gas,3754.978
+Spain,2008,Natural gas,3615.497
+Spain,2009,Natural gas,3665.672
+Spain,2010,Natural gas,4254.868
+Spain,2011,Natural gas,3411.93
+Spain,2012,Natural gas,3509.432
+Spain,2013,Natural gas,3193.569
+Spain,2014,Natural gas,3094.346
+Spain,2015,Natural gas,3318.02
+Spain,2016,Natural gas,3335.066
+Spain,2017,Natural gas,3323.51
+Spain,2018,Natural gas,3653.869
+Spain,2019,Natural gas,3457.094
+Spain,2020,Natural gas,3474.386
+Spain,2021,Natural gas,3634.566
+Spain,2022,Natural gas,3118.551
+Spain,2023,Natural gas,2923.968
+Spain,2024,Natural gas,2916.187
+European Union - 27 countries (from 2020),1990,Natural gas,56432.851
+European Union - 27 countries (from 2020),1991,Natural gas,65846.043
+European Union - 27 countries (from 2020),1992,Natural gas,63855.722
+European Union - 27 countries (from 2020),1993,Natural gas,68798.894
+European Union - 27 countries (from 2020),1994,Natural gas,67078.038
+European Union - 27 countries (from 2020),1995,Natural gas,73448.28
+European Union - 27 countries (from 2020),1996,Natural gas,82558.033
+European Union - 27 countries (from 2020),1997,Natural gas,77309.578
+European Union - 27 countries (from 2020),1998,Natural gas,79687.212
+European Union - 27 countries (from 2020),1999,Natural gas,80068.613
+European Union - 27 countries (from 2020),2000,Natural gas,80035.345
+European Union - 27 countries (from 2020),2001,Natural gas,84408.232
+European Union - 27 countries (from 2020),2002,Natural gas,84056.502
+European Union - 27 countries (from 2020),2003,Natural gas,88048.843
+European Union - 27 countries (from 2020),2004,Natural gas,88752.336
+European Union - 27 countries (from 2020),2005,Natural gas,88928.952
+European Union - 27 countries (from 2020),2006,Natural gas,87134.815
+European Union - 27 countries (from 2020),2007,Natural gas,80121.407
+European Union - 27 countries (from 2020),2008,Natural gas,83938.626
+European Union - 27 countries (from 2020),2009,Natural gas,84730.833
+European Union - 27 countries (from 2020),2010,Natural gas,92180.451
+European Union - 27 countries (from 2020),2011,Natural gas,80771.073
+European Union - 27 countries (from 2020),2012,Natural gas,85062.836
+European Union - 27 countries (from 2020),2013,Natural gas,86508.341
+European Union - 27 countries (from 2020),2014,Natural gas,70954.824
+European Union - 27 countries (from 2020),2015,Natural gas,76881.544
+European Union - 27 countries (from 2020),2016,Natural gas,81795.608
+European Union - 27 countries (from 2020),2017,Natural gas,81453.528
+European Union - 27 countries (from 2020),2018,Natural gas,80475.905
+European Union - 27 countries (from 2020),2019,Natural gas,79540.317
+European Union - 27 countries (from 2020),2020,Natural gas,78891.782
+European Union - 27 countries (from 2020),2021,Natural gas,87916.206
+European Union - 27 countries (from 2020),2022,Natural gas,74303.812
+European Union - 27 countries (from 2020),2023,Natural gas,67320.125
+European Union - 27 countries (from 2020),2024,Natural gas,67171.909
+Finland,1990,Natural gas,27.322
+Finland,1991,Natural gas,35.533
+Finland,1992,Natural gas,33.663
+Finland,1993,Natural gas,36.479
+Finland,1994,Natural gas,40.305
+Finland,1995,Natural gas,17.003
+Finland,1996,Natural gas,18.014
+Finland,1997,Natural gas,18.637
+Finland,1998,Natural gas,19.347
+Finland,1999,Natural gas,22.012
+Finland,2000,Natural gas,22.42
+Finland,2001,Natural gas,26.075
+Finland,2002,Natural gas,28.783
+Finland,2003,Natural gas,28.504
+Finland,2004,Natural gas,29.579
+Finland,2005,Natural gas,30.288
+Finland,2006,Natural gas,35.877
+Finland,2007,Natural gas,38.908
+Finland,2008,Natural gas,38.456
+Finland,2009,Natural gas,41.101
+Finland,2010,Natural gas,46.044
+Finland,2011,Natural gas,30.933
+Finland,2012,Natural gas,33.319
+Finland,2013,Natural gas,29.449
+Finland,2014,Natural gas,28.676
+Finland,2015,Natural gas,25.365
+Finland,2016,Natural gas,26.226
+Finland,2017,Natural gas,25.9
+Finland,2018,Natural gas,24.508
+Finland,2019,Natural gas,26.658
+Finland,2020,Natural gas,23.949
+Finland,2021,Natural gas,28.068
+Finland,2022,Natural gas,19.085
+Finland,2023,Natural gas,8.832
+Finland,2024,Natural gas,6.44
+France,1990,Natural gas,9579.592
+France,1991,Natural gas,11227.879
+France,1992,Natural gas,10975.923
+France,1993,Natural gas,11519.277
+France,1994,Natural gas,10819.251
+France,1995,Natural gas,11380.644
+France,1996,Natural gas,12797.224
+France,1997,Natural gas,11663.728
+France,1998,Natural gas,12697.003
+France,1999,Natural gas,12833.865
+France,2000,Natural gas,12641.633
+France,2001,Natural gas,12908.07
+France,2002,Natural gas,13225.566
+France,2003,Natural gas,13154.314
+France,2004,Natural gas,14764.178
+France,2005,Natural gas,14451.926
+France,2006,Natural gas,14613.957
+France,2007,Natural gas,12940.356
+France,2008,Natural gas,14003.018
+France,2009,Natural gas,14194.211
+France,2010,Natural gas,13871.086
+France,2011,Natural gas,12696.194
+France,2012,Natural gas,14055.678
+France,2013,Natural gas,14507.507
+France,2014,Natural gas,10840.899
+France,2015,Natural gas,11673.43
+France,2016,Natural gas,12630.385
+France,2017,Natural gas,12270.857
+France,2018,Natural gas,11502.73
+France,2019,Natural gas,11221.38
+France,2020,Natural gas,10994.467
+France,2021,Natural gas,11505.062
+France,2022,Natural gas,9575.106
+France,2023,Natural gas,8760.264
+France,2024,Natural gas,8618.978
+Georgia,2013,Natural gas,471.305
+Georgia,2014,Natural gas,503.09
+Georgia,2015,Natural gas,573.824
+Georgia,2016,Natural gas,652.918
+Georgia,2017,Natural gas,744.347
+Georgia,2018,Natural gas,722.73
+Georgia,2019,Natural gas,830.68
+Georgia,2020,Natural gas,944.932
+Georgia,2021,Natural gas,1032.062
+Georgia,2022,Natural gas,1126.535
+Georgia,2023,Natural gas,1130.562
+Georgia,2024,Natural gas,1283.124
+Croatia,1990,Natural gas,163.371
+Croatia,1991,Natural gas,228.762
+Croatia,1992,Natural gas,205.03
+Croatia,1993,Natural gas,255.997
+Croatia,1994,Natural gas,250.451
+Croatia,1995,Natural gas,311.457
+Croatia,1996,Natural gas,380.653
+Croatia,1997,Natural gas,397.635
+Croatia,1998,Natural gas,414.553
+Croatia,1999,Natural gas,464.961
+Croatia,2000,Natural gas,405.653
+Croatia,2001,Natural gas,458.663
+Croatia,2002,Natural gas,448.216
+Croatia,2003,Natural gas,517.154
+Croatia,2004,Natural gas,513.972
+Croatia,2005,Natural gas,561.817
+Croatia,2006,Natural gas,532.352
+Croatia,2007,Natural gas,508.491
+Croatia,2008,Natural gas,548.861
+Croatia,2009,Natural gas,568.057
+Croatia,2010,Natural gas,595.163
+Croatia,2011,Natural gas,544.261
+Croatia,2012,Natural gas,511.758
+Croatia,2013,Natural gas,488.306
+Croatia,2014,Natural gas,433.126
+Croatia,2015,Natural gas,446.26
+Croatia,2016,Natural gas,466.082
+Croatia,2017,Natural gas,479.127
+Croatia,2018,Natural gas,467.211
+Croatia,2019,Natural gas,459.103
+Croatia,2020,Natural gas,485.657
+Croatia,2021,Natural gas,524.147
+Croatia,2022,Natural gas,489.182
+Croatia,2023,Natural gas,479.689
+Croatia,2024,Natural gas,473.397
+Hungary,1990,Natural gas,1643.315
+Hungary,1991,Natural gas,2042.218
+Hungary,1992,Natural gas,2053.074
+Hungary,1993,Natural gas,2448.861
+Hungary,1994,Natural gas,2568.981
+Hungary,1995,Natural gas,2890.219
+Hungary,1996,Natural gas,3169.325
+Hungary,1997,Natural gas,3039.574
+Hungary,1998,Natural gas,2903.525
+Hungary,1999,Natural gas,3098.366
+Hungary,2000,Natural gas,3025.344
+Hungary,2001,Natural gas,3303.547
+Hungary,2002,Natural gas,3413.328
+Hungary,2003,Natural gas,3946.862
+Hungary,2004,Natural gas,3568.379
+Hungary,2005,Natural gas,3928.246
+Hungary,2006,Natural gas,3643.981
+Hungary,2007,Natural gas,3174.355
+Hungary,2008,Natural gas,3294.368
+Hungary,2009,Natural gas,3181.642
+Hungary,2010,Natural gas,3259.759
+Hungary,2011,Natural gas,2966.38
+Hungary,2012,Natural gas,2704.02
+Hungary,2013,Natural gas,2513.07
+Hungary,2014,Natural gas,2320.679
+Hungary,2015,Natural gas,2625.838
+Hungary,2016,Natural gas,2813.435
+Hungary,2017,Natural gas,2971.711
+Hungary,2018,Natural gas,2830.568
+Hungary,2019,Natural gas,2792.906
+Hungary,2020,Natural gas,3026.655
+Hungary,2021,Natural gas,3329.364
+Hungary,2022,Natural gas,2861.715
+Hungary,2023,Natural gas,2492.111
+Hungary,2024,Natural gas,2467.863
+Ireland,1990,Natural gas,117.025
+Ireland,1991,Natural gas,160.619
+Ireland,1992,Natural gas,186.436
+Ireland,1993,Natural gas,216.294
+Ireland,1994,Natural gas,238.048
+Ireland,1995,Natural gas,251.118
+Ireland,1996,Natural gas,302.107
+Ireland,1997,Natural gas,285.254
+Ireland,1998,Natural gas,337.876
+Ireland,1999,Natural gas,386.049
+Ireland,2000,Natural gas,437.769
+Ireland,2001,Natural gas,480.804
+Ireland,2002,Natural gas,474.57
+Ireland,2003,Natural gas,537.855
+Ireland,2004,Natural gas,599.914
+Ireland,2005,Natural gas,605.568
+Ireland,2006,Natural gas,630.804
+Ireland,2007,Natural gas,591.724
+Ireland,2008,Natural gas,667.476
+Ireland,2009,Natural gas,623.441
+Ireland,2010,Natural gas,708.291
+Ireland,2011,Natural gas,568.121
+Ireland,2012,Natural gas,599.278
+Ireland,2013,Natural gas,604.987
+Ireland,2014,Natural gas,534.59
+Ireland,2015,Natural gas,553.989
+Ireland,2016,Natural gas,561.849
+Ireland,2017,Natural gas,554.373
+Ireland,2018,Natural gas,602.87
+Ireland,2019,Natural gas,590.159
+Ireland,2020,Natural gas,588.564
+Ireland,2021,Natural gas,593.79
+Ireland,2022,Natural gas,538.699
+Ireland,2023,Natural gas,463.879
+Ireland,2024,Natural gas,478.996
+Iceland,1990,Natural gas,0
+Iceland,1991,Natural gas,0
+Iceland,1992,Natural gas,0
+Iceland,1993,Natural gas,0
+Iceland,1994,Natural gas,0
+Iceland,1995,Natural gas,0
+Iceland,1996,Natural gas,0
+Iceland,1997,Natural gas,0
+Iceland,1998,Natural gas,0
+Iceland,1999,Natural gas,0
+Iceland,2000,Natural gas,0
+Iceland,2001,Natural gas,0
+Iceland,2002,Natural gas,0
+Iceland,2003,Natural gas,0
+Iceland,2004,Natural gas,0
+Iceland,2005,Natural gas,0
+Iceland,2006,Natural gas,0
+Iceland,2007,Natural gas,0
+Iceland,2008,Natural gas,0
+Iceland,2009,Natural gas,0
+Iceland,2010,Natural gas,0
+Iceland,2011,Natural gas,0
+Iceland,2012,Natural gas,0
+Iceland,2013,Natural gas,0
+Iceland,2014,Natural gas,0
+Iceland,2015,Natural gas,0
+Iceland,2016,Natural gas,0
+Iceland,2017,Natural gas,0
+Iceland,2018,Natural gas,0
+Iceland,2019,Natural gas,0
+Iceland,2020,Natural gas,0
+Iceland,2021,Natural gas,0
+Iceland,2022,Natural gas,0
+Iceland,2023,Natural gas,0
+Iceland,2024,Natural gas,0
+Italy,1990,Natural gas,11313.371
+Italy,1991,Natural gas,13130.696
+Italy,1992,Natural gas,12639.037
+Italy,1993,Natural gas,13225.946
+Italy,1994,Natural gas,12218.659
+Italy,1995,Natural gas,13484.523
+Italy,1996,Natural gas,14135.619
+Italy,1997,Natural gas,13849.57
+Italy,1998,Natural gas,14920.464
+Italy,1999,Natural gas,15591.337
+Italy,2000,Natural gas,14970.529
+Italy,2001,Natural gas,15746.389
+Italy,2002,Natural gas,15300.881
+Italy,2003,Natural gas,17272.807
+Italy,2004,Natural gas,17936.887
+Italy,2005,Natural gas,18745.787
+Italy,2006,Natural gas,17016.917
+Italy,2007,Natural gas,15942.068
+Italy,2008,Natural gas,16014.746
+Italy,2009,Natural gas,16820.701
+Italy,2010,Natural gas,18697.592
+Italy,2011,Natural gas,17989.639
+Italy,2012,Natural gas,18116.552
+Italy,2013,Natural gas,18073.087
+Italy,2014,Natural gas,15150.838
+Italy,2015,Natural gas,16985.555
+Italy,2016,Natural gas,17097.463
+Italy,2017,Natural gas,17260.611
+Italy,2018,Natural gas,16499.391
+Italy,2019,Natural gas,16126.645
+Italy,2020,Natural gas,15932.597
+Italy,2021,Natural gas,17405.244
+Italy,2022,Natural gas,14974.079
+Italy,2023,Natural gas,12882.563
+Italy,2024,Natural gas,13186.455
+Lithuania,1990,Natural gas,220.615
+Lithuania,1991,Natural gas,338.929
+Lithuania,1992,Natural gas,274.312
+Lithuania,1993,Natural gas,269.411
+Lithuania,1994,Natural gas,207.18
+Lithuania,1995,Natural gas,183.813
+Lithuania,1996,Natural gas,182.072
+Lithuania,1997,Natural gas,147.936
+Lithuania,1998,Natural gas,123.538
+Lithuania,1999,Natural gas,108.534
+Lithuania,2000,Natural gas,104.041
+Lithuania,2001,Natural gas,107.481
+Lithuania,2002,Natural gas,110.146
+Lithuania,2003,Natural gas,117.498
+Lithuania,2004,Natural gas,127.021
+Lithuania,2005,Natural gas,134.458
+Lithuania,2006,Natural gas,140.047
+Lithuania,2007,Natural gas,147.206
+Lithuania,2008,Natural gas,145.808
+Lithuania,2009,Natural gas,145.099
+Lithuania,2010,Natural gas,158.383
+Lithuania,2011,Natural gas,144.776
+Lithuania,2012,Natural gas,135.426
+Lithuania,2013,Natural gas,123.173
+Lithuania,2014,Natural gas,119.991
+Lithuania,2015,Natural gas,122.678
+Lithuania,2016,Natural gas,145.464
+Lithuania,2017,Natural gas,153.785
+Lithuania,2018,Natural gas,164.724
+Lithuania,2019,Natural gas,160.859
+Lithuania,2020,Natural gas,174.375
+Lithuania,2021,Natural gas,219.905
+Lithuania,2022,Natural gas,197.53
+Lithuania,2023,Natural gas,181.773
+Lithuania,2024,Natural gas,180.126
+Luxembourg,1990,Natural gas,140.671
+Luxembourg,1991,Natural gas,158.19
+Luxembourg,1992,Natural gas,160.039
+Luxembourg,1993,Natural gas,170.228
+Luxembourg,1994,Natural gas,167.648
+Luxembourg,1995,Natural gas,183.083
+Luxembourg,1996,Natural gas,214.961
+Luxembourg,1997,Natural gas,200.838
+Luxembourg,1998,Natural gas,216.23
+Luxembourg,1999,Natural gas,213.005
+Luxembourg,2000,Natural gas,156.635
+Luxembourg,2001,Natural gas,173.337
+Luxembourg,2002,Natural gas,175.117
+Luxembourg,2003,Natural gas,187.988
+Luxembourg,2004,Natural gas,203.614
+Luxembourg,2005,Natural gas,203.9
+Luxembourg,2006,Natural gas,188.678
+Luxembourg,2007,Natural gas,187.752
+Luxembourg,2008,Natural gas,200.796
+Luxembourg,2009,Natural gas,196.422
+Luxembourg,2010,Natural gas,229.309
+Luxembourg,2011,Natural gas,215.773
+Luxembourg,2012,Natural gas,199.806
+Luxembourg,2013,Natural gas,211.339
+Luxembourg,2014,Natural gas,203.107
+Luxembourg,2015,Natural gas,221.364
+Luxembourg,2016,Natural gas,235.478
+Luxembourg,2017,Natural gas,267.553
+Luxembourg,2018,Natural gas,244.532
+Luxembourg,2019,Natural gas,246.392
+Luxembourg,2020,Natural gas,258.198
+Luxembourg,2021,Natural gas,240.596
+Luxembourg,2022,Natural gas,214.21
+Luxembourg,2023,Natural gas,189.598
+Luxembourg,2024,Natural gas,203.703
+Latvia,1990,Natural gas,95.636
+Latvia,1991,Natural gas,102.107
+Latvia,1992,Natural gas,117.154
+Latvia,1993,Natural gas,121.539
+Latvia,1994,Natural gas,104.106
+Latvia,1995,Natural gas,99.85
+Latvia,1996,Natural gas,89.854
+Latvia,1997,Natural gas,73.151
+Latvia,1998,Natural gas,69.175
+Latvia,1999,Natural gas,67.562
+Latvia,2000,Natural gas,63.5
+Latvia,2001,Natural gas,71.668
+Latvia,2002,Natural gas,78.654
+Latvia,2003,Natural gas,87.575
+Latvia,2004,Natural gas,94.54
+Latvia,2005,Natural gas,100.15
+Latvia,2006,Natural gas,103.332
+Latvia,2007,Natural gas,109.566
+Latvia,2008,Natural gas,112.102
+Latvia,2009,Natural gas,102.794
+Latvia,2010,Natural gas,124.441
+Latvia,2011,Natural gas,106.836
+Latvia,2012,Natural gas,106.814
+Latvia,2013,Natural gas,101.698
+Latvia,2014,Natural gas,101.333
+Latvia,2015,Natural gas,98.087
+Latvia,2016,Natural gas,106.362
+Latvia,2017,Natural gas,111.346
+Latvia,2018,Natural gas,119.182
+Latvia,2019,Natural gas,110.732
+Latvia,2020,Natural gas,109.571
+Latvia,2021,Natural gas,115.401
+Latvia,2022,Natural gas,104.631
+Latvia,2023,Natural gas,85.104
+Latvia,2024,Natural gas,89.638
+Moldova,2010,Natural gas,264.574
+Moldova,2011,Natural gas,250.709
+Moldova,2012,Natural gas,225.666
+Moldova,2013,Natural gas,210.404
+Moldova,2014,Natural gas,215.219
+Moldova,2015,Natural gas,202.945
+Moldova,2016,Natural gas,212.79
+Moldova,2017,Natural gas,225.114
+Moldova,2018,Natural gas,258.036
+Moldova,2019,Natural gas,259.392
+Moldova,2020,Natural gas,288.306
+Moldova,2021,Natural gas,343.981
+Moldova,2022,Natural gas,246.986
+Moldova,2023,Natural gas,205.399
+Moldova,2024,Natural gas,227.016
+Montenegro,2005,Natural gas,0
+Montenegro,2006,Natural gas,0
+Montenegro,2007,Natural gas,0
+Montenegro,2008,Natural gas,0
+Montenegro,2009,Natural gas,0
+Montenegro,2010,Natural gas,0
+Montenegro,2011,Natural gas,0
+Montenegro,2012,Natural gas,0
+Montenegro,2013,Natural gas,0
+Montenegro,2014,Natural gas,0
+Montenegro,2015,Natural gas,0
+Montenegro,2016,Natural gas,0
+Montenegro,2017,Natural gas,0
+Montenegro,2018,Natural gas,0
+Montenegro,2019,Natural gas,0
+Montenegro,2020,Natural gas,0
+Montenegro,2021,Natural gas,0
+Montenegro,2022,Natural gas,0
+Montenegro,2023,Natural gas,0
+Montenegro,2024,Natural gas,0
+North Macedonia,1990,Natural gas,0
+North Macedonia,1991,Natural gas,0
+North Macedonia,1992,Natural gas,0
+North Macedonia,1993,Natural gas,0
+North Macedonia,1994,Natural gas,0
+North Macedonia,1995,Natural gas,0
+North Macedonia,1996,Natural gas,0
+North Macedonia,1997,Natural gas,0
+North Macedonia,1998,Natural gas,0
+North Macedonia,1999,Natural gas,0
+North Macedonia,2000,Natural gas,0
+North Macedonia,2001,Natural gas,0
+North Macedonia,2002,Natural gas,0
+North Macedonia,2003,Natural gas,0
+North Macedonia,2004,Natural gas,0
+North Macedonia,2005,Natural gas,0
+North Macedonia,2006,Natural gas,0
+North Macedonia,2007,Natural gas,0
+North Macedonia,2008,Natural gas,0
+North Macedonia,2009,Natural gas,0
+North Macedonia,2010,Natural gas,0
+North Macedonia,2011,Natural gas,0
+North Macedonia,2012,Natural gas,0
+North Macedonia,2013,Natural gas,0
+North Macedonia,2014,Natural gas,0.043
+North Macedonia,2015,Natural gas,0.064
+North Macedonia,2016,Natural gas,0.086
+North Macedonia,2017,Natural gas,0.15
+North Macedonia,2018,Natural gas,0.193
+North Macedonia,2019,Natural gas,0.193
+North Macedonia,2020,Natural gas,0.248
+North Macedonia,2021,Natural gas,0.288
+North Macedonia,2022,Natural gas,0.142
+North Macedonia,2023,Natural gas,0.116
+North Macedonia,2024,Natural gas,0.197
+Malta,1990,Natural gas,0
+Malta,1991,Natural gas,0
+Malta,1992,Natural gas,0
+Malta,1993,Natural gas,0
+Malta,1994,Natural gas,0
+Malta,1995,Natural gas,0
+Malta,1996,Natural gas,0
+Malta,1997,Natural gas,0
+Malta,1998,Natural gas,0
+Malta,1999,Natural gas,0
+Malta,2000,Natural gas,0
+Malta,2001,Natural gas,0
+Malta,2002,Natural gas,0
+Malta,2003,Natural gas,0
+Malta,2004,Natural gas,0
+Malta,2005,Natural gas,0
+Malta,2006,Natural gas,0
+Malta,2007,Natural gas,0
+Malta,2008,Natural gas,0
+Malta,2009,Natural gas,0
+Malta,2010,Natural gas,0
+Malta,2011,Natural gas,0
+Malta,2012,Natural gas,0
+Malta,2013,Natural gas,0
+Malta,2014,Natural gas,0
+Malta,2015,Natural gas,0
+Malta,2016,Natural gas,0
+Malta,2017,Natural gas,0
+Malta,2018,Natural gas,0
+Malta,2019,Natural gas,0
+Malta,2020,Natural gas,0
+Malta,2021,Natural gas,0
+Malta,2022,Natural gas,0
+Malta,2023,Natural gas,0
+Malta,2024,Natural gas,0
+Netherlands,1990,Natural gas,8366.954
+Netherlands,1991,Natural gas,9678.085
+Netherlands,1992,Natural gas,8893.822
+Netherlands,1993,Natural gas,9348.765
+Netherlands,1994,Natural gas,8760.568
+Netherlands,1995,Natural gas,9611.705
+Netherlands,1996,Natural gas,11255.874
+Netherlands,1997,Natural gas,9443.068
+Netherlands,1998,Natural gas,8979.291
+Netherlands,1999,Natural gas,8517.19
+Netherlands,2000,Natural gas,8508.592
+Netherlands,2001,Natural gas,9043.242
+Netherlands,2002,Natural gas,8726.476
+Netherlands,2003,Natural gas,8937.18
+Netherlands,2004,Natural gas,8543.114
+Netherlands,2005,Natural gas,8214.633
+Netherlands,2006,Natural gas,8279.981
+Netherlands,2007,Natural gas,7393.892
+Netherlands,2008,Natural gas,8377.272
+Netherlands,2009,Natural gas,8342.277
+Netherlands,2010,Natural gas,9714.843
+Netherlands,2011,Natural gas,7547.03
+Netherlands,2012,Natural gas,8070.76
+Netherlands,2013,Natural gas,8573.746
+Netherlands,2014,Natural gas,6393.981
+Netherlands,2015,Natural gas,6813.968
+Netherlands,2016,Natural gas,7099.801
+Netherlands,2017,Natural gas,6885.799
+Netherlands,2018,Natural gas,6840.195
+Netherlands,2019,Natural gas,6605.151
+Netherlands,2020,Natural gas,6323.064
+Netherlands,2021,Natural gas,7175.828
+Netherlands,2022,Natural gas,5347.99
+Netherlands,2023,Natural gas,4793.51
+Netherlands,2024,Natural gas,4687.379
+Norway,1990,Natural gas,0
+Norway,1991,Natural gas,0
+Norway,1992,Natural gas,0
+Norway,1993,Natural gas,0
+Norway,1994,Natural gas,0
+Norway,1995,Natural gas,0
+Norway,1996,Natural gas,0
+Norway,1997,Natural gas,0
+Norway,1998,Natural gas,0
+Norway,1999,Natural gas,0
+Norway,2000,Natural gas,0.107
+Norway,2001,Natural gas,2.042
+Norway,2002,Natural gas,1.956
+Norway,2003,Natural gas,2.021
+Norway,2004,Natural gas,2.859
+Norway,2005,Natural gas,5.181
+Norway,2006,Natural gas,3.332
+Norway,2007,Natural gas,3.568
+Norway,2008,Natural gas,3.074
+Norway,2009,Natural gas,3.482
+Norway,2010,Natural gas,3.964
+Norway,2011,Natural gas,3.308
+Norway,2012,Natural gas,3.549
+Norway,2013,Natural gas,3.716
+Norway,2014,Natural gas,3.801
+Norway,2015,Natural gas,3.36
+Norway,2016,Natural gas,3.608
+Norway,2017,Natural gas,3.216
+Norway,2018,Natural gas,3.211
+Norway,2019,Natural gas,1.554
+Norway,2020,Natural gas,1.566
+Norway,2021,Natural gas,1.536
+Norway,2022,Natural gas,1.235
+Norway,2023,Natural gas,1.838
+Norway,2024,Natural gas,1.169
+Poland,1990,Natural gas,2918.788
+Poland,1991,Natural gas,3192.756
+Poland,1992,Natural gas,3372.786
+Poland,1993,Natural gas,3381.814
+Poland,1994,Natural gas,3622.592
+Poland,1995,Natural gas,3811.006
+Poland,1996,Natural gas,3416.853
+Poland,1997,Natural gas,3583.212
+Poland,1998,Natural gas,3302.472
+Poland,1999,Natural gas,3248.194
+Poland,2000,Natural gas,3047.936
+Poland,2001,Natural gas,3194.261
+Poland,2002,Natural gas,3035.555
+Poland,2003,Natural gas,3048.366
+Poland,2004,Natural gas,3018.444
+Poland,2005,Natural gas,3227.064
+Poland,2006,Natural gas,3312.446
+Poland,2007,Natural gas,3167.627
+Poland,2008,Natural gas,3139.639
+Poland,2009,Natural gas,3221.002
+Poland,2010,Natural gas,3545.218
+Poland,2011,Natural gas,3235.507
+Poland,2012,Natural gas,3377.31
+Poland,2013,Natural gas,3419.933
+Poland,2014,Natural gas,3143.1
+Poland,2015,Natural gas,3157.719
+Poland,2016,Natural gas,3466.693
+Poland,2017,Natural gas,3629.954
+Poland,2018,Natural gas,3561.458
+Poland,2019,Natural gas,3638.773
+Poland,2020,Natural gas,3841.427
+Poland,2021,Natural gas,4566.035
+Poland,2022,Natural gas,4338.762
+Poland,2023,Natural gas,4205.247
+Poland,2024,Natural gas,4234.061
+Portugal,1990,Natural gas,0
+Portugal,1991,Natural gas,0
+Portugal,1992,Natural gas,0
+Portugal,1993,Natural gas,0
+Portugal,1994,Natural gas,0
+Portugal,1995,Natural gas,0
+Portugal,1996,Natural gas,0
+Portugal,1997,Natural gas,0.838
+Portugal,1998,Natural gas,7.696
+Portugal,1999,Natural gas,36.135
+Portugal,2000,Natural gas,73.173
+Portugal,2001,Natural gas,117.111
+Portugal,2002,Natural gas,146.518
+Portugal,2003,Natural gas,158.018
+Portugal,2004,Natural gas,181.255
+Portugal,2005,Natural gas,199.936
+Portugal,2006,Natural gas,202.601
+Portugal,2007,Natural gas,220.206
+Portugal,2008,Natural gas,229.901
+Portugal,2009,Natural gas,264.166
+Portugal,2010,Natural gas,299.011
+Portugal,2011,Natural gas,257.975
+Portugal,2012,Natural gas,257.803
+Portugal,2013,Natural gas,244.733
+Portugal,2014,Natural gas,258.147
+Portugal,2015,Natural gas,262.889
+Portugal,2016,Natural gas,243.84
+Portugal,2017,Natural gas,250.733
+Portugal,2018,Natural gas,274.225
+Portugal,2019,Natural gas,285.267
+Portugal,2020,Natural gas,295.747
+Portugal,2021,Natural gas,287.759
+Portugal,2022,Natural gas,267.919
+Portugal,2023,Natural gas,251.654
+Portugal,2024,Natural gas,254.926
+Romania,1990,Natural gas,2258.083
+Romania,1991,Natural gas,2736.371
+Romania,1992,Natural gas,1545.894
+Romania,1993,Natural gas,1648.001
+Romania,1994,Natural gas,1693.874
+Romania,1995,Natural gas,1790.219
+Romania,1996,Natural gas,1711.758
+Romania,1997,Natural gas,2057.61
+Romania,1998,Natural gas,2230.46
+Romania,1999,Natural gas,2032.158
+Romania,2000,Natural gas,2216.874
+Romania,2001,Natural gas,1994.819
+Romania,2002,Natural gas,2351.827
+Romania,2003,Natural gas,2561.178
+Romania,2004,Natural gas,2543.508
+Romania,2005,Natural gas,2300.666
+Romania,2006,Natural gas,2547.592
+Romania,2007,Natural gas,2067.39
+Romania,2008,Natural gas,2188.586
+Romania,2009,Natural gas,2146.819
+Romania,2010,Natural gas,2205.696
+Romania,2011,Natural gas,2331.965
+Romania,2012,Natural gas,2543.659
+Romania,2013,Natural gas,2444.669
+Romania,2014,Natural gas,2173.259
+Romania,2015,Natural gas,2242.82
+Romania,2016,Natural gas,2287.661
+Romania,2017,Natural gas,2473.938
+Romania,2018,Natural gas,2539.206
+Romania,2019,Natural gas,2530.106
+Romania,2020,Natural gas,2745.97
+Romania,2021,Natural gas,3238.374
+Romania,2022,Natural gas,2709.262
+Romania,2023,Natural gas,2619.486
+Romania,2024,Natural gas,2628.647
+Serbia,1990,Natural gas,0
+Serbia,1991,Natural gas,0
+Serbia,1992,Natural gas,232.717
+Serbia,1993,Natural gas,145.034
+Serbia,1994,Natural gas,121.066
+Serbia,1995,Natural gas,142.992
+Serbia,1996,Natural gas,236.092
+Serbia,1997,Natural gas,260.92
+Serbia,1998,Natural gas,243.057
+Serbia,1999,Natural gas,176.655
+Serbia,2000,Natural gas,186.393
+Serbia,2001,Natural gas,186.887
+Serbia,2002,Natural gas,187.382
+Serbia,2003,Natural gas,195.959
+Serbia,2004,Natural gas,248.882
+Serbia,2005,Natural gas,208.405
+Serbia,2006,Natural gas,214.424
+Serbia,2007,Natural gas,81.642
+Serbia,2008,Natural gas,182.889
+Serbia,2009,Natural gas,198.99
+Serbia,2010,Natural gas,215.327
+Serbia,2011,Natural gas,212.317
+Serbia,2012,Natural gas,194.475
+Serbia,2013,Natural gas,174.011
+Serbia,2014,Natural gas,142.568
+Serbia,2015,Natural gas,151.14
+Serbia,2016,Natural gas,167.735
+Serbia,2017,Natural gas,191.112
+Serbia,2018,Natural gas,194.274
+Serbia,2019,Natural gas,203.179
+Serbia,2020,Natural gas,241.254
+Serbia,2021,Natural gas,295.939
+Serbia,2022,Natural gas,300.425
+Serbia,2023,Natural gas,290.689
+Serbia,2024,Natural gas,321.001
+Sweden,1990,Natural gas,34.05
+Sweden,1991,Natural gas,46.496
+Sweden,1992,Natural gas,48.689
+Sweden,1993,Natural gas,55.116
+Sweden,1994,Natural gas,63.22
+Sweden,1995,Natural gas,62.532
+Sweden,1996,Natural gas,60.146
+Sweden,1997,Natural gas,56.04
+Sweden,1998,Natural gas,77.966
+Sweden,1999,Natural gas,86.651
+Sweden,2000,Natural gas,75.795
+Sweden,2001,Natural gas,90.606
+Sweden,2002,Natural gas,47.163
+Sweden,2003,Natural gas,38.994
+Sweden,2004,Natural gas,42.67
+Sweden,2005,Natural gas,45.722
+Sweden,2006,Natural gas,32.782
+Sweden,2007,Natural gas,40.606
+Sweden,2008,Natural gas,41.896
+Sweden,2009,Natural gas,66.079
+Sweden,2010,Natural gas,76.053
+Sweden,2011,Natural gas,69.475
+Sweden,2012,Natural gas,45.12
+Sweden,2013,Natural gas,33.405
+Sweden,2014,Natural gas,29.127
+Sweden,2015,Natural gas,27.365
+Sweden,2016,Natural gas,30.224
+Sweden,2017,Natural gas,26.074
+Sweden,2018,Natural gas,32.696
+Sweden,2019,Natural gas,19.903
+Sweden,2020,Natural gas,19.017
+Sweden,2021,Natural gas,29.841
+Sweden,2022,Natural gas,25.716
+Sweden,2023,Natural gas,23.224
+Sweden,2024,Natural gas,21.251
+Slovenia,1990,Natural gas,26.956
+Slovenia,1991,Natural gas,34.63
+Slovenia,1992,Natural gas,39.123
+Slovenia,1993,Natural gas,40.757
+Slovenia,1994,Natural gas,36.629
+Slovenia,1995,Natural gas,54.622
+Slovenia,1996,Natural gas,45.507
+Slovenia,1997,Natural gas,45.507
+Slovenia,1998,Natural gas,49.828
+Slovenia,1999,Natural gas,67.691
+Slovenia,2000,Natural gas,58.598
+Slovenia,2001,Natural gas,61.866
+Slovenia,2002,Natural gas,68.358
+Slovenia,2003,Natural gas,86.264
+Slovenia,2004,Natural gas,98.022
+Slovenia,2005,Natural gas,98.474
+Slovenia,2006,Natural gas,93.422
+Slovenia,2007,Natural gas,85.297
+Slovenia,2008,Natural gas,102.279
+Slovenia,2009,Natural gas,106.062
+Slovenia,2010,Natural gas,113.715
+Slovenia,2011,Natural gas,113.242
+Slovenia,2012,Natural gas,117.197
+Slovenia,2013,Natural gas,114.402
+Slovenia,2014,Natural gas,88.564
+Slovenia,2015,Natural gas,103.482
+Slovenia,2016,Natural gas,114.961
+Slovenia,2017,Natural gas,119.054
+Slovenia,2018,Natural gas,110.945
+Slovenia,2019,Natural gas,105.76
+Slovenia,2020,Natural gas,105.605
+Slovenia,2021,Natural gas,112.452
+Slovenia,2022,Natural gas,100.254
+Slovenia,2023,Natural gas,84.09
+Slovenia,2024,Natural gas,76.827
+Slovakia,1990,Natural gas,1090.993
+Slovakia,1991,Natural gas,855.374
+Slovakia,1992,Natural gas,854.471
+Slovakia,1993,Natural gas,838.457
+Slovakia,1994,Natural gas,898.99
+Slovakia,1995,Natural gas,1020.765
+Slovakia,1996,Natural gas,1225.301
+Slovakia,1997,Natural gas,1359.759
+Slovakia,1998,Natural gas,1451.44
+Slovakia,1999,Natural gas,1560.533
+Slovakia,2000,Natural gas,1642.218
+Slovakia,2001,Natural gas,1656.814
+Slovakia,2002,Natural gas,1603.181
+Slovakia,2003,Natural gas,1609.286
+Slovakia,2004,Natural gas,1487.446
+Slovakia,2005,Natural gas,1417.519
+Slovakia,2006,Natural gas,1283.276
+Slovakia,2007,Natural gas,1110.254
+Slovakia,2008,Natural gas,1182.201
+Slovakia,2009,Natural gas,1205.89
+Slovakia,2010,Natural gas,1332.18
+Slovakia,2011,Natural gas,1172.743
+Slovakia,2012,Natural gas,1083.813
+Slovakia,2013,Natural gas,1144.69
+Slovakia,2014,Natural gas,1037.059
+Slovakia,2015,Natural gas,1050.537
+Slovakia,2016,Natural gas,1067.949
+Slovakia,2017,Natural gas,1150.021
+Slovakia,2018,Natural gas,1118.851
+Slovakia,2019,Natural gas,1120.001
+Slovakia,2020,Natural gas,1143.392
+Slovakia,2021,Natural gas,1228.432
+Slovakia,2022,Natural gas,1107.692
+Slovakia,2023,Natural gas,1049.699
+Slovakia,2024,Natural gas,994.72
+Türkiye,1990,Natural gas,40.628
+Türkiye,1991,Natural gas,151.483
+Türkiye,1992,Natural gas,306.664
+Türkiye,1993,Natural gas,444.583
+Türkiye,1994,Natural gas,522.807
+Türkiye,1995,Natural gas,1122.958
+Türkiye,1996,Natural gas,1410.275
+Türkiye,1997,Natural gas,1835.77
+Türkiye,1998,Natural gas,2159.415
+Türkiye,1999,Natural gas,2368.874
+Türkiye,2000,Natural gas,2695.056
+Türkiye,2001,Natural gas,3000.322
+Türkiye,2002,Natural gas,3117.799
+Türkiye,2003,Natural gas,3727.408
+Türkiye,2004,Natural gas,3897.227
+Türkiye,2005,Natural gas,4784.738
+Türkiye,2006,Natural gas,6182.997
+Türkiye,2007,Natural gas,6902.923
+Türkiye,2008,Natural gas,6525.881
+Türkiye,2009,Natural gas,4397.592
+Türkiye,2010,Natural gas,4848.753
+Türkiye,2011,Natural gas,7227.386
+Türkiye,2012,Natural gas,7284.931
+Türkiye,2013,Natural gas,7853.805
+Türkiye,2014,Natural gas,7660.383
+Türkiye,2015,Natural gas,9056.621
+Türkiye,2016,Natural gas,9567.068
+Türkiye,2017,Natural gas,11134.944
+Türkiye,2018,Natural gas,10457.465
+Türkiye,2019,Natural gas,11852.253
+Türkiye,2020,Natural gas,12840.934
+Türkiye,2021,Natural gas,13717.561
+Türkiye,2022,Natural gas,14808.206
+Türkiye,2023,Natural gas,13969.951
+Türkiye,2024,Natural gas,15579.126
+Ukraine,1990,Natural gas,8735.791
+Ukraine,1991,Natural gas,11379.751
+Ukraine,1992,Natural gas,10688.758
+Ukraine,1993,Natural gas,11261.694
+Ukraine,1994,Natural gas,12233.083
+Ukraine,1995,Natural gas,11276.118
+Ukraine,1996,Natural gas,17233.856
+Ukraine,1997,Natural gas,14227.365
+Ukraine,1998,Natural gas,11869.776
+Ukraine,1999,Natural gas,13408.706
+Ukraine,2000,Natural gas,12818.379
+Ukraine,2001,Natural gas,12649.721
+Ukraine,2002,Natural gas,12734.05
+Ukraine,2003,Natural gas,13408.706
+Ukraine,2004,Natural gas,13324.377
+Ukraine,2005,Natural gas,14347.7
+Ukraine,2006,Natural gas,14884.394
+Ukraine,2007,Natural gas,13525.881
+Ukraine,2008,Natural gas,13843.53
+Ukraine,2009,Natural gas,13217.003
+Ukraine,2010,Natural gas,14066.853
+Ukraine,2011,Natural gas,14064.037
+Ukraine,2012,Natural gas,13763.801
+Ukraine,2013,Natural gas,13516.939
+Ukraine,2014,Natural gas,11746.84
+Ukraine,2015,Natural gas,9085.404
+Ukraine,2016,Natural gas,9286.414
+Ukraine,2017,Natural gas,8829.72
+Ukraine,2018,Natural gas,8478.147
+Ukraine,2019,Natural gas,6843.322
+Ukraine,2020,Natural gas,6556.771
+United Kingdom,1990,Natural gas,23246.711
+United Kingdom,1991,Natural gas,25844.196
+United Kingdom,1992,Natural gas,25545.142
+United Kingdom,1993,Natural gas,26323.818
+United Kingdom,1994,Natural gas,25514.961
+United Kingdom,1995,Natural gas,25228.633
+United Kingdom,1996,Natural gas,29084.867
+United Kingdom,1997,Natural gas,26739.359
+United Kingdom,1998,Natural gas,27541.316
+United Kingdom,1999,Natural gas,27709.329
+United Kingdom,2000,Natural gas,28625.795
+United Kingdom,2001,Natural gas,29362.296
+United Kingdom,2002,Natural gas,29125.946
+United Kingdom,2003,Natural gas,29908.641
+United Kingdom,2004,Natural gas,30676.677
+United Kingdom,2005,Natural gas,29552.107
+United Kingdom,2006,Natural gas,28395.12
+United Kingdom,2007,Natural gas,27307.051
+United Kingdom,2008,Natural gas,27824.463
+United Kingdom,2009,Natural gas,26713.607
+United Kingdom,2010,Natural gas,30149.269
+United Kingdom,2011,Natural gas,23899.979
+United Kingdom,2012,Natural gas,26557.352
+United Kingdom,2013,Natural gas,26659.566
+United Kingdom,2014,Natural gas,21953.556
+United Kingdom,2015,Natural gas,23033.578
+United Kingdom,2016,Natural gas,23616.488
+United Kingdom,2017,Natural gas,22722.83
+United Kingdom,2018,Natural gas,24085.369
+United Kingdom,2019,Natural gas,23984.61
+Kosovo*,2000,Natural gas,0
+Kosovo*,2001,Natural gas,0
+Kosovo*,2002,Natural gas,0
+Kosovo*,2003,Natural gas,0
+Kosovo*,2004,Natural gas,0
+Kosovo*,2005,Natural gas,0
+Kosovo*,2006,Natural gas,0
+Kosovo*,2007,Natural gas,0
+Kosovo*,2008,Natural gas,0
+Kosovo*,2009,Natural gas,0
+Kosovo*,2010,Natural gas,0
+Kosovo*,2011,Natural gas,0
+Kosovo*,2012,Natural gas,0
+Kosovo*,2013,Natural gas,0
+Kosovo*,2014,Natural gas,0
+Kosovo*,2015,Natural gas,0
+Kosovo*,2016,Natural gas,0
+Kosovo*,2017,Natural gas,0
+Kosovo*,2018,Natural gas,0
+Kosovo*,2019,Natural gas,0
+Kosovo*,2020,Natural gas,0
+Kosovo*,2021,Natural gas,0
+Kosovo*,2022,Natural gas,0
+Kosovo*,2023,Natural gas,0
+Kosovo*,2024,Natural gas,0
+Albania,1990,Total,527.995
+Albania,1991,Total,531.026
+Albania,1992,Total,508.966
+Albania,1993,Total,469.652
+Albania,1994,Total,452.131
+Albania,1995,Total,474.021
+Albania,1996,Total,516.029
+Albania,1997,Total,493.527
+Albania,1998,Total,483.591
+Albania,1999,Total,354.866
+Albania,2000,Total,376.228
+Albania,2001,Total,374.471
+Albania,2002,Total,606.594
+Albania,2003,Total,381.387
+Albania,2004,Total,549.313
+Albania,2005,Total,517.253
+Albania,2006,Total,451.947
+Albania,2007,Total,423.106
+Albania,2008,Total,445.281
+Albania,2009,Total,487.171
+Albania,2010,Total,489.039
+Albania,2011,Total,498.28
+Albania,2012,Total,509.086
+Albania,2013,Total,580.003
+Albania,2014,Total,556.243
+Albania,2015,Total,532.287
+Albania,2016,Total,496.35
+Albania,2017,Total,492.58
+Albania,2018,Total,510.484
+Albania,2019,Total,504.986
+Albania,2020,Total,538.642
+Albania,2021,Total,548.63
+Albania,2022,Total,524.447
+Albania,2023,Total,513.467
+Albania,2024,Total,523.736
+Austria,1990,Total,5881.122
+Austria,1991,Total,6531.442
+Austria,1992,Total,6164.417
+Austria,1993,Total,6274.606
+Austria,1994,Total,5917.381
+Austria,1995,Total,6322.048
+Austria,1996,Total,6961.087
+Austria,1997,Total,6272.585
+Austria,1998,Total,6379.629
+Austria,1999,Total,6547.373
+Austria,2000,Total,6348.279
+Austria,2001,Total,6692.112
+Austria,2002,Total,6435.814
+Austria,2003,Total,6562.525
+Austria,2004,Total,6431.332
+Austria,2005,Total,6579.722
+Austria,2006,Total,6513.102
+Austria,2007,Total,6266.402
+Austria,2008,Total,6391.879
+Austria,2009,Total,6482.555
+Austria,2010,Total,7058.518
+Austria,2011,Total,6551.505
+Austria,2012,Total,6677.819
+Austria,2013,Total,6911.132
+Austria,2014,Total,6239.87
+Austria,2015,Total,6631.937
+Austria,2016,Total,6919.098
+Austria,2017,Total,6955.601
+Austria,2018,Total,6531.091
+Austria,2019,Total,6687.86
+Austria,2020,Total,7033.251
+Austria,2021,Total,7811.649
+Austria,2022,Total,7108.457
+Austria,2023,Total,7270.904
+Austria,2024,Total,6932.267
+Bosnia and Herzegovina,2014,Total,980.816
+Bosnia and Herzegovina,2015,Total,1113.03
+Bosnia and Herzegovina,2016,Total,1139.361
+Bosnia and Herzegovina,2017,Total,1045.641
+Bosnia and Herzegovina,2018,Total,1719.424
+Bosnia and Herzegovina,2019,Total,1686.605
+Bosnia and Herzegovina,2020,Total,1800.155
+Bosnia and Herzegovina,2021,Total,1787.67
+Bosnia and Herzegovina,2022,Total,1840.954
+Bosnia and Herzegovina,2023,Total,1780.052
+Bosnia and Herzegovina,2024,Total,1750.849
+Belgium,1990,Total,8289.251
+Belgium,1991,Total,9151.751
+Belgium,1992,Total,9147.798
+Belgium,1993,Total,9091.449
+Belgium,1994,Total,8937.893
+Belgium,1995,Total,9320.715
+Belgium,1996,Total,10619.932
+Belgium,1997,Total,9883.169
+Belgium,1998,Total,9911.078
+Belgium,1999,Total,9509.609
+Belgium,2000,Total,9495.102
+Belgium,2001,Total,9894.429
+Belgium,2002,Total,9336.629
+Belgium,2003,Total,9871.061
+Belgium,2004,Total,9192.162
+Belgium,2005,Total,9139.623
+Belgium,2006,Total,8721.525
+Belgium,2007,Total,8076.445
+Belgium,2008,Total,9129.436
+Belgium,2009,Total,8663.25
+Belgium,2010,Total,9609.273
+Belgium,2011,Total,8001.234
+Belgium,2012,Total,8463.703
+Belgium,2013,Total,9085.395
+Belgium,2014,Total,7442.63
+Belgium,2015,Total,8229.602
+Belgium,2016,Total,8255.911
+Belgium,2017,Total,8131.16
+Belgium,2018,Total,8039.139
+Belgium,2019,Total,7503.961
+Belgium,2020,Total,7581.389
+Belgium,2021,Total,8228.015
+Belgium,2022,Total,7036.456
+Belgium,2023,Total,6947.24
+Belgium,2024,Total,7099.329
+Bulgaria,1990,Total,2336.07
+Bulgaria,1991,Total,2479.321
+Bulgaria,1992,Total,2626.804
+Bulgaria,1993,Total,2829.252
+Bulgaria,1994,Total,2443.498
+Bulgaria,1995,Total,2447.466
+Bulgaria,1996,Total,2685.13
+Bulgaria,1997,Total,2213.172
+Bulgaria,1998,Total,2424.369
+Bulgaria,1999,Total,2174.123
+Bulgaria,2000,Total,2101.596
+Bulgaria,2001,Total,1975.063
+Bulgaria,2002,Total,2116.749
+Bulgaria,2003,Total,2231.753
+Bulgaria,2004,Total,2084.563
+Bulgaria,2005,Total,2089.666
+Bulgaria,2006,Total,2158.268
+Bulgaria,2007,Total,2061.67
+Bulgaria,2008,Total,2113.463
+Bulgaria,2009,Total,2114.011
+Bulgaria,2010,Total,2243.337
+Bulgaria,2011,Total,2374.281
+Bulgaria,2012,Total,2352.559
+Bulgaria,2013,Total,2241.036
+Bulgaria,2014,Total,2164.991
+Bulgaria,2015,Total,2192.912
+Bulgaria,2016,Total,2252.111
+Bulgaria,2017,Total,2318.715
+Bulgaria,2018,Total,2229.672
+Bulgaria,2019,Total,2162.252
+Bulgaria,2020,Total,2382.245
+Bulgaria,2021,Total,2403.893
+Bulgaria,2022,Total,2137.397
+Bulgaria,2023,Total,2046.582
+Bulgaria,2024,Total,1961.546
+Cyprus,1990,Total,106.518
+Cyprus,1991,Total,108.496
+Cyprus,1992,Total,130.393
+Cyprus,1993,Total,130.331
+Cyprus,1994,Total,136.539
+Cyprus,1995,Total,140.664
+Cyprus,1996,Total,147.299
+Cyprus,1997,Total,151.381
+Cyprus,1998,Total,156.186
+Cyprus,1999,Total,158.137
+Cyprus,2000,Total,175.697
+Cyprus,2001,Total,174.58
+Cyprus,2002,Total,192.921
+Cyprus,2003,Total,209.305
+Cyprus,2004,Total,201.529
+Cyprus,2005,Total,317.142
+Cyprus,2006,Total,328.301
+Cyprus,2007,Total,339.644
+Cyprus,2008,Total,335.736
+Cyprus,2009,Total,356.632
+Cyprus,2010,Total,335.536
+Cyprus,2011,Total,355.125
+Cyprus,2012,Total,349.996
+Cyprus,2013,Total,304.971
+Cyprus,2014,Total,292.183
+Cyprus,2015,Total,323.916
+Cyprus,2016,Total,333.642
+Cyprus,2017,Total,342.362
+Cyprus,2018,Total,334.957
+Cyprus,2019,Total,359.703
+Cyprus,2020,Total,363.552
+Cyprus,2021,Total,355.143
+Cyprus,2022,Total,360.543
+Cyprus,2023,Total,336.459
+Cyprus,2024,Total,347.807
+Czechia,1990,Total,7343.44
+Czechia,1991,Total,7027.503
+Czechia,1992,Total,6493.784
+Czechia,1993,Total,6392.034
+Czechia,1994,Total,6410.515
+Czechia,1995,Total,6584.005
+Czechia,1996,Total,7341.635
+Czechia,1997,Total,6989.25
+Czechia,1998,Total,6575.111
+Czechia,1999,Total,6529.019
+Czechia,2000,Total,6437.123
+Czechia,2001,Total,7007.797
+Czechia,2002,Total,6719.303
+Czechia,2003,Total,6933.364
+Czechia,2004,Total,6828.858
+Czechia,2005,Total,6665.539
+Czechia,2006,Total,6786.785
+Czechia,2007,Total,6414.496
+Czechia,2008,Total,6512.139
+Czechia,2009,Total,6656.571
+Czechia,2010,Total,7440.711
+Czechia,2011,Total,6863.723
+Czechia,2012,Total,7115.57
+Czechia,2013,Total,7269.133
+Czechia,2014,Total,6554.173
+Czechia,2015,Total,6769.51
+Czechia,2016,Total,7090.172
+Czechia,2017,Total,7202.965
+Czechia,2018,Total,7042.708
+Czechia,2019,Total,6963.387
+Czechia,2020,Total,7148.052
+Czechia,2021,Total,7864.166
+Czechia,2022,Total,7157.766
+Czechia,2023,Total,6416.158
+Czechia,2024,Total,6229.411
+Germany,1990,Total,63146.022
+Germany,1991,Total,65038.309
+Germany,1992,Total,62291.711
+Germany,1993,Total,66393.555
+Germany,1994,Total,63846.118
+Germany,1995,Total,66361.722
+Germany,1996,Total,72456.181
+Germany,1997,Total,71390.388
+Germany,1998,Total,70377.801
+Germany,1999,Total,66084.386
+Germany,2000,Total,65318.005
+Germany,2001,Total,69841.678
+Germany,2002,Total,67261.931
+Germany,2003,Total,66762.514
+Germany,2004,Total,64783.736
+Germany,2005,Total,63683.413
+Germany,2006,Total,64673.494
+Germany,2007,Total,55653.719
+Germany,2008,Total,62663.086
+Germany,2009,Total,59464.701
+Germany,2010,Total,63839.122
+Germany,2011,Total,56020.249
+Germany,2012,Total,59188.124
+Germany,2013,Total,62517.628
+Germany,2014,Total,53648.149
+Germany,2015,Total,54959.824
+Germany,2016,Total,56963.58
+Germany,2017,Total,56777.115
+Germany,2018,Total,55822.36
+Germany,2019,Total,57743.03
+Germany,2020,Total,57979.779
+Germany,2021,Total,57672.167
+Germany,2022,Total,57434.806
+Germany,2023,Total,52434.691
+Germany,2024,Total,52455.834
+Denmark,1990,Total,4043.774
+Denmark,1991,Total,4391.519
+Denmark,1992,Total,4226.278
+Denmark,1993,Total,4586.545
+Denmark,1994,Total,4423.659
+Denmark,1995,Total,4524.092
+Denmark,1996,Total,4831.97
+Denmark,1997,Total,4521.943
+Denmark,1998,Total,4505.559
+Denmark,1999,Total,4389.114
+Denmark,2000,Total,4217.606
+Denmark,2001,Total,4467.002
+Denmark,2002,Total,4360.863
+Denmark,2003,Total,4470.77
+Denmark,2004,Total,4459.735
+Denmark,2005,Total,4514.564
+Denmark,2006,Total,4514.728
+Denmark,2007,Total,4515.458
+Denmark,2008,Total,4501.163
+Denmark,2009,Total,4510.054
+Denmark,2010,Total,5005.148
+Denmark,2011,Total,4496.279
+Denmark,2012,Total,4444.462
+Denmark,2013,Total,4484.143
+Denmark,2014,Total,4143.762
+Denmark,2015,Total,4445.518
+Denmark,2016,Total,4601.363
+Denmark,2017,Total,4498.219
+Denmark,2018,Total,4450.344
+Denmark,2019,Total,4389.392
+Denmark,2020,Total,4273.399
+Denmark,2021,Total,4519.97
+Denmark,2022,Total,3998.544
+Denmark,2023,Total,4096.01
+Denmark,2024,Total,4135.652
+Estonia,1990,Total,1006.216
+Estonia,1991,Total,885.008
+Estonia,1992,Total,773.142
+Estonia,1993,Total,751.733
+Estonia,1994,Total,888.218
+Estonia,1995,Total,1082.343
+Estonia,1996,Total,1147.364
+Estonia,1997,Total,1146.558
+Estonia,1998,Total,1000.777
+Estonia,1999,Total,954.78
+Estonia,2000,Total,926.31
+Estonia,2001,Total,946.972
+Estonia,2002,Total,915.904
+Estonia,2003,Total,924.163
+Estonia,2004,Total,921.954
+Estonia,2005,Total,889.167
+Estonia,2006,Total,881.169
+Estonia,2007,Total,961.519
+Estonia,2008,Total,951.951
+Estonia,2009,Total,970.068
+Estonia,2010,Total,1026.849
+Estonia,2011,Total,935.253
+Estonia,2012,Total,970.828
+Estonia,2013,Total,933.506
+Estonia,2014,Total,888.143
+Estonia,2015,Total,857.435
+Estonia,2016,Total,930.578
+Estonia,2017,Total,940.914
+Estonia,2018,Total,941.042
+Estonia,2019,Total,951.351
+Estonia,2020,Total,944.704
+Estonia,2021,Total,965.256
+Estonia,2022,Total,963.88
+Estonia,2023,Total,935.976
+Estonia,2024,Total,978.233
+Greece,1990,Total,3061.592
+Greece,1991,Total,3148.845
+Greece,1992,Total,3177.848
+Greece,1993,Total,3160.124
+Greece,1994,Total,3210.379
+Greece,1995,Total,3335.906
+Greece,1996,Total,3954.978
+Greece,1997,Total,4119.198
+Greece,1998,Total,4261.447
+Greece,1999,Total,4280.208
+Greece,2000,Total,4557.257
+Greece,2001,Total,4776.463
+Greece,2002,Total,4980.549
+Greece,2003,Total,5580.489
+Greece,2004,Total,5479.218
+Greece,2005,Total,5573.93
+Greece,2006,Total,5573.229
+Greece,2007,Total,5421.205
+Greece,2008,Total,5270.447
+Greece,2009,Total,4887.508
+Greece,2010,Total,4666.492
+Greece,2011,Total,5526.044
+Greece,2012,Total,5096.015
+Greece,2013,Total,3821.337
+Greece,2014,Total,3844.875
+Greece,2015,Total,4460.625
+Greece,2016,Total,4337.452
+Greece,2017,Total,4401.052
+Greece,2018,Total,3903.48
+Greece,2019,Total,4099.875
+Greece,2020,Total,4277.83
+Greece,2021,Total,4278.524
+Greece,2022,Total,4325.475
+Greece,2023,Total,3773.874
+Greece,2024,Total,3862.774
+Spain,1990,Total,9248.008
+Spain,1991,Total,9763.813
+Spain,1992,Total,9840.176
+Spain,1993,Total,9878.886
+Spain,1994,Total,10341.137
+Spain,1995,Total,10079.48
+Spain,1996,Total,10644.52
+Spain,1997,Total,10823.964
+Spain,1998,Total,11170.268
+Spain,1999,Total,11882.808
+Spain,2000,Total,12058.766
+Spain,2001,Total,12674.272
+Spain,2002,Total,13007.117
+Spain,2003,Total,13953.314
+Spain,2004,Total,14725.84
+Spain,2005,Total,15183.649
+Spain,2006,Total,15625.295
+Spain,2007,Total,15667.133
+Spain,2008,Total,15534.804
+Spain,2009,Total,15957.589
+Spain,2010,Total,16951.831
+Spain,2011,Total,15633.895
+Spain,2012,Total,15530.469
+Spain,2013,Total,14888.925
+Spain,2014,Total,14787.31
+Spain,2015,Total,15269.842
+Spain,2016,Total,14331.695
+Spain,2017,Total,14392.022
+Spain,2018,Total,15178.832
+Spain,2019,Total,14445.322
+Spain,2020,Total,14555.763
+Spain,2021,Total,14513.752
+Spain,2022,Total,14016.209
+Spain,2023,Total,13671.209
+Spain,2024,Total,13879.984
+European Union - 27 countries (from 2020),1990,Total,239836.935
+European Union - 27 countries (from 2020),1991,Total,253316.711
+European Union - 27 countries (from 2020),1992,Total,245051.754
+European Union - 27 countries (from 2020),1993,Total,253753.867
+European Union - 27 countries (from 2020),1994,Total,243337.326
+European Union - 27 countries (from 2020),1995,Total,249717.636
+European Union - 27 countries (from 2020),1996,Total,269748.802
+European Union - 27 countries (from 2020),1997,Total,260113.384
+European Union - 27 countries (from 2020),1998,Total,260236.827
+European Union - 27 countries (from 2020),1999,Total,255457.079
+European Union - 27 countries (from 2020),2000,Total,248561.151
+European Union - 27 countries (from 2020),2001,Total,261831.971
+European Union - 27 countries (from 2020),2002,Total,256344.277
+European Union - 27 countries (from 2020),2003,Total,265226.426
+European Union - 27 countries (from 2020),2004,Total,263355.479
+European Union - 27 countries (from 2020),2005,Total,266318.911
+European Union - 27 countries (from 2020),2006,Total,265389.687
+European Union - 27 countries (from 2020),2007,Total,249232.527
+European Union - 27 countries (from 2020),2008,Total,264259.583
+European Union - 27 countries (from 2020),2009,Total,262381.089
+European Union - 27 countries (from 2020),2010,Total,279599.45
+European Union - 27 countries (from 2020),2011,Total,253107.01
+European Union - 27 countries (from 2020),2012,Total,264767.02
+European Union - 27 countries (from 2020),2013,Total,267762.82
+European Union - 27 countries (from 2020),2014,Total,235461.261
+European Union - 27 countries (from 2020),2015,Total,246412.024
+European Union - 27 countries (from 2020),2016,Total,252786.185
+European Union - 27 countries (from 2020),2017,Total,253568.328
+European Union - 27 countries (from 2020),2018,Total,251403.582
+European Union - 27 countries (from 2020),2019,Total,248877.415
+European Union - 27 countries (from 2020),2020,Total,249259.394
+European Union - 27 countries (from 2020),2021,Total,262365.267
+European Union - 27 countries (from 2020),2022,Total,241805.633
+European Union - 27 countries (from 2020),2023,Total,228513.357
+European Union - 27 countries (from 2020),2024,Total,228130.777
+Finland,1990,Total,5352.682
+Finland,1991,Total,5578.614
+Finland,1992,Total,5568.079
+Finland,1993,Total,5345.188
+Finland,1994,Total,5540.91
+Finland,1995,Total,5448.897
+Finland,1996,Total,5369.206
+Finland,1997,Total,5232.02
+Finland,1998,Total,5402.355
+Finland,1999,Total,5175.026
+Finland,2000,Total,4491.67
+Finland,2001,Total,4883.755
+Finland,2002,Total,4969.496
+Finland,2003,Total,5118.348
+Finland,2004,Total,5035.809
+Finland,2005,Total,5020.097
+Finland,2006,Total,5122.043
+Finland,2007,Total,5124.068
+Finland,2008,Total,4991.511
+Finland,2009,Total,5246.749
+Finland,2010,Total,5811.348
+Finland,2011,Total,5091.152
+Finland,2012,Total,5455.635
+Finland,2013,Total,5172.734
+Finland,2014,Total,5126.2
+Finland,2015,Total,4950.975
+Finland,2016,Total,5342.235
+Finland,2017,Total,5761.435
+Finland,2018,Total,5691.11
+Finland,2019,Total,5631.035
+Finland,2020,Total,5284.813
+Finland,2021,Total,5962.385
+Finland,2022,Total,5594.322
+Finland,2023,Total,5465.387
+Finland,2024,Total,5362.842
+France,1990,Total,38195.822
+France,1991,Total,43010.343
+France,1992,Total,42050.283
+France,1993,Total,41644.949
+France,1994,Total,38598.019
+France,1995,Total,39005.727
+France,1996,Total,42903.359
+France,1997,Total,39832.782
+France,1998,Total,42045.498
+France,1999,Total,41923.766
+France,2000,Total,40594.423
+France,2001,Total,42483.029
+France,2002,Total,40813.954
+France,2003,Total,42331.548
+France,2004,Total,44031.519
+France,2005,Total,43009
+France,2006,Total,42393.288
+France,2007,Total,40421.133
+France,2008,Total,44171.591
+France,2009,Total,43976.87
+France,2010,Total,45407.793
+France,2011,Total,40281.831
+France,2012,Total,44796.251
+France,2013,Total,46934.921
+France,2014,Total,38260.942
+France,2015,Total,40692.404
+France,2016,Total,43102.268
+France,2017,Total,42420.967
+France,2018,Total,41029.548
+France,2019,Total,40771.075
+France,2020,Total,39984.582
+France,2021,Total,43310.438
+France,2022,Total,37920.921
+France,2023,Total,36640.154
+France,2024,Total,36623.464
+Georgia,2013,Total,1159.32
+Georgia,2014,Total,1194.979
+Georgia,2015,Total,1201.348
+Georgia,2016,Total,1266.269
+Georgia,2017,Total,1336.297
+Georgia,2018,Total,1227.303
+Georgia,2019,Total,1300.65
+Georgia,2020,Total,1408.174
+Georgia,2021,Total,1507.717
+Georgia,2022,Total,1575.63
+Georgia,2023,Total,1586.086
+Georgia,2024,Total,1740.68
+Croatia,1990,Total,1971.244
+Croatia,1991,Total,2272.567
+Croatia,1992,Total,1974.941
+Croatia,1993,Total,2058.863
+Croatia,1994,Total,1978.224
+Croatia,1995,Total,2166.831
+Croatia,1996,Total,2426.658
+Croatia,1997,Total,2363.492
+Croatia,1998,Total,2368.9
+Croatia,1999,Total,2484.067
+Croatia,2000,Total,2294.89
+Croatia,2001,Total,2469.763
+Croatia,2002,Total,2483.313
+Croatia,2003,Total,2706.366
+Croatia,2004,Total,2701.991
+Croatia,2005,Total,2826.121
+Croatia,2006,Total,2658.936
+Croatia,2007,Total,2530.131
+Croatia,2008,Total,2589.92
+Croatia,2009,Total,2645.608
+Croatia,2010,Total,2770.882
+Croatia,2011,Total,2643.5
+Croatia,2012,Total,2561.304
+Croatia,2013,Total,2493.453
+Croatia,2014,Total,2228.532
+Croatia,2015,Total,2429.916
+Croatia,2016,Total,2409.158
+Croatia,2017,Total,2392.72
+Croatia,2018,Total,2298.895
+Croatia,2019,Total,2238.586
+Croatia,2020,Total,2277.143
+Croatia,2021,Total,2441.87
+Croatia,2022,Total,2286.359
+Croatia,2023,Total,2224.526
+Croatia,2024,Total,2213.975
+Hungary,1990,Total,6720.543
+Hungary,1991,Total,6968.345
+Hungary,1992,Total,6366.602
+Hungary,1993,Total,6323.553
+Hungary,1994,Total,6202.577
+Hungary,1995,Total,6200.435
+Hungary,1996,Total,6235.352
+Hungary,1997,Total,5833.068
+Hungary,1998,Total,5634.655
+Hungary,1999,Total,5779.695
+Hungary,2000,Total,5601.853
+Hungary,2001,Total,6009.595
+Hungary,2002,Total,6016.637
+Hungary,2003,Total,6603.918
+Hungary,2004,Total,6091.489
+Hungary,2005,Total,6969.275
+Hungary,2006,Total,6713.445
+Hungary,2007,Total,6117.605
+Hungary,2008,Total,6017.799
+Hungary,2009,Total,6311.473
+Hungary,2010,Total,6648.743
+Hungary,2011,Total,6569.577
+Hungary,2012,Total,6375.847
+Hungary,2013,Total,6209.747
+Hungary,2014,Total,5487.452
+Hungary,2015,Total,5969.813
+Hungary,2016,Total,6156.505
+Hungary,2017,Total,6294.138
+Hungary,2018,Total,5818.115
+Hungary,2019,Total,5676.869
+Hungary,2020,Total,5980.487
+Hungary,2021,Total,6374.4
+Hungary,2022,Total,5821.192
+Hungary,2023,Total,5367.117
+Hungary,2024,Total,5327.465
+Ireland,1990,Total,2332.399
+Ireland,1991,Total,2318.697
+Ireland,1992,Total,2166.834
+Ireland,1993,Total,2199.713
+Ireland,1994,Total,2250.996
+Ireland,1995,Total,2257.317
+Ireland,1996,Total,2404.681
+Ireland,1997,Total,2376.018
+Ireland,1998,Total,2574.291
+Ireland,1999,Total,2648.199
+Ireland,2000,Total,2713.224
+Ireland,2001,Total,2887.85
+Ireland,2002,Total,2880.413
+Ireland,2003,Total,3031.057
+Ireland,2004,Total,3141.282
+Ireland,2005,Total,3301.403
+Ireland,2006,Total,3319.511
+Ireland,2007,Total,3274.797
+Ireland,2008,Total,3579.199
+Ireland,2009,Total,3478.347
+Ireland,2010,Total,3596.268
+Ireland,2011,Total,3159.709
+Ireland,2012,Total,3005.499
+Ireland,2013,Total,2920.575
+Ireland,2014,Total,2671.878
+Ireland,2015,Total,2829.165
+Ireland,2016,Total,2918.087
+Ireland,2017,Total,2768.312
+Ireland,2018,Total,2950.805
+Ireland,2019,Total,2868.37
+Ireland,2020,Total,3132.847
+Ireland,2021,Total,2983.656
+Ireland,2022,Total,2615.339
+Ireland,2023,Total,2497.658
+Ireland,2024,Total,2627.755
+Iceland,1990,Total,282.065
+Iceland,1991,Total,273.089
+Iceland,1992,Total,285.533
+Iceland,1993,Total,286.016
+Iceland,1994,Total,288.051
+Iceland,1995,Total,293.444
+Iceland,1996,Total,284.965
+Iceland,1997,Total,288.449
+Iceland,1998,Total,289.524
+Iceland,1999,Total,299.988
+Iceland,2000,Total,310.784
+Iceland,2001,Total,313.273
+Iceland,2002,Total,321.499
+Iceland,2003,Total,319.038
+Iceland,2004,Total,328.353
+Iceland,2005,Total,335.036
+Iceland,2006,Total,343.926
+Iceland,2007,Total,359.953
+Iceland,2008,Total,374.955
+Iceland,2009,Total,375.096
+Iceland,2010,Total,377.577
+Iceland,2011,Total,370.818
+Iceland,2012,Total,400.502
+Iceland,2013,Total,399.164
+Iceland,2014,Total,384.692
+Iceland,2015,Total,392.234
+Iceland,2016,Total,423.296
+Iceland,2017,Total,422.526
+Iceland,2018,Total,505.489
+Iceland,2019,Total,454.055
+Iceland,2020,Total,482.238
+Iceland,2021,Total,500.795
+Iceland,2022,Total,443.212
+Iceland,2023,Total,453.257
+Iceland,2024,Total,494.519
+Italy,1990,Total,26061.205
+Italy,1991,Total,28245.244
+Italy,1992,Total,26944.544
+Italy,1993,Total,26801.449
+Italy,1994,Total,24261.338
+Italy,1995,Total,26323.974
+Italy,1996,Total,26913.124
+Italy,1997,Total,26187.613
+Italy,1998,Total,27513.968
+Italy,1999,Total,28622.413
+Italy,2000,Total,27591.928
+Italy,2001,Total,28907.182
+Italy,2002,Total,28741.609
+Italy,2003,Total,31590.238
+Italy,2004,Total,31425.185
+Italy,2005,Total,33921.569
+Italy,2006,Total,32423.683
+Italy,2007,Total,32339.575
+Italy,2008,Total,33611.748
+Italy,2009,Total,34040.636
+Italy,2010,Total,35392.911
+Italy,2011,Total,32378.063
+Italy,2012,Total,34348.336
+Italy,2013,Total,34230.62
+Italy,2014,Total,29545.98
+Italy,2015,Total,32494.483
+Italy,2016,Total,32185.101
+Italy,2017,Total,32898.639
+Italy,2018,Total,31905.559
+Italy,2019,Total,31138.335
+Italy,2020,Total,30655.992
+Italy,2021,Total,33244.961
+Italy,2022,Total,29426.979
+Italy,2023,Total,26546.617
+Italy,2024,Total,26782.433
+Lithuania,1990,Total,1842.68
+Lithuania,1991,Total,2007.139
+Lithuania,1992,Total,1628.92
+Lithuania,1993,Total,1713.853
+Lithuania,1994,Total,1748.729
+Lithuania,1995,Total,1640.071
+Lithuania,1996,Total,1549.527
+Lithuania,1997,Total,1497.468
+Lithuania,1998,Total,1450.236
+Lithuania,1999,Total,1401.67
+Lithuania,2000,Total,1366.002
+Lithuania,2001,Total,1417.803
+Lithuania,2002,Total,1440.644
+Lithuania,2003,Total,1465.121
+Lithuania,2004,Total,1478.962
+Lithuania,2005,Total,1506.591
+Lithuania,2006,Total,1568.999
+Lithuania,2007,Total,1503.571
+Lithuania,2008,Total,1551.803
+Lithuania,2009,Total,1568.648
+Lithuania,2010,Total,1593.216
+Lithuania,2011,Total,1532.207
+Lithuania,2012,Total,1534.798
+Lithuania,2013,Total,1467.198
+Lithuania,2014,Total,1400.9
+Lithuania,2015,Total,1359.131
+Lithuania,2016,Total,1433.211
+Lithuania,2017,Total,1455.374
+Lithuania,2018,Total,1511.606
+Lithuania,2019,Total,1447.177
+Lithuania,2020,Total,1433.361
+Lithuania,2021,Total,1629.694
+Lithuania,2022,Total,1558.114
+Lithuania,2023,Total,1530.945
+Lithuania,2024,Total,1616.951
+Luxembourg,1990,Total,498.828
+Luxembourg,1991,Total,590.894
+Luxembourg,1992,Total,568.884
+Luxembourg,1993,Total,566.949
+Luxembourg,1994,Total,549.807
+Luxembourg,1995,Total,557.095
+Luxembourg,1996,Total,618
+Luxembourg,1997,Total,598.828
+Luxembourg,1998,Total,625.986
+Luxembourg,1999,Total,571.243
+Luxembourg,2000,Total,467.871
+Luxembourg,2001,Total,503.996
+Luxembourg,2002,Total,483.444
+Luxembourg,2003,Total,501.304
+Luxembourg,2004,Total,533.414
+Luxembourg,2005,Total,525.415
+Luxembourg,2006,Total,516.305
+Luxembourg,2007,Total,502.124
+Luxembourg,2008,Total,511.807
+Luxembourg,2009,Total,517.987
+Luxembourg,2010,Total,512.414
+Luxembourg,2011,Total,477.528
+Luxembourg,2012,Total,490.129
+Luxembourg,2013,Total,498.056
+Luxembourg,2014,Total,468.025
+Luxembourg,2015,Total,508.946
+Luxembourg,2016,Total,525.178
+Luxembourg,2017,Total,535.579
+Luxembourg,2018,Total,500.518
+Luxembourg,2019,Total,463.194
+Luxembourg,2020,Total,497.737
+Luxembourg,2021,Total,479.175
+Luxembourg,2022,Total,454.444
+Luxembourg,2023,Total,438.685
+Luxembourg,2024,Total,443.037
+Latvia,1990,Total,1582.861
+Latvia,1991,Total,1762.827
+Latvia,1992,Total,1686.439
+Latvia,1993,Total,1738.233
+Latvia,1994,Total,1667.221
+Latvia,1995,Total,1600.616
+Latvia,1996,Total,1691.821
+Latvia,1997,Total,1540.61
+Latvia,1998,Total,1499.284
+Latvia,1999,Total,1410.043
+Latvia,2000,Total,1326.642
+Latvia,2001,Total,1442.273
+Latvia,2002,Total,1431.035
+Latvia,2003,Total,1498.75
+Latvia,2004,Total,1472.758
+Latvia,2005,Total,1503.944
+Latvia,2006,Total,1480.648
+Latvia,2007,Total,1457.706
+Latvia,2008,Total,1451.54
+Latvia,2009,Total,1534.586
+Latvia,2010,Total,1388.905
+Latvia,2011,Total,1327.389
+Latvia,2012,Total,1376.24
+Latvia,2013,Total,1267.242
+Latvia,2014,Total,1238.471
+Latvia,2015,Total,1105.582
+Latvia,2016,Total,1143.483
+Latvia,2017,Total,1195.604
+Latvia,2018,Total,1231.009
+Latvia,2019,Total,1187.967
+Latvia,2020,Total,1115.366
+Latvia,2021,Total,1202.993
+Latvia,2022,Total,1115.069
+Latvia,2023,Total,1079.133
+Latvia,2024,Total,1099.341
+Moldova,2010,Total,1112.668
+Moldova,2011,Total,1137.092
+Moldova,2012,Total,1155.36
+Moldova,2013,Total,1147.203
+Moldova,2014,Total,1169.757
+Moldova,2015,Total,1179.946
+Moldova,2016,Total,1233.669
+Moldova,2017,Total,1316.751
+Moldova,2018,Total,1338.83
+Moldova,2019,Total,1236.74
+Moldova,2020,Total,1203.437
+Moldova,2021,Total,1316.674
+Moldova,2022,Total,1072.23
+Moldova,2023,Total,1009.203
+Moldova,2024,Total,1028.916
+Montenegro,2005,Total,243.565
+Montenegro,2006,Total,247.109
+Montenegro,2007,Total,245.365
+Montenegro,2008,Total,251.124
+Montenegro,2009,Total,266.275
+Montenegro,2010,Total,274.679
+Montenegro,2011,Total,268.887
+Montenegro,2012,Total,281.347
+Montenegro,2013,Total,269.251
+Montenegro,2014,Total,256.273
+Montenegro,2015,Total,265.421
+Montenegro,2016,Total,264.617
+Montenegro,2017,Total,263.151
+Montenegro,2018,Total,248.017
+Montenegro,2019,Total,243.959
+Montenegro,2020,Total,243.169
+Montenegro,2021,Total,257.803
+Montenegro,2022,Total,248.872
+Montenegro,2023,Total,256.235
+Montenegro,2024,Total,294.534
+North Macedonia,1990,Total,301.039
+North Macedonia,1991,Total,309.19
+North Macedonia,1992,Total,505.225
+North Macedonia,1993,Total,419.917
+North Macedonia,1994,Total,484.026
+North Macedonia,1995,Total,444.293
+North Macedonia,1996,Total,472.699
+North Macedonia,1997,Total,464.863
+North Macedonia,1998,Total,428.598
+North Macedonia,1999,Total,452.484
+North Macedonia,2000,Total,480.522
+North Macedonia,2001,Total,440.98
+North Macedonia,2002,Total,449.537
+North Macedonia,2003,Total,493.592
+North Macedonia,2004,Total,490.532
+North Macedonia,2005,Total,539.911
+North Macedonia,2006,Total,545.781
+North Macedonia,2007,Total,533.907
+North Macedonia,2008,Total,530.939
+North Macedonia,2009,Total,549.169
+North Macedonia,2010,Total,538.208
+North Macedonia,2011,Total,567.027
+North Macedonia,2012,Total,559.01
+North Macedonia,2013,Total,519.019
+North Macedonia,2014,Total,523.579
+North Macedonia,2015,Total,531.06
+North Macedonia,2016,Total,491.613
+North Macedonia,2017,Total,529.132
+North Macedonia,2018,Total,483.576
+North Macedonia,2019,Total,492.266
+North Macedonia,2020,Total,508.56
+North Macedonia,2021,Total,527.087
+North Macedonia,2022,Total,492.381
+North Macedonia,2023,Total,474.773
+North Macedonia,2024,Total,476.652
+Malta,1990,Total,56.212
+Malta,1991,Total,58.03
+Malta,1992,Total,61.149
+Malta,1993,Total,61.407
+Malta,1994,Total,69.92
+Malta,1995,Total,73.56
+Malta,1996,Total,76.314
+Malta,1997,Total,74.539
+Malta,1998,Total,66.382
+Malta,1999,Total,75.139
+Malta,2000,Total,76.603
+Malta,2001,Total,74.969
+Malta,2002,Total,80.771
+Malta,2003,Total,88.982
+Malta,2004,Total,88.824
+Malta,2005,Total,72.088
+Malta,2006,Total,73.039
+Malta,2007,Total,70.808
+Malta,2008,Total,70.789
+Malta,2009,Total,64.393
+Malta,2010,Total,69.245
+Malta,2011,Total,68.76
+Malta,2012,Total,72.178
+Malta,2013,Total,73.999
+Malta,2014,Total,73.904
+Malta,2015,Total,79.865
+Malta,2016,Total,77.575
+Malta,2017,Total,91.096
+Malta,2018,Total,93.033
+Malta,2019,Total,101.528
+Malta,2020,Total,105.933
+Malta,2021,Total,110.244
+Malta,2022,Total,117.719
+Malta,2023,Total,116.023
+Malta,2024,Total,121.621
+Netherlands,1990,Total,10395.016
+Netherlands,1991,Total,11741.451
+Netherlands,1992,Total,11003.077
+Netherlands,1993,Total,11522.604
+Netherlands,1994,Total,10955.96
+Netherlands,1995,Total,11780.033
+Netherlands,1996,Total,13483.907
+Netherlands,1997,Total,11654.651
+Netherlands,1998,Total,11219.918
+Netherlands,1999,Total,10797.65
+Netherlands,2000,Total,10823.18
+Netherlands,2001,Total,11402.096
+Netherlands,2002,Total,11130.709
+Netherlands,2003,Total,11403.216
+Netherlands,2004,Total,11035.364
+Netherlands,2005,Total,10737.765
+Netherlands,2006,Total,10844.837
+Netherlands,2007,Total,9972.12
+Netherlands,2008,Total,11019.502
+Netherlands,2009,Total,11027.901
+Netherlands,2010,Total,12480.144
+Netherlands,2011,Total,10280.98
+Netherlands,2012,Total,10866.787
+Netherlands,2013,Total,11412.549
+Netherlands,2014,Total,9116.954
+Netherlands,2015,Total,9534.29
+Netherlands,2016,Total,9812.913
+Netherlands,2017,Total,9584.967
+Netherlands,2018,Total,9551.684
+Netherlands,2019,Total,9330.173
+Netherlands,2020,Total,9110.154
+Netherlands,2021,Total,10087.558
+Netherlands,2022,Total,8201.73
+Netherlands,2023,Total,7673.371
+Netherlands,2024,Total,7689.932
+Norway,1990,Total,3606.532
+Norway,1991,Total,3668.635
+Norway,1992,Total,3618.78
+Norway,1993,Total,3674.295
+Norway,1994,Total,3825.139
+Norway,1995,Total,3865.549
+Norway,1996,Total,3965.107
+Norway,1997,Total,3835.588
+Norway,1998,Total,3956.353
+Norway,1999,Total,3934.516
+Norway,2000,Total,3825.853
+Norway,2001,Total,3985.602
+Norway,2002,Total,3979.689
+Norway,2003,Total,3813.922
+Norway,2004,Total,3807.715
+Norway,2005,Total,3958.436
+Norway,2006,Total,3935.101
+Norway,2007,Total,3993.462
+Norway,2008,Total,4030.316
+Norway,2009,Total,4227.72
+Norway,2010,Total,4679.717
+Norway,2011,Total,4230.383
+Norway,2012,Total,4479.023
+Norway,2013,Total,4451.032
+Norway,2014,Total,4188.006
+Norway,2015,Total,4352.562
+Norway,2016,Total,4485.674
+Norway,2017,Total,4549.023
+Norway,2018,Total,4573.027
+Norway,2019,Total,4499.666
+Norway,2020,Total,4527.554
+Norway,2021,Total,4774.72
+Norway,2022,Total,4390.55
+Norway,2023,Total,4635.938
+Norway,2024,Total,4664.267
+Poland,1990,Total,17829.287
+Poland,1991,Total,20471.602
+Poland,1992,Total,20843.784
+Poland,1993,Total,24414.075
+Poland,1994,Total,23091.131
+Poland,1995,Total,22656.785
+Poland,1996,Total,23023
+Poland,1997,Total,21706.328
+Poland,1998,Total,19533.173
+Poland,1999,Total,19438.526
+Poland,2000,Total,17207.79
+Poland,2001,Total,18812.527
+Poland,2002,Total,18694.218
+Poland,2003,Total,18795.905
+Poland,2004,Total,18831.675
+Poland,2005,Total,19469.163
+Poland,2006,Total,20469.408
+Poland,2007,Total,19366.034
+Poland,2008,Total,19668.123
+Poland,2009,Total,19991.704
+Poland,2010,Total,22003.32
+Poland,2011,Total,20130.182
+Poland,2012,Total,20812.928
+Poland,2013,Total,20492.305
+Poland,2014,Total,19034.846
+Poland,2015,Total,19032.461
+Poland,2016,Total,19886.302
+Poland,2017,Total,20063.177
+Poland,2018,Total,22557.493
+Poland,2019,Total,20993.899
+Poland,2020,Total,21101.347
+Poland,2021,Total,22130.789
+Poland,2022,Total,20492.124
+Poland,2023,Total,19916.392
+Poland,2024,Total,19636.596
+Portugal,1990,Total,2301.618
+Portugal,1991,Total,2375.064
+Portugal,1992,Total,2439.288
+Portugal,1993,Total,2506.58
+Portugal,1994,Total,2556.751
+Portugal,1995,Total,2583.388
+Portugal,1996,Total,2685.421
+Portugal,1997,Total,2684.243
+Portugal,1998,Total,2680.978
+Portugal,1999,Total,2798.03
+Portugal,2000,Total,2820.899
+Portugal,2001,Total,2873.966
+Portugal,2002,Total,3000.227
+Portugal,2003,Total,3130.847
+Portugal,2004,Total,3209.759
+Portugal,2005,Total,3218.989
+Portugal,2006,Total,3213.935
+Portugal,2007,Total,3220.727
+Portugal,2008,Total,3117.719
+Portugal,2009,Total,3197.832
+Portugal,2010,Total,2970.645
+Portugal,2011,Total,2777.129
+Portugal,2012,Total,2694.958
+Portugal,2013,Total,2634.808
+Portugal,2014,Total,2776.692
+Portugal,2015,Total,2751.749
+Portugal,2016,Total,2819.484
+Portugal,2017,Total,2801.785
+Portugal,2018,Total,2877.758
+Portugal,2019,Total,2891.348
+Portugal,2020,Total,3014.19
+Portugal,2021,Total,3022.524
+Portugal,2022,Total,2965.934
+Portugal,2023,Total,3019.665
+Portugal,2024,Total,2939.639
+Romania,1990,Total,10478.499
+Romania,1991,Total,7194.435
+Romania,1992,Total,6259.509
+Romania,1993,Total,6606.767
+Romania,1994,Total,6398.178
+Romania,1995,Total,6335.814
+Romania,1996,Total,8110.644
+Romania,1997,Total,9656.902
+Romania,1998,Total,9506.591
+Romania,1999,Total,8749.417
+Romania,2000,Total,8417.586
+Romania,2001,Total,7286.854
+Romania,2002,Total,7226.183
+Romania,2003,Total,7829.947
+Romania,2004,Total,7972.437
+Romania,2005,Total,7991.34
+Romania,2006,Total,7854.717
+Romania,2007,Total,7519.256
+Romania,2008,Total,8070.214
+Romania,2009,Total,8015.179
+Romania,2010,Total,8102.009
+Romania,2011,Total,7859.678
+Romania,2012,Total,8060.582
+Romania,2013,Total,7721.97
+Romania,2014,Total,7409.681
+Romania,2015,Total,7375.183
+Romania,2016,Total,7414.92
+Romania,2017,Total,7732.038
+Romania,2018,Total,7775.08
+Romania,2019,Total,7753.283
+Romania,2020,Total,8007.426
+Romania,2021,Total,8764.871
+Romania,2022,Total,7894.699
+Romania,2023,Total,7552.174
+Romania,2024,Total,7434.117
+Serbia,1990,Total,2933.884
+Serbia,1991,Total,2674.311
+Serbia,1992,Total,2568.419
+Serbia,1993,Total,2836.289
+Serbia,1994,Total,2777.618
+Serbia,1995,Total,2564.709
+Serbia,1996,Total,2909.026
+Serbia,1997,Total,2965.611
+Serbia,1998,Total,2983.282
+Serbia,1999,Total,2728.396
+Serbia,2000,Total,3127.362
+Serbia,2001,Total,3158.978
+Serbia,2002,Total,3209.209
+Serbia,2003,Total,3251.924
+Serbia,2004,Total,3121.022
+Serbia,2005,Total,3096.321
+Serbia,2006,Total,2822.805
+Serbia,2007,Total,3233.297
+Serbia,2008,Total,2896.407
+Serbia,2009,Total,3043.422
+Serbia,2010,Total,3078.701
+Serbia,2011,Total,3134.547
+Serbia,2012,Total,3122.404
+Serbia,2013,Total,2846.752
+Serbia,2014,Total,2752.802
+Serbia,2015,Total,2826.152
+Serbia,2016,Total,2924.237
+Serbia,2017,Total,2853.554
+Serbia,2018,Total,2838.427
+Serbia,2019,Total,2854.671
+Serbia,2020,Total,3488.068
+Serbia,2021,Total,3555.492
+Serbia,2022,Total,3426.41
+Serbia,2023,Total,3388.771
+Serbia,2024,Total,3348.074
+Sweden,1990,Total,6556.181
+Sweden,1991,Total,7171.756
+Sweden,1992,Total,7838.246
+Sweden,1993,Total,7939.297
+Sweden,1994,Total,8046.69
+Sweden,1995,Total,7747.975
+Sweden,1996,Total,8201.81
+Sweden,1997,Total,7930.794
+Sweden,1998,Total,7874.047
+Sweden,1999,Total,7449.759
+Sweden,2000,Total,7302.169
+Sweden,2001,Total,7513.896
+Sweden,2002,Total,7338.144
+Sweden,2003,Total,7384.499
+Sweden,2004,Total,7148.405
+Sweden,2005,Total,7640.433
+Sweden,2006,Total,7316.724
+Sweden,2007,Total,7052.974
+Sweden,2008,Total,6947.482
+Sweden,2009,Total,7232.548
+Sweden,2010,Total,8282.685
+Sweden,2011,Total,7681.81
+Sweden,2012,Total,8053.653
+Sweden,2013,Total,7694.262
+Sweden,2014,Total,7229.333
+Sweden,2015,Total,7411.176
+Sweden,2016,Total,7659.147
+Sweden,2017,Total,7696.829
+Sweden,2018,Total,7490.34
+Sweden,2019,Total,7363.914
+Sweden,2020,Total,7182.148
+Sweden,2021,Total,7878.771
+Sweden,2022,Total,7062.293
+Sweden,2023,Total,7050.024
+Sweden,2024,Total,6995.723
+Slovenia,1990,Total,953.347
+Slovenia,1991,Total,1134.819
+Slovenia,1992,Total,1011.722
+Slovenia,1993,Total,1101.065
+Slovenia,1994,Total,1093.883
+Slovenia,1995,Total,1163.921
+Slovenia,1996,Total,1033.136
+Slovenia,1997,Total,1070.152
+Slovenia,1998,Total,1030.235
+Slovenia,1999,Total,1054.162
+Slovenia,2000,Total,1242.439
+Slovenia,2001,Total,1329.405
+Slovenia,2002,Total,1287.778
+Slovenia,2003,Total,1407.539
+Slovenia,2004,Total,1381.173
+Slovenia,2005,Total,1428.841
+Slovenia,2006,Total,1334.128
+Slovenia,2007,Total,1301.505
+Slovenia,2008,Total,1354.045
+Slovenia,2009,Total,1320.196
+Slovenia,2010,Total,1363.866
+Slovenia,2011,Total,1299.105
+Slovenia,2012,Total,1251.763
+Slovenia,2013,Total,1238.44
+Slovenia,2014,Total,1060.348
+Slovenia,2015,Total,1172.476
+Slovenia,2016,Total,1196.324
+Slovenia,2017,Total,1171.381
+Slovenia,2018,Total,1101.397
+Slovenia,2019,Total,1076.85
+Slovenia,2020,Total,1091.333
+Slovenia,2021,Total,1162.089
+Slovenia,2022,Total,1052.349
+Slovenia,2023,Total,1040.915
+Slovenia,2024,Total,1033.167
+Slovakia,1990,Total,2246.498
+Slovakia,1991,Total,1888.877
+Slovakia,1992,Total,1767.102
+Slovakia,1993,Total,1720.807
+Slovakia,1994,Total,1771.655
+Slovakia,1995,Total,1976.756
+Slovakia,1996,Total,2232.746
+Slovakia,1997,Total,2362.268
+Slovakia,1998,Total,2448.105
+Slovakia,1999,Total,2568.717
+Slovakia,2000,Total,2586.241
+Slovakia,2001,Total,3082.644
+Slovakia,2002,Total,2997.922
+Slovakia,2003,Total,2839.583
+Slovakia,2004,Total,2666.506
+Slovakia,2005,Total,2540.462
+Slovakia,2006,Total,2310.145
+Slovakia,2007,Total,2080.702
+Slovakia,2008,Total,2130.687
+Slovakia,2009,Total,2147.493
+Slovakia,2010,Total,3028.239
+Slovakia,2011,Total,2790.822
+Slovakia,2012,Total,2820.587
+Slovakia,2013,Total,2842.735
+Slovakia,2014,Total,2325.037
+Slovakia,2015,Total,2573.288
+Slovakia,2016,Total,2688.692
+Slovakia,2017,Total,2744.162
+Slovakia,2018,Total,2546.007
+Slovakia,2019,Total,2637.679
+Slovakia,2020,Total,2744.571
+Slovakia,2021,Total,2966.314
+Slovakia,2022,Total,2686.513
+Slovakia,2023,Total,2425.468
+Slovakia,2024,Total,2299.882
+Türkiye,1990,Total,14627.319
+Türkiye,1991,Total,14942.931
+Türkiye,1992,Total,15702.925
+Türkiye,1993,Total,15763.148
+Türkiye,1994,Total,14946.096
+Türkiye,1995,Total,16329.111
+Türkiye,1996,Total,16805.932
+Türkiye,1997,Total,17504.025
+Türkiye,1998,Total,17103.364
+Türkiye,1999,Total,17190.783
+Türkiye,2000,Total,17432.721
+Türkiye,2001,Total,16297.243
+Türkiye,2002,Total,16516.428
+Türkiye,2003,Total,17303.902
+Türkiye,2004,Total,17838.356
+Türkiye,2005,Total,19129.282
+Türkiye,2006,Total,19457.33
+Türkiye,2007,Total,20224.067
+Türkiye,2008,Total,20217.788
+Türkiye,2009,Total,18864.658
+Türkiye,2010,Total,19414.937
+Türkiye,2011,Total,20809.776
+Türkiye,2012,Total,20187.463
+Türkiye,2013,Total,19807.984
+Türkiye,2014,Total,19166.344
+Türkiye,2015,Total,20153.33
+Türkiye,2016,Total,20710.961
+Türkiye,2017,Total,23456.794
+Türkiye,2018,Total,21687.504
+Türkiye,2019,Total,23666.094
+Türkiye,2020,Total,26034.742
+Türkiye,2021,Total,26422.866
+Türkiye,2022,Total,26948.909
+Türkiye,2023,Total,25697.599
+Türkiye,2024,Total,28979.219
+Ukraine,1990,Total,33141.12
+Ukraine,1991,Total,30605.254
+Ukraine,1992,Total,32444.561
+Ukraine,1993,Total,32040.201
+Ukraine,1994,Total,31057.982
+Ukraine,1995,Total,30261.577
+Ukraine,1996,Total,31918.924
+Ukraine,1997,Total,28039.081
+Ukraine,1998,Total,24898.08
+Ukraine,1999,Total,25927.088
+Ukraine,2000,Total,24452.916
+Ukraine,2001,Total,23571.817
+Ukraine,2002,Total,24041.095
+Ukraine,2003,Total,23404.192
+Ukraine,2004,Total,23055.435
+Ukraine,2005,Total,23351.043
+Ukraine,2006,Total,24572.857
+Ukraine,2007,Total,22393.256
+Ukraine,2008,Total,22876.226
+Ukraine,2009,Total,22120.183
+Ukraine,2010,Total,23838.511
+Ukraine,2011,Total,23587.848
+Ukraine,2012,Total,23454.289
+Ukraine,2013,Total,23446.497
+Ukraine,2014,Total,20357.427
+Ukraine,2015,Total,16551.87
+Ukraine,2016,Total,17348.751
+Ukraine,2017,Total,16483.165
+Ukraine,2018,Total,15986.088
+Ukraine,2019,Total,14015.7
+Ukraine,2020,Total,13654.325
+United Kingdom,1990,Total,37317.942
+United Kingdom,1991,Total,40815.072
+United Kingdom,1992,Total,40210.237
+United Kingdom,1993,Total,41658.464
+United Kingdom,1994,Total,40309.277
+United Kingdom,1995,Total,39335.159
+United Kingdom,1996,Total,44132.057
+United Kingdom,1997,Total,41134.181
+United Kingdom,1998,Total,42348.175
+United Kingdom,1999,Total,42341.941
+United Kingdom,2000,Total,43090.418
+United Kingdom,2001,Total,44339.756
+United Kingdom,2002,Total,43544.334
+United Kingdom,2003,Total,44746.489
+United Kingdom,2004,Total,45641.737
+United Kingdom,2005,Total,44249.26
+United Kingdom,2006,Total,43129.787
+United Kingdom,2007,Total,41614.951
+United Kingdom,2008,Total,42527.44
+United Kingdom,2009,Total,41324.922
+United Kingdom,2010,Total,45512.575
+United Kingdom,2011,Total,37786.091
+United Kingdom,2012,Total,40957.945
+United Kingdom,2013,Total,41458.259
+United Kingdom,2014,Total,35813.099
+United Kingdom,2015,Total,37257.018
+United Kingdom,2016,Total,37970.686
+United Kingdom,2017,Total,36772.29
+United Kingdom,2018,Total,38307.568
+United Kingdom,2019,Total,38134.984
+Kosovo*,2000,Total,277.042
+Kosovo*,2001,Total,322.635
+Kosovo*,2002,Total,322.076
+Kosovo*,2003,Total,318.837
+Kosovo*,2004,Total,326.728
+Kosovo*,2005,Total,344.952
+Kosovo*,2006,Total,352.504
+Kosovo*,2007,Total,337.844
+Kosovo*,2008,Total,461.301
+Kosovo*,2009,Total,455.628
+Kosovo*,2010,Total,461.84
+Kosovo*,2011,Total,491.178
+Kosovo*,2012,Total,474.234
+Kosovo*,2013,Total,494.163
+Kosovo*,2014,Total,479.943
+Kosovo*,2015,Total,476.388
+Kosovo*,2016,Total,549.413
+Kosovo*,2017,Total,571.465
+Kosovo*,2018,Total,573.404
+Kosovo*,2019,Total,586.881
+Kosovo*,2020,Total,608.818
+Kosovo*,2021,Total,655.497
+Kosovo*,2022,Total,554.853
+Kosovo*,2023,Total,530.47
+Kosovo*,2024,Total,477.211

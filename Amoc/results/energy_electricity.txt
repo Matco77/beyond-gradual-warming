@@ -1,0 +1,41 @@
+                feols(f_ols, dt,.. feols(f_yfe, dt.. feols(f_ctr, dt, c..
+                        Pooled OLS           Year FE       Country trends
+Dependent Var.:       ln_energy_pc      ln_energy_pc         ln_energy_pc
+                                                                         
+Constant        -9.070*** (0.4021)                                       
+hdd_calendar       0.0002 (0.0001) 2.53e-5 (4.95e-5) 5.86e-5*** (1.07e-5)
+cdd_jja            0.0003 (0.0007)  0.0004. (0.0002)  0.0002*** (4.93e-5)
+ln_price         0.2541** (0.0807)   0.0221 (0.0436)    -0.0849. (0.0440)
+Fixed-Effects:  ------------------ ----------------- --------------------
+country_id                      No               Yes                  Yes
+year                            No               Yes                   No
+Varying Slopes: ------------------ ----------------- --------------------
+t (country_id)                  No                No                  Yes
+t2 (country_id)                 No                No                  Yes
+_______________ __________________ _________________ ____________________
+S.E.: Clustered     by: country_id    by: country_id       by: country_id
+Observations                   844               844                  844
+R2                         0.15675           0.95661              0.99233
+Within R2                       --           0.01889              0.10415
+
+                feols(f_bm, dt, cl..
+                    Benchmark (main)
+Dependent Var.:         ln_energy_pc
+                                    
+Constant                            
+hdd_calendar    6.52e-5*** (1.55e-5)
+cdd_jja            0.0002* (5.58e-5)
+ln_price           -0.0928. (0.0500)
+Fixed-Effects:  --------------------
+country_id                       Yes
+year                             Yes
+Varying Slopes: --------------------
+t (country_id)                   Yes
+t2 (country_id)                  Yes
+_______________ ____________________
+S.E.: Clustered       by: country_id
+Observations                     844
+R2                           0.99398
+Within R2                    0.08944
+---
+Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1

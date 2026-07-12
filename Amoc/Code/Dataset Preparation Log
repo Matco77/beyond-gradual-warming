@@ -1,0 +1,782 @@
+#Datasets Preparation for "Thesis"
+#Author: Marco Bova
+
+#library
+library(dplyr)
+library(tidyr)
+library(readr)
+
+###############
+# 0. SET WORKING DIRECTORY
+###############
+
+# Or set manually
+data_dir <- "~/Library/CloudStorage/OneDrive-UniversitàCommercialeLuigiBocconi/1.Tesi/Amoc/datasets/"
+
+###############
+# 1. FAOSTAT
+###############
+
+FAOSTAT <- file.path(data_dir, "FAOSTAT_data_en_5-4-2026 (1).csv")
+FAOSTAT <- read_csv(FAOSTAT)
+
+#change the name of the variables in Element to having Yield kg/ha, Porduction t, Area ha
+FAOSTAT$Element <- gsub("Yield", "Yield_kg/ha", FAOSTAT$Element)
+FAOSTAT$Element <- gsub("Production", "Production_t", FAOSTAT$Element)
+FAOSTAT$Element <- gsub("Area harvested", "Area_ha", FAOSTAT$Element)
+
+#modify as such that the structure is the following country crop year yield production area
+FAOSTAT <- FAOSTAT %>%
+  select(c("Area", "Item", "Year", "Element", "Value")) %>%
+  rename(Country = Area, Crop = Item, Year = Year, Variable = Element)%>%
+  #create three different variables for yield, production and area instead of a single column with the Variable name
+    pivot_wider(names_from = Variable, values_from = Value)
+    #save the dataset in the working directory
+
+write_csv(FAOSTAT, file.path(data_dir, "1.FAOSTAT_prepared.csv"))
+
+###############
+# 2. nrg_bal_c
+###############
+
+nrg_bal_c <- file.path(data_dir, "nrg_bal_c__custom_21339408_linear.csv")
+nrg_bal_c <- read_csv(nrg_bal_c)
+
+nrg_bal_c <- nrg_bal_c %>%
+  filter(unit == "Thousand tonnes of oil equivalent") %>%
+  select(c("geo", "TIME_PERIOD",  "siec", "OBS_VALUE")) %>%
+    rename(Country = geo, Fuel = siec, Year = TIME_PERIOD, Energy_Use_Household_ktoe= OBS_VALUE)
+write_csv(nrg_bal_c, file.path(data_dir, "2.nrg_bal_c_prepared.csv"))
+
+###############
+# 3. E-OBS
+###############
+
+#load necessary libraries
+library(ncdf4)
+library(sf)
+library(data.table)
+library(lubridate)
+library(tidyverse)
+
+# Set path to EOBS subfolder
+eobs_dir <- file.path(data_dir, "EOBS")
+countries_dir <- file.path(data_dir, "ne_50m_admin_0_countries")
+out_file <- file.path(data_dir, "3.EOBS_prepared.csv")
+
+#tg daily mean temperature
+#tn daily minimum temperature
+#tx daily maximum temperature
+#rr daily precipitation
+
+# NetCDF files
+tg_file <- file.path(eobs_dir, "tg_ens_mean_0.25deg_reg_v31.0e.nc")
+tn_file <- file.path(eobs_dir, "tn_ens_mean_0.25deg_reg_v31.0e.nc")
+tx_file <- file.path(eobs_dir, "tx_ens_mean_0.25deg_reg_v31.0e.nc")
+rr_file <- file.path(eobs_dir, "rr_ens_mean_0.25deg_reg_v31.0e.nc")
+
+# a) open files
+nc_tg <- nc_open(tg_file)
+nc_tn <- nc_open(tn_file)
+nc_tx <- nc_open(tx_file)
+nc_rr <- nc_open(rr_file)
+
+lon <- ncvar_get(nc_tg, "longitude")
+lat <- ncvar_get(nc_tg, "latitude")
+time <- ncvar_get(nc_tg, "time")
+
+ref_date <- as.Date(strsplit(nc_tg$dim$time$units, "since ")[[1]][2])
+dates <- ref_date + time
+
+nlon <- length(lon)
+nlat <- length(lat)
+ntime <- length(time)
+
+
+# b) build grid map to assign each grid cell to a country
+shp_file <- list.files(
+  countries_dir,
+  pattern = "\\.shp$",
+  full.names = TRUE
+)
+countries <- st_read(shp_file, quiet = TRUE)
+
+countries_europe <- countries %>%
+  filter(CONTINENT == "Europe") %>%
+  select(Country = ADMIN, geometry)
+
+grid_cells <- expand_grid(lon = lon, lat = lat)
+
+grid_points <- st_as_sf(
+  grid_cells,
+  coords = c("lon", "lat"),
+  crs = 4326,
+  remove = FALSE
+)
+
+grid_map <- st_join(
+  grid_points,
+  countries_europe,
+  join = st_within,
+  left = FALSE
+) %>%
+  st_drop_geometry() %>%
+  mutate(
+    ix = match(lon, lon),
+    iy = match(lat, lat),
+    cell_id = ix + (iy - 1) * nlon
+  ) %>%
+  select(Country, lon, lat, cell_id)
+
+# Fix grid cell IDs
+grid_map <- grid_map %>%
+  mutate(
+    ix = match(lon, lon),
+    iy = match(lat, lat),
+    cell_id = ix + (iy - 1) * length(lon)
+  )
+
+cell_id <- grid_map$cell_id
+country <- grid_map$Country
+
+if (file.exists(out_file)) file.remove(out_file)
+
+chunk_days <- 7
+
+for (t_start in seq(1, ntime, by = chunk_days)) {
+  
+  t_count <- min(chunk_days, ntime - t_start + 1)
+  date_chunk <- dates[t_start:(t_start + t_count - 1)]
+  
+  tg_arr <- ncvar_get(nc_tg, "tg",
+                      start = c(1, 1, t_start),
+                      count = c(nlon, nlat, t_count),
+                      collapse_degen = FALSE)
+  
+  tn_arr <- ncvar_get(nc_tn, "tn",
+                      start = c(1, 1, t_start),
+                      count = c(nlon, nlat, t_count),
+                      collapse_degen = FALSE)
+  
+  tx_arr <- ncvar_get(nc_tx, "tx",
+                      start = c(1, 1, t_start),
+                      count = c(nlon, nlat, t_count),
+                      collapse_degen = FALSE)
+  
+  rr_arr <- ncvar_get(nc_rr, "rr",
+                      start = c(1, 1, t_start),
+                      count = c(nlon, nlat, t_count),
+                      collapse_degen = FALSE)
+  
+  dim(tg_arr) <- c(nlon * nlat, t_count)
+  dim(tn_arr) <- c(nlon * nlat, t_count)
+  dim(tx_arr) <- c(nlon * nlat, t_count)
+  dim(rr_arr) <- c(nlon * nlat, t_count)
+  
+  dt <- data.table(
+    Country = rep(country, times = t_count),
+    date = rep(date_chunk, each = length(cell_id)),
+    tg = as.vector(tg_arr[cell_id, , drop = FALSE]),
+    tn = as.vector(tn_arr[cell_id, , drop = FALSE]),
+    tx = as.vector(tx_arr[cell_id, , drop = FALSE]),
+    rr = as.vector(rr_arr[cell_id, , drop = FALSE])
+  )
+  
+  chunk_out <- dt[
+    ,
+    .(
+      tg = mean(tg, na.rm = TRUE),
+      tn = mean(tn, na.rm = TRUE),
+      tx = mean(tx, na.rm = TRUE),
+      rr = mean(rr, na.rm = TRUE)
+    ),
+    by = .(Country, date)
+  ][order(Country, date)]
+  
+  fwrite(
+    chunk_out,
+    out_file,
+    append = file.exists(out_file),
+    col.names = !file.exists(out_file)
+  )
+  
+  rm(tg_arr, tn_arr, tx_arr, rr_arr, dt, chunk_out)
+  gc()
+  
+  message("Finished up to: ", max(date_chunk))
+}
+
+#close files
+nc_close(nc_tg)
+nc_close(nc_tn)
+nc_close(nc_tx)
+nc_close(nc_rr)
+
+#load andsave it
+E3.OBS_prepared<- read_csv(out_file)
+head(E3.OBS_prepared)
+write_csv(E3.OBS_prepared, file.path(data_dir, "3.EOBS_prepared.csv"))
+
+#select only the main territorial areas, remove the small disputed areas
+
+
+#################
+# 4. Eurostat HDD, CDD
+#################
+#recall directory of the datasets
+chdd_dir <- file.path(data_dir, "Cooling and heating day")
+
+#Annual dataset
+chdd_a <- file.path(chdd_dir, "nrg_chdd_a__custom_21302474_linear.csv")
+chdd_a <- read_csv(chdd_a)
+
+#select thre variables and rename and reshape variables for comparability to other datasets
+chdd_a <- chdd_a %>%
+  select(c("indic_nrg", "geo", "TIME_PERIOD", "OBS_VALUE")) %>%
+    #create 2 different variables for cooling degree days and heating degree days instead of a single column with the indic_nrg name
+    pivot_wider(names_from = indic_nrg, values_from = OBS_VALUE) %>%
+    rename(Country = geo, Year = TIME_PERIOD, CDD = `Cooling degree days`, HDD = `Heating degree days`)
+#save the dataset in the working directory
+write_csv(chdd_a, file.path(data_dir, "4.chdd_a_prepared.csv"))
+
+#Monthly dataset
+chdd_m <- file.path(chdd_dir, "nrg_chdd_m__custom_21302659_linear.csv")
+chdd_m <- read_csv(chdd_m)
+
+#select variables, rename and reshape
+chdd_m <- chdd_m %>%
+  select(c("indic_nrg", "geo", "TIME_PERIOD", "OBS_VALUE")) %>%
+  filter(grepl("^\\d{4}-\\d{2}$", TIME_PERIOD)) %>% 
+    #create 2 different variables for cooling degree days and heating degree days instead of a single column with the indic_nrg name
+    pivot_wider(names_from = indic_nrg, values_from = OBS_VALUE) %>%
+    rename(Country = geo, CDD = `Cooling degree days`, HDD = `Heating degree days`)
+
+#extract year and month and create date variable
+chdd_m <- chdd_m %>%
+  transmute(
+    Country,
+    date = ym(TIME_PERIOD),
+    Year = year(date),
+    Month = month(date),
+    HDD,
+    CDD
+  ) 
+
+View(chdd_m)
+
+#save the dataset in the working directory
+write_csv(chdd_m, file.path(data_dir, "5.chdd_m_prepared.csv"))
+
+#################
+# 5. HDD, CDD from E-OBS
+################
+
+
+################
+# 6. NaHonship
+###############
+#############################
+# NAHosMIP visual check
+# HadGEM3-GC31-LL
+# g01-hos vs piControl
+# using ncdf4 only
+#############################
+
+library(ncdf4)
+
+# -----------------------------
+# 1. Paths
+# -----------------------------
+
+nahos_root <- "/Users/Bova/Library/CloudStorage/OneDrive-UniversitàCommercialeLuigiBocconi/1.Tesi/Amoc/datasets/NAHosMIP"
+ll_dir <- file.path(nahos_root, "HadGEM3-GC31-LL")
+
+fig_dir <- file.path(nahos_root, "figures_visual_diagnostics")
+dir.create(fig_dir, showWarnings = FALSE, recursive = TRUE)
+
+out_dir <- file.path(nahos_root, "tables_visual_diagnostics")
+dir.create(out_dir, showWarnings = FALSE, recursive = TRUE)
+
+inspect_nc_table <- function(file) {
+  
+  nc <- nc_open(file)
+  
+  dim_table <- data.frame(
+    file = basename(file),
+    dimension = names(nc$dim),
+    length = sapply(nc$dim, function(x) x$len),
+    units = sapply(nc$dim, function(x) x$units)
+  )
+  
+  var_table <- data.frame(
+    file = basename(file),
+    variable = names(nc$var),
+    units = sapply(nc$var, function(x) x$units),
+    dimensions = sapply(nc$var, function(x) {
+      paste(sapply(x$dim, function(d) d$name), collapse = " x ")
+    })
+  )
+  
+  nc_close(nc)
+  
+  list(
+    dimensions = dim_table,
+    variables = var_table
+  )
+}
+
+info_1 <- inspect_nc_table(g01_tas_1)
+info_2 <- inspect_nc_table(g01_tas_2)
+
+dimensions_table <- bind_rows(info_1$dimensions, info_2$dimensions)
+variables_table <- bind_rows(info_1$variables, info_2$variables)
+
+print(dimensions_table)
+print(variables_table)
+
+write_csv(dimensions_table, file.path(out_dir, "g01_tas_dimensions_table.csv"))
+write_csv(variables_table, file.path(out_dir, "g01_tas_variables_table.csv"))
+
+
+# -----------------------------
+# 2. Exact files from folder
+# -----------------------------
+
+# tas
+g01_tas_1 <- file.path(ll_dir, "tas_Amon_HadGEM3-GC31-LL_g01-hos_r1i1p1f1_gn_205001-205412.nc")
+g01_tas_2 <- file.path(ll_dir, "tas_Amon_HadGEM3-GC31-LL_g01-hos_r1i1p1f1_gn_205501-214912.nc")
+pic_tas_file <- file.path(ll_dir, "tas_Amon_HadGEM3-GC31-LL_piControl_r1i1p1f1_gn_205001-214912.nc")
+
+# tasmin
+g01_tasmin_1 <- file.path(ll_dir, "tasmin_Amon_HadGEM3-GC31-LL_g01-hos_r1i1p1f1_gn_205001-205412.nc")
+g01_tasmin_2 <- file.path(ll_dir, "tasmin_Amon_HadGEM3-GC31-LL_g01-hos_r1i1p1f1_gn_205501-214912.nc")
+pic_tasmin_file <- file.path(ll_dir, "tasmin_Amon_HadGEM3-GC31-LL_piControl_r1i1p1f1_gn_205001-214912.nc")
+
+# tasmax
+g01_tasmax_1 <- file.path(ll_dir, "tasmax_Amon_HadGEM3-GC31-LL_g01-hos_r1i1p1f1_gn_205001-205412.nc")
+g01_tasmax_2 <- file.path(ll_dir, "tasmax_Amon_HadGEM3-GC31-LL_g01-hos_r1i1p1f1_gn_205501-214912.nc")
+pic_tasmax_file <- file.path(ll_dir, "tasmax_Amon_HadGEM3-GC31-LL_piControl_r1i1p1f1_gn_205001-214912.nc")
+
+# precipitation
+g01_pr_1 <- file.path(ll_dir, "pr_Amon_HadGEM3-GC31-LL_g01-hos_r1i1p1f1_gn_205001-205412.nc")
+g01_pr_2 <- file.path(ll_dir, "pr_Amon_HadGEM3-GC31-LL_g01-hos_r1i1p1f1_gn_205501-214912.nc")
+pic_pr_file <- file.path(ll_dir, "pr_Amon_HadGEM3-GC31-LL_piControl_r1i1p1f1_gn_205001-214912.nc")
+
+
+monthly_summary_nc <- function(file, varname, first_year) {
+  
+  nc <- nc_open(file)
+  
+  lon <- ncvar_get(nc, "lon")
+  lat <- ncvar_get(nc, "lat")
+  ntime <- nc$dim$time$len
+  
+  out <- vector("list", ntime)
+  
+  for (i in seq_len(ntime)) {
+    
+    arr <- ncvar_get(
+      nc,
+      varname,
+      start = c(1, 1, i),
+      count = c(length(lon), length(lat), 1)
+    )
+    
+    file_year <- first_year + floor((i - 1) / 12)
+    month <- ((i - 1) %% 12) + 1
+    
+    vals <- as.vector(arr)
+    
+    out[[i]] <- data.frame(
+      file = basename(file),
+      layer = i,
+      file_year = file_year,
+      experiment_year = file_year - 2050 + 1,
+      month = month,
+      mean_K = mean(vals, na.rm = TRUE),
+      mean_C = mean(vals, na.rm = TRUE) - 273.15,
+      min_K = min(vals, na.rm = TRUE),
+      max_K = max(vals, na.rm = TRUE),
+      p05_K = quantile(vals, 0.05, na.rm = TRUE),
+      p50_K = quantile(vals, 0.50, na.rm = TRUE),
+      p95_K = quantile(vals, 0.95, na.rm = TRUE)
+    )
+  }
+  
+  nc_close(nc)
+  bind_rows(out)
+}
+
+g01_tas_monthly <- bind_rows(
+  monthly_summary_nc(g01_tas_1, "tas", first_year = 2050),
+  monthly_summary_nc(g01_tas_2, "tas", first_year = 2055)
+) %>%
+  arrange(file_year, month)
+
+write_csv(
+  g01_tas_monthly,
+  file.path(out_dir, "g01_hos_tas_monthly_summary.csv")
+)
+
+pic_tas_monthly <- monthly_summary_nc(
+  pic_tas,
+  "tas",
+  first_year = 2050
+) %>%
+  arrange(file_year, month)
+
+write_csv(
+  pic_tas_monthly,
+  file.path(out_dir, "picon_tas_monthly_summary.csv")
+)
+
+tas_anomaly_monthly <- g01_tas_monthly %>%
+  select(
+    file_year,
+    experiment_year,
+    month,
+    g01_mean_K = mean_K,
+    g01_mean_C = mean_C
+  ) %>%
+  inner_join(
+    pic_tas_monthly %>%
+      select(
+        file_year,
+        month,
+        picon_mean_K = mean_K,
+        picon_mean_C = mean_C
+      ),
+    by = c("file_year", "month")
+  ) %>%
+  mutate(
+    delta_tas_K = g01_mean_K - picon_mean_K,
+    delta_tas_C = delta_tas_K
+  )
+
+write_csv(
+  tas_anomaly_monthly,
+  file.path(out_dir, "g01_minus_picon_tas_monthly_anomaly.csv")
+)
+# -----------------------------
+# 3. Check files exist
+# -----------------------------
+
+files_to_check <- c(
+  g01_tas_1, g01_tas_2, pic_tas_file,
+  g01_tasmin_1, g01_tasmin_2, pic_tasmin_file,
+  g01_tasmax_1, g01_tasmax_2, pic_tasmax_file,
+  g01_pr_1, g01_pr_2, pic_pr_file
+)
+
+check <- data.frame(
+  file = basename(files_to_check),
+  exists = file.exists(files_to_check)
+)
+
+print(check)
+
+if (any(!check$exists)) {
+  stop("Some files were not found. Check the filenames printed above.")
+}
+# -----------------------------
+# 4. Helper functions
+# -----------------------------
+
+read_window_mean <- function(file, varname, start_layer, end_layer) {
+  
+  nc <- nc_open(file)
+  
+  lon_name <- if ("lon" %in% names(nc$dim)) "lon" else "longitude"
+  lat_name <- if ("lat" %in% names(nc$dim)) "lat" else "latitude"
+  
+  lon <- ncvar_get(nc, lon_name)
+  lat <- ncvar_get(nc, lat_name)
+  
+  nlon <- length(lon)
+  nlat <- length(lat)
+  ntime <- end_layer - start_layer + 1
+  
+  arr <- ncvar_get(
+    nc,
+    varname,
+    start = c(1, 1, start_layer),
+    count = c(nlon, nlat, ntime)
+  )
+  
+  nc_close(nc)
+  
+  mean_map <- apply(arr, c(1, 2), mean, na.rm = TRUE)
+  
+  list(
+    lon = lon,
+    lat = lat,
+    mean_map = mean_map
+  )
+}
+
+monthly_index <- function(start_year, end_year, first_year) {
+  start_layer <- (start_year - first_year) * 12 + 1
+  end_layer <- (end_year - first_year + 1) * 12
+  c(start_layer, end_layer)
+}
+
+plot_anomaly_map <- function(lon, lat, z, title_text, output_file) {
+  
+  png(output_file, width = 1200, height = 800)
+  
+  image(
+    lon,
+    lat,
+    z,
+    main = title_text,
+    xlab = "Longitude",
+    ylab = "Latitude"
+  )
+  
+  contour(
+    lon,
+    lat,
+    z,
+    add = TRUE
+  )
+  
+  dev.off()
+}
+
+# -----------------------------
+# 5. Visual check: tas anomaly
+# g01-hos minus piControl
+# -----------------------------
+
+# Window A: 2090-2099
+# In the file labels, this corresponds to experiment years 41-50.
+# g01 second file starts in 2055.
+# piControl file starts in 2050.
+
+g01_idx_2090s <- monthly_index(2090, 2099, first_year = 2055)
+pic_idx_2090s <- monthly_index(2090, 2099, first_year = 2050)
+
+g01_tas_2090s <- read_window_mean(
+  file = g01_tas_2,
+  varname = "tas",
+  start_layer = g01_idx_2090s[1],
+  end_layer = g01_idx_2090s[2]
+)
+
+pic_tas_2090s <- read_window_mean(
+  file = pic_tas_file,
+  varname = "tas",
+  start_layer = pic_idx_2090s[1],
+  end_layer = pic_idx_2090s[2]
+)
+
+tas_anom_2090s <- g01_tas_2090s$mean_map - pic_tas_2090s$mean_map
+
+plot_anomaly_map(
+  lon = g01_tas_2090s$lon,
+  lat = g01_tas_2090s$lat,
+  z = tas_anom_2090s,
+  title_text = "HadGEM3-GC31-LL: g01-hos minus piControl tas\n2090-2099, experiment years 41-50",
+  output_file = file.path(fig_dir, "HadGEM3_LL_g01_minus_picon_tas_2090_2099.png")
+)
+
+# -----------------------------
+# 6. Visual check: tas anomaly
+# 2140-2149, experiment years 91-100
+# -----------------------------
+
+g01_idx_2140s <- monthly_index(2140, 2149, first_year = 2055)
+pic_idx_2140s <- monthly_index(2140, 2149, first_year = 2050)
+
+g01_tas_2140s <- read_window_mean(
+  file = g01_tas_2,
+  varname = "tas",
+  start_layer = g01_idx_2140s[1],
+  end_layer = g01_idx_2140s[2]
+)
+
+pic_tas_2140s <- read_window_mean(
+  file = pic_tas_file,
+  varname = "tas",
+  start_layer = pic_idx_2140s[1],
+  end_layer = pic_idx_2140s[2]
+)
+
+tas_anom_2140s <- g01_tas_2140s$mean_map - pic_tas_2140s$mean_map
+
+plot_anomaly_map(
+  lon = g01_tas_2140s$lon,
+  lat = g01_tas_2140s$lat,
+  z = tas_anom_2140s,
+  title_text = "HadGEM3-GC31-LL: g01-hos minus piControl tas\n2140-2149, experiment years 91-100",
+  output_file = file.path(fig_dir, "HadGEM3_LL_g01_minus_picon_tas_2140_2149.png")
+)
+###############
+#7. ISIMIP3b
+###############
+
+#download the data for europe from period 2010-2050 tas, tasmin, tasmax, pr
+
+library(ncdf4)
+isimip_dir <- "/Users/Bova/Library/CloudStorage/OneDrive-UniversitàCommercialeLuigiBocconi/1.Tesi/Amoc/datasets/Isimip"
+
+fig_dir <- file.path(isimip_dir, "figures_visual_diagnostics")
+dir.create(fig_dir, showWarnings = FALSE, recursive = TRUE)
+
+out_dir <- file.path(isimip_dir, "tables_visual_diagnostics")
+dir.create(out_dir, showWarnings = FALSE, recursive = TRUE)
+
+# -----------------------------
+# 2. Exact files from folder
+# -----------------------------
+
+# tas
+isimip_tas_1 <- file.path(isimip_dir, "gfdl-esm4_r1i1p1f1_w5e5_ssp370_tas_lon-13.183594to45.527344lat34.161818to71.746432_daily_2015_2020.nc") 
+isimip_tas_2 <- file.path(isimip_dir, "gfdl-esm4_r1i1p1f1_w5e5_ssp370_tas_lon-13.183594to45.527344lat34.161818to71.746432_daily_2021_2030.nc")
+
+#tasmin
+isimip_tasmin_1 <- file.path(isimip_dir, "gfdl-esm4_r1i1p1f1_w5e5_ssp370_tasmin_lon-13.183594to45.527344lat34.161818to71.746432_daily_2015_2020.nc")
+isimip_tasmin_2 <- file.path(isimip_dir, "gfdl-esm4_r1i1p1f1_w5e5_ssp370_tasmin_lon-13.183594to45.527344lat34.161818to71.746432_daily_2021_2030.nc") 
+
+# tasmax
+isimip_tasmax_1 <- file.path(isimip_dir, "gfdl-esm4_r1i1p1f1_w5e5_ssp370_tasmax_lon-13.183594to45.527344lat34.161818to71.746432_daily_2015_2020.nc") 
+isimip_tasmax_2 <- file.path(isimip_dir, "gfdl-esm4_r1i1p1f1_w5e5_ssp370_tasmax_lon-13.183594to45.527344lat34.161818to71.746432_daily_2021_2030.nc")
+
+# precipitation
+isimip_pr_1 <- file.path(isimip_dir, "gfdl-esm4_r1i1p1f1_w5e5_ssp370_pr_lon-13.183594to45.527344lat34.161818to71.746432_daily_2015_2020.nc")  
+isimip_pr_2 <- file.path(isimip_dir, "gfdl-esm4_r1i1p1f1_w5e5_ssp370_pr_lon-13.183594to45.527344lat34.161818to71.746432_daily_2021_2030.nc")
+
+
+nctas1 <- nc_open(isimip_tas_1)
+print(nctas1)
+nctas2 <- nc_open(isimip_tas_2)
+print(nctas2)   
+
+#merge the files toobtain a single file for the whole period 2015-2030
+system(paste(
+  "cdo mergetime",
+  shQuote(isimip_tas_1),
+  shQuote(isimip_tas_2),
+  shQuote("merged_tas.nc")
+))
+
+nc_tasmerged <- nc_open("merged_tas.nc")
+print(nc_tasmerged)
+
+system(paste(
+  "cdo mergetime",
+  shQuote(isimip_tasmin_1),
+  shQuote(isimip_tasmin_2),
+  shQuote("merged_tasmin.nc")
+))
+
+nc_tasminmerged <- nc_open("merged_tasmin.nc")
+print(nc_tasminmerged)
+
+system(paste(
+  "cdo mergetime",
+  shQuote(isimip_tasmax_1),
+  shQuote(isimip_tasmax_2),
+  shQuote("merged_tasmax.nc")
+))
+
+nc_tasmaxmerged <- nc_open("merged_tasmax.nc")
+print(nc_tasmaxmerged)
+
+system(paste(
+  "cdo mergetime",
+  shQuote(isimip_pr_1),
+  shQuote(isimip_pr_2),
+  shQuote("merged_pr.nc")
+))
+
+nc_prmerged <- nc_open("merged_pr.nc")
+print(nc_prmerged)
+
+#what model are this data from??
+#this model on what CMIP6 scenario is it based on?
+#high middle low amoc weakening?
+
+' SOME trials and plotting
+# Store that variable name
+varname <- names(nc_merged$var)
+
+# Read the data array
+tmp_array <- ncvar_get(nc_merged, varname)
+
+# Check dimensions
+dim(tmp_array)
+
+# get a single slice or layer (January)
+m <- 8
+tmp_slice <- tmp_array[,,m]
+
+#reorder the longitude and latitude to be in increasing order for plotting
+lon_ord <- order(lon)
+lat_ord <- order(lat)
+
+lon_plot <- lon[lon_ord]
+lat_plot <- lat[lat_ord]
+
+tmp_plot <- tmp_slice[lon_ord, lat_ord]
+
+image(
+  lon_plot,
+  lat_plot,
+  tmp_plot,
+  col = rev(brewer.pal(10, "RdBu"))
+)
+
+time <- ncvar_get(nc_merged,"time")
+time
+
+tunits <- ncatt_get(nc_merged,"time","units")
+tunits
+
+nt <- dim(time)
+nt
+
+install.packages("lattice")
+install.packages("RColorBrewer")
+install.packages("CFtime")
+
+library(lattice)
+library(RColorBrewer)
+library(CFtime)
+
+cf <- CFtime(tunits$value, calendar = "proleptic_gregorian", time) # convert time to CFtime class
+cf
+timestamps <- cf$as_timestamp() # get character-string times
+timestamps
+
+class(timestamps)
+
+time_cf <- CFtime::parse_timestamps(cf, timestamps)
+time_cf
+'
+
+##############
+# GISCO
+#############
+'This dataset gives you 1 km² population polygons in EPSG:
+That is exactly what you need to overlay with E-OBS or
+ ISIMIP grid cells and compute the population weight'
+
+library(sf)
+library(dplyr)
+
+pop_dir <- file.path(data_dir, "GISCO_population_grid")
+
+gpkg_file <- list.files(
+  pop_dir,
+  pattern = "\\.gpkg$",
+  full.names = TRUE,
+  recursive = TRUE
+)[1]
+
+gpkg_file
+
+##########
+# NUTS
+##########
+

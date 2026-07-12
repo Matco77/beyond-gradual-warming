@@ -1,0 +1,17 @@
+                feols(ln_energ..
+Dependent Var.:        ln_energy
+                                
+ln_population   0.4486. (0.2461)
+hdd_calendar    6.15e-5 (4.3e-5)
+cdd_jja          0.0004 (0.0002)
+ln_price         0.0063 (0.0460)
+Fixed-Effects:  ----------------
+country_id                   Yes
+year                         Yes
+_______________ ________________
+S.E.: Clustered   by: country_id
+Observations                 844
+R2                       0.99507
+Within R2                0.06438
+---
+Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1

@@ -1,0 +1,45 @@
+                feols(f_ols, s9, cl.. feols(f_fe, s9, cl.. feols(f_tr, s9, ..
+                            NUTS3 OLS             NUTS3 FE    NUTS3 FE+Trends
+Dependent Var.:              ln_yield             ln_yield           ln_yield
+                                                                             
+Constant            2.466*** (0.3260)                                        
+gdd_mj            -0.0009*** (0.0002)    -0.0003* (0.0001)  -0.0003* (0.0001)
+heat_mj              -0.0001 (0.0009)     -0.0004 (0.0003)   -0.0005 (0.0004)
+frost_mj            -0.0133* (0.0048)    -0.0037. (0.0018)  -0.0036. (0.0018)
+precip_mj          0.0036*** (0.0008)     0.0013* (0.0005)   0.0011. (0.0005)
+precip_mj2      -4.54e-6*** (8.62e-7) -1.86e-6** (5.54e-7) -1.7e-6* (6.35e-7)
+Fixed-Effects:  --------------------- -------------------- ------------------
+NUTS_ID                            No                  Yes                Yes
+year                               No                  Yes                Yes
+Varying Slopes: --------------------- -------------------- ------------------
+t (NUTS_ID)                        No                   No                Yes
+t2 (NUTS_ID)                       No                   No                Yes
+_______________ _____________________ ____________________ __________________
+S.E.: Clustered              by: cntr             by: cntr           by: cntr
+Observations                   18,550               18,550             18,550
+R2                            0.36152              0.85814            0.89875
+Within R2                          --              0.05384            0.06609
+
+                feols(f_tr, s10, c..
+                     Mixed FE+Trends
+Dependent Var.:             ln_yield
+                                    
+Constant                            
+gdd_mj             -0.0003* (0.0001)
+heat_mj             -0.0005 (0.0004)
+frost_mj           -0.0032* (0.0016)
+precip_mj           0.0010* (0.0005)
+precip_mj2      -1.58e-6** (5.54e-7)
+Fixed-Effects:  --------------------
+NUTS_ID                          Yes
+year                             Yes
+Varying Slopes: --------------------
+t (NUTS_ID)                      Yes
+t2 (NUTS_ID)                     Yes
+_______________ ____________________
+S.E.: Clustered             by: cntr
+Observations                  20,338
+R2                           0.90372
+Within R2                    0.06206
+---
+Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1

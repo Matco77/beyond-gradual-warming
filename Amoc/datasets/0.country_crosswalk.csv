@@ -1,0 +1,31 @@
+country_id,country_name,faostat_area,eurostat_geo
+AUT,Austria,Austria,AT
+BEL,Belgium,Belgium,BE
+BGR,Bulgaria,Bulgaria,BG
+HRV,Croatia,Croatia,HR
+CYP,Cyprus,Cyprus,CY
+CZE,Czechia,Czechia,CZ
+DNK,Denmark,Denmark,DK
+EST,Estonia,Estonia,EE
+FIN,Finland,Finland,FI
+FRA,France,France,FR
+DEU,Germany,Germany,DE
+GRC,Greece,Greece,EL
+HUN,Hungary,Hungary,HU
+IRL,Ireland,Ireland,IE
+ITA,Italy,Italy,IT
+LVA,Latvia,Latvia,LV
+LTU,Lithuania,Lithuania,LT
+LUX,Luxembourg,Luxembourg,LU
+MLT,Malta,Malta,MT
+NLD,Netherlands,Netherlands (Kingdom of the),NL
+POL,Poland,Poland,PL
+PRT,Portugal,Portugal,PT
+ROU,Romania,Romania,RO
+SVK,Slovakia,Slovakia,SK
+SVN,Slovenia,Slovenia,SI
+ESP,Spain,Spain,ES
+SWE,Sweden,Sweden,SE
+NOR,Norway,Norway,NO
+GBR,United Kingdom,United Kingdom of Great Britain and Northern Ireland,UK
+CHE,Switzerland,Switzerland,CH

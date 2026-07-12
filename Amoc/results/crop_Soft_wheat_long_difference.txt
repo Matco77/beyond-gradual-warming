@@ -1,0 +1,22 @@
+                               m_sr                       m_ld
+                  Panel (short-run) Long-diff (long-run bound)
+Dependent Var.:            ln_yield                   ln_yield
+                                                              
+gdd_mj            -0.0003. (0.0002)          -7.58e-5 (0.0002)
+heat_mj            -0.0006 (0.0004)            0.0010 (0.0014)
+frost_mj          -0.0063. (0.0030)           -0.0077 (0.0068)
+precip_mj          0.0013. (0.0007)            0.0015 (0.0016)
+precip_mj2      -1.86e-6* (7.25e-7)         -2.65e-6 (2.24e-6)
+Fixed-Effects:  -------------------         ------------------
+NUTS_ID                         Yes                         No
+year                            Yes                         No
+cntr                             No                        Yes
+Varying Slopes: -------------------         ------------------
+t (NUTS_ID)                     Yes                         No
+t2 (NUTS_ID)                    Yes                         No
+_______________ ___________________         __________________
+S.E.: Clustered            by: cntr                   by: cntr
+Observations                  9,602                        640
+R2                          0.89980                    0.84730
+---
+Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
