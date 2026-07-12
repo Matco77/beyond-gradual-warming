@@ -1,4 +1,4 @@
-# Appendix C — Historical Response Functions: Data and Estimation Design
+# Appendix D — Historical Response Functions: Data and Estimation Design
 
 This appendix documents the empirical response functions estimated from
 observational-era data — one for crop yield, one for household energy demand —
@@ -10,7 +10,7 @@ translate a shifted climate into changes in European crop production and energy
 demand. The present appendix concerns the estimation step only; the scenario
 replay is documented separately.
 
-## C.1 Design principle
+## D.1 Design principle
 
 Two modules are estimated, each at the finest spatial resolution at which its
 **outcome** is observed:
@@ -32,9 +32,9 @@ as each outcome permits.
 The aggregation weight differs by module, matching the physical support of each
 channel. Crop weather is **area**-weighted, because crops occupy land; energy
 weather is **population**-weighted, because demand follows people. The two
-weighting schemes are documented in §C.3 and §C.4.
+weighting schemes are documented in §D.3 and §D.4.
 
-## C.2 Weather indicators
+## D.2 Weather indicators
 
 All indicators are computed **per grid cell, per day, before any spatial or
 temporal aggregation**. This ordering is not cosmetic: the transforms are
@@ -84,7 +84,7 @@ CDD over June–August. A single shared construction module builds these variabl
 identically for estimation and for the later scenario replay, which is the
 precondition for a response function to be applied to a counterfactual climate.
 
-## C.3 Crop datasets
+## D.3 Crop datasets
 
 **Outcome.** The yield panel is built from CropStatHarm (Ronchetti et al., 2024),
 a peer-reviewed sub-national crop dataset already harmonised to NUTS 2016
@@ -124,7 +124,7 @@ EU-level valuation, but its added units are coarser and contribute less
 within-country weather variation — coverage, not identifying power — and it is
 therefore reported as a robustness sample rather than the headline.
 
-## C.4 Energy datasets
+## D.4 Energy datasets
 
 **Outcome.** Household final use of gas and electricity (ktoe) comes from the
 Eurostat energy balance (`nrg_bal_c`). The outcome is expressed **per capita**,
@@ -139,7 +139,7 @@ each populated pixel is assigned to its E-OBS cell and its country, giving
 capped at **300 km** — retaining reachable islands (Malta to Sicily, ~110 km)
 while dropping off-domain Atlantic islands (Azores, Madeira, ~1,500 km), whose
 energy remains in the national outcome but whose weather cannot be fabricated.
-Daily HDD/CDD are computed per cell by the within-day construction (§C.2),
+Daily HDD/CDD are computed per cell by the within-day construction (§D.2),
 population-weighted to the country, and summed into calendar-year HDD, Oct–Mar
 heating-season HDD, and JJA CDD. The population weight is **fixed at its 2021
 geography** deliberately: it fixes *where people live* as a baseline, while
@@ -161,7 +161,7 @@ of data availability, not choices: Switzerland has no household-energy outcome,
 Norway (and Cyprus, Finland, Malta) have no household gas price and so drop from
 the gas regression.
 
-## C.5 Response-function specifications
+## D.5 Response-function specifications
 
 Both modules share one identification logic (Blanc & Schlenker, 2017). With
 region and year fixed effects, weather enters each regression as a *deviation
@@ -214,7 +214,7 @@ fixed-effects specification (which drops not only rows with missing values but
 also singleton fixed-effect groups), so differences across columns reflect the
 specification alone and not a moving sample.
 
-## C.6 Inference and robustness
+## D.6 Inference and robustness
 
 Because the benchmark clusters on country — 15 clusters for crop, 29 for energy —
 cluster-robust asymptotics are unreliable, and default (independent) standard
@@ -239,7 +239,7 @@ because a record of about three decades with a modest trend leaves it imprecise.
 The same design is not applied to energy, whose 29 cross-sectional units provide
 too little identifying variation.
 
-## C.7 Assumptions and limitations
+## D.7 Assumptions and limitations
 
 1. **Transient versus permanent climate (the central caveat for the replay).**
    Panel fixed-effects models identify the response to *transient* weather
@@ -248,7 +248,7 @@ too little identifying variation.
    (rotations, varieties, capital). The envelope theorem licenses using panel
    variation for a *marginal* change; a large AMOC shift is plausibly
    non-marginal, so the estimates are best read as short-run responses, bounded
-   above (for crop) by the long-difference design of §C.6.
+   above (for crop) by the long-difference design of §D.6.
 
 2. **Direction of the adaptation gap is scenario-specific.** The sign of the
    short-run/long-run wedge cannot be imported wholesale from the warming
@@ -268,7 +268,7 @@ too little identifying variation.
 4. **Measurement-error attenuation.** Fixed effects absorb between-unit variation,
    so interpolation noise in the gridded weather attenuates coefficients toward
    zero, an effect the literature shows can halve estimated impacts (Fisher et
-   al., 2012). The snapped-unit robustness check (§C.6) bounds the part of this
+   al., 2012). The snapped-unit robustness check (§D.6) bounds the part of this
    error attributable to non-local grid assignment.
 
 5. **Income confounding is handled by assumption, not by a control.** No GDP
