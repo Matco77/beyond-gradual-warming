@@ -1,156 +1,210 @@
 # Appendix C — The AMOC Delta: Construction and Statistical Diagnosis
 
-This appendix documents how the AMOC-weakening **delta** is constructed from the
-hosing and control simulations of Appendix A, and the statistical criteria by
-which it is judged a genuine forced response rather than internal variability.
-The construction is a calendar-matched anomaly reduced to its settled equilibrium
-level; the diagnosis rests on **effect sizes** — signal-to-noise ratios
-calibrated against the control simulation — rather than on tail p-values, a
-choice dictated by the short length of the control runs. Three diagnostics are
-reported: a detection ratio, a spatial fingerprint, and a per-cell seasonal
-significance field. Throughout, computations are on each model's native grid
-(Appendix A.2), and the EC-Earth3 extremes are the reconstructed fields of
-Appendix B.
+This appendix documents how the supplied R scripts reduce monthly hosing-minus-
+piControl anomaly files to late-run delta fields and diagnostic effect-size
+summaries. The diagnostics are computed on each model's own grid after cropping
+to Europe. EC-Earth3 `tasmin` and `tasmax` anomalies are based on the
+reconstructed monthly fields described in Appendix B.
+
+The code reports effect-size diagnostics rather than calibrated p-values. It
+labels a run as an effect when the late-run Europe-mean anomaly is large relative
+to control variability at the same averaging length; it does not prove physical
+equilibration or causality by itself.
 
 ## C.1 The anomaly field
 
-For each model, hosing protocol, and variable, the monthly anomaly is the hosing
-series minus the piControl **monthly climatology**, matched by calendar month.
-The climatology is the control's mean seasonal cycle, obtained by averaging every
-control year within each calendar month (`ymonmean`); the anomaly is then formed
-month by month (`ymonsub`),
+For each model, hosing protocol, and variable, the monthly additive anomaly is
+the hosing series minus a piControl monthly climatology matched by calendar
+month:
 
-    anomaly(cell, t) = V_hosing(cell, t) − V̄_piControl(cell, m(t)),     m(t) = calendar month of t,
+```text
+anomaly(cell, t) = V_hosing(cell, t) - climatology_piControl(cell, month(t)).
+```
 
-so the seasonal cycle is removed by construction and only the seasonal phase, not
-the absolute model year, need be matched (Appendix A.3). Both hosing protocols
-(`g01`, weak; `u03`, strong) are differenced against the *same* control baseline,
-so their deltas are directly comparable. The subtraction is strictly cell by
-cell: where the hosing and control grids of a model coincide in size their
-coordinate labels are snapped exactly (`setgrid`, no interpolation), and only a
-true grid-size mismatch triggers a genuine remap (`remapbil` for temperature,
-`remapcon` for precipitation). For precipitation a multiplicative companion field
-`R = hosing / climatology` (`ymondiv`) is also written, for the coupling step
-(Appendix E); the additive anomaly above is the one every diagnostic below reads.
+The climatology is built with CDO `ymonmean`, and the subtraction is performed
+with `ymonsub`. Within each model, both hosing protocols are compared against the
+same piControl reference used by that model's anomaly builder. The EC-Earth3 and
+HadGEM builders use different reference sources, as described in Appendix A.
 
-All regional reductions use **cosine-of-latitude area weights**, so each cell
-contributes in proportion to the area it subtends, and are taken over the
-European window lon [−15°, 40°], lat [34°, 72°].
+Grid handling is not identical for all models. The EC-Earth3 anomaly builder
+snaps climatology grid labels with `setgrid` when hosing and climatology grid
+sizes match, and remaps the climatology when grid sizes differ (`remapbil` for
+temperature variables and `remapcon` for precipitation). The HadGEM anomaly
+builder does not perform this grid-size check or remap; it assumes that hosing
+and piControl files are already compatible and applies `ymonsub` directly.
 
-## C.2 The delta as an equilibrium level
+For precipitation, the anomaly builders also write a multiplicative companion
+field:
 
-The hosing forcing is a **constant freshwater flux held fixed** for the length of
-the run. A system driven by such a step responds by **ramp-then-plateau** — it
-approaches a new equilibrium and levels off — so the quantity of interest is the
-*level* of the settled response, not a trend. The delta is therefore estimated as
-a **late-run mean**. Writing the Europe-mean monthly anomaly series as
-*a₁ … aₙ*, and *pl* = max(12, ⌊n/3⌋) for the plateau window,
+```text
+R = hosing / piControl climatology.
+```
 
-    plateau = mean( a_{n−pl+1}, …, a_n )               (last third of the run, ≥ 1 yr)
+The diagnostics in this appendix read the additive anomaly files. They do not
+read the precipitation ratio files.
 
-Averaging over the plateau window is variance reduction: it suppresses residual
-internal variability in the estimate of the equilibrium shift. The **delta field**
-is the same last-third mean taken per grid cell,
+All Europe-mean and box-mean reductions use cosine-of-latitude area weights.
+The shared R reader crops lon `[-15, 40]`, lat `[34, 72]` and converts `pr` to
+`mm/day` by multiplying by `86400`.
 
-    Δ(cell) = mean of the last pl months of anomaly(cell, ·),
+## C.2 The delta as a late-run mean
 
-written to NetCDF per model × protocol × variable. A flat late-run anomaly is
-thus the correct, expected outcome, not a null result; where a model has not yet
-levelled off (HadGEM3-GC31-MM is still cooling at year 100) its delta is a
-**lower bound** on the true equilibrium shift.
+The delta diagnostic is computed as a late-run mean, not as a fitted trend. For a
+Europe-mean monthly anomaly series `a_1, ..., a_n`, the plateau-window length is
+
+```text
+pl = max(12, round(n / 3)).
+```
+
+The Europe-mean plateau is
+
+```text
+plateau = mean(a_{n-pl+1}, ..., a_n).
+```
+
+The delta field is the same final-window mean computed independently at each
+grid cell:
+
+```text
+Delta(cell) = mean of the last pl monthly values of anomaly(cell, .).
+```
+
+One NetCDF delta file is written per processed model, protocol, and variable.
+Averaging over the final window reduces month-to-month variability in the delta
+estimate. The script does not test whether the run has equilibrated. If a model
+is still evolving at the end of the available run, that interpretation must come
+from an external trend or settling diagnostic; the code itself only reports the
+late-run window mean.
 
 ## C.3 Detection: an effect size against the control
 
-Whether a plateau is a genuine response is judged against the **internal
-variability of the control**, at the *same averaging timescale*. The control
-Europe-mean series is first **deseasonalised** (its own calendar-month
-climatology removed) and **de-drifted** (a linear trend removed, the mean
-restored), because the anomaly it is compared with already carries neither a
-seasonal cycle nor spin-up drift; leaving either in would inflate the reference
-spread and understate the effect. From the processed control series *c* the null
-distribution of plateau-length means is formed over all overlapping windows of
-length *pl*,
+The effect ratio compares the late-run Europe-mean plateau with internal
+variability estimated from the corresponding model and variable's piControl
+series. The control Europe-mean series is processed in the shared R helper:
 
-    σ_pl = sd( { mean(c_s, …, c_{s+pl−1}) : s = 1 … N−pl+1 } ),
+1. read all matched piControl files for the model and variable;
+2. compute the cosine-weighted Europe-mean monthly series;
+3. remove that control series' own 12-month climatology;
+4. remove a linear trend and restore the mean.
 
-and the delta is standardised by it,
+The null distribution is the set of all overlapping control means with the same
+length `pl` as the hosing late-run window:
 
-    effect ratio = | plateau | / σ_pl,      effect declared when  ratio ≥ K,  with  K = 2.
+```text
+sigma_pl = sd({ mean(c_s, ..., c_{s+pl-1}) : s = 1, ..., N-pl+1 }).
+```
 
-This is a **signal-to-noise effect size**, not a significance probability. The
-choice is deliberate: the HadGEM control is only about 100 years, so a tail
-p-value would be governed by scarce degrees of freedom rather than by the
-science; an effect size instead reports the magnitude of the shift relative to
-natural variability, and is not a degrees-of-freedom problem. The K = 2 threshold
-is the conventional two-standard-deviation bar. A run that sits inside the control
-spread — EC-Earth3 `g01`, a 0.1 Sv forcing over 50 years, not yet settled —
-correctly returns *no effect*.
+The effect ratio is
+
+```text
+effect_ratio = abs(plateau) / sigma_pl.
+```
+
+The script labels the effect as `YES` when the ratio is finite and at least
+`K = 2`; otherwise it labels it `no`. This is an effect-size threshold, not a
+p-value or calibrated false-positive probability. It avoids assigning tail
+probabilities from short control runs, but the denominator still depends on the
+length, variability, and drift treatment of the available control data.
 
 ## C.4 The AMOC fingerprint
 
-An effect that clears C.3 could in principle still be a spatially uniform offset —
-residual control drift — rather than the AMOC. The two are separated by **spatial
-pattern**: AMOC weakening cools the north-west (the sub-polar "cold blob") far
-more than the Mediterranean. A two-box contrast on the delta field measures this,
+The spatial fingerprint diagnostic is a two-box contrast computed on the delta
+field:
 
-    fingerprint = mean_NW(Δ) − mean_Med(Δ),
+```text
+NW_minus_Med = mean_NW(Delta) - mean_Med(Delta).
+```
 
-with NW = lon [−15°, 5°], lat [50°, 62°] and Mediterranean = lon [0°, 25°],
-lat [34°, 45°], each area-weighted. A genuine AMOC signal has the north-west more
-negative than the Mediterranean, i.e. **fingerprint < 0**; a uniform drift gives
-≈ 0. This is a minimal projection of the response onto its expected spatial
-signature, and it also separates the models from one another.
+The boxes are:
 
-## C.5 Per-cell seasonal significance
+- NW: lon `[-15, 5]`, lat `[50, 62]`;
+- Mediterranean: lon `[0, 25]`, lat `[34, 45]`.
 
-The detection logic of C.3 is repeated cell by cell, separately for winter (DJF)
-and summer (JJA), to map *where* the cooling is robust. Each monthly field is
-reduced to **per-year seasonal means** (the three season-months averaged within
-each year), and the delta of a cell is the mean of its last-third seasonal years.
-The per-cell noise is that cell's own control seasonal-mean series, **linearly
-detrended**, reduced to the standard deviation of its plateau-length running
-means. The ratio is a per-cell signal-to-noise field,
+Both box means are cosine-of-latitude weighted. Negative values are interpreted
+as stronger cooling in north-western Europe than in the Mediterranean under the
+assumed AMOC-cooling fingerprint. The code computes this contrast; it does not
+by itself prove that a pattern is caused by AMOC weakening.
 
-    snr(cell) = Δ_season(cell) / σ_season(cell),      robust when  | snr | ≥ 2,
+## C.5 Per-cell seasonal effect fields
 
-and the summary statistic is the **fraction of European cells that are robust**.
-Reported as an effect-size field, it avoids per-cell p-values and hence the
-multiple-testing (field-significance / FDR) problem. The precision of σ_season is
-control-length limited: EC-Earth3 (≈ 500-yr control) pins it well, whereas a
-100-yr HadGEM control gives only about three independent windows per cell, so its
-contour is indicative rather than exact.
+The seasonal script computes DJF and JJA fields separately for each processed
+model, protocol, and variable. Monthly fields are reshaped into Jan-Dec blocks,
+and seasonal means are computed by averaging selected months within each block:
+
+```text
+DJF = months 12, 1, and 2 within the same Jan-Dec block
+JJA = months 6, 7, and 8
+```
+
+Thus DJF is implemented as a same-block month selection; the code does not shift
+December into the following meteorological winter.
+
+For each anomaly cell and season, the number of seasonal years in the late-run
+window is
+
+```text
+plY = max(5, round(number_of_seasonal_years / 3)).
+```
+
+The seasonal delta is the mean of the final `plY` seasonal years. The
+corresponding control seasonal series is computed cell by cell, linearly
+detrended, converted to all overlapping running means of length `plY`, and
+reduced to a standard deviation. The per-cell signal-to-noise field is
+
+```text
+snr(cell) = seasonal_delta(cell) / seasonal_control_running_mean_sd(cell).
+```
+
+Cells with `abs(snr) >= 2` are treated as robust in the seasonal maps. The
+reported robust-cell fraction is the unweighted fraction of finite European grid
+cells satisfying this threshold. The script reports an effect-size field; it does
+not compute per-cell p-values and does not apply a field-significance or FDR
+correction.
 
 ## C.6 Outputs
 
-The procedure yields, per model × protocol × variable: a delta NetCDF (C.2); a
-row in a model-contrast table carrying the plateau, σ_pl, the effect ratio and
-verdict (C.3), and the fingerprint gradient (C.4); and a seasonal NetCDF pair
-(delta and snr) with the robust-cell fraction (C.5). These are accompanied by
-diagnostic figures — the Europe-mean trajectory with its LOESS fit (Cleveland,
-1979), settled plateau, and pooled control central-95 % band; the delta maps on a
-shared, symmetric scale clipped at the 98th percentile of |Δ| (so that a few
-domain-edge or cold-blob cells do not wash out the dominant signal); and the
-seasonal robust-cell maps.
+The delta/effect script writes:
+
+- one delta NetCDF per processed model, protocol, and variable;
+- `amoc_effect_model_contrast.csv`, with model, protocol, variable, run length,
+  plateau, control-window standard deviation, effect ratio, effect label,
+  `NW_minus_Med`, and the delta filename.
+
+The seasonal script writes:
+
+- one seasonal NetCDF per processed model, protocol, variable, and season; each
+  file contains both the seasonal delta variable and its corresponding
+  `<variable>_snr` field;
+- `seasonal_robust_summary.csv`;
+- `seasonal_fields_significance.pdf`.
+
+The plotting scripts also produce a clipped delta-field PDF and a time-series
+PDF. The time-series script can add country pages and a `country_plateaus.csv`
+file when the R `maps` package is available; otherwise those country outputs are
+skipped and the Europe-mean pages are still produced.
 
 ## C.7 Assumptions and limitations
 
-The delta is an **equilibrium-level** estimate: for a model that has not settled
-it is a lower bound (C.2). Detection is an **effect size**, chosen for honesty
-about the short control; it reports magnitude relative to internal variability
-rather than a calibrated false-positive rate. The control is de-drifted only
-linearly; for EC-Earth3, whose contemporaneous parallel window is unavailable,
-the whole quasi-stationary post-spin-up control (model years 2259–2759) is used
-as the reference, so a residual long-term drift is not perfectly removed
-(Appendix A.3). Finally, the diagnostics read the additive anomaly for every
-variable; the multiplicative precipitation field enters only the coupling of
-Appendix E.
+The delta is a late-run mean over the available hosing anomaly period. It should
+not be described as a proven equilibrium response unless an additional settling
+diagnostic supports that interpretation. The effect ratio is an effect-size
+diagnostic and should not be interpreted as a p-value. Control noise estimates
+use deseasonalisation and linear de-drifting for Europe-mean diagnostics; any
+nonlinear residual drift is not explicitly modeled.
+
+The seasonal robust maps are thresholded signal-to-noise maps, not multiple-
+testing-corrected significance maps. The robust-cell percentage is unweighted by
+area. The diagnostics use additive anomalies for all variables; the
+multiplicative precipitation ratio is written for later coupling workflows but
+is not read by the delta, effect-ratio, fingerprint, or seasonal diagnostic
+scripts described here.
 
 ---
 
 **References.**
 Cleveland, W. S. (1979). Robust locally weighted regression and smoothing
 scatterplots. *Journal of the American Statistical Association*, 74(368),
-829–836.
+829-836.
 Jackson, L. C., et al. (2023). Understanding AMOC stability: the North Atlantic
 Hosing Model Intercomparison Project. *Geoscientific Model Development*, 16,
-1975–1995.
+1975-1995.
