@@ -1,72 +1,104 @@
-# Appendix B — Reconstruction of Daily Temperature Extremes for EC-Earth3
+# Appendix B — Reconstruction of Monthly Temperature Extremes for EC-Earth3
 
-In the EC-Earth3 hosing experiments only the monthly mean near-surface air
-temperature (`tas`) and precipitation (`pr`) are available; the daily minimum
-and maximum temperatures (`tasmin`, `tasmax`) are not archived. These two
-fields are reconstructed from the monthly mean using a statistical relationship
-calibrated on the piControl simulation, following the approach of Weedon et al.
-(2010). The HadGEM3 configurations require no such step, as they provide all
-four variables natively.
+This appendix documents the EC-Earth3 reconstruction step used by the supplied
+pipeline. In the EC-Earth3 anomaly builder, hosing `tas` and `pr` are read from
+native EC-Earth3 hosing files, while hosing `tasmin` and `tasmax` are expected as
+reconstructed absolute monthly fields. The reconstruction script creates those
+absolute `tasmin` and `tasmax` files from hosing `tas` using relationships fitted
+on EC-Earth3 piControl data. The HadGEM3 configurations do not use this
+reconstruction script in the supplied workflow.
 
 ## B.1 Method
 
-The reconstruction exploits the fact that, within a stable climate, the monthly
-mean temperature and its diurnal extremes are linearly related, and that this
-relationship varies smoothly in space and across the seasonal cycle. For every
-grid cell and every calendar month *m*, an ordinary least-squares (OLS)
-regression of each extreme on the mean is fitted across the piControl years:
+The script opens EC-Earth3 piControl `tas`, `tasmax`, and `tasmin` files matched
+by configured filename globs, aligns the three series on their common time steps,
+and fits independent ordinary least-squares relationships for each grid cell and
+calendar month:
 
-    tasmax = a_max(cell, m) + b_max(cell, m) · tas
-    tasmin = a_min(cell, m) + b_min(cell, m) · tas
+```text
+tasmax = a_max(cell, month) + b_max(cell, month) * tas
+tasmin = a_min(cell, month) + b_min(cell, month) * tas
+```
 
-The slope and intercept are obtained in closed form from the piControl
-statistics of that cell and month,
+The coefficients are computed from piControl monthly statistics:
 
-    b = Cov(tas, extreme) / Var(tas),     a = E[extreme] − b · E[tas],
+```text
+b = Cov(tas, extreme) / Var(tas)
+a = E(extreme) - b * E(tas)
+```
 
-where the expectations are taken over all piControl years sharing calendar
-month *m*. The fitted coefficients are then applied to the hosing monthly mean
-to obtain the reconstructed extremes.
+where the expectations are taken over all piControl time steps belonging to the
+same calendar month. The fitted coefficients are then selected by the hosing
+`time.month` coordinate and applied to hosing `tas`.
 
-The slope *b* measures how the diurnal temperature range responds as the
-monthly mean shifts, while the intercept *a* anchors the absolute level so that
-the climatological seasonal cycle is preserved. Fitting separately for each
-calendar month removes the seasonal cycle from the regression and, importantly,
-makes the calibration independent of the absolute model years: the piControl
-segment (model years 2259–2759) and the hosing segment (1850–1949) need not
-overlap in time, since only the seasonal phase is matched.
+The fit is independent for every grid cell and calendar month. The code does not
+apply spatial smoothing, spatial regularisation, or neighbour constraints. Each
+slope measures the fitted sensitivity of the corresponding extreme (`tasmax` or
+`tasmin`) to monthly mean temperature. The implied response of the diurnal range
+would depend on the difference between the fitted `tasmax` and `tasmin`
+sensitivities; the script does not directly fit diurnal temperature range.
+
+Because the regression is matched by calendar month, piControl and hosing model
+years do not need to overlap. The actual hosing period is whatever is contained
+in the files matched by the configured hosing globs.
 
 ## B.2 Numerical treatment
 
-Two safeguards are applied. In grid cells where the monthly mean does not vary
-across the piControl years (Var(tas) = 0; e.g. permanently masked cells), the
-slope is undefined; there the slope is set to zero, so that the extreme follows
-the mean by its fixed climatological offset. After reconstruction the physical
-ordering tasmax ≥ tas ≥ tasmin is enforced, pinning any over-shooting fitted
-value to the mean. Both safeguards affect only degenerate cells and have no
-effect over Europe.
+The script guards cells with zero or near-zero piControl `tas` variance. Where
+`abs(Var(tas)) <= 1e-12`, the slope is set to zero to avoid division by zero or
+near-zero values. In that case, the unconstrained fitted value is the
+calendar-month climatological extreme, because `a = E(extreme)` when `b = 0`.
+The code does not report how many cells are affected by this safeguard.
 
-The reconstruction is performed on the native EC-Earth3 grid (`gr`,
-512 × 256). The piControl and hosing grids are identical to within
-floating-point precision, so no spatial interpolation is involved.
+After reconstruction, the script enforces physical ordering point by point:
 
-## B.3 Validation
+```text
+tasmax = max(reconstructed tasmax, hosing tas)
+tasmin = min(reconstructed tasmin, hosing tas)
+```
 
-The implementation was verified against a synthetic case with a known linear
-relationship, which it recovered exactly, and the zero-variance safeguard was
-confirmed to return a zero slope without numerical error. The reconstructed
-fields lie within a physically plausible range (e.g. reconstructed `tasmax`
-spans approximately 210–323 K globally, with no missing values).
+This guarantees `tasmax >= tas` and `tasmin <= tas` in the written fields. The
+script does not report how often this ordering clamp changes values or whether
+changes occur over Europe.
+
+Grid handling is conditional. If the EC-Earth3 piControl and hosing latitude and
+longitude coordinates match within `numpy.allclose`, the fitted coefficient
+coordinates are snapped to the hosing coordinates and no interpolation is used.
+If the grids differ, the fitted coefficients are interpolated to the hosing grid
+with nearest-neighbour interpolation.
+
+## B.3 Outputs and validation status
+
+For each processed hosing experiment, the script writes two absolute monthly
+NetCDF files beside the EC-Earth3 hosing `tas` files:
+
+```text
+tasmax_Amon_EC-Earth3_<label>_reconstructed.nc
+tasmin_Amon_EC-Earth3_<label>_reconstructed.nc
+```
+
+The script does not write anomaly files. The EC-Earth3 CDO anomaly builder later
+uses these reconstructed absolute fields as the hosing-side inputs and subtracts
+the EC-Earth3 piControl monthly climatology with `ymonsub`.
+
+No standalone validation script, synthetic test output, global range check, or
+missing-value report is included in the supplied files. Claims about exact
+synthetic recovery, physically plausible global ranges, or absence of missing
+values must therefore be supported by a separate validation log before being
+reported as results.
 
 ## B.4 Assumptions and limitations
 
-The method assumes that the mean–extreme relationship calibrated on piControl
-remains valid under AMOC weakening (a stationarity assumption). It therefore
-captures the response of the extremes to a shift in the monthly mean, but not
-any change in the *shape* of the sub-monthly temperature distribution that the
-hosing forcing might induce; in this sense it is a first-order statistical
-reconstruction rather than a physical simulation of extremes. The reconstructed
-fields are monthly, consistent with the resolution of the input `tas`.
+The reconstruction assumes that the piControl-calibrated monthly relationship
+between mean temperature and each extreme remains applicable under hosing. This
+stationarity assumption is recorded in the metadata of the written NetCDF files.
+The method is a monthly statistical reconstruction: it captures the fitted
+response of monthly `tasmin` and `tasmax` to hosing `tas`, but it does not model
+changes in sub-monthly temperature-distribution shape or daily variability.
+
+The reconstructed fields should therefore be interpreted as first-order monthly
+inputs for the anomaly construction step, not as a physical simulation of daily
+temperature extremes.
 
 ---
 
