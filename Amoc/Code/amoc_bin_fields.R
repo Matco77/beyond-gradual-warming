@@ -72,12 +72,21 @@ sv_bins <- function(model, n_cube_years) {
 }
 
 ## ---- one model ------------------------------------------------------------------------------
-build <- function(model) {
+# mode = "bin"  : one field per delta_Sv bin, averaged over the bin's hosing years (Phase 1)
+# mode = "year" : one field per individual hosing year (Phase 2 uncertainty band). Same reading,
+#                 indexing and interpolation path - only the grouping of years differs, so the band
+#                 cannot drift away from the central estimate through a second implementation.
+build <- function(model, mode = "bin") {
   nc0 <- nc_open(apath(model, "tas"))
   TM0 <- time_map(nc0); ncube <- max(TM0$yi)
   lon <- as.numeric(ncvar_get(nc0, "lon")); lat <- as.numeric(ncvar_get(nc0, "lat"))
   nc_close(nc0)
   B <- sv_bins(model, ncube); bins <- B$bins
+  if (mode == "year") {                                # one group per hosing year, bins kept as-is
+    yrs  <- sort(unlist(lapply(bins, `[[`, "years")))  # only years that belong to a kept bin
+    bins <- lapply(yrs, function(y) list(lo = floor(B$dsv[y]), hi = floor(B$dsv[y]) + 1,
+                                         years = y, dsv = B$dsv[y], hos_year = y))
+  }
 
   # lat is increasing in all four cubes -> the Europe band is one contiguous ncdf4 slab
   stopifnot(all(diff(lat) > 0))
@@ -88,8 +97,9 @@ build <- function(model) {
   stopifnot(all(diff(lon_e) > 0))                              # interp.surface needs increasing x
 
   nx <- length(lon_e); ny <- length(lat_e); nb <- length(bins)
-  cat(sprintf("%-16s grid %dx%d -> Europe %dx%d | years used %d | bins %d (%s)\n",
-              model, length(lon), length(lat), nx, ny, B$n_used, nb,
+  cat(sprintf("%-16s [%s] grid %dx%d -> Europe %dx%d | years used %d | groups %d\n",
+              model, mode, length(lon), length(lat), nx, ny, B$n_used, nb))
+  if (mode == "bin") cat(sprintf("   bins: %s\n",
               paste(sapply(bins, function(b) sprintf("%d:%d", b$lo, length(b$years))), collapse = " ")))
 
   out <- list()
@@ -116,20 +126,24 @@ build <- function(model) {
 
   ## ---- write ---------------------------------------------------------------------------------
   dx <- ncdim_def("lon", "degrees_east",  lon_e); dy <- ncdim_def("lat", "degrees_north", lat_e)
-  dm <- ncdim_def("month", "1", 1:12);            db <- ncdim_def("bin", "Sv", sapply(bins, function(b) b$lo + 0.5))
+  dm <- ncdim_def("month", "1", 1:12)
+  db <- if (mode == "bin") ncdim_def("bin", "Sv", sapply(bins, function(b) b$lo + 0.5))
+        else ncdim_def("bin", "1", seq_along(bins))    # one slot per hosing year
   un <- c(delta_tas = "K", delta_tasmin = "K", delta_tasmax = "K", pr_ratio = "1")
   vars <- lapply(names(out), function(k) ncvar_def(k, un[[k]], list(dx, dy, dm, db), NA, prec = "double"))
   meta <- list(ncvar_def("bin_lo", "Sv", db, NA, prec = "double"),
                ncvar_def("bin_hi", "Sv", db, NA, prec = "double"),
                ncvar_def("n_years", "1", db, NA, prec = "double"),
-               ncvar_def("delta_sv_mean", "Sv", db, NA, prec = "double"))
-  f <- file.path(d, sprintf("amoc_bin_fields_%s_u03.nc", model))
+               ncvar_def("delta_sv_mean", "Sv", db, NA, prec = "double"),
+               ncvar_def("hos_year", "1", db, NA, prec = "double"))
+  f <- file.path(d, sprintf("amoc_%s_fields_%s_u03.nc", if (mode == "bin") "bin" else "year", model))
   nc <- nc_create(f, c(vars, meta))
   for (k in names(out)) ncvar_put(nc, k, out[[k]])
   ncvar_put(nc, "bin_lo",  sapply(bins, `[[`, "lo"))
   ncvar_put(nc, "bin_hi",  sapply(bins, `[[`, "hi"))
   ncvar_put(nc, "n_years", sapply(bins, function(b) length(b$years)))
   ncvar_put(nc, "delta_sv_mean", sapply(bins, `[[`, "dsv"))
+  ncvar_put(nc, "hos_year", if (mode == "year") sapply(bins, `[[`, "hos_year") else rep(NA_real_, nb))
   ncatt_put(nc, 0, "model", model)
   ncatt_put(nc, 0, "experiment", "u03-hos (NAHosMIP)")
   ncatt_put(nc, 0, "delta_sv_definition", "M26 hos minus mean(con)")
@@ -156,3 +170,11 @@ ok  <- sapply(MODELS, function(m) identical(as.integer(got[[m]]), as.integer(EXP
 for (m in MODELS) cat(sprintf("%-16s n_years matches amoc_effect_bins_%s.nc: %s\n", m, m, ok[[m]]))
 if (!all(ok)) stop("n_years does NOT reproduce the existing bins files - the year -> bin mapping is wrong")
 cat("\nall four models reproduce the existing bin membership\n")
+
+## ---- per-year fields for the uncertainty band (IPSL + EC-Earth3) -----------------------------
+# Phase 2 propagates uncertainty by running the whole chain on each of a bin's hosing years
+# separately and using the spread of the FINAL results, rather than propagating the sd of the delta
+# field analytically: with thresholds in the way, the mean of the effects is not the effect of the
+# mean field.
+cat("\n-- per-year fields for the uncertainty band --\n")
+invisible(lapply(c("IPSL-CM6A-LR", "EC-Earth3"), build, mode = "year"))

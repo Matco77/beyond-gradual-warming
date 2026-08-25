@@ -69,9 +69,12 @@ w_pop <- ep[fuel == "Electricity" & !is.na(population),
 
 ## ---- 3. scenario minus historical, per component -----------------------------------------------
 BINKEY <- c("model", "bin_id", "delta_sv", "n_years")
+# `key` is the grouping carried through from the scenario file. Phase 2's central estimate groups by
+# bin; the uncertainty band passes the same key plus hos_year so the identical beta-application code
+# serves both and the band cannot drift from the central number.
 
-crop_effect <- function(scen_file) {
-  sc <- fread(file.path(d, scen_file))[window == "Mar-Jul"]
+crop_effect <- function(scen_file, key = BINKEY) {
+  sc <- (if (is.data.table(scen_file)) scen_file else fread(file.path(d, scen_file)))[window == "Mar-Jul"]
   hi <- fread(file.path(d, "8.eobs_nuts3_crop_weather_window.csv"))[window == "Mar-Jul"]
   setnames(sc, c("gdd", "heat", "frost", "precip"), paste0(c("gdd", "heat", "frost", "precip"), "_s"))
   z <- merge(sc, hi[, .(NUTS_ID, year, gdd, heat, frost, precip)], by = c("NUTS_ID", "year"))
@@ -85,15 +88,15 @@ crop_effect <- function(scen_file) {
     for (v in CROP_X) set(y, j = paste0("e_", v), value = b[[v]] * y[[paste0("d_", v)]])
     # NUTS3 -> country: area-weighted mean of the effect, then mean over years
     y[, lapply(.SD, function(x) weighted.mean(x, w, na.rm = TRUE)),
-      by = c(BINKEY, "cntr", "year"), .SDcols = paste0("e_", CROP_X)][
-      , c(lapply(.SD, mean), .(crop = k)), by = c(BINKEY, "cntr"), .SDcols = paste0("e_", CROP_X)]
+      by = c(key, "cntr", "year"), .SDcols = paste0("e_", CROP_X)][
+      , c(lapply(.SD, mean), .(crop = k)), by = c(key, "cntr"), .SDcols = paste0("e_", CROP_X)]
   }))
   setnames(out, paste0("e_", CROP_X), CROP_X)
-  melt(out, id.vars = c(BINKEY, "cntr", "crop"), variable.name = "component", value.name = "dln")
+  melt(out, id.vars = c(key, "cntr", "crop"), variable.name = "component", value.name = "dln")
 }
 
-energy_effect <- function(scen_file) {
-  sc <- fread(file.path(d, scen_file))
+energy_effect <- function(scen_file, key = BINKEY) {
+  sc <- if (is.data.table(scen_file)) copy(scen_file) else fread(file.path(d, scen_file))
   hi <- fread(file.path(d, "13.eobs_country_energy_weather_weighted.csv"))
   V  <- c("hdd_calendar", "hdd_octmar", "cdd_jja")
   setnames(sc, V, paste0(V, "_s"))
@@ -104,10 +107,10 @@ energy_effect <- function(scen_file) {
     keep <- unique(en_fit[[f]]$sample$country_id)                      # countries beta was fitted on
     y <- merge(z, w_pop[country_id %in% keep], by = "cntr")
     for (v in xs) set(y, j = paste0("e_", v), value = b[[v]] * y[[paste0("d_", v)]])
-    m <- y[, lapply(.SD, mean, na.rm = TRUE), by = c(BINKEY, "cntr", "country_id"),
+    m <- y[, lapply(.SD, mean, na.rm = TRUE), by = c(key, "cntr", "country_id"),
            .SDcols = paste0("e_", xs)]                                 # mean over years, per country
     setnames(m, paste0("e_", xs), xs)
-    melt(m, id.vars = c(BINKEY, "cntr", "country_id"), variable.name = "component",
+    melt(m, id.vars = c(key, "cntr", "country_id"), variable.name = "component",
          value.name = "dln")[, fuel := f]
   }))
 }
