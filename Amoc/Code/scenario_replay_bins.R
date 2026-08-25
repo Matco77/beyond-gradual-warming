@@ -64,8 +64,11 @@ run_branch <- function(branch, out_file) {
               as.numeric(difftime(Sys.time(), t0, units = "mins"))))
 
   out <- merge(res, meta, by = "id", sort = FALSE)[, id := NULL]
-  key <- if (branch == "energy") c("cntr", "year") else c("NUTS_ID", "year", "window")
-  val <- if (branch == "energy") c("hdd_calendar", "hdd_octmar", "cdd_jja") else c("gdd", "heat", "frost", "precip")
+  key <- switch(branch, energy = c("cntr", "year"), crop = c("NUTS_ID", "year", "window"),
+                crop_gddwin = c("NUTS_ID", "year"))
+  val <- switch(branch, energy = c("hdd_calendar", "hdd_octmar", "cdd_jja"),
+                crop = c("gdd", "heat", "frost", "precip"),
+                crop_gddwin = c("gdd", "heat", "frost", "precip", "n_day", "closed"))
   setcolorder(out, c("model", "bin_id", "bin_lo", "bin_hi", "delta_sv", "n_years", key, val))
   setorderv(out, c("model", "bin_id", key))
   fwrite(out, file.path(d, out_file))
@@ -73,8 +76,10 @@ run_branch <- function(branch, out_file) {
               out_file, nrow(out), uniqueN(out$model), uniqueN(out[, .(model, bin_id)])))
 
   # what the perturbation actually did, per model x bin, against the unperturbed record
-  h <- if (branch == "energy") fread(file.path(d, "13.eobs_country_energy_weather_weighted.csv"))[year %in% S$YRS]
-       else fread(file.path(d, "8.eobs_nuts3_crop_weather_window.csv"))[year %in% S$YRS]
+  h <- switch(branch,
+    energy      = fread(file.path(d, "13.eobs_country_energy_weather_weighted.csv"))[year %in% S$YRS],
+    crop        = fread(file.path(d, "8.eobs_nuts3_crop_weather_window.csv"))[year %in% S$YRS],
+    crop_gddwin = fread(file.path(d, "11.crop_weather_gdd_window.csv"))[year %in% S$YRS][, closed := 1L])
   base <- sapply(val, function(v) mean(h[[v]], na.rm = TRUE))
   smry <- out[, c(.(n = n_years[1]), lapply(.SD, function(x) mean(x, na.rm = TRUE))),
               by = .(model, bin_id), .SDcols = val]
@@ -90,6 +95,10 @@ run_branch <- function(branch, out_file) {
   invisible(out)
 }
 
-run_branch("energy", "scenario_bins_energy_country.csv.gz")
-run_branch("crop",   "scenario_bins_crop_window.csv.gz")
+OUT <- c(energy      = "scenario_bins_energy_country.csv.gz",
+         crop        = "scenario_bins_crop_window.csv.gz",
+         crop_gddwin = "scenario_bins_crop_gddwin.csv.gz")
+# branches selectable from the command line so a single one can be (re)run without redoing the rest
+BRANCHES <- if (length(commandArgs(TRUE))) commandArgs(TRUE) else names(OUT)
+for (b in BRANCHES) run_branch(b, OUT[[b]])
 cat("\nAMOC bin branch done.\n")

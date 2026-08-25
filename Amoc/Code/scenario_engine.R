@@ -32,8 +32,15 @@ PR_CLAMP <- c(0.1, 10)      # multiplicative precip factor bounds (ymondiv spike
 })
 
 ## ---- branch setup ---------------------------------------------------------------------------
-# "energy": population-weighted country aggregate, HDD/CDD via the within-day integration.
-# "crop"  : area-weighted NUTS3 aggregate, daily indicators, monthly then summed over the window.
+# "energy"      : population-weighted country aggregate, HDD/CDD via the within-day integration.
+# "crop"        : area-weighted NUTS3, daily indicators, monthly then summed over a FIXED calendar
+#                 window (Mar-Jul main, Apr-Aug robustness).
+# "crop_gddwin" : same geography, but the window edges follow accumulated thermal time instead of
+#                 the calendar (gdd_window_daily.R). This is the specification that decides the sign
+#                 of beta_gdd: with a fixed window, a warm year samples a later phenological stage,
+#                 so "more GDD in Mar-Jul" partly measures window misalignment rather than a thermal
+#                 dose-response. Under a cooling scenario the window is exactly what moves, so the
+#                 AMOC branch has to be able to run on it.
 eobs_setup <- function(branch) {
   tmpl <- rast(ncf("tg"))[[1]]
   if (branch == "energy") {
@@ -54,8 +61,42 @@ eobs_setup <- function(branch) {
   xy <- xyFromCell(tmpl, cells)
   loni <- match(round(xy[, 1], 3), round(.ax$lon, 3)); lati <- match(round(xy[, 2], 3), round(.ax$lat, 3))
   stopifnot(!anyNA(loni), !anyNA(lati))
-  list(branch = branch, cells = cells, xy = xy, grp = grp, W = W, YRS = YRS,
-       read_yrs = read_yrs, vars = vars, ncdf_row = (lati - 1) * .ax$nlon + loni)
+  S <- list(branch = branch, cells = cells, xy = xy, grp = grp, W = W, YRS = YRS,
+            read_yrs = read_yrs, vars = vars, ncdf_row = (lati - 1) * .ax$nlon + loni)
+  if (branch == "crop_gddwin") { a <- gdd_anchors(S); S$g_open <- a$open; S$g_close <- a$close }
+  S
+}
+
+## ---- thermal-time window ----------------------------------------------------------------------
+# The thermal clock is UNCAPPED gdd (pmax(tg-5,0)), as in gdd_window_daily.R: the 28 C cap belongs to
+# the crop DOSE, not to the calendar of development. Verified separately that the cap is inert for
+# the coefficient anyway - the window is what matters.
+gdd_nocap  <- function(tg) pmax(tg - 5, 0)
+.rowcumsum <- function(x) { x[is.na(x)] <- 0; t(apply(x, 1, cumsum)) }   # an NA day contributes 0
+.ind_day   <- function(S, mat, fun) {                                   # area-weighted NUTS3 x day
+  v <- fun(mat); p <- !is.na(v); v[!p] <- 0
+  m <- as.matrix(S$W %*% v) / as.matrix(S$W %*% (p * 1)); m[!is.finite(m)] <- NA; m
+}
+# Anchors = mean OBSERVED cumGDD at end-Feb (open) and end-Jul (close) over 1990-2010, per region.
+# They stay at their observed values in every scenario ON PURPOSE: they stand for the crop's thermal
+# requirement, which does not move when the climate does. That is why the window shifts under
+# cooling - and why it may fail to close at all, which is reported rather than patched.
+gdd_anchors <- function(S) {
+  f <- file.path(d, "11c.gdd_window_anchors.csv")
+  if (file.exists(f)) { a <- fread(f); i <- match(S$grp, a$NUTS_ID)
+    return(list(open = a$g_open[i], close = a$g_close[i])) }
+  BASE <- 1990:2010; nc <- nc_open(ncf("tg"))
+  go <- cl <- numeric(length(S$grp))
+  for (y in BASE) {
+    ti <- which(.ax$yr == y); mm <- .ax$mo[ti]
+    a <- ncvar_get(nc, "tg", start = c(1, 1, ti[1]), count = c(-1, -1, length(ti)))
+    dim(a) <- c(.ax$nlon * .ax$nlat, length(ti))
+    cg <- .rowcumsum(.ind_day(S, a[S$ncdf_row, , drop = FALSE], gdd_nocap))
+    go <- go + cg[, max(which(mm == 2))]; cl <- cl + cg[, max(which(mm == 7))]
+  }
+  nc_close(nc); go <- go / length(BASE); cl <- cl / length(BASE)
+  fwrite(data.table(NUTS_ID = S$grp, g_open = go, g_close = cl), f)
+  list(open = go, close = cl)
 }
 
 ## ---- model field -> E-OBS cells (bilinear on cell centres) ----------------------------------
@@ -101,6 +142,19 @@ run_scenarios <- function(S, scen, chunk = 8L, verbose = TRUE) {
             cntr = rep(S$grp, length(ti)), date = rep(.ax$tvec[ti], each = length(S$grp)),
             hdd = as.vector(.wmean(S, within_day(TG, TX, TN, hdd_hinge))),
             cdd = as.vector(.wmean(S, within_day(TG, TX, TN, cdd_hinge))))
+        } else if (S$branch == "crop_gddwin") {
+          RR <- RAW$rr * sc$Rr[, mm]
+          G  <- .ind_day(S, TG, gdd_nocap); H <- .ind_day(S, TX, heat_daily)
+          Fr <- .ind_day(S, TN, frost_daily); P <- .ind_day(S, RR, identity)
+          cg <- .rowcumsum(G)
+          inwin <- (cg > S$g_open) & (cg <= S$g_close)      # days inside the thermal window
+          sw <- function(m) rowSums(m * inwin, na.rm = TRUE)
+          acc[[k]][[length(acc[[k]]) + 1L]] <- data.table(
+            NUTS_ID = S$grp, year = y, gdd = round(sw(G), 3), heat = round(sw(H), 3),
+            frost = round(sw(Fr), 3), precip = round(sw(P), 3), n_day = rowSums(inwin),
+            # the window CLOSED only if the year's thermal time ever reached the close anchor;
+            # where it did not, the crop never completed its cycle - reported, not hidden
+            closed = as.integer(cg[, ncol(cg)] > S$g_close))
         } else {
           RR <- RAW$rr * sc$Rr[, mm]                        # temp additive, precip multiplicative
           # NUTS3 x month first, rounded to 3dp, then summed over the window: the exact two-step of
@@ -131,6 +185,7 @@ CROP_WINDOWS <- list("Mar-Jul" = 3:7, "Apr-Aug" = 4:8)   # main window + the rob
 # energyweather_eobs_country.R:114-117 line for line, the >=150-day rule included; the crop side is
 # already reduced per year above and only needs the read window trimmed.
 .reduce <- function(S, dt) {
+  if (S$branch == "crop_gddwin") return(dt[year %in% S$YRS & n_day > 0][order(NUTS_ID, year)])
   if (S$branch == "crop") return(dt[year %in% S$YRS][order(NUTS_ID, year, window)])
   dt[, `:=`(y = year(date), m = month(date))]
   cal <- dt[y %in% S$YRS, .(hdd_calendar = sum(hdd)), by = .(cntr, year = y)]
@@ -155,6 +210,9 @@ selfcheck <- function(S, verbose = TRUE) {
   if (S$branch == "energy") {
     key <- c("cntr", "year"); vars <- c("hdd_calendar", "hdd_octmar", "cdd_jja")
     h <- fread(file.path(d, "13.eobs_country_energy_weather_weighted.csv"))[year %in% S$YRS]
+  } else if (S$branch == "crop_gddwin") {
+    key <- c("NUTS_ID", "year"); vars <- c("gdd", "heat", "frost", "precip", "n_day")
+    h <- fread(file.path(d, "11.crop_weather_gdd_window.csv"))[year %in% S$YRS]
   } else {
     key <- c("NUTS_ID", "year", "window"); vars <- c("gdd", "heat", "frost", "precip")
     h <- fread(file.path(d, "8.eobs_nuts3_crop_weather_window.csv"))[year %in% S$YRS]
