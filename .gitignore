@@ -32,3 +32,4 @@ Amoc/datasets/*
 *.zip
 *.h5
 *.hdf5
+Amoc/isimip_download.log
