@@ -121,6 +121,17 @@ pct <- function(x) 100 * (exp(x) - 1)            # log-linear outcome -> relativ
 ce <- crop_effect("scenario_bins_crop_window.csv.gz")
 ee <- energy_effect("scenario_bins_energy_country.csv.gz")
 
+# Coverage, reported rather than left to a silent merge: beta is transportable only where it was
+# identified, so the scenario geography is larger than the geography the effect is defined on.
+.scn <- fread(file.path(d, "scenario_bins_crop_window.csv.gz"), select = "NUTS_ID")
+cat(sprintf("\ncoverage | crop: scenario %d NUTS3 -> effect on %d NUTS3 in %d countries (%.0f%% of regions)\n",
+            uniqueN(.scn$NUTS_ID), uniqueN(w_crop$NUTS_ID), uniqueN(ce$cntr),
+            100 * uniqueN(w_crop$NUTS_ID) / uniqueN(.scn$NUTS_ID)))
+cat(sprintf("coverage | energy: effect on %d countries (electricity), %d (gas)\n",
+            uniqueN(ee[fuel == "Electricity"]$cntr), uniqueN(ee[fuel == "Natural gas"]$cntr)))
+cat("  the excluded regions get a perturbed climate but no impact estimate; that selection is\n")
+cat("  not random (yield data availability) and has not been characterised - see Appendix H.\n")
+
 # Europe aggregate: crop area across all crops/regions, population across countries
 ce_eu <- merge(ce, w_crop[, .(w = sum(w)), by = .(cntr, crop)], by = c("cntr", "crop"))[
   , .(dln = weighted.mean(dln, w)), by = c(BINKEY, "component")]
@@ -150,6 +161,13 @@ show <- function(x, lab, grp = NULL) {
   invisible(wide)
 }
 cat("\n================ CROP: effect on ln(yield), area-weighted Europe ================\n")
+cat("!! DO NOT REPORT THE CROP TOTAL BELOW AS A RESULT.\n")
+cat("!! Its sign comes entirely from beta_gdd < 0, which does not survive moving the crop\n")
+cat("!! window from the calendar to accumulated thermal time (soft wheat loses significance,\n")
+cat("!! spring barley changes sign, winter barley collapses to zero). The 28C cap is inert;\n")
+cat("!! the window does all the work. And the per-year band crosses zero in 16 of 20 bins.\n")
+cat("!! See Appendix I and amoc_impact_gddwin.R for the side-by-side. The components below\n")
+cat("!! are still informative; the net is not.\n")
 cat("(components in % of yield; TOTAL is the net)\n")
 show(ce_eu, "CROP, all crops")
 for (f in names(en_fit)) {
