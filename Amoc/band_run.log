@@ -1,0 +1,52 @@
+NOTE: 4/0 fixed-effect singletons were removed (4 observations).
+NOTE: 4/0 fixed-effect singletons were removed (4 observations).
+NOTE: 14/0 fixed-effect singletons were removed (14 observations).
+NOTE: 14/0 fixed-effect singletons were removed (14 observations).
+NOTE: 1/0 fixed-effect singleton was removed (1 observation).
+NOTE: 1/0 fixed-effect singleton was removed (1 observation).
+NOTE: 3/0 fixed-effect singletons were removed (3 observations).
+NOTE: 3/0 fixed-effect singletons were removed (3 observations).
+NOTE: 166 observations removed because of NA values (RHS: 166).
+NOTE: 166 observations removed because of NA values (RHS: 166).
+NOTE: 166 observations removed because of NA values (RHS: 166).
+NOTES: 326 observations removed because of NA values (RHS: 326).
+       0/1 fixed-effect singleton was removed (1 observation).
+NOTE: 326 observations removed because of NA values (RHS: 326).
+NOTES: 326 observations removed because of NA values (RHS: 326).
+       0/1 fixed-effect singleton was removed (1 observation).
+NOTE: 4/0 fixed-effect singletons were removed (4 observations).
+NOTE: 14/0 fixed-effect singletons were removed (14 observations).
+NOTE: 1/0 fixed-effect singleton was removed (1 observation).
+NOTE: 3/0 fixed-effect singletons were removed (3 observations).
+beta and weights loaded from amoc_impact.R (central estimate recomputed silently)
+-- CROP   | IPSL-CM6A-LR   | cached, skipped
+-- CROP   | EC-Earth3      | cached, skipped
+
+-- ENERGY | IPSL-CM6A-LR | 98 hosing years --
+.................................... [IPSL-CM6A-LR|y001, IPSL-CM6A-LR|y002, IPSL-CM6A-LR|y003, IPSL-CM6A-LR|y005, IPSL-CM6A-LR|y006, IPSL-CM6A-LR|y007, IPSL-CM6A-LR|y008, IPSL-CM6A-LR|y009]
+.................................... [IPSL-CM6A-LR|y010, IPSL-CM6A-LR|y011, IPSL-CM6A-LR|y012, IPSL-CM6A-LR|y013, IPSL-CM6A-LR|y014, IPSL-CM6A-LR|y015, IPSL-CM6A-LR|y016, IPSL-CM6A-LR|y017]
+.................................... [IPSL-CM6A-LR|y018, IPSL-CM6A-LR|y019, IPSL-CM6A-LR|y020, IPSL-CM6A-LR|y021, IPSL-CM6A-LR|y022, IPSL-CM6A-LR|y023, IPSL-CM6A-LR|y024, IPSL-CM6A-LR|y025]
+.................................... [IPSL-CM6A-LR|y026, IPSL-CM6A-LR|y027, IPSL-CM6A-LR|y028, IPSL-CM6A-LR|y029, IPSL-CM6A-LR|y030, IPSL-CM6A-LR|y031, IPSL-CM6A-LR|y032, IPSL-CM6A-LR|y033]
+.................................... [IPSL-CM6A-LR|y034, IPSL-CM6A-LR|y035, IPSL-CM6A-LR|y036, IPSL-CM6A-LR|y037, IPSL-CM6A-LR|y038, IPSL-CM6A-LR|y039, IPSL-CM6A-LR|y040, IPSL-CM6A-LR|y041]
+.................................... [IPSL-CM6A-LR|y042, IPSL-CM6A-LR|y043, IPSL-CM6A-LR|y044, IPSL-CM6A-LR|y045, IPSL-CM6A-LR|y046, IPSL-CM6A-LR|y047, IPSL-CM6A-LR|y048, IPSL-CM6A-LR|y049]
+.................................... [IPSL-CM6A-LR|y050, IPSL-CM6A-LR|y051, IPSL-CM6A-LR|y052, IPSL-CM6A-LR|y053, IPSL-CM6A-LR|y054, IPSL-CM6A-LR|y055, IPSL-CM6A-LR|y056, IPSL-CM6A-LR|y057]
+.................................... [IPSL-CM6A-LR|y058, IPSL-CM6A-LR|y059, IPSL-CM6A-LR|y060, IPSL-CM6A-LR|y061, IPSL-CM6A-LR|y062, IPSL-CM6A-LR|y063, IPSL-CM6A-LR|y064, IPSL-CM6A-LR|y065]
+.................................... [IPSL-CM6A-LR|y066, IPSL-CM6A-LR|y067, IPSL-CM6A-LR|y068, IPSL-CM6A-LR|y069, IPSL-CM6A-LR|y070, IPSL-CM6A-LR|y071, IPSL-CM6A-LR|y072, IPSL-CM6A-LR|y073]
+.................................... [IPSL-CM6A-LR|y074, IPSL-CM6A-LR|y075, IPSL-CM6A-LR|y076, IPSL-CM6A-LR|y077, IPSL-CM6A-LR|y078, IPSL-CM6A-LR|y079, IPSL-CM6A-LR|y080, IPSL-CM6A-LR|y081]
+.................................... [IPSL-CM6A-LR|y082, IPSL-CM6A-LR|y084, IPSL-CM6A-LR|y085, IPSL-CM6A-LR|y086, IPSL-CM6A-LR|y087, IPSL-CM6A-LR|y088, IPSL-CM6A-LR|y089, IPSL-CM6A-LR|y090]
+.................................... [IPSL-CM6A-LR|y091, IPSL-CM6A-LR|y092, IPSL-CM6A-LR|y093, IPSL-CM6A-LR|y094, IPSL-CM6A-LR|y095, IPSL-CM6A-LR|y096, IPSL-CM6A-LR|y097, IPSL-CM6A-LR|y098]
+.................................... [IPSL-CM6A-LR|y099, IPSL-CM6A-LR|y100]
+   replay 208.7 min
+
+-- ENERGY | EC-Earth3 | 99 hosing years --
+.................................... [EC-Earth3|y001, EC-Earth3|y002, EC-Earth3|y003, EC-Earth3|y004, EC-Earth3|y005, EC-Earth3|y006, EC-Earth3|y008, EC-Earth3|y009]
+.................................... [EC-Earth3|y010, EC-Earth3|y011, EC-Earth3|y012, EC-Earth3|y013, EC-Earth3|y014, EC-Earth3|y015, EC-Earth3|y016, EC-Earth3|y017]
+.................................... [EC-Earth3|y018, EC-Earth3|y019, EC-Earth3|y020, EC-Earth3|y021, EC-Earth3|y022, EC-Earth3|y023, EC-Earth3|y024, EC-Earth3|y025]
+.................................... [EC-Earth3|y026, EC-Earth3|y027, EC-Earth3|y028, EC-Earth3|y029, EC-Earth3|y030, EC-Earth3|y031, EC-Earth3|y032, EC-Earth3|y033]
+.................................... [EC-Earth3|y034, EC-Earth3|y035, EC-Earth3|y036, EC-Earth3|y037, EC-Earth3|y038, EC-Earth3|y039, EC-Earth3|y040, EC-Earth3|y041]
+.................................... [EC-Earth3|y042, EC-Earth3|y043, EC-Earth3|y044, EC-Earth3|y045, EC-Earth3|y046, EC-Earth3|y047, EC-Earth3|y048, EC-Earth3|y049]
+.................................... [EC-Earth3|y050, EC-Earth3|y051, EC-Earth3|y052, EC-Earth3|y053, EC-Earth3|y054, EC-Earth3|y055, EC-Earth3|y056, EC-Earth3|y057]
+.................................... [EC-Earth3|y058, EC-Earth3|y059, EC-Earth3|y060, EC-Earth3|y061, EC-Earth3|y062, EC-Earth3|y063, EC-Earth3|y064, EC-Earth3|y065]
+.................................... [EC-Earth3|y066, EC-Earth3|y067, EC-Earth3|y068, EC-Earth3|y069, EC-Earth3|y070, EC-Earth3|y071, EC-Earth3|y072, EC-Earth3|y073]
+.................................... [EC-Earth3|y074, EC-Earth3|y075, EC-Earth3|y076, EC-Earth3|y077, EC-Earth3|y078, EC-Earth3|y079, EC-Earth3|y080, EC-Earth3|y081]
+..................
