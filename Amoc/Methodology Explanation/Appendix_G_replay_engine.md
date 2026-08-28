@@ -146,6 +146,48 @@ the consolidation provably changed nothing.
 
 ---
 
+## G.5b Ordering of the perturbed temperature fields
+
+Nothing in the delta method enforces `tn ≤ tg ≤ tx` after perturbation: three
+independent additive deltas are applied to three fields, and
+
+$$TX - TG = (tx^{\text{obs}} - tg^{\text{obs}}) + (\delta_{tx} - \delta_{tg})$$
+
+can turn negative wherever the differential delta exceeds the observed diurnal
+half-range on a given day. The differential deltas are not small: across the bin
+fields `δtx − δtg` spans −1.15 to +4.61 K (IPSL, strongest bin) and −2.94 to
++4.22 K (HadGEM3-GC3-1MM). The engine therefore reports the violation rate as a
+standing diagnostic (`order_check`), on the strongest bin of each model.
+
+Measured on 4.43 million cell-days:
+
+| | `tx < tg` | `tg < tn` | mean diurnal range |
+|---|---|---|---|
+| **E-OBS baseline, unperturbed** | 0.248 % | 0.499 % | 9.06 K |
+| IPSL-CM6A-LR, −9.5 Sv | 0.151 % | 0.443 % | 9.21 K |
+| EC-Earth3, −9.5 Sv | 0.245 % | 0.548 % | 8.86 K |
+| HadGEM3-GC3-1LL, −8.5 Sv | 0.258 % | 0.514 % | 9.27 K |
+| HadGEM3-GC3-1MM, −14.5 Sv | 0.139 % | 0.278 % | 10.17 K |
+
+Two things follow. First, **the observational baseline already violates the
+ordering**, on roughly 0.25 % of cell-days for `tx < tg` and 0.5 % for `tg < tn`.
+This is a property of E-OBS: the three fields are interpolated from station data
+independently, by three separate kriging passes, and the ordering that holds at each
+station is not preserved on the grid. Both branches inherit it; neither introduces
+it. Second, **the perturbation does not make it worse** — the worst case across the
+four models is EC-Earth3 raising `tg < tn` from 0.499 % to 0.548 %, a rise of five
+hundredths of a percentage point, while HadGEM3-GC3-1MM roughly halves both rates.
+
+The consequences for the indicators were checked rather than assumed. The within-day
+integration is **invariant to the sign** of the amplitude `(tx − tn)/2`, because the
+sine sampled over a full cycle is symmetric about zero, so HDD and CDD are unaffected
+even where the ordering inverts. `heat_daily` and `frost_daily` read `tx` and `tn` on
+the affected days, but those are days on which the artefact arises precisely because
+the day is cold (for `tx < tg`) or mild (for `tg < tn`), and the indicator is zero
+there in any case.
+
+---
+
 ## G.6 The thermal-time window
 
 The `crop_gddwin` branch exists because the choice of window is not innocuous, and

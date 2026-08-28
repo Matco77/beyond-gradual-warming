@@ -121,6 +121,44 @@ of the uncertainty band receive identical treatment.
 
 ---
 
+## F.3b Provenance of the daily temperature extremes
+
+The three temperature fields do not have the same status across models, and this is
+not visible in the bin files themselves.
+
+| Model | `tasmin` / `tasmax` in the hosing runs |
+|---|---|
+| IPSL-CM6A-LR | **reconstructed** from `tas` by per-cell, per-calendar-month OLS calibrated on piControl (Appendix B) |
+| EC-Earth3 | **reconstructed**, same procedure |
+| HadGEM3-GC3-1LL | native model output |
+| HadGEM3-GC3-1MM | native model output |
+
+The two principal models therefore carry a *statistically inferred* diurnal range,
+while the two sensitivity models carry a simulated one. Two independent regression
+lines evaluated far from their calibration point can in principle cross, so the
+ordering `tasmin ≤ tas ≤ tasmax` is not guaranteed by the reconstruction.
+
+The reconstruction was checked against the native models by comparing the implied
+**change in diurnal range** over Europe (the piControl climatology cancels in the
+anomaly difference `Δtasmax − Δtasmin`), over the last ten hosing years:
+
+| Model | min | 1 % | median | 99 % | max |
+|---|---|---|---|---|---|
+| IPSL-CM6A-LR (reconstructed) | −4.95 | −2.63 | +0.10 | +8.11 | +15.52 |
+| EC-Earth3 (reconstructed) | −6.46 | −2.11 | +0.07 | +4.23 | +9.20 |
+| HadGEM3-GC3-1LL (native) | −9.89 | −3.45 | +0.05 | +4.30 | +8.70 |
+| HadGEM3-GC3-1MM (native) | −9.83 | −2.77 | +0.51 | +7.42 | +15.06 |
+
+Medians are near zero in all four, and the central 98 % ranges are comparable. The
+reconstructed models have **narrower negative tails** than the native ones (−5.0 and
+−6.5 against −9.9 and −9.8), which is the expected behaviour of a linear smoother:
+OLS shrinks towards the fitted line. The reconstruction therefore does not fabricate
+extreme diurnal-range responses; if it errs, it errs by **damping** the diurnal
+signal in the two principal models relative to what a native model would produce.
+That is the conservative direction, but it should be stated rather than assumed.
+
+---
+
 ## F.4 Validation
 
 Because the script that produced the pre-existing annual fields is not in the

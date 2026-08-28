@@ -198,6 +198,42 @@ CROP_WINDOWS <- list("Mar-Jul" = 3:7, "Apr-Aug" = 4:8)   # main window + the rob
       .SDcols = c("hdd_calendar", "hdd_octmar", "cdd_jja")][]   # same rounding as 13.
 }
 
+## ---- ordering diagnostic: does tn <= tg <= tx survive the perturbation? -----------------------
+# Nothing in the delta method enforces the ordering of the three temperature fields. Three
+# independent additive deltas are applied to three fields, so
+#     TX - TG = (tx_obs - tg_obs) + (dtx - dtg)
+# can go negative wherever the differential delta exceeds the observed diurnal half-range. The
+# deltas are not small: across the bin fields, dtx - dtg spans -1.15 to +4.61 K (IPSL, strongest
+# bin) and -2.94 to +4.22 K (HadGEM3-GC3-1MM), i.e. the diurnal range genuinely moves.
+#
+# Two things this diagnostic has already established and which are worth keeping visible:
+#   - E-OBS ITSELF violates the ordering on ~0.2% (tx<tg) and ~0.5% (tg<tn) of cell-days, because
+#     tg, tx and tn are interpolated from station data independently and the per-station ordering
+#     is not preserved by three separate kriging passes. Both branches inherit this from the
+#     baseline; it is not introduced here.
+#   - The perturbation does not make it worse. On the strongest IPSL bin the violation rate FALLS
+#     (0.209% -> 0.135% and 0.539% -> 0.419%), because the delta widens the mean diurnal range.
+#
+# Consequences for the indicators, checked rather than assumed: within_day() is invariant to the
+# SIGN of the amplitude (tx-tn)/2, since sin() sampled on a full cycle is symmetric about zero, so
+# HDD and CDD are unaffected; heat_daily and frost_daily read tx and tn on days where the artefact
+# puts them on the wrong side of tg, but those are days where the indicator is zero anyway.
+order_check <- function(S, sc, year = NULL) {
+  y  <- if (is.null(year)) S$YRS[length(S$YRS) %/% 2] else year
+  ti <- which(.ax$yr == y); mm <- .ax$mo[ti]
+  ncs <- lapply(c("tg","tx","tn"), function(v) nc_open(ncf(v))); names(ncs) <- c("tg","tx","tn")
+  rd <- function(v) { a <- ncvar_get(ncs[[v]], v, start = c(1,1,ti[1]), count = c(-1,-1,length(ti)))
+    dim(a) <- c(.ax$nlon * .ax$nlat, length(ti)); a[S$ncdf_row, , drop = FALSE] }
+  TGo <- rd("tg"); TXo <- rd("tx"); TNo <- rd("tn"); for (nc in ncs) nc_close(nc)
+  TG <- TGo + sc$dtg[, mm]; TX <- TXo + sc$dtx[, mm]; TN <- TNo + sc$dtn[, mm]
+  ok <- !is.na(TGo) & !is.na(TXo) & !is.na(TNo); n <- sum(ok)
+  f <- function(a, b) 100 * sum(a[ok] < b[ok]) / n
+  cat(sprintf("  ordering %d | cell-days %d | tx<tg %.3f%% -> %.3f%% | tg<tn %.3f%% -> %.3f%% | DTR %.2f -> %.2f K\n",
+              y, n, f(TXo,TGo), f(TX,TG), f(TGo,TNo), f(TG,TN),
+              mean((TXo-TNo)[ok]), mean((TX-TN)[ok])))
+  invisible(list(n = n, tx_lt_tg = f(TX,TG), tg_lt_tn = f(TG,TN)))
+}
+
 ## ---- zero-delta self-check -------------------------------------------------------------------
 # With delta = 0 and ratio = 1 the engine is the estimation pipeline with a "+0" and a "*1" in it,
 # so any difference from 8. / 13. is a defect of the engine (wrong cells, wrong month mapping,

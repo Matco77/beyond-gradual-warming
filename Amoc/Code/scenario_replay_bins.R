@@ -58,6 +58,13 @@ run_branch <- function(branch, out_file) {
   cat(sprintf("-- %d scenarios (%s) --\n", length(scen),
               paste(sprintf("%s:%d", MODELS, sapply(MODELS, function(m) sum(meta$model == m))), collapse = " ")))
 
+  # ordering diagnostic on the strongest bin of each model: the deltas move the diurnal range by
+  # several K, and nothing in the method guarantees tn <= tg <= tx survives that
+  if (branch != "energy") for (m in MODELS) {
+    k <- meta[model == m][which.min(bin_id)]$id
+    cat(sprintf(" %s, bin %s Sv:\n", m, meta[id == k]$bin_id))
+    order_check(S, scen[[k]])
+  }
   t0  <- Sys.time()
   res <- run_scenarios(S, scen)
   cat(sprintf("-- %d scenarios in %.1f min --\n", length(scen),
