@@ -22,7 +22,7 @@ isimip_client.ISIMIPClient defaults to v2, so let it own the URL rather than har
 Resumable: a (model, scenario, variable) group whose cutouts are already in OUT_DIR is skipped,
 so the script can be killed and restarted without losing work.
 """
-import os, re, sys, time, urllib.parse, urllib.request, json
+import os, re, shutil, sys, tempfile, time, urllib.parse, urllib.request, json, zipfile
 from isimip_client.client import ISIMIPClient
 
 ROOT    = os.path.expanduser("~/Library/CloudStorage/OneDrive-UniversitàCommercialeLuigiBocconi/1.Tesi")
@@ -69,12 +69,28 @@ def wanted():
     return out
 
 
+def readable(path):
+    """Cheap integrity test: a NetCDF4 file starts with the HDF5 signature, a classic one with
+    'CDF'. A zero-length or truncated-at-the-front file fails here; combined with the staged
+    extraction below (nothing enters OUT_DIR until the whole archive has unpacked), this makes a
+    half-written group impossible to mistake for a finished one."""
+    try:
+        if os.path.getsize(path) < 4096:
+            return False
+        with open(path, "rb") as fh:
+            head = fh.read(8)
+        return head.startswith(b"\x89HDF\r\n\x1a\n") or head[:3] == b"CDF"
+    except OSError:
+        return False
+
+
 def already(fm, sc, v, n_expected):
-    """A group is done when OUT_DIR holds n_expected cutouts matching model+scenario+variable."""
+    """A group is done when OUT_DIR holds n_expected READABLE cutouts for it."""
     if not os.path.isdir(OUT_DIR):
         return False
     pat = re.compile(rf"^{re.escape(fm)}_.*_{re.escape(sc)}_{re.escape(v)}_.*\.nc$")
-    return sum(bool(pat.match(f)) for f in os.listdir(OUT_DIR)) >= n_expected
+    good = [f for f in os.listdir(OUT_DIR) if pat.match(f) and readable(os.path.join(OUT_DIR, f))]
+    return len(good) >= n_expected
 
 
 def main():
@@ -106,8 +122,26 @@ def main():
             if r.get("status") != "finished":
                 log(f"    FAILED status={r.get('status')}")
                 failed.append(label); continue
-            client.download(r["file_url"], path=OUT_DIR, extract=True)
-            log(f"    done in {time.time()-t0:.0f}s")
+            # Staged: fetch the archive to a scratch dir, unpack there, verify, and only then
+            # move the files into OUT_DIR. A power cut at any point leaves OUT_DIR untouched, so
+            # the group is simply redone on the next run instead of being half-present and
+            # counted as finished. The archive is deleted afterwards - isimip-client keeps it
+            # otherwise, which doubles the space used.
+            with tempfile.TemporaryDirectory(dir=OUT_DIR, prefix=".staging_") as tmp:
+                client.download(r["file_url"], path=tmp, extract=False)
+                zips = [os.path.join(tmp, f) for f in os.listdir(tmp) if f.endswith(".zip")]
+                if not zips:
+                    log("    FAILED no archive downloaded"); failed.append(label); continue
+                with zipfile.ZipFile(zips[0]) as z:
+                    z.extractall(tmp)
+                got = [f for f in os.listdir(tmp) if f.endswith(".nc")]
+                bad = [f for f in got if not readable(os.path.join(tmp, f))]
+                if len(got) < len(fs) or bad:
+                    log(f"    FAILED extracted {len(got)}/{len(fs)}, unreadable {len(bad)}")
+                    failed.append(label); continue
+                for f in got:
+                    shutil.move(os.path.join(tmp, f), os.path.join(OUT_DIR, f))
+            log(f"    done in {time.time()-t0:.0f}s ({len(got)} files)")
         except Exception as e:
             log(f"    ERROR {e!r}")
             failed.append(label)
