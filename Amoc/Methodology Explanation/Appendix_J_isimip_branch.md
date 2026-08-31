@@ -252,6 +252,39 @@ should be read accordingly.
 
 ---
 
+## J.4d The vertical marker was dropped
+
+§J.4c already weakens the vertical marker to a same-trajectory-but-different-moment
+comparison. A second, more basic problem removes what was left of its value, and the
+figures (`Amoc/Code/plot_impact_curve_crop.R`, `plot_impact_curve_energy.R`) no
+longer draw it.
+
+**The AMOC bins and the ssp126 marker are not the same physical quantity even at a
+shared moment.** The bin construction (Appendix C) is `hosing − piControl
+climatology`: piControl carries no rising greenhouse forcing at all, so the bins
+isolate a **pure hosing effect** against an otherwise static climate. ssp126's AMOC
+weakening, by contrast, occurs **inside** a real, if modest, greenhouse-driven
+warming — the ocean circulation change and the background warming are not
+separable in that simulation the way they are by construction in the hosing
+protocol. A vertical marker built from the ssp126 diagnostic would place a
+mixed (circulation + warming) quantity on an axis that measures a pure
+circulation effect. This is very likely the deeper reason the two branches disagree
+in sign throughout Appendices H and J (e.g. crop spec A: positive under the AMOC
+bins, −8.7 to −10.3 % under ISIMIP) — not only, and probably not mainly, the
+time-window mismatch of §J.4c, which is a smaller effect on top of this one.
+
+Given that, a crossing point between the AMOC curve and a marked ssp126 Sv level
+would not have been a meaningful check under any choice of time window: fixing
+§J.4c's mismatch (e.g. marking the 2071–2100 AMOC mean instead of the
+whole-trajectory minimum) would not fix this second problem. The marker is
+therefore dropped rather than patched. The horizontal line — the ISIMIP branch's
+own effect, Appendix J's actual result — stands on its own and does not depend on
+any AMOC-bin crossing point to be interpretable; it is reported in §J.4's tables
+and as a plain reference line in the Phase 4 figures, with no implied correspondence
+to a specific point on the AMOC curve.
+
+---
+
 ## J.5 What this appendix does not establish
 
 No uncertainty band is computed for this branch. Appendix I's band disperses the

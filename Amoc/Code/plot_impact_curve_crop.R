@@ -9,14 +9,14 @@
 # on IPSL-CM6A-LR and EC-Earth3 - the two models it was computed for - as the range across the
 # individual years that populate each bin, not an analytic error bar.
 #
-# Two reference markers, from TWO DIFFERENT sources AND two DIFFERENT time windows of the same
-# simulation - see Appendix J, J.4b-J.4c before reading this figure as a same-time comparison. The
-# vertical line is each model's own ssp126 CMIP6 run's ocean-circulation diagnostic (NOT ISIMIP3b -
-# plot_impact_common.R::ssp126_target_sv), taken at the single most negative year of the WHOLE
-# run - for IPSL-CM6A-LR that year is 2173, a century past the horizontal line's window. The
-# horizontal line is the ISIMIP3b branch's effect (Appendix J) over 2071-2100 specifically. The
-# crossing point is therefore two reference points on one trajectory, not a prediction check for a
-# shared period - weaker than "same simulation" alone would suggest.
+# One reference marker: a horizontal line at the ISIMIP3b branch's own effect (Appendix J), over
+# 2071-2100. NO vertical Sv marker - a vertical line at the AMOC level each model's own ssp126 run
+# implies was dropped (Appendix J, J.4d) after checking two things: it comes from a different time
+# window than the horizontal line (J.4c - the single most negative YEAR of the whole run, not the
+# 2071-2100 average), and the AMOC bins isolate a PURE hosing effect against an unforced piControl
+# baseline (Appendix C) while ssp126's AMOC weakening happens alongside real background greenhouse
+# warming (Appendix F, F.0) - two different physical quantities, not the same one at two moments.
+# A crossing point built from that pairing would not have been a meaningful check.
 source(path.expand("~/Library/CloudStorage/OneDrive-UniversitàCommercialeLuigiBocconi/1.Tesi/Amoc/Code/plot_impact_common.R"))
 
 A <- totalise(fread(file.path(d, "amoc_impact_crop_eu.csv")),   c("model", "bin_id", "delta_sv", "n_years"))
@@ -51,17 +51,14 @@ panel <- function(mdl, ylim, show_legend = FALSE) {
 
   key <- ISIMIP_KEY[mdl]
   if (!is.na(key) && key %in% IsoA$model) {
-    tgt <- ssp126_target_sv(mdl)
-    abline(v = tgt, col = "grey40", lty = 3)
     yA <- IsoA[model == key]$pct; yC <- IsoC[model == key]$pct
     abline(h = yA, col = "grey40", lty = 2); abline(h = yC, col = "grey40", lty = 3)
-    text(tgt, ylim[2], sprintf("ssp126 %.1f Sv", tgt), col = "grey30", cex = 0.65, pos = 2, srt = 90, offset = 0.3)
   }
   title(main = mdl, cex.main = 1)
   if (show_legend) legend("topright", bg = "white", box.col = NA, cex = 0.65,
-    legend = c("spec A (Mar-Jul)", "spec C (thermal window)", "spec A per-year range", "ssp126 AMOC target", "ISIMIP effect (A / C)"),
-    col = c(col, col, rgb(rgbcol[1], rgbcol[2], rgbcol[3], 0.5), "grey40", "grey40"), lty = c(1,2,NA,3,2), pch = c(16,21,15,NA,NA),
-    lwd = c(2,1.4,NA,1,1), pt.cex = c(1,0.9,1.6,1,1))
+    legend = c("spec A (Mar-Jul)", "spec C (thermal window)", "spec A per-year range", "ISIMIP effect (A / C)"),
+    col = c(col, col, rgb(rgbcol[1], rgbcol[2], rgbcol[3], 0.5), "grey40"), lty = c(1,2,NA,2), pch = c(16,21,15,NA),
+    lwd = c(2,1.4,NA,1), pt.cex = c(1,0.9,1.6,1))
 }
 
 xr <- range(A$delta_sv); yr <- range(pct(c(A$dln, C$dln, BND$lo, BND$hi)), na.rm = TRUE)
@@ -90,8 +87,7 @@ text(0.5, 0.58, "neither total is a standalone estimate (Appendix I) -", cex = 0
 text(0.5, 0.51, "reported together so the specification sensitivity is visible", cex = 0.75, col = "grey30")
 text(0.5, 0.36, "shaded band: range across the bin's individual hosing years,", cex = 0.7, col = "grey30")
 text(0.5, 0.29, "spec A only, IPSL-CM6A-LR and EC-Earth3 (Appendix I)", cex = 0.7, col = "grey30")
-text(0.5, 0.18, "vertical: ocean circulation, SAME run's single most extreme year -", cex = 0.65, col = "grey30")
-text(0.5, 0.12, "NOT the 2071-2100 window the horizontal line uses (Appendix J, J.4c)", cex = 0.65, col = "grey30")
-text(0.5, 0.05, "horizontal: the ISIMIP3b branch's own effect over 2071-2100", cex = 0.65, col = "grey30")
+text(0.5, 0.14, "horizontal line: the ISIMIP3b branch's own effect over 2071-2100,", cex = 0.7, col = "grey30")
+text(0.5, 0.07, "a SEPARATE quantity from this curve, not a same-Sv prediction (Appendix J, J.4d)", cex = 0.65, col = "grey30")
 dev.off()
 cat("wrote", file.path(out, "impact_curve_crop.pdf"), "\n")

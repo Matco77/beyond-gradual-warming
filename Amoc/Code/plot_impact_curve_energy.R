@@ -5,12 +5,16 @@
 # (Appendix I, H.7): the windows are calendar constructions (the heating year, Oct-Mar, JJA) that
 # correspond to actual consumption cycles, not to a biological process whose timing shifts with
 # temperature. The per-hosing-year band (Appendix I) is drawn for IPSL-CM6A-LR and EC-Earth3, the
-# two models it was computed for. Two reference markers as in plot_impact_curve_crop.R, from TWO
-# DIFFERENT sources AND two DIFFERENT time windows of the same simulation - see Appendix J,
-# J.4b-J.4c. The vertical line is the ocean-circulation diagnostic (NOT ISIMIP3b) at the single most
-# negative year of the WHOLE ssp126 run; the horizontal line is the ISIMIP3b branch's effect over
-# 2071-2100 specifically. The crossing point is two reference points on one trajectory, not a
-# same-period prediction check.
+# two models it was computed for.
+#
+# One reference marker: a horizontal line at the ISIMIP3b branch's own effect (Appendix J), over
+# 2071-2100. NO vertical Sv marker - dropped (Appendix J, J.4d) after checking two things: the AMOC
+# level it would mark comes from a different time window than the horizontal line (J.4c - the
+# single most negative YEAR of the whole ssp126 run, not the 2071-2100 average), and the AMOC bins
+# isolate a PURE hosing effect against an unforced piControl baseline (Appendix C) while ssp126's
+# AMOC weakening happens alongside real background greenhouse warming (Appendix F, F.0) - two
+# different physical quantities, not the same one at two moments. A crossing point built from that
+# pairing would not have been a meaningful check.
 #
 # NAMING NOTE, applies throughout this file: loop/argument variables are `mdl` and `fl`, never
 # `model` or `fuel`. Inside data.table's `[`, a bare `E[model == model]` or `E[fuel == fuel]`
@@ -43,11 +47,8 @@ panel <- function(mdl, fl, ylim) {
 
   key <- ISIMIP_KEY[mdl]
   if (!is.na(key) && key %in% Iso[fuel == fl]$model) {
-    tgt <- ssp126_target_sv(mdl)
-    abline(v = tgt, col = "grey40", lty = 3)
     yI <- Iso[model == key & fuel == fl]$pct
     abline(h = yI, col = "grey40", lty = 2)
-    text(tgt, ylim[2], sprintf("ssp126 %.1f Sv", tgt), col = "grey30", cex = 0.65, pos = 2, srt = 90, offset = 0.3)
   }
   title(main = mdl, cex.main = 1)
 }
@@ -78,9 +79,8 @@ for (fl in FUELS) {
   text(0.5, 0.70, "constructions matching real consumption cycles, no window ambiguity", cex = 0.72, col = "grey30")
   text(0.5, 0.55, "shaded band: range across the bin's individual hosing years,", cex = 0.7, col = "grey30")
   text(0.5, 0.48, "IPSL-CM6A-LR and EC-Earth3 only (Appendix I)", cex = 0.7, col = "grey30")
-  text(0.5, 0.36, "vertical: ocean circulation, SAME run's single most extreme year -", cex = 0.65, col = "grey30")
-  text(0.5, 0.30, "NOT the 2071-2100 window the horizontal line uses (Appendix J, J.4c)", cex = 0.65, col = "grey30")
-  text(0.5, 0.24, "horizontal: the ISIMIP3b branch's own effect over 2071-2100", cex = 0.65, col = "grey30")
+  text(0.5, 0.32, "horizontal line: the ISIMIP3b branch's own effect over 2071-2100,", cex = 0.7, col = "grey30")
+  text(0.5, 0.25, "a SEPARATE quantity from this curve, not a same-Sv prediction (Appendix J, J.4d)", cex = 0.65, col = "grey30")
   text(0.5, 0.10, "caveat (Appendix I, I.4): the AMOC bins extrapolate the linear response", cex = 0.65, col = "grey40")
   text(0.5, 0.04, "function up to ~9 s.d. beyond the range that identifies the coefficients", cex = 0.65, col = "grey40")
 }

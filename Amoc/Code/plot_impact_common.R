@@ -1,6 +1,6 @@
 # Shared constants and helpers for the Phase 4 impact-vs-Sv curves (crop and energy).
 # Author: Marco Bova
-suppressMessages({library(ncdf4); library(data.table)})
+suppressMessages({library(data.table)})
 d   <- path.expand("~/Library/CloudStorage/OneDrive-UniversitàCommercialeLuigiBocconi/1.Tesi/Amoc/datasets")
 out <- path.expand("~/Library/CloudStorage/OneDrive-UniversitàCommercialeLuigiBocconi/1.Tesi/Amoc/Plots_Anomaly")
 
@@ -14,31 +14,13 @@ ISIMIP_KEY <- c("IPSL-CM6A-LR" = "ipsl-cm6a-lr", "EC-Earth3" = "ec-earth3")
 
 pct <- function(x) 100 * (exp(x) - 1)          # log-effect -> % change, used throughout Phase 2/3
 
-# The AMOC decline each model's OWN ssp126 run projects, read from the k10 target files rather
-# than hardcoded, so a re-run of that pipeline cannot silently drift from the number plotted here.
-#
-# NOT computed from the ISIMIP3b files: ISIMIP3b (Appendix J) bias-adjusts only the SURFACE
-# atmosphere (tas/tasmin/tasmax/pr) and carries no ocean circulation output, so this target comes
-# from the ocean diagnostic instead - Terhaar's msftyz-based reconstruction for IPSL-CM6A-LR, an
-# own vo-based reconstruction for EC-Earth3 (Amoc/Code/anomaly/plot_amoc_sv_ssp126.R), as
-# min(ssp126 AMOC) - mean(1850-1900 historical AMOC).
-#
-# But it IS the same underlying simulation as the Phase 3 ISIMIP branch, not an unrelated one -
-# checked against both file sets' naming, which encodes CMIP6 model+member+experiment: Terhaar's
-# file is "amoc_ssp126_IPSL_IPSL-CM6A-LR_r1i1p1f1.nc", the EC-Earth3 reconstruction's source
-# attribute reads "vo (Omon, gn), EC-Earth3 r1i1p1f1", and the ISIMIP3b downloads are
-# "ipsl-cm6a-lr_r1i1p1f1_..." / "ec-earth3_r1i1p1f1_...". Same model, same r1i1p1f1 ensemble
-# member, same ssp126 experiment on both sides. So the vertical line (ocean circulation) and the
-# horizontal line (Appendix J's effect, from the bias-adjusted atmosphere) are two diagnostics of
-# the SAME simulated future, not two independent ones - which is what makes the crossing point a
-# meaningful check rather than a comparison of unrelated quantities. HadGEM has no target file (no
-# target computed for it in that earlier pipeline stage).
-ssp126_target_sv <- function(model) {
-  f <- file.path(d, sprintf("amoc_effect_%s_u03_target_k10.nc", model))
-  if (!file.exists(f)) return(NA_real_)
-  nc <- nc_open(f); v <- ncatt_get(nc, 0, "target_delta_sv")$value; nc_close(nc)
-  as.numeric(sub(" Sv$", "", v))
-}
+# No ssp126-AMOC-level marker here (there was one; dropped - Appendix J, J.4d). It would have paired
+# a moment along the ssp126 trajectory (the single most negative year, decades away from the
+# horizontal line's 2071-2100 window - J.4c) with a quantity the AMOC bins do not isolate the same
+# way: the bins are a pure hosing effect against an unforced piControl baseline (Appendix C), while
+# ssp126's AMOC weakening happens alongside real background greenhouse warming. Not the same
+# physical quantity at two moments - two different quantities - so no crossing point built from it
+# would have been a meaningful check.
 
 # sum a component-level effect table (model, bin_id[, delta_sv, n_years], component, dln) to one
 # TOTAL row per group, in % (pct()) - used for both the AMOC bin curve and the ISIMIP single point
