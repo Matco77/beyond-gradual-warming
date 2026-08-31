@@ -30,7 +30,7 @@ panel <- function(mdl, ylim, show_legend = FALSE) {
   # scope, so it silently becomes `A[model_col == model_col]` (always TRUE, every row). Verified
   # this actually happens (not a hypothetical) before shipping the plot.
   a <- A[model == mdl][order(delta_sv)]; c_ <- C[model == mdl][order(delta_sv)]
-  col <- COL[mdl]; rgbcol <- col2rgb(col) / 255       # also used by the legend swatch below
+  col <- COL[mdl]
   # per-model x-range (not the shared range across models): HadGEM3-GC3-1MM's bins run to -14.3 Sv
   # while IPSL/EC-Earth3 stop near -9.3, so a shared x-axis would leave most panels mostly empty.
   # The y-axis (effect size) IS shared (ylim, passed in) so magnitudes stay comparable across panels.
@@ -42,7 +42,7 @@ panel <- function(mdl, ylim, show_legend = FALSE) {
   if (nrow(bnd)) {
     for (i in seq_len(nrow(bnd)))
       segments(bnd$bin_id[i], pct(bnd$lo[i]), bnd$bin_id[i], pct(bnd$hi[i]),
-               col = rgb(rgbcol[1], rgbcol[2], rgbcol[3], 0.35), lwd = 5, lend = 1)
+               col = tint(col, 0.35), lwd = 5, lend = 1)
   }
   lines(a$delta_sv, a$pct, col = col, lwd = 2); points(a$delta_sv, a$pct, col = col, pch = 16, cex = 1.1)
   lines(c_$delta_sv, c_$pct, col = col, lwd = 1.4, lty = 2); points(c_$delta_sv, c_$pct, col = col, pch = 21, bg = "white", cex = 0.9)
@@ -51,7 +51,7 @@ panel <- function(mdl, ylim, show_legend = FALSE) {
   title(main = mdl, cex.main = 1)
   if (show_legend) legend("topright", bg = "white", box.col = NA, cex = 0.65,
     legend = c("spec A (Mar-Jul)", "spec C (thermal window)", "spec A per-year range"),
-    col = c(col, col, rgb(rgbcol[1], rgbcol[2], rgbcol[3], 0.5)), lty = c(1,2,NA), pch = c(16,21,15),
+    col = c(col, col, tint(col, 0.5)), lty = c(1,2,NA), pch = c(16,21,15),
     lwd = c(2,1.4,NA), pt.cex = c(1,0.9,1.6))
 }
 

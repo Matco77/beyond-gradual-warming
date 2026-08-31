@@ -31,7 +31,7 @@ BND_KEY <- c(Electricity = "energy Electricity", `Natural gas` = "energy Natural
 
 panel <- function(mdl, fl, ylim) {
   z   <- E[model == mdl & fuel == fl][order(delta_sv)]
-  col <- COL[mdl]; rgbcol <- col2rgb(col) / 255
+  col <- COL[mdl]
   xlim <- range(z$delta_sv); xlim <- xlim + c(-1, 1) * 0.08 * diff(xlim)
   plot(NA, xlim = xlim, ylim = ylim, xlab = expression(Delta*"Sv"), ylab = "demand effect (%)")
   grid(col = "grey90"); abline(h = 0, col = "grey60", lty = 3)
@@ -40,7 +40,7 @@ panel <- function(mdl, fl, ylim) {
   if (nrow(bnd))
     for (i in seq_len(nrow(bnd)))
       segments(bnd$bin_id[i], pct(bnd$lo[i]), bnd$bin_id[i], pct(bnd$hi[i]),
-               col = rgb(rgbcol[1], rgbcol[2], rgbcol[3], 0.35), lwd = 5, lend = 1)
+               col = tint(col, 0.35), lwd = 5, lend = 1)
 
   lines(z$delta_sv, z$pct, col = col, lwd = 2); points(z$delta_sv, z$pct, col = col, pch = 16, cex = 1.1)
   label_n(z$delta_sv, z$pct, z$n_years, col)

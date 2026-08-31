@@ -24,3 +24,12 @@ totalise <- function(dt, by) dt[, .(dln = sum(dln)), by = by][, pct := pct(dln)]
 
 # n_years labels: small, offset above each point, so they read as annotation, not as ticks
 label_n <- function(x, y, n, col) text(x, y, labels = n, pos = 3, cex = 0.55, col = col, offset = 0.25)
+
+# A tinted, FULLY OPAQUE version of a colour - alpha*colour + (1-alpha)*white, i.e. exactly what
+# alpha-blending that colour at `a` would look like against a white background, but written as a
+# plain solid fill. Used for the band instead of rgb(..., alpha=a): a PDF alpha fill goes through an
+# ExtGState/transparency-group operator (confirmed present in the file: `grep -c '/ca'` > 0), and
+# not every viewer/renderer honours it - a plain opaque colour has no such dependency and renders
+# identically everywhere. Found by the reader reporting the band invisible in their own viewer while
+# it rendered fine in this session's own ghostscript check - a real cross-viewer gap, not assumed.
+tint <- function(col, a) { x <- col2rgb(col) / 255; rgb(x[1]*a + (1-a), x[2]*a + (1-a), x[3]*a + (1-a)) }
