@@ -6,9 +6,11 @@
 # correspond to actual consumption cycles, not to a biological process whose timing shifts with
 # temperature. The per-hosing-year band (Appendix I) is drawn for IPSL-CM6A-LR and EC-Earth3, the
 # two models it was computed for. Two reference markers as in plot_impact_curve_crop.R, from TWO
-# DIFFERENT sources: a vertical line at the AMOC level each model's own ssp126 CMIP6 run implies
-# (ocean circulation diagnostic, NOT ISIMIP3b), and a horizontal line at the effect the ISIMIP3b
-# branch itself computes at that warming - the actual prediction check, not an assumed agreement.
+# DIFFERENT sources AND two DIFFERENT time windows of the same simulation - see Appendix J,
+# J.4b-J.4c. The vertical line is the ocean-circulation diagnostic (NOT ISIMIP3b) at the single most
+# negative year of the WHOLE ssp126 run; the horizontal line is the ISIMIP3b branch's effect over
+# 2071-2100 specifically. The crossing point is two reference points on one trajectory, not a
+# same-period prediction check.
 #
 # NAMING NOTE, applies throughout this file: loop/argument variables are `mdl` and `fl`, never
 # `model` or `fuel`. Inside data.table's `[`, a bare `E[model == model]` or `E[fuel == fuel]`
@@ -76,8 +78,9 @@ for (fl in FUELS) {
   text(0.5, 0.70, "constructions matching real consumption cycles, no window ambiguity", cex = 0.72, col = "grey30")
   text(0.5, 0.55, "shaded band: range across the bin's individual hosing years,", cex = 0.7, col = "grey30")
   text(0.5, 0.48, "IPSL-CM6A-LR and EC-Earth3 only (Appendix I)", cex = 0.7, col = "grey30")
-  text(0.5, 0.32, "vertical: ocean circulation of that SAME run (ISIMIP has no ocean output);", cex = 0.7, col = "grey30")
-  text(0.5, 0.25, "horizontal: the ISIMIP3b branch's own effect at that warming (Appendix J)", cex = 0.7, col = "grey30")
+  text(0.5, 0.36, "vertical: ocean circulation, SAME run's single most extreme year -", cex = 0.65, col = "grey30")
+  text(0.5, 0.30, "NOT the 2071-2100 window the horizontal line uses (Appendix J, J.4c)", cex = 0.65, col = "grey30")
+  text(0.5, 0.24, "horizontal: the ISIMIP3b branch's own effect over 2071-2100", cex = 0.65, col = "grey30")
   text(0.5, 0.10, "caveat (Appendix I, I.4): the AMOC bins extrapolate the linear response", cex = 0.65, col = "grey40")
   text(0.5, 0.04, "function up to ~9 s.d. beyond the range that identifies the coefficients", cex = 0.65, col = "grey40")
 }

@@ -9,14 +9,14 @@
 # on IPSL-CM6A-LR and EC-Earth3 - the two models it was computed for - as the range across the
 # individual years that populate each bin, not an analytic error bar.
 #
-# Two reference markers, from TWO DIFFERENT sources - do not conflate them. The vertical line is
-# each model's OWN ssp126 CMIP6 run's real projected AMOC decline (ocean circulation diagnostic,
-# not ISIMIP3b - see plot_impact_common.R::ssp126_target_sv). The horizontal line is the effect the
-# ISIMIP3b branch (Appendix J, bias-adjusted surface fields) computes independently at that
-# warming. Where the AMOC curve crosses the vertical line is the prediction the delta-method
-# scenario makes for that Sv level; the horizontal line is what the ISIMIP branch says directly.
-# Agreement between the two is not assumed by construction - it is the actual check this figure
-# exists to show.
+# Two reference markers, from TWO DIFFERENT sources AND two DIFFERENT time windows of the same
+# simulation - see Appendix J, J.4b-J.4c before reading this figure as a same-time comparison. The
+# vertical line is each model's own ssp126 CMIP6 run's ocean-circulation diagnostic (NOT ISIMIP3b -
+# plot_impact_common.R::ssp126_target_sv), taken at the single most negative year of the WHOLE
+# run - for IPSL-CM6A-LR that year is 2173, a century past the horizontal line's window. The
+# horizontal line is the ISIMIP3b branch's effect (Appendix J) over 2071-2100 specifically. The
+# crossing point is therefore two reference points on one trajectory, not a prediction check for a
+# shared period - weaker than "same simulation" alone would suggest.
 source(path.expand("~/Library/CloudStorage/OneDrive-UniversitàCommercialeLuigiBocconi/1.Tesi/Amoc/Code/plot_impact_common.R"))
 
 A <- totalise(fread(file.path(d, "amoc_impact_crop_eu.csv")),   c("model", "bin_id", "delta_sv", "n_years"))
@@ -90,7 +90,8 @@ text(0.5, 0.58, "neither total is a standalone estimate (Appendix I) -", cex = 0
 text(0.5, 0.51, "reported together so the specification sensitivity is visible", cex = 0.75, col = "grey30")
 text(0.5, 0.36, "shaded band: range across the bin's individual hosing years,", cex = 0.7, col = "grey30")
 text(0.5, 0.29, "spec A only, IPSL-CM6A-LR and EC-Earth3 (Appendix I)", cex = 0.7, col = "grey30")
-text(0.5, 0.14, "vertical: ocean circulation of that SAME run (ISIMIP has no ocean output);", cex = 0.7, col = "grey30")
-text(0.5, 0.07, "horizontal: the ISIMIP3b branch's own effect at that warming (Appendix J)", cex = 0.7, col = "grey30")
+text(0.5, 0.18, "vertical: ocean circulation, SAME run's single most extreme year -", cex = 0.65, col = "grey30")
+text(0.5, 0.12, "NOT the 2071-2100 window the horizontal line uses (Appendix J, J.4c)", cex = 0.65, col = "grey30")
+text(0.5, 0.05, "horizontal: the ISIMIP3b branch's own effect over 2071-2100", cex = 0.65, col = "grey30")
 dev.off()
 cat("wrote", file.path(out, "impact_curve_crop.pdf"), "\n")

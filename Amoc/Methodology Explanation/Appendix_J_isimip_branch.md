@@ -196,12 +196,59 @@ The vertical line is therefore not sourced from ISIMIP3b — but it is not an
 independent or unrelated quantity either: it is the ocean state of the exact
 simulated future whose surface climate produces the horizontal line's effect. The
 two lines are two windows onto one simulated world, which is what makes their
-comparison on the figure a real check rather than a juxtaposition of unrelated
-numbers. Neither NAHosMIP nor its `hos` terminology has any part in this — ssp126
+comparison on the figure meaningful in principle — but §J.4c qualifies exactly how
+meaningful, because the two windows are not the same *moment* of that world.
+Neither NAHosMIP nor its `hos` terminology has any part in this — ssp126
 is a real greenhouse-forced scenario, not the artificial freshwater perturbation
 the AMOC-branch bins (Appendix F) are built from; the two branches are compared
 because they are run through the identical replay engine (Appendix G), not because
 either forcing resembles the other.
+
+---
+
+## J.4c The two lines are not from the same point in time
+
+§J.4b establishes that the vertical and horizontal markers come from the same
+simulation. They do not come from the same **time window within it**, and this
+matters more than the "same simulation" fact does, because it is what determines
+whether the crossing point on the figure can be read as a same-time prediction
+check.
+
+The horizontal line (§J.2) is a climatological delta over 2071–2100 versus
+1985–2014. The vertical line's `target_delta_sv` is defined (Appendix A/E,
+predating this branch) as the single most negative **annual** ssp126 anomaly over
+the *entire* available ssp126 run, not an average over 2071–2100. Checked directly
+against the raw netCDF series (`Amoc/Code/anomaly/plot_amoc_sv_ssp126.R`'s source
+files), not assumed:
+
+| model | ssp126 series | year of the AMOC minimum | AMOC at that minimum | AMOC averaged 2071–2100 (the horizontal line's window) |
+|---|---|---|---|---|
+| IPSL-CM6A-LR | 2015–**2214** | **2173** | 8.42 Sv | 10.07 Sv |
+| EC-Earth3 | 2015–2100 | **2054** | 11.10 Sv | 12.89 Sv |
+
+For IPSL-CM6A-LR the ssp126 run extends to 2214 — a long-tail continuation past the
+usual 2100 endpoint — and the single most negative year falls **a century after**
+the 2071–2100 window the horizontal line is built from. For EC-Earth3 the minimum
+falls at **mid-century**, and the AMOC has partially recovered by 2071–2100
+relative to that minimum (12.89 Sv against 11.10 Sv at the low point). Neither
+model's vertical marker describes the state of the ocean during the years the
+horizontal line's surface-climate effect is computed over.
+
+One number could not be independently reproduced and is flagged rather than
+asserted: subtracting the 1850–1900 historical mean (12.61 Sv for IPSL, computed
+from the same historical file) from the 8.42 Sv minimum gives −4.19 Sv, not the
+−3.7049 Sv the k10 file reports. The gap is not resolved here — the script that
+built that file predates this branch and is not in the repository, so the exact
+definition (a specific smoothing, a different minimum criterion, a different
+historical sub-window) cannot be checked. Reported as an open discrepancy, not
+papered over with a matching number.
+
+**What this means for the figure.** The crossing point is not "what the AMOC branch
+predicts for the period the ISIMIP effect describes." It is two reference points on
+the same simulated trajectory, read at the trajectory's most extreme ocean state and
+at a fixed late-century climate window respectively — a looser, weaker comparison
+than "same simulation" by itself would suggest, and the figure and its caption
+should be read accordingly.
 
 ---
 
