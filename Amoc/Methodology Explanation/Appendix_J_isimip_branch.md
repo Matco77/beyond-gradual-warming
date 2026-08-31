@@ -277,11 +277,31 @@ Given that, a crossing point between the AMOC curve and a marked ssp126 Sv level
 would not have been a meaningful check under any choice of time window: fixing
 §J.4c's mismatch (e.g. marking the 2071–2100 AMOC mean instead of the
 whole-trajectory minimum) would not fix this second problem. The marker is
-therefore dropped rather than patched. The horizontal line — the ISIMIP branch's
-own effect, Appendix J's actual result — stands on its own and does not depend on
-any AMOC-bin crossing point to be interpretable; it is reported in §J.4's tables
-and as a plain reference line in the Phase 4 figures, with no implied correspondence
-to a specific point on the AMOC curve.
+therefore dropped rather than patched.
+
+---
+
+## J.4e The horizontal marker was dropped too
+
+§J.4d's reasoning is not specific to the vertical line. The AMOC bins and the
+ISIMIP/ssp126 branch measure different physical quantities — pure hosing-driven
+circulation change against an unforced baseline, versus circulation change mixed
+with real background warming — regardless of which axis a reference to the other
+branch is drawn on. A horizontal line at the ISIMIP effect, laid across an AMOC-bin
+panel, still invites reading it against the curve underneath it: does the curve
+reach that level, at what bin, is that "close" or "far" — questions the same
+physical-quantity mismatch makes unanswerable. Keeping the vertical marker's problem
+in mind while keeping the horizontal one would have been inconsistent, so it is
+dropped too, and the Phase 4 figures (`Amoc/Code/plot_impact_curve_crop.R`,
+`plot_impact_curve_energy.R`) now carry no ISIMIP reference of either kind.
+
+This does not remove the ISIMIP branch's results from the thesis — only from this
+one figure. The effect estimates of §J.4 remain the branch's standalone output,
+reported in their own tables (`isimip_impact_*.csv`) and in the text of §J.4, on
+exactly the same footing as the AMOC branch's tables in Appendix H: two results
+from two different forcing experiments, each interpretable on its own, presented
+side by side in prose rather than merged onto one axis that would imply a
+comparability neither branch's construction supports.
 
 ---
 

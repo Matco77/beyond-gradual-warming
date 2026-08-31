@@ -8,22 +8,18 @@ out <- path.expand("~/Library/CloudStorage/OneDrive-UniversitàCommercialeLuigiB
 MODELS <- c("IPSL-CM6A-LR", "EC-Earth3", "HadGEM3-GC3-1LL", "HadGEM3-GC3-1MM")
 COL    <- c("IPSL-CM6A-LR" = "#e7298a", "EC-Earth3" = "#1b9e77",
            "HadGEM3-GC3-1LL" = "#d95f02", "HadGEM3-GC3-1MM" = "#7570b3")
-# ISIMIP scenario files key models in lowercase (ISIMIP's own file-naming convention); only these two
-# were run through the ISIMIP branch (Appendix J) - HadGEM has no ISIMIP-forcing counterpart here.
-ISIMIP_KEY <- c("IPSL-CM6A-LR" = "ipsl-cm6a-lr", "EC-Earth3" = "ec-earth3")
 
 pct <- function(x) 100 * (exp(x) - 1)          # log-effect -> % change, used throughout Phase 2/3
 
-# No ssp126-AMOC-level marker here (there was one; dropped - Appendix J, J.4d). It would have paired
-# a moment along the ssp126 trajectory (the single most negative year, decades away from the
-# horizontal line's 2071-2100 window - J.4c) with a quantity the AMOC bins do not isolate the same
-# way: the bins are a pure hosing effect against an unforced piControl baseline (Appendix C), while
-# ssp126's AMOC weakening happens alongside real background greenhouse warming. Not the same
-# physical quantity at two moments - two different quantities - so no crossing point built from it
-# would have been a meaningful check.
+# These figures carry NO ISIMIP reference marker, vertical or horizontal (there was one of each;
+# both dropped - Appendix J, J.4d-J.4e). The AMOC bins are a PURE hosing effect against an unforced
+# piControl baseline (Appendix C); the ISIMIP/ssp126 branch's effect (Appendix J) reflects
+# hosing-like circulation change MIXED with real background greenhouse warming. Different physical
+# quantities, so no marker built from one and overlaid on the other's curve would have been a
+# meaningful comparison, whichever way it was drawn.
 
 # sum a component-level effect table (model, bin_id[, delta_sv, n_years], component, dln) to one
-# TOTAL row per group, in % (pct()) - used for both the AMOC bin curve and the ISIMIP single point
+# TOTAL row per group, in % (pct()) - used for the AMOC bin curve
 totalise <- function(dt, by) dt[, .(dln = sum(dln)), by = by][, pct := pct(dln)][]
 
 # n_years labels: small, offset above each point, so they read as annotation, not as ticks

@@ -9,21 +9,20 @@
 # on IPSL-CM6A-LR and EC-Earth3 - the two models it was computed for - as the range across the
 # individual years that populate each bin, not an analytic error bar.
 #
-# One reference marker: a horizontal line at the ISIMIP3b branch's own effect (Appendix J), over
-# 2071-2100. NO vertical Sv marker - a vertical line at the AMOC level each model's own ssp126 run
-# implies was dropped (Appendix J, J.4d) after checking two things: it comes from a different time
-# window than the horizontal line (J.4c - the single most negative YEAR of the whole run, not the
-# 2071-2100 average), and the AMOC bins isolate a PURE hosing effect against an unforced piControl
-# baseline (Appendix C) while ssp126's AMOC weakening happens alongside real background greenhouse
-# warming (Appendix F, F.0) - two different physical quantities, not the same one at two moments.
-# A crossing point built from that pairing would not have been a meaningful check.
+# NO ISIMIP reference marker on this figure - neither a vertical Sv line nor a horizontal effect
+# line. Both were tried and dropped (Appendix J, J.4d-J.4e): the AMOC bins isolate a PURE hosing
+# effect against an unforced piControl baseline (Appendix C), while the ISIMIP/ssp126 branch's
+# effect (Appendix J) reflects hosing-like circulation change MIXED with real background greenhouse
+# warming. They are not the same physical quantity, so overlaying either one on this curve implies
+# a comparability that does not hold - not as a vertical marker at a mismatched moment (J.4c-d), and
+# not as a horizontal marker either, since a flat reference line across the whole panel still visually
+# invites reading it against the curve. The ISIMIP branch's numbers are a real, standalone result;
+# they are reported in Appendix J's own tables, not on this figure.
 source(path.expand("~/Library/CloudStorage/OneDrive-UniversitàCommercialeLuigiBocconi/1.Tesi/Amoc/Code/plot_impact_common.R"))
 
 A <- totalise(fread(file.path(d, "amoc_impact_crop_eu.csv")),   c("model", "bin_id", "delta_sv", "n_years"))
 C <- totalise(fread(file.path(d, "amoc_impact_cropgw_eu.csv")), c("model", "bin_id", "delta_sv", "n_years"))
 BND <- fread(file.path(d, "amoc_band_total.csv"))[branch == "crop"]         # spec A only, IPSL+EC
-IsoA <- totalise(fread(file.path(d, "isimip_impact_crop_eu.csv")),   "model")
-IsoC <- totalise(fread(file.path(d, "isimip_impact_cropgw_eu.csv")), "model")
 
 panel <- function(mdl, ylim, show_legend = FALSE) {
   # NOTE: the loop/argument variable is deliberately NOT called `model` - inside data.table's `[`,
@@ -49,16 +48,11 @@ panel <- function(mdl, ylim, show_legend = FALSE) {
   lines(c_$delta_sv, c_$pct, col = col, lwd = 1.4, lty = 2); points(c_$delta_sv, c_$pct, col = col, pch = 21, bg = "white", cex = 0.9)
   label_n(a$delta_sv, a$pct, a$n_years, col)
 
-  key <- ISIMIP_KEY[mdl]
-  if (!is.na(key) && key %in% IsoA$model) {
-    yA <- IsoA[model == key]$pct; yC <- IsoC[model == key]$pct
-    abline(h = yA, col = "grey40", lty = 2); abline(h = yC, col = "grey40", lty = 3)
-  }
   title(main = mdl, cex.main = 1)
   if (show_legend) legend("topright", bg = "white", box.col = NA, cex = 0.65,
-    legend = c("spec A (Mar-Jul)", "spec C (thermal window)", "spec A per-year range", "ISIMIP effect (A / C)"),
-    col = c(col, col, rgb(rgbcol[1], rgbcol[2], rgbcol[3], 0.5), "grey40"), lty = c(1,2,NA,2), pch = c(16,21,15,NA),
-    lwd = c(2,1.4,NA,1), pt.cex = c(1,0.9,1.6,1))
+    legend = c("spec A (Mar-Jul)", "spec C (thermal window)", "spec A per-year range"),
+    col = c(col, col, rgb(rgbcol[1], rgbcol[2], rgbcol[3], 0.5)), lty = c(1,2,NA), pch = c(16,21,15),
+    lwd = c(2,1.4,NA), pt.cex = c(1,0.9,1.6))
 }
 
 xr <- range(A$delta_sv); yr <- range(pct(c(A$dln, C$dln, BND$lo, BND$hi)), na.rm = TRUE)
@@ -85,9 +79,9 @@ text(0.5, 0.78, "solid = spec A (fixed Mar-Jul window, benchmark)", cex = 0.8)
 text(0.5, 0.70, "dashed = spec C (thermal-time window)", cex = 0.8)
 text(0.5, 0.58, "neither total is a standalone estimate (Appendix I) -", cex = 0.75, col = "grey30")
 text(0.5, 0.51, "reported together so the specification sensitivity is visible", cex = 0.75, col = "grey30")
-text(0.5, 0.36, "shaded band: range across the bin's individual hosing years,", cex = 0.7, col = "grey30")
-text(0.5, 0.29, "spec A only, IPSL-CM6A-LR and EC-Earth3 (Appendix I)", cex = 0.7, col = "grey30")
-text(0.5, 0.14, "horizontal line: the ISIMIP3b branch's own effect over 2071-2100,", cex = 0.7, col = "grey30")
-text(0.5, 0.07, "a SEPARATE quantity from this curve, not a same-Sv prediction (Appendix J, J.4d)", cex = 0.65, col = "grey30")
+text(0.5, 0.34, "shaded band: range across the bin's individual hosing years,", cex = 0.7, col = "grey30")
+text(0.5, 0.27, "spec A only, IPSL-CM6A-LR and EC-Earth3 (Appendix I)", cex = 0.7, col = "grey30")
+text(0.5, 0.12, "no ISIMIP marker on this figure - the AMOC bins and the ISIMIP", cex = 0.65, col = "grey30")
+text(0.5, 0.06, "branch measure different physical quantities (Appendix J, J.4e)", cex = 0.65, col = "grey30")
 dev.off()
 cat("wrote", file.path(out, "impact_curve_crop.pdf"), "\n")
