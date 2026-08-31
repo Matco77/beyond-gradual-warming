@@ -25,6 +25,21 @@ economy under a different climate*, not a joint projection of climate and econom
 Fixed effects and unit-specific trends also cancel, since the unit and the year are
 the same on both sides of the difference.
 
+**Every table in this and the following two appendices reports $\widehat{\Delta\ln y}$
+as a percentage**, not as the raw log estimate, via the exact inverse of the outcome's
+own log transform:
+
+$$\text{effect (\%)} = 100 \left( e^{\widehat{\Delta \ln y}} - 1 \right)$$
+
+This is not a linear approximation of the log effect — it is the actual proportional
+change in the level $y$ implied by an additive shift of $\ln y$, exact for any size
+of $\widehat{\Delta\ln y}$, small or large. It is applied to a **component's**
+$\widehat{\Delta\ln y}$ exactly as to the total, so components sum on the log scale
+before the transform, not after — $100(e^{a}-1) + 100(e^{b}-1) \neq 100(e^{a+b}-1)$
+in general, so the per-component percentages in §H.6 do not themselves sum to the
+total percentage; the totals are computed by summing the log-scale contributions
+first, then transforming once.
+
 Because the index is linear in the regressors, aggregation and evaluation commute
 for fixed weights: the weighted mean of the effects equals the effect of the
 weighted mean regressors. This is not true across *years* once thresholds are in

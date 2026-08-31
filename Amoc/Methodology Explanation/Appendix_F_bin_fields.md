@@ -10,6 +10,36 @@ replay of Appendix G.
 
 ---
 
+## F.0 Notation: four things called "delta"
+
+The word "delta" names four distinct quantities across Appendices C, F, G and H.
+They are related — each is built from the one before — but they are not the same
+object, and the pipeline would be easy to misread without keeping them apart.
+
+| symbol | what it is | defined in | units |
+|---|---|---|---|
+| $\Delta\mathrm{Sv}(y)$ | how far AMOC has weakened in hosing year $y$ | Appendix F, §F.2 | Sv |
+| $\mathrm{anomaly}(c,t)$ | hosing minus piControl climatology, per cell and calendar month | Appendix C | K or mm day⁻¹ |
+| $\delta_{c,m}$ | the bin's (or, in Appendix J, ISIMIP's) mean of that anomaly, per cell and calendar month — the object this appendix builds | §F.3 | K (additive) or dimensionless ratio |
+| $X^{\text{scen}}_k - X^{\text{hist}}_k$ | the *indicator*-level difference the beta are applied to, after $\delta$ has been pushed through the daily thresholds | Appendix H, §H.1 | indicator units (GDD, HDD, …) |
+
+The chain runs top to bottom: $\Delta\mathrm{Sv}$ selects which hosing years go into
+a bin (§F.2); the anomaly of Appendix C, averaged over those years, gives
+$\delta_{c,m}$ (§F.3); $\delta_{c,m}$ perturbs the daily E-OBS record (Appendix G,
+§G.1); and only *after* the daily thresholds have been applied to the perturbed
+record does the fourth delta, $X^{\text{scen}} - X^{\text{hist}}$, appear — it is a
+difference of non-linear functions of $\delta$, not $\delta$ itself, which is the
+entire reason Appendix G's replay exists rather than a direct adjustment of
+$X^{\text{hist}}$ by some transform of $\delta$.
+
+The ISIMIP branch (Appendix J) reuses this same chain with one substitution: no
+$\Delta\mathrm{Sv}$ or hosing years, since ISIMIP is not indexed by AMOC state — its
+$\delta_{c,m}$ is instead the ssp126-minus-historical climatological difference,
+built from ISIMIP's own daily archive rather than from Appendix C's anomaly. From
+$\delta_{c,m}$ onward the two branches share the identical machinery.
+
+---
+
 ## F.1 Why a bin decomposition, and why the fields had to be rebuilt
 
 The impact question is not "what happens if the AMOC collapses" but "how does the
