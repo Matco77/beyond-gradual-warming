@@ -90,7 +90,7 @@ text(0.5, 0.58, "neither total is a standalone estimate (Appendix I) -", cex = 0
 text(0.5, 0.51, "reported together so the specification sensitivity is visible", cex = 0.75, col = "grey30")
 text(0.5, 0.36, "shaded band: range across the bin's individual hosing years,", cex = 0.7, col = "grey30")
 text(0.5, 0.29, "spec A only, IPSL-CM6A-LR and EC-Earth3 (Appendix I)", cex = 0.7, col = "grey30")
-text(0.5, 0.14, "vertical line: ssp126 AMOC target (own CMIP6 run, not ISIMIP);", cex = 0.7, col = "grey30")
+text(0.5, 0.14, "vertical: ocean circulation of that SAME run (ISIMIP has no ocean output);", cex = 0.7, col = "grey30")
 text(0.5, 0.07, "horizontal: the ISIMIP3b branch's own effect at that warming (Appendix J)", cex = 0.7, col = "grey30")
 dev.off()
 cat("wrote", file.path(out, "impact_curve_crop.pdf"), "\n")

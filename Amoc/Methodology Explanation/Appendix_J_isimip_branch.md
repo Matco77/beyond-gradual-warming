@@ -173,6 +173,38 @@ evaluated closer to, though still outside, its estimation support.
 
 ---
 
+## J.4b What the Phase 4 markers actually compare
+
+The impact-vs-Sv figures (Appendix G onward, `Amoc/Code/plot_impact_curve_*.R`) mark
+two reference quantities on the AMOC curve for IPSL-CM6A-LR and EC-Earth3: a
+vertical line at an AMOC weakening level, and a horizontal line at this branch's own
+effect. Both come from **the same underlying CMIP6 simulation** — checked against
+file naming and metadata on both sides, not assumed. The ocean-circulation
+reconstruction behind the vertical line is keyed
+`amoc_ssp126_IPSL_IPSL-CM6A-LR_r1i1p1f1.nc` (Terhaar, msftyz) and carries the source
+attribute `vo (Omon, gn), EC-Earth3 r1i1p1f1` for the other model; the ISIMIP3b
+downloads of §J.1 are named `ipsl-cm6a-lr_r1i1p1f1_...` and
+`ec-earth3_r1i1p1f1_...`. Same model, same `r1i1p1f1` ensemble member, same ssp126
+experiment on both sides.
+
+**What differs is the diagnostic, not the simulation.** ISIMIP3b bias-adjusts only
+the near-surface atmosphere of that run (§J.1) and carries no ocean output at all,
+so the AMOC weakening implied by the run has to be read off a separate ocean
+circulation reconstruction of the identical CMIP6 experiment (Terhaar's for IPSL,
+an own reconstruction from `vo` for EC-Earth3), not off anything ISIMIP3b provides.
+The vertical line is therefore not sourced from ISIMIP3b — but it is not an
+independent or unrelated quantity either: it is the ocean state of the exact
+simulated future whose surface climate produces the horizontal line's effect. The
+two lines are two windows onto one simulated world, which is what makes their
+comparison on the figure a real check rather than a juxtaposition of unrelated
+numbers. Neither NAHosMIP nor its `hos` terminology has any part in this — ssp126
+is a real greenhouse-forced scenario, not the artificial freshwater perturbation
+the AMOC-branch bins (Appendix F) are built from; the two branches are compared
+because they are run through the identical replay engine (Appendix G), not because
+either forcing resembles the other.
+
+---
+
 ## J.5 What this appendix does not establish
 
 No uncertainty band is computed for this branch. Appendix I's band disperses the
