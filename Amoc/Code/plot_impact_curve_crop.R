@@ -9,20 +9,16 @@
 # on IPSL-CM6A-LR and EC-Earth3 - the two models it was computed for - as the range across the
 # individual years that populate each bin, not an analytic error bar.
 #
-# NO ISIMIP reference marker on this figure - neither a vertical Sv line nor a horizontal effect
-# line. Both were tried and dropped (Appendix J, J.4d-J.4e): the AMOC bins isolate a PURE hosing
-# effect against an unforced piControl baseline (Appendix C), while the ISIMIP/ssp126 branch's
-# effect (Appendix J) reflects hosing-like circulation change MIXED with real background greenhouse
-# warming. They are not the same physical quantity, so overlaying either one on this curve implies
-# a comparability that does not hold - not as a vertical marker at a mismatched moment (J.4c-d), and
-# not as a horizontal marker either, since a flat reference line across the whole panel still visually
-# invites reading it against the curve. The ISIMIP branch's numbers are a real, standalone result;
-# they are reported in Appendix J's own tables, not on this figure.
+# ISIMIP overlay (Appendix J.5, plot_impact_common.R): filled triangles, spec A only, IPSL-CM6A-LR
+# and EC-Earth3 panels only, at the delta_Sv bins isimip_bin_fields.R shares with NAHosMIP. Residual
+# caveat: the two branches' delta_Sv are not on identical footing (piControl-relative vs
+# historical-relative baseline) - see plot_impact_common.R header.
 source(path.expand("~/Library/CloudStorage/OneDrive-UniversitàCommercialeLuigiBocconi/1.Tesi/Amoc/Code/plot_impact_common.R"))
 
 A <- totalise(fread(file.path(d, "amoc_impact_crop_eu.csv")),   c("model", "bin_id", "delta_sv", "n_years"))
 C <- totalise(fread(file.path(d, "amoc_impact_cropgw_eu.csv")), c("model", "bin_id", "delta_sv", "n_years"))
 BND <- fread(file.path(d, "amoc_band_total.csv"))[branch == "crop"]         # spec A only, IPSL+EC
+IS  <- totalise(fread(file.path(d, "isimip_bin_impact_crop_eu.csv")), c("model", "bin_id", "delta_sv", "n_years"))
 
 panel <- function(mdl, ylim, show_legend = FALSE) {
   # NOTE: the loop/argument variable is deliberately NOT called `model` - inside data.table's `[`,
@@ -35,6 +31,8 @@ panel <- function(mdl, ylim, show_legend = FALSE) {
   # while IPSL/EC-Earth3 stop near -9.3, so a shared x-axis would leave most panels mostly empty.
   # The y-axis (effect size) IS shared (ylim, passed in) so magnitudes stay comparable across panels.
   xlim <- range(a$delta_sv, c_$delta_sv); xlim <- xlim + c(-1, 1) * 0.08 * diff(xlim)
+  # (ISIMIP bins, where present, always fall inside the NAHosMIP range by construction - see
+  # isimip_bin_fields.R's level-for-level intersection - so xlim need not widen for them)
   plot(NA, xlim = xlim, ylim = ylim, xlab = expression(Delta*"Sv"), ylab = "yield effect (%)")
   grid(col = "grey90"); abline(h = 0, col = "grey60", lty = 3)
 
@@ -48,14 +46,21 @@ panel <- function(mdl, ylim, show_legend = FALSE) {
   lines(c_$delta_sv, c_$pct, col = col, lwd = 1.4, lty = 2); points(c_$delta_sv, c_$pct, col = col, pch = 21, bg = "white", cex = 0.9)
   label_n(a$delta_sv, a$pct, a$n_years, col)
 
+  is <- IS[model == mdl][order(delta_sv)]
+  if (nrow(is)) {
+    lines(is$delta_sv, is$pct, col = col, lwd = 1.4, lty = ISIMIP_LTY)
+    points(is$delta_sv, is$pct, col = col, pch = ISIMIP_PCH, cex = 1.1)
+    label_n(is$delta_sv, is$pct, is$n_years, col)
+  }
+
   title(main = mdl, cex.main = 1)
   if (show_legend) legend("topright", bg = "white", box.col = NA, cex = 0.65,
-    legend = c("spec A (Mar-Jul)", "spec C (thermal window)", "spec A per-year range"),
-    col = c(col, col, tint(col, 0.5)), lty = c(1,2,NA), pch = c(16,21,15),
-    lwd = c(2,1.4,NA), pt.cex = c(1,0.9,1.6))
+    legend = c("spec A (Mar-Jul)", "spec C (thermal window)", "spec A per-year range", "ISIMIP-bin (ssp126, spec A)"),
+    col = c(col, col, tint(col, 0.5), col), lty = c(1,2,NA,ISIMIP_LTY), pch = c(16,21,15,ISIMIP_PCH),
+    lwd = c(2,1.4,NA,1.4), pt.cex = c(1,0.9,1.6,1.1))
 }
 
-xr <- range(A$delta_sv); yr <- range(pct(c(A$dln, C$dln, BND$lo, BND$hi)), na.rm = TRUE)
+xr <- range(A$delta_sv); yr <- range(pct(c(A$dln, C$dln, BND$lo, BND$hi, IS$dln)), na.rm = TRUE)
 yr <- yr + c(-1, 1) * 0.08 * diff(yr)
 
 pdf(file.path(out, "impact_curve_crop.pdf"), width = 13, height = 8)
@@ -69,6 +74,8 @@ for (m in MODELS) {
   a <- A[model == m][order(delta_sv)]; c_ <- C[model == m][order(delta_sv)]
   lines(a$delta_sv, a$pct, col = COL[m], lwd = 2); points(a$delta_sv, a$pct, col = COL[m], pch = 16, cex = 0.8)
   lines(c_$delta_sv, c_$pct, col = COL[m], lwd = 1.2, lty = 2)
+  is <- IS[model == m][order(delta_sv)]
+  if (nrow(is)) points(is$delta_sv, is$pct, col = COL[m], pch = ISIMIP_PCH, cex = 0.9)
 }
 title(main = "All models - comparison", cex.main = 1)
 legend("topright", bg = "white", box.col = NA, cex = 0.7, legend = MODELS, col = COL[MODELS], lwd = 2, pch = 16)
@@ -81,7 +88,8 @@ text(0.5, 0.58, "neither total is a standalone estimate (Appendix I) -", cex = 0
 text(0.5, 0.51, "reported together so the specification sensitivity is visible", cex = 0.75, col = "grey30")
 text(0.5, 0.34, "shaded band: range across the bin's individual hosing years,", cex = 0.7, col = "grey30")
 text(0.5, 0.27, "spec A only, IPSL-CM6A-LR and EC-Earth3 (Appendix I)", cex = 0.7, col = "grey30")
-text(0.5, 0.12, "no ISIMIP marker on this figure - the AMOC bins and the ISIMIP", cex = 0.65, col = "grey30")
-text(0.5, 0.06, "branch measure different physical quantities (Appendix J, J.4e)", cex = 0.65, col = "grey30")
+text(0.5, 0.15, "triangles: ISIMIP3b/ssp126, binned by year-level AMOC (Appendix J.5),", cex = 0.65, col = "grey30")
+text(0.5, 0.09, "spec A, at the delta_Sv levels it shares with NAHosMIP - IPSL and EC-Earth3 only", cex = 0.65, col = "grey30")
+text(0.5, 0.03, "caveat: delta_Sv baseline differs (piControl vs historical mean), see Appendix J.5", cex = 0.62, col = "grey40")
 dev.off()
 cat("wrote", file.path(out, "impact_curve_crop.pdf"), "\n")

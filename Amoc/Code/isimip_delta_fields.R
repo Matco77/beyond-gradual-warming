@@ -17,57 +17,16 @@
 # Reference and future windows: historical 1985-2014, ssp126 2071-2100. Chosen to match the
 # decade-file boundaries as closely as the ISIMIP archive allows (historical decades start in 1981,
 # so 1981-1984 is read but excluded from the mean) and to give each window a full 30 years.
-suppressMessages({library(ncdf4)})
 d <- path.expand("~/Library/CloudStorage/OneDrive-UniversitàCommercialeLuigiBocconi/1.Tesi/Amoc/datasets")
-ID <- file.path(d, "Isimip3b")
+source(path.expand("~/Library/CloudStorage/OneDrive-UniversitàCommercialeLuigiBocconi/1.Tesi/Amoc/Code/isimip_common.R"))
 
 MODELS  <- c("ipsl-cm6a-lr", "ec-earth3")
 VARS    <- c("tas", "tasmin", "tasmax", "pr")
 WINDOWS <- list(historical = 1985:2014, ssp126 = 2071:2100)
 
-path_for <- function(model, scen, var) {
-  sort(Sys.glob(file.path(ID, sprintf("%s_r1i1p1f1_w5e5_%s_%s_lon*.nc", model, scen, var))))
-}
-
-## ---- per-calendar-month climatology over a set of files, restricted to a year window ----------
-# Accumulates sum and count PER CELL (not just per month), matching the NA-safe style of
-# amoc_bin_fields.R, though ISIMIP is not expected to carry missing values inside the Europe box.
-clim_monthly <- function(files, years) {
-  acc <- NULL; cnt <- NULL; nx <- ny <- NULL
-  for (f in files) {
-    nc  <- nc_open(f)
-    v   <- names(nc$var)[1]
-    tv  <- nc$dim$time$vals
-    org <- sub(" .*", "", sub(".*since *", "", nc$dim$time$units))
-    dt  <- as.Date(tv, origin = org)
-    yr  <- as.integer(format(dt, "%Y")); mo <- as.integer(format(dt, "%m"))
-    keep <- which(yr %in% years)
-    if (!length(keep)) { nc_close(nc); next }                 # decade file entirely outside the window
-    A <- ncvar_get(nc, v, start = c(1, 1, min(keep)), count = c(-1, -1, max(keep) - min(keep) + 1))
-    nc_close(nc)
-    keep_local <- keep - min(keep) + 1L                       # positions within the just-read slab
-    if (is.null(acc)) { nx <- dim(A)[1]; ny <- dim(A)[2]; acc <- array(0, c(nx, ny, 12)); cnt <- array(0L, c(nx, ny, 12)) }
-    for (m in 1:12) {
-      idx <- keep_local[mo[keep] == m]
-      if (!length(idx)) next
-      S <- A[, , idx, drop = FALSE]
-      fin <- is.finite(S); S[!fin] <- 0
-      acc[, , m] <- acc[, , m] + rowSums(S, dims = 2)
-      cnt[, , m] <- cnt[, , m] + rowSums(fin, dims = 2)
-    }
-  }
-  out <- acc / cnt; out[cnt == 0] <- NA_real_
-  out
-}
-
 ## ---- one model -----------------------------------------------------------------------------
 build <- function(model) {
-  nc0 <- nc_open(path_for(model, "historical", "tas")[1])
-  lon <- as.numeric(ncvar_get(nc0, "lon")); lat <- as.numeric(ncvar_get(nc0, "lat")); nc_close(nc0)
-  # lat is DECREASING in the ISIMIP files (75.75 -> 25.25); interp.surface (scenario_engine.R)
-  # needs increasing y, same requirement the AMOC bin builder handles for its own grids.
-  oy <- order(lat); lat <- lat[oy]
-  stopifnot(all(diff(lon) > 0))                     # lon already -180..180 and increasing: no rewrap needed
+  g <- isimip_grid(model); lon <- g$lon; lat <- g$lat; oy <- g$oy
 
   cat(sprintf("%-14s grid %dx%d | windows hist %d-%d (%d yr) ssp126 %d-%d (%d yr)\n", model,
               length(lon), length(lat), min(WINDOWS$historical), max(WINDOWS$historical), length(WINDOWS$historical),

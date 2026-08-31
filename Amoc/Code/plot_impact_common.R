@@ -11,12 +11,22 @@ COL    <- c("IPSL-CM6A-LR" = "#e7298a", "EC-Earth3" = "#1b9e77",
 
 pct <- function(x) 100 * (exp(x) - 1)          # log-effect -> % change, used throughout Phase 2/3
 
-# These figures carry NO ISIMIP reference marker, vertical or horizontal (there was one of each;
-# both dropped - Appendix J, J.4d-J.4e). The AMOC bins are a PURE hosing effect against an unforced
-# piControl baseline (Appendix C); the ISIMIP/ssp126 branch's effect (Appendix J) reflects
-# hosing-like circulation change MIXED with real background greenhouse warming. Different physical
-# quantities, so no marker built from one and overlaid on the other's curve would have been a
-# meaningful comparison, whichever way it was drawn.
+# ISIMIP overlay (Appendix J.5): the single static vertical/horizontal markers tried earlier were
+# dropped (J.4d-J.4e) because a flat reference line implied a comparability with the whole AMOC-bin
+# curve that a mismatched, single-point summary did not support. That objection does not apply to a
+# real curve: plot_amoc_sv_ssp126.R shows the ssp126 AMOC-at-26N trajectory is year-by-year, not one
+# level, so isimip_bin_fields.R now resolves the SAME ISIMIP3b climate data into delta_Sv bins,
+# using each ssp126 year's own AMOC value, and keeps only the bins that coincide with a NAHosMIP
+# bin_lo for that model (IPSL-CM6A-LR, EC-Earth3 only - the two models with both an ISIMIP3b
+# download and a ssp126 AMOC reconstruction). The result plots point-for-point at shared Sv levels
+# with the NAHosMIP curve, style ISIMIP_PCH/lty below.
+#
+# Residual caveat, NOT resolved by binning (Appendix J.5): NAHosMIP's delta_Sv is hos(y)-mean(control
+# piControl) - an unforced, stationary reference. ISIMIP's bin delta_Sv is
+# ssp126(y)-mean(historical 1850-2014) - the historical run carries real forcing, it is not
+# unforced. Level-for-level position on the x-axis is therefore approximate, not identical
+# footing, even though the two curves are now both genuinely multi-point.
+ISIMIP_PCH <- 17; ISIMIP_LTY <- 3   # filled triangle, dotted: visually distinct from the NAHosMIP circle/solid line
 
 # sum a component-level effect table (model, bin_id[, delta_sv, n_years], component, dln) to one
 # TOTAL row per group, in % (pct()) - used for the AMOC bin curve

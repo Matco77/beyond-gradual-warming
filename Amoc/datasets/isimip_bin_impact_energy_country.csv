@@ -1,0 +1,499 @@
+model,bin_id,delta_sv,n_years,cntr,country_id,component,dln,fuel
+EC-Earth3,-3.5,-3.2771,5,AT,AUT,hdd_calendar,-0.0280666098546738,Electricity
+EC-Earth3,-2.5,-2.5562,17,AT,AUT,hdd_calendar,-0.0361992478164301,Electricity
+EC-Earth3,-1.5,-1.5166,7,AT,AUT,hdd_calendar,-0.0411388612586514,Electricity
+IPSL-CM6A-LR,-3.5,-3.4513,9,AT,AUT,hdd_calendar,-0.0393839595948247,Electricity
+IPSL-CM6A-LR,-2.5,-2.5185,16,AT,AUT,hdd_calendar,-0.0364729904826361,Electricity
+IPSL-CM6A-LR,-1.5,-1.7768,5,AT,AUT,hdd_calendar,-0.0358722737854332,Electricity
+EC-Earth3,-3.5,-3.2771,5,BE,BEL,hdd_calendar,-0.026640900195377,Electricity
+EC-Earth3,-2.5,-2.5562,17,BE,BEL,hdd_calendar,-0.0302960460239546,Electricity
+EC-Earth3,-1.5,-1.5166,7,BE,BEL,hdd_calendar,-0.0369400696148701,Electricity
+IPSL-CM6A-LR,-3.5,-3.4513,9,BE,BEL,hdd_calendar,-0.0339664380907672,Electricity
+IPSL-CM6A-LR,-2.5,-2.5185,16,BE,BEL,hdd_calendar,-0.0312752906579708,Electricity
+IPSL-CM6A-LR,-1.5,-1.7768,5,BE,BEL,hdd_calendar,-0.0305359040188756,Electricity
+EC-Earth3,-3.5,-3.2771,5,BG,BGR,hdd_calendar,-0.0244733436238223,Electricity
+EC-Earth3,-2.5,-2.5562,17,BG,BGR,hdd_calendar,-0.0366192649052128,Electricity
+EC-Earth3,-1.5,-1.5166,7,BG,BGR,hdd_calendar,-0.0339800627853268,Electricity
+IPSL-CM6A-LR,-3.5,-3.4513,9,BG,BGR,hdd_calendar,-0.0266675345162055,Electricity
+IPSL-CM6A-LR,-2.5,-2.5185,16,BG,BGR,hdd_calendar,-0.0282693214525261,Electricity
+IPSL-CM6A-LR,-1.5,-1.7768,5,BG,BGR,hdd_calendar,-0.027746345659575,Electricity
+EC-Earth3,-3.5,-3.2771,5,CY,CYP,hdd_calendar,-0.0096320812621991,Electricity
+EC-Earth3,-2.5,-2.5562,17,CY,CYP,hdd_calendar,-0.0181558094646444,Electricity
+EC-Earth3,-1.5,-1.5166,7,CY,CYP,hdd_calendar,-0.0150636934216424,Electricity
+IPSL-CM6A-LR,-3.5,-3.4513,9,CY,CYP,hdd_calendar,-0.0104268986011851,Electricity
+IPSL-CM6A-LR,-2.5,-2.5185,16,CY,CYP,hdd_calendar,-0.0143361794644001,Electricity
+IPSL-CM6A-LR,-1.5,-1.7768,5,CY,CYP,hdd_calendar,-0.0108127700806201,Electricity
+EC-Earth3,-3.5,-3.2771,5,CZ,CZE,hdd_calendar,-0.0257902607494061,Electricity
+EC-Earth3,-2.5,-2.5562,17,CZ,CZE,hdd_calendar,-0.0357007629245067,Electricity
+EC-Earth3,-1.5,-1.5166,7,CZ,CZE,hdd_calendar,-0.0394513188918676,Electricity
+IPSL-CM6A-LR,-3.5,-3.4513,9,CZ,CZE,hdd_calendar,-0.0391829627328131,Electricity
+IPSL-CM6A-LR,-2.5,-2.5185,16,CZ,CZE,hdd_calendar,-0.039651849793053,Electricity
+IPSL-CM6A-LR,-1.5,-1.7768,5,CZ,CZE,hdd_calendar,-0.0353598659840214,Electricity
+EC-Earth3,-3.5,-3.2771,5,DE,DEU,hdd_calendar,-0.0261021376496324,Electricity
+EC-Earth3,-2.5,-2.5562,17,DE,DEU,hdd_calendar,-0.0328320844169086,Electricity
+EC-Earth3,-1.5,-1.5166,7,DE,DEU,hdd_calendar,-0.0378806767771736,Electricity
+IPSL-CM6A-LR,-3.5,-3.4513,9,DE,DEU,hdd_calendar,-0.038007865444307,Electricity
+IPSL-CM6A-LR,-2.5,-2.5185,16,DE,DEU,hdd_calendar,-0.0358885078606198,Electricity
+IPSL-CM6A-LR,-1.5,-1.7768,5,DE,DEU,hdd_calendar,-0.0329113723111035,Electricity
+EC-Earth3,-3.5,-3.2771,5,DK,DNK,hdd_calendar,-0.0289777682927582,Electricity
+EC-Earth3,-2.5,-2.5562,17,DK,DNK,hdd_calendar,-0.0316496435857809,Electricity
+EC-Earth3,-1.5,-1.5166,7,DK,DNK,hdd_calendar,-0.0429531449701756,Electricity
+IPSL-CM6A-LR,-3.5,-3.4513,9,DK,DNK,hdd_calendar,-0.033688501777125,Electricity
+IPSL-CM6A-LR,-2.5,-2.5185,16,DK,DNK,hdd_calendar,-0.0374669967556279,Electricity
+IPSL-CM6A-LR,-1.5,-1.7768,5,DK,DNK,hdd_calendar,-0.0265789833207847,Electricity
+EC-Earth3,-3.5,-3.2771,5,EE,EST,hdd_calendar,-0.0464901790485152,Electricity
+EC-Earth3,-2.5,-2.5562,17,EE,EST,hdd_calendar,-0.0402011989687699,Electricity
+EC-Earth3,-1.5,-1.5166,7,EE,EST,hdd_calendar,-0.0495519517225117,Electricity
+IPSL-CM6A-LR,-3.5,-3.4513,9,EE,EST,hdd_calendar,-0.0421168384792202,Electricity
+IPSL-CM6A-LR,-2.5,-2.5185,16,EE,EST,hdd_calendar,-0.0516833497339493,Electricity
+IPSL-CM6A-LR,-1.5,-1.7768,5,EE,EST,hdd_calendar,-0.0373850622039399,Electricity
+EC-Earth3,-3.5,-3.2771,5,EL,GRC,hdd_calendar,-0.0168152960828193,Electricity
+EC-Earth3,-2.5,-2.5562,17,EL,GRC,hdd_calendar,-0.0260521120953261,Electricity
+EC-Earth3,-1.5,-1.5166,7,EL,GRC,hdd_calendar,-0.0250067383008484,Electricity
+IPSL-CM6A-LR,-3.5,-3.4513,9,EL,GRC,hdd_calendar,-0.017385054342726,Electricity
+IPSL-CM6A-LR,-2.5,-2.5185,16,EL,GRC,hdd_calendar,-0.018616011015083,Electricity
+IPSL-CM6A-LR,-1.5,-1.7768,5,EL,GRC,hdd_calendar,-0.0167971795258946,Electricity
+EC-Earth3,-3.5,-3.2771,5,ES,ESP,hdd_calendar,-0.0242863255865982,Electricity
+EC-Earth3,-2.5,-2.5562,17,ES,ESP,hdd_calendar,-0.0236547436442645,Electricity
+EC-Earth3,-1.5,-1.5166,7,ES,ESP,hdd_calendar,-0.0266220567395634,Electricity
+IPSL-CM6A-LR,-3.5,-3.4513,9,ES,ESP,hdd_calendar,-0.0207520686347831,Electricity
+IPSL-CM6A-LR,-2.5,-2.5185,16,ES,ESP,hdd_calendar,-0.0170591240639799,Electricity
+IPSL-CM6A-LR,-1.5,-1.7768,5,ES,ESP,hdd_calendar,-0.0209119118366202,Electricity
+EC-Earth3,-3.5,-3.2771,5,FI,FIN,hdd_calendar,-0.0513029206769649,Electricity
+EC-Earth3,-2.5,-2.5562,17,FI,FIN,hdd_calendar,-0.0432976950435387,Electricity
+EC-Earth3,-1.5,-1.5166,7,FI,FIN,hdd_calendar,-0.0547915507446734,Electricity
+IPSL-CM6A-LR,-3.5,-3.4513,9,FI,FIN,hdd_calendar,-0.0454047698998459,Electricity
+IPSL-CM6A-LR,-2.5,-2.5185,16,FI,FIN,hdd_calendar,-0.0525505960237677,Electricity
+IPSL-CM6A-LR,-1.5,-1.7768,5,FI,FIN,hdd_calendar,-0.0394228766430332,Electricity
+EC-Earth3,-3.5,-3.2771,5,FR,FRA,hdd_calendar,-0.0261219503039646,Electricity
+EC-Earth3,-2.5,-2.5562,17,FR,FRA,hdd_calendar,-0.0297666399716012,Electricity
+EC-Earth3,-1.5,-1.5166,7,FR,FRA,hdd_calendar,-0.0342479529835551,Electricity
+IPSL-CM6A-LR,-3.5,-3.4513,9,FR,FRA,hdd_calendar,-0.031751353514935,Electricity
+IPSL-CM6A-LR,-2.5,-2.5185,16,FR,FRA,hdd_calendar,-0.0270512998527058,Electricity
+IPSL-CM6A-LR,-1.5,-1.7768,5,FR,FRA,hdd_calendar,-0.0281002522263292,Electricity
+EC-Earth3,-3.5,-3.2771,5,HR,HRV,hdd_calendar,-0.0232943881796749,Electricity
+EC-Earth3,-2.5,-2.5562,17,HR,HRV,hdd_calendar,-0.0308474454273071,Electricity
+EC-Earth3,-1.5,-1.5166,7,HR,HRV,hdd_calendar,-0.0326066339307353,Electricity
+IPSL-CM6A-LR,-3.5,-3.4513,9,HR,HRV,hdd_calendar,-0.0301567982906378,Electricity
+IPSL-CM6A-LR,-2.5,-2.5185,16,HR,HRV,hdd_calendar,-0.0296523677385714,Electricity
+IPSL-CM6A-LR,-1.5,-1.7768,5,HR,HRV,hdd_calendar,-0.0289977859698539,Electricity
+EC-Earth3,-3.5,-3.2771,5,HU,HUN,hdd_calendar,-0.0246130200410993,Electricity
+EC-Earth3,-2.5,-2.5562,17,HU,HUN,hdd_calendar,-0.0333787496582664,Electricity
+EC-Earth3,-1.5,-1.5166,7,HU,HUN,hdd_calendar,-0.0333012883305104,Electricity
+IPSL-CM6A-LR,-3.5,-3.4513,9,HU,HUN,hdd_calendar,-0.0335320880469691,Electricity
+IPSL-CM6A-LR,-2.5,-2.5185,16,HU,HUN,hdd_calendar,-0.0343066454092297,Electricity
+IPSL-CM6A-LR,-1.5,-1.7768,5,HU,HUN,hdd_calendar,-0.0330638160550198,Electricity
+EC-Earth3,-3.5,-3.2771,5,IE,IRL,hdd_calendar,-0.0357471912612344,Electricity
+EC-Earth3,-2.5,-2.5562,17,IE,IRL,hdd_calendar,-0.0342253259258323,Electricity
+EC-Earth3,-1.5,-1.5166,7,IE,IRL,hdd_calendar,-0.0419604806643634,Electricity
+IPSL-CM6A-LR,-3.5,-3.4513,9,IE,IRL,hdd_calendar,-0.0228293219982103,Electricity
+IPSL-CM6A-LR,-2.5,-2.5185,16,IE,IRL,hdd_calendar,-0.0218835147130859,Electricity
+IPSL-CM6A-LR,-1.5,-1.7768,5,IE,IRL,hdd_calendar,-0.0176661219131206,Electricity
+EC-Earth3,-3.5,-3.2771,5,IT,ITA,hdd_calendar,-0.022122310317323,Electricity
+EC-Earth3,-2.5,-2.5562,17,IT,ITA,hdd_calendar,-0.0262857448536084,Electricity
+EC-Earth3,-1.5,-1.5166,7,IT,ITA,hdd_calendar,-0.0301332579496956,Electricity
+IPSL-CM6A-LR,-3.5,-3.4513,9,IT,ITA,hdd_calendar,-0.0254746748010028,Electricity
+IPSL-CM6A-LR,-2.5,-2.5185,16,IT,ITA,hdd_calendar,-0.0225020870291507,Electricity
+IPSL-CM6A-LR,-1.5,-1.7768,5,IT,ITA,hdd_calendar,-0.0237559503357262,Electricity
+EC-Earth3,-3.5,-3.2771,5,LT,LTU,hdd_calendar,-0.0380429616137403,Electricity
+EC-Earth3,-2.5,-2.5562,17,LT,LTU,hdd_calendar,-0.0377760033371645,Electricity
+EC-Earth3,-1.5,-1.5166,7,LT,LTU,hdd_calendar,-0.0427504147338903,Electricity
+IPSL-CM6A-LR,-3.5,-3.4513,9,LT,LTU,hdd_calendar,-0.0420011870021447,Electricity
+IPSL-CM6A-LR,-2.5,-2.5185,16,LT,LTU,hdd_calendar,-0.0493100621383882,Electricity
+IPSL-CM6A-LR,-1.5,-1.7768,5,LT,LTU,hdd_calendar,-0.0366330387072368,Electricity
+EC-Earth3,-3.5,-3.2771,5,LU,LUX,hdd_calendar,-0.0265633643138888,Electricity
+EC-Earth3,-2.5,-2.5562,17,LU,LUX,hdd_calendar,-0.0336152713736714,Electricity
+EC-Earth3,-1.5,-1.5166,7,LU,LUX,hdd_calendar,-0.0375619036567187,Electricity
+IPSL-CM6A-LR,-3.5,-3.4513,9,LU,LUX,hdd_calendar,-0.0380055729170419,Electricity
+IPSL-CM6A-LR,-2.5,-2.5185,16,LU,LUX,hdd_calendar,-0.0332561087687971,Electricity
+IPSL-CM6A-LR,-1.5,-1.7768,5,LU,LUX,hdd_calendar,-0.0332827244511926,Electricity
+EC-Earth3,-3.5,-3.2771,5,LV,LVA,hdd_calendar,-0.0402182904118768,Electricity
+EC-Earth3,-2.5,-2.5562,17,LV,LVA,hdd_calendar,-0.0371953229554905,Electricity
+EC-Earth3,-1.5,-1.5166,7,LV,LVA,hdd_calendar,-0.0442825498459029,Electricity
+IPSL-CM6A-LR,-3.5,-3.4513,9,LV,LVA,hdd_calendar,-0.0406506275049056,Electricity
+IPSL-CM6A-LR,-2.5,-2.5185,16,LV,LVA,hdd_calendar,-0.0500137748166256,Electricity
+IPSL-CM6A-LR,-1.5,-1.7768,5,LV,LVA,hdd_calendar,-0.0367048712282116,Electricity
+EC-Earth3,-3.5,-3.2771,5,MT,MLT,hdd_calendar,-0.0120209223477399,Electricity
+EC-Earth3,-2.5,-2.5562,17,MT,MLT,hdd_calendar,-0.0179663565703027,Electricity
+EC-Earth3,-1.5,-1.5166,7,MT,MLT,hdd_calendar,-0.0184372113972319,Electricity
+IPSL-CM6A-LR,-3.5,-3.4513,9,MT,MLT,hdd_calendar,-0.0183934251995894,Electricity
+IPSL-CM6A-LR,-2.5,-2.5185,16,MT,MLT,hdd_calendar,-0.0142550859014034,Electricity
+IPSL-CM6A-LR,-1.5,-1.7768,5,MT,MLT,hdd_calendar,-0.0134612016136719,Electricity
+EC-Earth3,-3.5,-3.2771,5,NL,NLD,hdd_calendar,-0.0269612016673419,Electricity
+EC-Earth3,-2.5,-2.5562,17,NL,NLD,hdd_calendar,-0.0298985068854303,Electricity
+EC-Earth3,-1.5,-1.5166,7,NL,NLD,hdd_calendar,-0.0380357112632838,Electricity
+IPSL-CM6A-LR,-3.5,-3.4513,9,NL,NLD,hdd_calendar,-0.0328960515191364,Electricity
+IPSL-CM6A-LR,-2.5,-2.5185,16,NL,NLD,hdd_calendar,-0.0316309678758648,Electricity
+IPSL-CM6A-LR,-1.5,-1.7768,5,NL,NLD,hdd_calendar,-0.0286362749224153,Electricity
+EC-Earth3,-3.5,-3.2771,5,NO,NOR,hdd_calendar,-0.0419460545171827,Electricity
+EC-Earth3,-2.5,-2.5562,17,NO,NOR,hdd_calendar,-0.0389673533392902,Electricity
+EC-Earth3,-1.5,-1.5166,7,NO,NOR,hdd_calendar,-0.0552657497583326,Electricity
+IPSL-CM6A-LR,-3.5,-3.4513,9,NO,NOR,hdd_calendar,-0.0356619949837626,Electricity
+IPSL-CM6A-LR,-2.5,-2.5185,16,NO,NOR,hdd_calendar,-0.0408440198862328,Electricity
+IPSL-CM6A-LR,-1.5,-1.7768,5,NO,NOR,hdd_calendar,-0.0289379565997633,Electricity
+EC-Earth3,-3.5,-3.2771,5,PL,POL,hdd_calendar,-0.0272288309275075,Electricity
+EC-Earth3,-2.5,-2.5562,17,PL,POL,hdd_calendar,-0.035463998909472,Electricity
+EC-Earth3,-1.5,-1.5166,7,PL,POL,hdd_calendar,-0.0389265910862097,Electricity
+IPSL-CM6A-LR,-3.5,-3.4513,9,PL,POL,hdd_calendar,-0.0404245060351425,Electricity
+IPSL-CM6A-LR,-2.5,-2.5185,16,PL,POL,hdd_calendar,-0.0441868042153248,Electricity
+IPSL-CM6A-LR,-1.5,-1.7768,5,PL,POL,hdd_calendar,-0.0366799143663576,Electricity
+EC-Earth3,-3.5,-3.2771,5,PT,PRT,hdd_calendar,-0.021535330145278,Electricity
+EC-Earth3,-2.5,-2.5562,17,PT,PRT,hdd_calendar,-0.0216975217896795,Electricity
+EC-Earth3,-1.5,-1.5166,7,PT,PRT,hdd_calendar,-0.0249901314570008,Electricity
+IPSL-CM6A-LR,-3.5,-3.4513,9,PT,PRT,hdd_calendar,-0.0180546959653479,Electricity
+IPSL-CM6A-LR,-2.5,-2.5185,16,PT,PRT,hdd_calendar,-0.0141109526394234,Electricity
+IPSL-CM6A-LR,-1.5,-1.7768,5,PT,PRT,hdd_calendar,-0.0163900602327826,Electricity
+EC-Earth3,-3.5,-3.2771,5,RO,ROU,hdd_calendar,-0.0263223320976856,Electricity
+EC-Earth3,-2.5,-2.5562,17,RO,ROU,hdd_calendar,-0.0378807326924727,Electricity
+EC-Earth3,-1.5,-1.5166,7,RO,ROU,hdd_calendar,-0.0337089108613148,Electricity
+IPSL-CM6A-LR,-3.5,-3.4513,9,RO,ROU,hdd_calendar,-0.0325334780810139,Electricity
+IPSL-CM6A-LR,-2.5,-2.5185,16,RO,ROU,hdd_calendar,-0.0340934403735702,Electricity
+IPSL-CM6A-LR,-1.5,-1.7768,5,RO,ROU,hdd_calendar,-0.0313649974362407,Electricity
+EC-Earth3,-3.5,-3.2771,5,SE,SWE,hdd_calendar,-0.0362574929197115,Electricity
+EC-Earth3,-2.5,-2.5562,17,SE,SWE,hdd_calendar,-0.0379604492706277,Electricity
+EC-Earth3,-1.5,-1.5166,7,SE,SWE,hdd_calendar,-0.0484242333308189,Electricity
+IPSL-CM6A-LR,-3.5,-3.4513,9,SE,SWE,hdd_calendar,-0.0387905864402436,Electricity
+IPSL-CM6A-LR,-2.5,-2.5185,16,SE,SWE,hdd_calendar,-0.0437347290216961,Electricity
+IPSL-CM6A-LR,-1.5,-1.7768,5,SE,SWE,hdd_calendar,-0.0310996234264742,Electricity
+EC-Earth3,-3.5,-3.2771,5,SI,SVN,hdd_calendar,-0.0291830706328044,Electricity
+EC-Earth3,-2.5,-2.5562,17,SI,SVN,hdd_calendar,-0.0366832692843066,Electricity
+EC-Earth3,-1.5,-1.5166,7,SI,SVN,hdd_calendar,-0.041495880443725,Electricity
+IPSL-CM6A-LR,-3.5,-3.4513,9,SI,SVN,hdd_calendar,-0.0374182945300681,Electricity
+IPSL-CM6A-LR,-2.5,-2.5185,16,SI,SVN,hdd_calendar,-0.0343860637724559,Electricity
+IPSL-CM6A-LR,-1.5,-1.7768,5,SI,SVN,hdd_calendar,-0.0343092547898567,Electricity
+EC-Earth3,-3.5,-3.2771,5,SK,SVK,hdd_calendar,-0.0267386214998583,Electricity
+EC-Earth3,-2.5,-2.5562,17,SK,SVK,hdd_calendar,-0.0380728576603525,Electricity
+EC-Earth3,-1.5,-1.5166,7,SK,SVK,hdd_calendar,-0.0383478491015729,Electricity
+IPSL-CM6A-LR,-3.5,-3.4513,9,SK,SVK,hdd_calendar,-0.0390178262159897,Electricity
+IPSL-CM6A-LR,-2.5,-2.5185,16,SK,SVK,hdd_calendar,-0.0394881670740075,Electricity
+IPSL-CM6A-LR,-1.5,-1.7768,5,SK,SVK,hdd_calendar,-0.0374530924845726,Electricity
+EC-Earth3,-3.5,-3.2771,5,UK,GBR,hdd_calendar,-0.0366885439608598,Electricity
+EC-Earth3,-2.5,-2.5562,17,UK,GBR,hdd_calendar,-0.0351518237943169,Electricity
+EC-Earth3,-1.5,-1.5166,7,UK,GBR,hdd_calendar,-0.0442229254985758,Electricity
+IPSL-CM6A-LR,-3.5,-3.4513,9,UK,GBR,hdd_calendar,-0.022384515793471,Electricity
+IPSL-CM6A-LR,-2.5,-2.5185,16,UK,GBR,hdd_calendar,-0.0218683057517171,Electricity
+IPSL-CM6A-LR,-1.5,-1.7768,5,UK,GBR,hdd_calendar,-0.0173849797889938,Electricity
+EC-Earth3,-3.5,-3.2771,5,AT,AUT,cdd_jja,0.00659367399672289,Electricity
+EC-Earth3,-2.5,-2.5562,17,AT,AUT,cdd_jja,0.0128708690880698,Electricity
+EC-Earth3,-1.5,-1.5166,7,AT,AUT,cdd_jja,0.0138869513068735,Electricity
+IPSL-CM6A-LR,-3.5,-3.4513,9,AT,AUT,cdd_jja,0.0164098848518805,Electricity
+IPSL-CM6A-LR,-2.5,-2.5185,16,AT,AUT,cdd_jja,0.01418245083608,Electricity
+IPSL-CM6A-LR,-1.5,-1.7768,5,AT,AUT,cdd_jja,0.0140654286608976,Electricity
+EC-Earth3,-3.5,-3.2771,5,BE,BEL,cdd_jja,0.00741601320316717,Electricity
+EC-Earth3,-2.5,-2.5562,17,BE,BEL,cdd_jja,0.0123025504363264,Electricity
+EC-Earth3,-1.5,-1.5166,7,BE,BEL,cdd_jja,0.00872026743517646,Electricity
+IPSL-CM6A-LR,-3.5,-3.4513,9,BE,BEL,cdd_jja,0.00904970034205424,Electricity
+IPSL-CM6A-LR,-2.5,-2.5185,16,BE,BEL,cdd_jja,0.00662760737439414,Electricity
+IPSL-CM6A-LR,-1.5,-1.7768,5,BE,BEL,cdd_jja,0.00521213191736984,Electricity
+EC-Earth3,-3.5,-3.2771,5,BG,BGR,cdd_jja,0.0139801154388861,Electricity
+EC-Earth3,-2.5,-2.5562,17,BG,BGR,cdd_jja,0.0175207450008637,Electricity
+EC-Earth3,-1.5,-1.5166,7,BG,BGR,cdd_jja,0.0209812516646639,Electricity
+IPSL-CM6A-LR,-3.5,-3.4513,9,BG,BGR,cdd_jja,0.0198209743988407,Electricity
+IPSL-CM6A-LR,-2.5,-2.5185,16,BG,BGR,cdd_jja,0.0191898048509223,Electricity
+IPSL-CM6A-LR,-1.5,-1.7768,5,BG,BGR,cdd_jja,0.0235461003458433,Electricity
+EC-Earth3,-3.5,-3.2771,5,CY,CYP,cdd_jja,0.0198924176798504,Electricity
+EC-Earth3,-2.5,-2.5562,17,CY,CYP,cdd_jja,0.0202949512820714,Electricity
+EC-Earth3,-1.5,-1.5166,7,CY,CYP,cdd_jja,0.0188125250092047,Electricity
+IPSL-CM6A-LR,-3.5,-3.4513,9,CY,CYP,cdd_jja,0.0191469737752498,Electricity
+IPSL-CM6A-LR,-2.5,-2.5185,16,CY,CYP,cdd_jja,0.0183348407518069,Electricity
+IPSL-CM6A-LR,-1.5,-1.7768,5,CY,CYP,cdd_jja,0.0221895503299936,Electricity
+EC-Earth3,-3.5,-3.2771,5,CZ,CZE,cdd_jja,0.0049296736219984,Electricity
+EC-Earth3,-2.5,-2.5562,17,CZ,CZE,cdd_jja,0.0128859166655718,Electricity
+EC-Earth3,-1.5,-1.5166,7,CZ,CZE,cdd_jja,0.011733446693583,Electricity
+IPSL-CM6A-LR,-3.5,-3.4513,9,CZ,CZE,cdd_jja,0.0146251113116398,Electricity
+IPSL-CM6A-LR,-2.5,-2.5185,16,CZ,CZE,cdd_jja,0.0120937162302982,Electricity
+IPSL-CM6A-LR,-1.5,-1.7768,5,CZ,CZE,cdd_jja,0.0124061388321737,Electricity
+EC-Earth3,-3.5,-3.2771,5,DE,DEU,cdd_jja,0.00684071596475622,Electricity
+EC-Earth3,-2.5,-2.5562,17,DE,DEU,cdd_jja,0.0135664160979969,Electricity
+EC-Earth3,-1.5,-1.5166,7,DE,DEU,cdd_jja,0.00889176620253293,Electricity
+IPSL-CM6A-LR,-3.5,-3.4513,9,DE,DEU,cdd_jja,0.0123128002354945,Electricity
+IPSL-CM6A-LR,-2.5,-2.5185,16,DE,DEU,cdd_jja,0.00916781292140351,Electricity
+IPSL-CM6A-LR,-1.5,-1.7768,5,DE,DEU,cdd_jja,0.0083000692854531,Electricity
+EC-Earth3,-3.5,-3.2771,5,DK,DNK,cdd_jja,0.003118076139254,Electricity
+EC-Earth3,-2.5,-2.5562,17,DK,DNK,cdd_jja,0.00540591854589599,Electricity
+EC-Earth3,-1.5,-1.5166,7,DK,DNK,cdd_jja,0.00430112104408027,Electricity
+IPSL-CM6A-LR,-3.5,-3.4513,9,DK,DNK,cdd_jja,0.00448208451960468,Electricity
+IPSL-CM6A-LR,-2.5,-2.5185,16,DK,DNK,cdd_jja,0.00342138296229492,Electricity
+IPSL-CM6A-LR,-1.5,-1.7768,5,DK,DNK,cdd_jja,0.0015726245055455,Electricity
+EC-Earth3,-3.5,-3.2771,5,EE,EST,cdd_jja,0.00582978045361984,Electricity
+EC-Earth3,-2.5,-2.5562,17,EE,EST,cdd_jja,0.0057996416824491,Electricity
+EC-Earth3,-1.5,-1.5166,7,EE,EST,cdd_jja,0.00507818666951844,Electricity
+IPSL-CM6A-LR,-3.5,-3.4513,9,EE,EST,cdd_jja,0.00613744889332801,Electricity
+IPSL-CM6A-LR,-2.5,-2.5185,16,EE,EST,cdd_jja,0.00543282972073295,Electricity
+IPSL-CM6A-LR,-1.5,-1.7768,5,EE,EST,cdd_jja,0.00398568892670438,Electricity
+EC-Earth3,-3.5,-3.2771,5,EL,GRC,cdd_jja,0.0224597524825301,Electricity
+EC-Earth3,-2.5,-2.5562,17,EL,GRC,cdd_jja,0.0267261986741057,Electricity
+EC-Earth3,-1.5,-1.5166,7,EL,GRC,cdd_jja,0.0258856279099923,Electricity
+IPSL-CM6A-LR,-3.5,-3.4513,9,EL,GRC,cdd_jja,0.0242514173771051,Electricity
+IPSL-CM6A-LR,-2.5,-2.5185,16,EL,GRC,cdd_jja,0.0256802393811312,Electricity
+IPSL-CM6A-LR,-1.5,-1.7768,5,EL,GRC,cdd_jja,0.0277557582884112,Electricity
+EC-Earth3,-3.5,-3.2771,5,ES,ESP,cdd_jja,0.0264365437112333,Electricity
+EC-Earth3,-2.5,-2.5562,17,ES,ESP,cdd_jja,0.0284200761230009,Electricity
+EC-Earth3,-1.5,-1.5166,7,ES,ESP,cdd_jja,0.0290355002347505,Electricity
+IPSL-CM6A-LR,-3.5,-3.4513,9,ES,ESP,cdd_jja,0.0220796375899788,Electricity
+IPSL-CM6A-LR,-2.5,-2.5185,16,ES,ESP,cdd_jja,0.0207079963804604,Electricity
+IPSL-CM6A-LR,-1.5,-1.7768,5,ES,ESP,cdd_jja,0.0261135223808563,Electricity
+EC-Earth3,-3.5,-3.2771,5,FI,FIN,cdd_jja,0.00472751268947113,Electricity
+EC-Earth3,-2.5,-2.5562,17,FI,FIN,cdd_jja,0.00448675144943865,Electricity
+EC-Earth3,-1.5,-1.5166,7,FI,FIN,cdd_jja,0.00444871815210018,Electricity
+IPSL-CM6A-LR,-3.5,-3.4513,9,FI,FIN,cdd_jja,0.00468716773529902,Electricity
+IPSL-CM6A-LR,-2.5,-2.5185,16,FI,FIN,cdd_jja,0.00442861109926414,Electricity
+IPSL-CM6A-LR,-1.5,-1.7768,5,FI,FIN,cdd_jja,0.00306438463808009,Electricity
+EC-Earth3,-3.5,-3.2771,5,FR,FRA,cdd_jja,0.0118590612535999,Electricity
+EC-Earth3,-2.5,-2.5562,17,FR,FRA,cdd_jja,0.0171903525383192,Electricity
+EC-Earth3,-1.5,-1.5166,7,FR,FRA,cdd_jja,0.0146377599999748,Electricity
+IPSL-CM6A-LR,-3.5,-3.4513,9,FR,FRA,cdd_jja,0.0151943459028832,Electricity
+IPSL-CM6A-LR,-2.5,-2.5185,16,FR,FRA,cdd_jja,0.011718922510081,Electricity
+IPSL-CM6A-LR,-1.5,-1.7768,5,FR,FRA,cdd_jja,0.0112169440478466,Electricity
+EC-Earth3,-3.5,-3.2771,5,HR,HRV,cdd_jja,0.0132505042027876,Electricity
+EC-Earth3,-2.5,-2.5562,17,HR,HRV,cdd_jja,0.0231317903786207,Electricity
+EC-Earth3,-1.5,-1.5166,7,HR,HRV,cdd_jja,0.0247313696751699,Electricity
+IPSL-CM6A-LR,-3.5,-3.4513,9,HR,HRV,cdd_jja,0.0240777814175817,Electricity
+IPSL-CM6A-LR,-2.5,-2.5185,16,HR,HRV,cdd_jja,0.0231371115509548,Electricity
+IPSL-CM6A-LR,-1.5,-1.7768,5,HR,HRV,cdd_jja,0.0245781896978159,Electricity
+EC-Earth3,-3.5,-3.2771,5,HU,HUN,cdd_jja,0.00959560028412789,Electricity
+EC-Earth3,-2.5,-2.5562,17,HU,HUN,cdd_jja,0.0189549754095572,Electricity
+EC-Earth3,-1.5,-1.5166,7,HU,HUN,cdd_jja,0.0226013305595492,Electricity
+IPSL-CM6A-LR,-3.5,-3.4513,9,HU,HUN,cdd_jja,0.0240746846697479,Electricity
+IPSL-CM6A-LR,-2.5,-2.5185,16,HU,HUN,cdd_jja,0.0216755774219243,Electricity
+IPSL-CM6A-LR,-1.5,-1.7768,5,HU,HUN,cdd_jja,0.022760791264904,Electricity
+EC-Earth3,-3.5,-3.2771,5,IE,IRL,cdd_jja,0.00119277130999425,Electricity
+EC-Earth3,-2.5,-2.5562,17,IE,IRL,cdd_jja,0.00143213683269321,Electricity
+EC-Earth3,-1.5,-1.5166,7,IE,IRL,cdd_jja,0.0013010702518422,Electricity
+IPSL-CM6A-LR,-3.5,-3.4513,9,IE,IRL,cdd_jja,0.000612763525582669,Electricity
+IPSL-CM6A-LR,-2.5,-2.5185,16,IE,IRL,cdd_jja,0.000661439167589235,Electricity
+IPSL-CM6A-LR,-1.5,-1.7768,5,IE,IRL,cdd_jja,0.000238449583198836,Electricity
+EC-Earth3,-3.5,-3.2771,5,IT,ITA,cdd_jja,0.0199188054606873,Electricity
+EC-Earth3,-2.5,-2.5562,17,IT,ITA,cdd_jja,0.0273084744991842,Electricity
+EC-Earth3,-1.5,-1.5166,7,IT,ITA,cdd_jja,0.02690690045263,Electricity
+IPSL-CM6A-LR,-3.5,-3.4513,9,IT,ITA,cdd_jja,0.0260734827398509,Electricity
+IPSL-CM6A-LR,-2.5,-2.5185,16,IT,ITA,cdd_jja,0.0239178409343934,Electricity
+IPSL-CM6A-LR,-1.5,-1.7768,5,IT,ITA,cdd_jja,0.0255175946956093,Electricity
+EC-Earth3,-3.5,-3.2771,5,LT,LTU,cdd_jja,0.00574233003944137,Electricity
+EC-Earth3,-2.5,-2.5562,17,LT,LTU,cdd_jja,0.00778247623554994,Electricity
+EC-Earth3,-1.5,-1.5166,7,LT,LTU,cdd_jja,0.00604428476131544,Electricity
+IPSL-CM6A-LR,-3.5,-3.4513,9,LT,LTU,cdd_jja,0.0108233081436269,Electricity
+IPSL-CM6A-LR,-2.5,-2.5185,16,LT,LTU,cdd_jja,0.00913911348373297,Electricity
+IPSL-CM6A-LR,-1.5,-1.7768,5,LT,LTU,cdd_jja,0.00889521187970006,Electricity
+EC-Earth3,-3.5,-3.2771,5,LU,LUX,cdd_jja,0.00804644127625222,Electricity
+EC-Earth3,-2.5,-2.5562,17,LU,LUX,cdd_jja,0.0151510786655441,Electricity
+EC-Earth3,-1.5,-1.5166,7,LU,LUX,cdd_jja,0.00989245191450127,Electricity
+IPSL-CM6A-LR,-3.5,-3.4513,9,LU,LUX,cdd_jja,0.0126089540072011,Electricity
+IPSL-CM6A-LR,-2.5,-2.5185,16,LU,LUX,cdd_jja,0.00896067974587556,Electricity
+IPSL-CM6A-LR,-1.5,-1.7768,5,LU,LUX,cdd_jja,0.00777654443688248,Electricity
+EC-Earth3,-3.5,-3.2771,5,LV,LVA,cdd_jja,0.00655306734555075,Electricity
+EC-Earth3,-2.5,-2.5562,17,LV,LVA,cdd_jja,0.00733999022465691,Electricity
+EC-Earth3,-1.5,-1.5166,7,LV,LVA,cdd_jja,0.00563673529992713,Electricity
+IPSL-CM6A-LR,-3.5,-3.4513,9,LV,LVA,cdd_jja,0.00944957335810818,Electricity
+IPSL-CM6A-LR,-2.5,-2.5185,16,LV,LVA,cdd_jja,0.00805930804542063,Electricity
+IPSL-CM6A-LR,-1.5,-1.7768,5,LV,LVA,cdd_jja,0.00685127107709098,Electricity
+EC-Earth3,-3.5,-3.2771,5,MT,MLT,cdd_jja,0.0222401450833338,Electricity
+EC-Earth3,-2.5,-2.5562,17,MT,MLT,cdd_jja,0.029666669782669,Electricity
+EC-Earth3,-1.5,-1.5166,7,MT,MLT,cdd_jja,0.0269516070234694,Electricity
+IPSL-CM6A-LR,-3.5,-3.4513,9,MT,MLT,cdd_jja,0.0280142276921128,Electricity
+IPSL-CM6A-LR,-2.5,-2.5185,16,MT,MLT,cdd_jja,0.0280379548867826,Electricity
+IPSL-CM6A-LR,-1.5,-1.7768,5,MT,MLT,cdd_jja,0.0310070382006832,Electricity
+EC-Earth3,-3.5,-3.2771,5,NL,NLD,cdd_jja,0.00540011759572854,Electricity
+EC-Earth3,-2.5,-2.5562,17,NL,NLD,cdd_jja,0.0100827928658603,Electricity
+EC-Earth3,-1.5,-1.5166,7,NL,NLD,cdd_jja,0.00712173492662747,Electricity
+IPSL-CM6A-LR,-3.5,-3.4513,9,NL,NLD,cdd_jja,0.00693889595593613,Electricity
+IPSL-CM6A-LR,-2.5,-2.5185,16,NL,NLD,cdd_jja,0.00535898755055632,Electricity
+IPSL-CM6A-LR,-1.5,-1.7768,5,NL,NLD,cdd_jja,0.00346264385596715,Electricity
+EC-Earth3,-3.5,-3.2771,5,NO,NOR,cdd_jja,0.00189472989642229,Electricity
+EC-Earth3,-2.5,-2.5562,17,NO,NOR,cdd_jja,0.00230384953981082,Electricity
+EC-Earth3,-1.5,-1.5166,7,NO,NOR,cdd_jja,0.00276077250187246,Electricity
+IPSL-CM6A-LR,-3.5,-3.4513,9,NO,NOR,cdd_jja,0.00220039199246352,Electricity
+IPSL-CM6A-LR,-2.5,-2.5185,16,NO,NOR,cdd_jja,0.00191056256492442,Electricity
+IPSL-CM6A-LR,-1.5,-1.7768,5,NO,NOR,cdd_jja,0.000827093368611584,Electricity
+EC-Earth3,-3.5,-3.2771,5,PL,POL,cdd_jja,0.00570159253976921,Electricity
+EC-Earth3,-2.5,-2.5562,17,PL,POL,cdd_jja,0.0117501516854186,Electricity
+EC-Earth3,-1.5,-1.5166,7,PL,POL,cdd_jja,0.0107880226647888,Electricity
+IPSL-CM6A-LR,-3.5,-3.4513,9,PL,POL,cdd_jja,0.0141904762107478,Electricity
+IPSL-CM6A-LR,-2.5,-2.5185,16,PL,POL,cdd_jja,0.0115022810102185,Electricity
+IPSL-CM6A-LR,-1.5,-1.7768,5,PL,POL,cdd_jja,0.0123181650239952,Electricity
+EC-Earth3,-3.5,-3.2771,5,PT,PRT,cdd_jja,0.0153851666320756,Electricity
+EC-Earth3,-2.5,-2.5562,17,PT,PRT,cdd_jja,0.0151232951673736,Electricity
+EC-Earth3,-1.5,-1.5166,7,PT,PRT,cdd_jja,0.0161890562000174,Electricity
+IPSL-CM6A-LR,-3.5,-3.4513,9,PT,PRT,cdd_jja,0.0151210707428733,Electricity
+IPSL-CM6A-LR,-2.5,-2.5185,16,PT,PRT,cdd_jja,0.00842023182463598,Electricity
+IPSL-CM6A-LR,-1.5,-1.7768,5,PT,PRT,cdd_jja,0.0132447032526202,Electricity
+EC-Earth3,-3.5,-3.2771,5,RO,ROU,cdd_jja,0.0118950882072714,Electricity
+EC-Earth3,-2.5,-2.5562,17,RO,ROU,cdd_jja,0.0158382949876368,Electricity
+EC-Earth3,-1.5,-1.5166,7,RO,ROU,cdd_jja,0.0217020960512612,Electricity
+IPSL-CM6A-LR,-3.5,-3.4513,9,RO,ROU,cdd_jja,0.0211889518503586,Electricity
+IPSL-CM6A-LR,-2.5,-2.5185,16,RO,ROU,cdd_jja,0.0196443725399836,Electricity
+IPSL-CM6A-LR,-1.5,-1.7768,5,RO,ROU,cdd_jja,0.023247634917303,Electricity
+EC-Earth3,-3.5,-3.2771,5,SE,SWE,cdd_jja,0.0031496978600916,Electricity
+EC-Earth3,-2.5,-2.5562,17,SE,SWE,cdd_jja,0.00465545878212807,Electricity
+EC-Earth3,-1.5,-1.5166,7,SE,SWE,cdd_jja,0.00481238974981591,Electricity
+IPSL-CM6A-LR,-3.5,-3.4513,9,SE,SWE,cdd_jja,0.00516079568919625,Electricity
+IPSL-CM6A-LR,-2.5,-2.5185,16,SE,SWE,cdd_jja,0.00405639073288059,Electricity
+IPSL-CM6A-LR,-1.5,-1.7768,5,SE,SWE,cdd_jja,0.00260048308935084,Electricity
+EC-Earth3,-3.5,-3.2771,5,SI,SVN,cdd_jja,0.00988307443866667,Electricity
+EC-Earth3,-2.5,-2.5562,17,SI,SVN,cdd_jja,0.0169100314351147,Electricity
+EC-Earth3,-1.5,-1.5166,7,SI,SVN,cdd_jja,0.0175255863953644,Electricity
+IPSL-CM6A-LR,-3.5,-3.4513,9,SI,SVN,cdd_jja,0.017107394589308,Electricity
+IPSL-CM6A-LR,-2.5,-2.5185,16,SI,SVN,cdd_jja,0.0162458444490251,Electricity
+IPSL-CM6A-LR,-1.5,-1.7768,5,SI,SVN,cdd_jja,0.0168275096477702,Electricity
+EC-Earth3,-3.5,-3.2771,5,SK,SVK,cdd_jja,0.0062378969251749,Electricity
+EC-Earth3,-2.5,-2.5562,17,SK,SVK,cdd_jja,0.0135955953135009,Electricity
+EC-Earth3,-1.5,-1.5166,7,SK,SVK,cdd_jja,0.0159607691836533,Electricity
+IPSL-CM6A-LR,-3.5,-3.4513,9,SK,SVK,cdd_jja,0.0168993890904466,Electricity
+IPSL-CM6A-LR,-2.5,-2.5185,16,SK,SVK,cdd_jja,0.0146276846654734,Electricity
+IPSL-CM6A-LR,-1.5,-1.7768,5,SK,SVK,cdd_jja,0.015652315652945,Electricity
+EC-Earth3,-3.5,-3.2771,5,UK,GBR,cdd_jja,0.000797172678274214,Electricity
+EC-Earth3,-2.5,-2.5562,17,UK,GBR,cdd_jja,0.00104944858630825,Electricity
+EC-Earth3,-1.5,-1.5166,7,UK,GBR,cdd_jja,0.000836950622279581,Electricity
+IPSL-CM6A-LR,-3.5,-3.4513,9,UK,GBR,cdd_jja,0.000405848430888087,Electricity
+IPSL-CM6A-LR,-2.5,-2.5185,16,UK,GBR,cdd_jja,0.000453477284894512,Electricity
+IPSL-CM6A-LR,-1.5,-1.7768,5,UK,GBR,cdd_jja,0.000127620903683884,Electricity
+EC-Earth3,-3.5,-3.2771,5,AT,AUT,hdd_octmar,-0.0350633845344026,Natural gas
+EC-Earth3,-2.5,-2.5562,17,AT,AUT,hdd_octmar,-0.0503625035202038,Natural gas
+EC-Earth3,-1.5,-1.5166,7,AT,AUT,hdd_octmar,-0.0558639502854339,Natural gas
+IPSL-CM6A-LR,-3.5,-3.4513,9,AT,AUT,hdd_octmar,-0.0551216810980436,Natural gas
+IPSL-CM6A-LR,-2.5,-2.5185,16,AT,AUT,hdd_octmar,-0.0533812191858545,Natural gas
+IPSL-CM6A-LR,-1.5,-1.7768,5,AT,AUT,hdd_octmar,-0.0537412149886369,Natural gas
+EC-Earth3,-3.5,-3.2771,5,BE,BEL,hdd_octmar,-0.0319630808418067,Natural gas
+EC-Earth3,-2.5,-2.5562,17,BE,BEL,hdd_octmar,-0.0385888635224317,Natural gas
+EC-Earth3,-1.5,-1.5166,7,BE,BEL,hdd_octmar,-0.0486424179490907,Natural gas
+IPSL-CM6A-LR,-3.5,-3.4513,9,BE,BEL,hdd_octmar,-0.0480425351613084,Natural gas
+IPSL-CM6A-LR,-2.5,-2.5185,16,BE,BEL,hdd_octmar,-0.0475175447265274,Natural gas
+IPSL-CM6A-LR,-1.5,-1.7768,5,BE,BEL,hdd_octmar,-0.0488277475908445,Natural gas
+EC-Earth3,-3.5,-3.2771,5,BG,BGR,hdd_octmar,-0.030203813178726,Natural gas
+EC-Earth3,-2.5,-2.5562,17,BG,BGR,hdd_octmar,-0.0584377342843852,Natural gas
+EC-Earth3,-1.5,-1.5166,7,BG,BGR,hdd_octmar,-0.05088976717762,Natural gas
+IPSL-CM6A-LR,-3.5,-3.4513,9,BG,BGR,hdd_octmar,-0.0379449215468462,Natural gas
+IPSL-CM6A-LR,-2.5,-2.5185,16,BG,BGR,hdd_octmar,-0.0439176693613447,Natural gas
+IPSL-CM6A-LR,-1.5,-1.7768,5,BG,BGR,hdd_octmar,-0.0434708777852164,Natural gas
+EC-Earth3,-3.5,-3.2771,5,CZ,CZE,hdd_octmar,-0.0297486726758282,Natural gas
+EC-Earth3,-2.5,-2.5562,17,CZ,CZE,hdd_octmar,-0.0481327614342675,Natural gas
+EC-Earth3,-1.5,-1.5166,7,CZ,CZE,hdd_octmar,-0.0530322588456833,Natural gas
+IPSL-CM6A-LR,-3.5,-3.4513,9,CZ,CZE,hdd_octmar,-0.0543842476751683,Natural gas
+IPSL-CM6A-LR,-2.5,-2.5185,16,CZ,CZE,hdd_octmar,-0.0590517937151473,Natural gas
+IPSL-CM6A-LR,-1.5,-1.7768,5,CZ,CZE,hdd_octmar,-0.054625085280543,Natural gas
+EC-Earth3,-3.5,-3.2771,5,DE,DEU,hdd_octmar,-0.0300827124092481,Natural gas
+EC-Earth3,-2.5,-2.5562,17,DE,DEU,hdd_octmar,-0.0426278428381036,Natural gas
+EC-Earth3,-1.5,-1.5166,7,DE,DEU,hdd_octmar,-0.050809419090294,Natural gas
+IPSL-CM6A-LR,-3.5,-3.4513,9,DE,DEU,hdd_octmar,-0.054673194937769,Natural gas
+IPSL-CM6A-LR,-2.5,-2.5185,16,DE,DEU,hdd_octmar,-0.054012389783362,Natural gas
+IPSL-CM6A-LR,-1.5,-1.7768,5,DE,DEU,hdd_octmar,-0.052327973141962,Natural gas
+EC-Earth3,-3.5,-3.2771,5,DK,DNK,hdd_octmar,-0.0272141947628064,Natural gas
+EC-Earth3,-2.5,-2.5562,17,DK,DNK,hdd_octmar,-0.0352371414063771,Natural gas
+EC-Earth3,-1.5,-1.5166,7,DK,DNK,hdd_octmar,-0.0536760354959862,Natural gas
+IPSL-CM6A-LR,-3.5,-3.4513,9,DK,DNK,hdd_octmar,-0.0470511621044153,Natural gas
+IPSL-CM6A-LR,-2.5,-2.5185,16,DK,DNK,hdd_octmar,-0.0540111085124222,Natural gas
+IPSL-CM6A-LR,-1.5,-1.7768,5,DK,DNK,hdd_octmar,-0.0401494515271915,Natural gas
+EC-Earth3,-3.5,-3.2771,5,EE,EST,hdd_octmar,-0.0475916517844366,Natural gas
+EC-Earth3,-2.5,-2.5562,17,EE,EST,hdd_octmar,-0.0462473092492701,Natural gas
+EC-Earth3,-1.5,-1.5166,7,EE,EST,hdd_octmar,-0.0607697713889077,Natural gas
+IPSL-CM6A-LR,-3.5,-3.4513,9,EE,EST,hdd_octmar,-0.059094075656163,Natural gas
+IPSL-CM6A-LR,-2.5,-2.5185,16,EE,EST,hdd_octmar,-0.0738649390328525,Natural gas
+IPSL-CM6A-LR,-1.5,-1.7768,5,EE,EST,hdd_octmar,-0.0508046659884203,Natural gas
+EC-Earth3,-3.5,-3.2771,5,EL,GRC,hdd_octmar,-0.0262124888757531,Natural gas
+EC-Earth3,-2.5,-2.5562,17,EL,GRC,hdd_octmar,-0.0468613686800322,Natural gas
+EC-Earth3,-1.5,-1.5166,7,EL,GRC,hdd_octmar,-0.0433118348633901,Natural gas
+IPSL-CM6A-LR,-3.5,-3.4513,9,EL,GRC,hdd_octmar,-0.0290290943834698,Natural gas
+IPSL-CM6A-LR,-2.5,-2.5185,16,EL,GRC,hdd_octmar,-0.0327117150525757,Natural gas
+IPSL-CM6A-LR,-1.5,-1.7768,5,EL,GRC,hdd_octmar,-0.0301380550475863,Natural gas
+EC-Earth3,-3.5,-3.2771,5,ES,ESP,hdd_octmar,-0.0374272467558187,Natural gas
+EC-Earth3,-2.5,-2.5562,17,ES,ESP,hdd_octmar,-0.036477618332773,Natural gas
+EC-Earth3,-1.5,-1.5166,7,ES,ESP,hdd_octmar,-0.0405583836136127,Natural gas
+IPSL-CM6A-LR,-3.5,-3.4513,9,ES,ESP,hdd_octmar,-0.0333101512441355,Natural gas
+IPSL-CM6A-LR,-2.5,-2.5185,16,ES,ESP,hdd_octmar,-0.0294372411747989,Natural gas
+IPSL-CM6A-LR,-1.5,-1.7768,5,ES,ESP,hdd_octmar,-0.0355912268303078,Natural gas
+EC-Earth3,-3.5,-3.2771,5,FR,FRA,hdd_octmar,-0.035841322651506,Natural gas
+EC-Earth3,-2.5,-2.5562,17,FR,FRA,hdd_octmar,-0.0405435870008233,Natural gas
+EC-Earth3,-1.5,-1.5166,7,FR,FRA,hdd_octmar,-0.047621988973787,Natural gas
+IPSL-CM6A-LR,-3.5,-3.4513,9,FR,FRA,hdd_octmar,-0.0466513642398557,Natural gas
+IPSL-CM6A-LR,-2.5,-2.5185,16,FR,FRA,hdd_octmar,-0.0423152540600963,Natural gas
+IPSL-CM6A-LR,-1.5,-1.7768,5,FR,FRA,hdd_octmar,-0.0456187838562836,Natural gas
+EC-Earth3,-3.5,-3.2771,5,HR,HRV,hdd_octmar,-0.0301430561373838,Natural gas
+EC-Earth3,-2.5,-2.5562,17,HR,HRV,hdd_octmar,-0.047514031564273,Natural gas
+EC-Earth3,-1.5,-1.5166,7,HR,HRV,hdd_octmar,-0.0469344011236047,Natural gas
+IPSL-CM6A-LR,-3.5,-3.4513,9,HR,HRV,hdd_octmar,-0.0471731721629473,Natural gas
+IPSL-CM6A-LR,-2.5,-2.5185,16,HR,HRV,hdd_octmar,-0.0485993507129828,Natural gas
+IPSL-CM6A-LR,-1.5,-1.7768,5,HR,HRV,hdd_octmar,-0.0490815218995798,Natural gas
+EC-Earth3,-3.5,-3.2771,5,HU,HUN,hdd_octmar,-0.0338573779294213,Natural gas
+EC-Earth3,-2.5,-2.5562,17,HU,HUN,hdd_octmar,-0.0531447627004678,Natural gas
+EC-Earth3,-1.5,-1.5166,7,HU,HUN,hdd_octmar,-0.049042587795536,Natural gas
+IPSL-CM6A-LR,-3.5,-3.4513,9,HU,HUN,hdd_octmar,-0.0528884671811735,Natural gas
+IPSL-CM6A-LR,-2.5,-2.5185,16,HU,HUN,hdd_octmar,-0.0562320470270619,Natural gas
+IPSL-CM6A-LR,-1.5,-1.7768,5,HU,HUN,hdd_octmar,-0.0551688401348949,Natural gas
+EC-Earth3,-3.5,-3.2771,5,IE,IRL,hdd_octmar,-0.0436014020958004,Natural gas
+EC-Earth3,-2.5,-2.5562,17,IE,IRL,hdd_octmar,-0.0380597399555867,Natural gas
+EC-Earth3,-1.5,-1.5166,7,IE,IRL,hdd_octmar,-0.0507390731825632,Natural gas
+IPSL-CM6A-LR,-3.5,-3.4513,9,IE,IRL,hdd_octmar,-0.0273656327216347,Natural gas
+IPSL-CM6A-LR,-2.5,-2.5185,16,IE,IRL,hdd_octmar,-0.0278686762251554,Natural gas
+IPSL-CM6A-LR,-1.5,-1.7768,5,IE,IRL,hdd_octmar,-0.0245764712108236,Natural gas
+EC-Earth3,-3.5,-3.2771,5,IT,ITA,hdd_octmar,-0.0327761092501342,Natural gas
+EC-Earth3,-2.5,-2.5562,17,IT,ITA,hdd_octmar,-0.0427962679697153,Natural gas
+EC-Earth3,-1.5,-1.5166,7,IT,ITA,hdd_octmar,-0.048022200151553,Natural gas
+IPSL-CM6A-LR,-3.5,-3.4513,9,IT,ITA,hdd_octmar,-0.0416036113813009,Natural gas
+IPSL-CM6A-LR,-2.5,-2.5185,16,IT,ITA,hdd_octmar,-0.0385727856387024,Natural gas
+IPSL-CM6A-LR,-1.5,-1.7768,5,IT,ITA,hdd_octmar,-0.0405668152030235,Natural gas
+EC-Earth3,-3.5,-3.2771,5,LT,LTU,hdd_octmar,-0.042974943268846,Natural gas
+EC-Earth3,-2.5,-2.5562,17,LT,LTU,hdd_octmar,-0.04970512886541,Natural gas
+EC-Earth3,-1.5,-1.5166,7,LT,LTU,hdd_octmar,-0.0577563048009783,Natural gas
+IPSL-CM6A-LR,-3.5,-3.4513,9,LT,LTU,hdd_octmar,-0.0621951233125304,Natural gas
+IPSL-CM6A-LR,-2.5,-2.5185,16,LT,LTU,hdd_octmar,-0.0737759526995126,Natural gas
+IPSL-CM6A-LR,-1.5,-1.7768,5,LT,LTU,hdd_octmar,-0.0523144164687918,Natural gas
+EC-Earth3,-3.5,-3.2771,5,LU,LUX,hdd_octmar,-0.0328207057451057,Natural gas
+EC-Earth3,-2.5,-2.5562,17,LU,LUX,hdd_octmar,-0.043309313652831,Natural gas
+EC-Earth3,-1.5,-1.5166,7,LU,LUX,hdd_octmar,-0.0498262296348879,Natural gas
+IPSL-CM6A-LR,-3.5,-3.4513,9,LU,LUX,hdd_octmar,-0.0547191966976423,Natural gas
+IPSL-CM6A-LR,-2.5,-2.5185,16,LU,LUX,hdd_octmar,-0.0490194422559771,Natural gas
+IPSL-CM6A-LR,-1.5,-1.7768,5,LU,LUX,hdd_octmar,-0.0525614124409419,Natural gas
+EC-Earth3,-3.5,-3.2771,5,LV,LVA,hdd_octmar,-0.0419097524732882,Natural gas
+EC-Earth3,-2.5,-2.5562,17,LV,LVA,hdd_octmar,-0.0456153120253498,Natural gas
+EC-Earth3,-1.5,-1.5166,7,LV,LVA,hdd_octmar,-0.0568540420713871,Natural gas
+IPSL-CM6A-LR,-3.5,-3.4513,9,LV,LVA,hdd_octmar,-0.0588170731452275,Natural gas
+IPSL-CM6A-LR,-2.5,-2.5185,16,LV,LVA,hdd_octmar,-0.0736214975542775,Natural gas
+IPSL-CM6A-LR,-1.5,-1.7768,5,LV,LVA,hdd_octmar,-0.0514080619384571,Natural gas
+EC-Earth3,-3.5,-3.2771,5,NL,NLD,hdd_octmar,-0.0300060014781386,Natural gas
+EC-Earth3,-2.5,-2.5562,17,NL,NLD,hdd_octmar,-0.0371757043383981,Natural gas
+EC-Earth3,-1.5,-1.5166,7,NL,NLD,hdd_octmar,-0.0491949763747391,Natural gas
+IPSL-CM6A-LR,-3.5,-3.4513,9,NL,NLD,hdd_octmar,-0.0468968722844628,Natural gas
+IPSL-CM6A-LR,-2.5,-2.5185,16,NL,NLD,hdd_octmar,-0.0476724958476102,Natural gas
+IPSL-CM6A-LR,-1.5,-1.7768,5,NL,NLD,hdd_octmar,-0.0448827556983101,Natural gas
+EC-Earth3,-3.5,-3.2771,5,PL,POL,hdd_octmar,-0.0297042415061392,Natural gas
+EC-Earth3,-2.5,-2.5562,17,PL,POL,hdd_octmar,-0.048543388104835,Natural gas
+EC-Earth3,-1.5,-1.5166,7,PL,POL,hdd_octmar,-0.0529283932369126,Natural gas
+IPSL-CM6A-LR,-3.5,-3.4513,9,PL,POL,hdd_octmar,-0.0572189149700051,Natural gas
+IPSL-CM6A-LR,-2.5,-2.5185,16,PL,POL,hdd_octmar,-0.0669903004706485,Natural gas
+IPSL-CM6A-LR,-1.5,-1.7768,5,PL,POL,hdd_octmar,-0.0557886032879055,Natural gas
+EC-Earth3,-3.5,-3.2771,5,PT,PRT,hdd_octmar,-0.0332214955613607,Natural gas
+EC-Earth3,-2.5,-2.5562,17,PT,PRT,hdd_octmar,-0.0316065982012788,Natural gas
+EC-Earth3,-1.5,-1.5166,7,PT,PRT,hdd_octmar,-0.0380892091872036,Natural gas
+IPSL-CM6A-LR,-3.5,-3.4513,9,PT,PRT,hdd_octmar,-0.028782057079999,Natural gas
+IPSL-CM6A-LR,-2.5,-2.5185,16,PT,PRT,hdd_octmar,-0.0261220559461908,Natural gas
+IPSL-CM6A-LR,-1.5,-1.7768,5,PT,PRT,hdd_octmar,-0.0287768493335983,Natural gas
+EC-Earth3,-3.5,-3.2771,5,RO,ROU,hdd_octmar,-0.0332281085726633,Natural gas
+EC-Earth3,-2.5,-2.5562,17,RO,ROU,hdd_octmar,-0.0606744613635098,Natural gas
+EC-Earth3,-1.5,-1.5166,7,RO,ROU,hdd_octmar,-0.0483305318035343,Natural gas
+IPSL-CM6A-LR,-3.5,-3.4513,9,RO,ROU,hdd_octmar,-0.0483783934728365,Natural gas
+IPSL-CM6A-LR,-2.5,-2.5185,16,RO,ROU,hdd_octmar,-0.0541835014508154,Natural gas
+IPSL-CM6A-LR,-1.5,-1.7768,5,RO,ROU,hdd_octmar,-0.0484400598032327,Natural gas
+EC-Earth3,-3.5,-3.2771,5,SE,SWE,hdd_octmar,-0.0351017813312781,Natural gas
+EC-Earth3,-2.5,-2.5562,17,SE,SWE,hdd_octmar,-0.042808502040625,Natural gas
+EC-Earth3,-1.5,-1.5166,7,SE,SWE,hdd_octmar,-0.0591303645556857,Natural gas
+IPSL-CM6A-LR,-3.5,-3.4513,9,SE,SWE,hdd_octmar,-0.0540001557124523,Natural gas
+IPSL-CM6A-LR,-2.5,-2.5185,16,SE,SWE,hdd_octmar,-0.0612776093256227,Natural gas
+IPSL-CM6A-LR,-1.5,-1.7768,5,SE,SWE,hdd_octmar,-0.0412215446532963,Natural gas
+EC-Earth3,-3.5,-3.2771,5,SI,SVN,hdd_octmar,-0.0355024471535711,Natural gas
+EC-Earth3,-2.5,-2.5562,17,SI,SVN,hdd_octmar,-0.0512460431615447,Natural gas
+EC-Earth3,-1.5,-1.5166,7,SI,SVN,hdd_octmar,-0.0560076179559817,Natural gas
+IPSL-CM6A-LR,-3.5,-3.4513,9,SI,SVN,hdd_octmar,-0.0536834751337016,Natural gas
+IPSL-CM6A-LR,-2.5,-2.5185,16,SI,SVN,hdd_octmar,-0.0513599936125517,Natural gas
+IPSL-CM6A-LR,-1.5,-1.7768,5,SI,SVN,hdd_octmar,-0.0524253084020714,Natural gas
+EC-Earth3,-3.5,-3.2771,5,SK,SVK,hdd_octmar,-0.0323525872075267,Natural gas
+EC-Earth3,-2.5,-2.5562,17,SK,SVK,hdd_octmar,-0.0544893118922376,Natural gas
+EC-Earth3,-1.5,-1.5166,7,SK,SVK,hdd_octmar,-0.0509355209495695,Natural gas
+IPSL-CM6A-LR,-3.5,-3.4513,9,SK,SVK,hdd_octmar,-0.0552286465558623,Natural gas
+IPSL-CM6A-LR,-2.5,-2.5185,16,SK,SVK,hdd_octmar,-0.0588150479105161,Natural gas
+IPSL-CM6A-LR,-1.5,-1.7768,5,SK,SVK,hdd_octmar,-0.0570358585508865,Natural gas
+EC-Earth3,-3.5,-3.2771,5,UK,GBR,hdd_octmar,-0.0436144627931229,Natural gas
+EC-Earth3,-2.5,-2.5562,17,UK,GBR,hdd_octmar,-0.0374062091136125,Natural gas
+EC-Earth3,-1.5,-1.5166,7,UK,GBR,hdd_octmar,-0.0522687866908042,Natural gas
+IPSL-CM6A-LR,-3.5,-3.4513,9,UK,GBR,hdd_octmar,-0.0272371336457621,Natural gas
+IPSL-CM6A-LR,-2.5,-2.5185,16,UK,GBR,hdd_octmar,-0.0275278581551504,Natural gas
+IPSL-CM6A-LR,-1.5,-1.7768,5,UK,GBR,hdd_octmar,-0.0246983572753937,Natural gas

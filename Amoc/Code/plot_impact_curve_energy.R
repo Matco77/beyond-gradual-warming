@@ -7,15 +7,10 @@
 # temperature. The per-hosing-year band (Appendix I) is drawn for IPSL-CM6A-LR and EC-Earth3, the
 # two models it was computed for.
 #
-# NO ISIMIP reference marker on this figure - neither a vertical Sv line nor a horizontal effect
-# line. Both were tried and dropped (Appendix J, J.4d-J.4e): the AMOC bins isolate a PURE hosing
-# effect against an unforced piControl baseline (Appendix C), while the ISIMIP/ssp126 branch's
-# effect (Appendix J) reflects hosing-like circulation change MIXED with real background greenhouse
-# warming. They are not the same physical quantity, so overlaying either one on this curve implies
-# a comparability that does not hold - not as a vertical marker at a mismatched moment (J.4c-d), and
-# not as a horizontal marker either, since a flat reference line across the whole panel still visually
-# invites reading it against the curve. The ISIMIP branch's numbers are a real, standalone result;
-# they are reported in Appendix J's own tables, not on this figure.
+# ISIMIP overlay (Appendix J.5, plot_impact_common.R): filled triangles, IPSL-CM6A-LR and
+# EC-Earth3 panels only, at the delta_Sv bins isimip_bin_fields.R shares with NAHosMIP. Residual
+# caveat: the two branches' delta_Sv are not on identical footing (piControl-relative vs
+# historical-relative baseline) - see plot_impact_common.R header.
 #
 # NAMING NOTE, applies throughout this file: loop/argument variables are `mdl` and `fl`, never
 # `model` or `fuel`. Inside data.table's `[`, a bare `E[model == model]` or `E[fuel == fuel]`
@@ -26,6 +21,7 @@ source(path.expand("~/Library/CloudStorage/OneDrive-UniversitàCommercialeLuigiB
 
 E    <- totalise(fread(file.path(d, "amoc_impact_energy_eu.csv")), c("model", "bin_id", "delta_sv", "n_years", "fuel"))
 BND  <- fread(file.path(d, "amoc_band_total.csv"))         # branch %in% {"energy Electricity","energy Natural gas"}
+IS   <- totalise(fread(file.path(d, "isimip_bin_impact_energy_eu.csv")), c("model", "bin_id", "delta_sv", "n_years", "fuel"))
 FUELS <- c("Electricity", "Natural gas")
 BND_KEY <- c(Electricity = "energy Electricity", `Natural gas` = "energy Natural gas")
 
@@ -44,6 +40,13 @@ panel <- function(mdl, fl, ylim) {
 
   lines(z$delta_sv, z$pct, col = col, lwd = 2); points(z$delta_sv, z$pct, col = col, pch = 16, cex = 1.1)
   label_n(z$delta_sv, z$pct, z$n_years, col)
+
+  is <- IS[model == mdl & fuel == fl][order(delta_sv)]
+  if (nrow(is)) {
+    lines(is$delta_sv, is$pct, col = col, lwd = 1.4, lty = ISIMIP_LTY)
+    points(is$delta_sv, is$pct, col = col, pch = ISIMIP_PCH, cex = 1.1)
+    label_n(is$delta_sv, is$pct, is$n_years, col)
+  }
   title(main = mdl, cex.main = 1)
 }
 
@@ -51,7 +54,8 @@ pdf(file.path(out, "impact_curve_energy.pdf"), width = 13, height = 8)
 for (fl in FUELS) {
   sub <- E[fuel == fl]
   bl  <- BND[branch == BND_KEY[fl]]
-  yr  <- range(pct(c(sub$dln, bl$lo, bl$hi)), na.rm = TRUE)
+  isf <- IS[fuel == fl]
+  yr  <- range(pct(c(sub$dln, bl$lo, bl$hi, isf$dln)), na.rm = TRUE)
   yr  <- yr + c(-1, 1) * 0.08 * diff(yr)
   xr  <- range(sub$delta_sv)
 
@@ -63,9 +67,13 @@ for (fl in FUELS) {
   for (mdl in MODELS) {
     z <- sub[model == mdl][order(delta_sv)]
     lines(z$delta_sv, z$pct, col = COL[mdl], lwd = 2); points(z$delta_sv, z$pct, col = COL[mdl], pch = 16, cex = 0.8)
+    is <- isf[model == mdl][order(delta_sv)]
+    if (nrow(is)) points(is$delta_sv, is$pct, col = COL[mdl], pch = ISIMIP_PCH, cex = 0.9)
   }
   title(main = "All models - comparison", cex.main = 1)
-  legend("topleft", bg = "white", box.col = NA, cex = 0.7, legend = MODELS, col = COL[MODELS], lwd = 2, pch = 16)
+  legend("topleft", bg = "white", box.col = NA, cex = 0.7,
+    legend = c(MODELS, "ISIMIP-bin (ssp126)"), col = c(COL[MODELS], "grey30"),
+    lwd = c(rep(2, length(MODELS)), NA), pch = c(rep(16, length(MODELS)), ISIMIP_PCH))
 
   plot.new()
   text(0.5, 0.9, sprintf("%s demand effect vs AMOC-weakening bin (delta_Sv)", fl), cex = 1.0, font = 2)
@@ -73,8 +81,9 @@ for (fl in FUELS) {
   text(0.5, 0.70, "constructions matching real consumption cycles, no window ambiguity", cex = 0.72, col = "grey30")
   text(0.5, 0.52, "shaded band: range across the bin's individual hosing years,", cex = 0.7, col = "grey30")
   text(0.5, 0.45, "IPSL-CM6A-LR and EC-Earth3 only (Appendix I)", cex = 0.7, col = "grey30")
-  text(0.5, 0.27, "no ISIMIP marker on this figure - the AMOC bins and the ISIMIP", cex = 0.65, col = "grey30")
-  text(0.5, 0.21, "branch measure different physical quantities (Appendix J, J.4e)", cex = 0.65, col = "grey30")
+  text(0.5, 0.33, "triangles: ISIMIP3b/ssp126, binned by year-level AMOC (Appendix J.5),", cex = 0.65, col = "grey30")
+  text(0.5, 0.27, "at the delta_Sv levels it shares with NAHosMIP - IPSL and EC-Earth3 only", cex = 0.65, col = "grey30")
+  text(0.5, 0.21, "caveat: delta_Sv baseline differs (piControl vs historical mean), see Appendix J.5", cex = 0.62, col = "grey40")
   text(0.5, 0.08, "caveat (Appendix I, I.4): the AMOC bins extrapolate the linear response", cex = 0.65, col = "grey40")
   text(0.5, 0.02, "function up to ~9 s.d. beyond the range that identifies the coefficients", cex = 0.65, col = "grey40")
 }
