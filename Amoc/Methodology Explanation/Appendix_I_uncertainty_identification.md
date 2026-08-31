@@ -110,9 +110,64 @@ is physically closer to linear than most. But the honest description is *a decla
 extrapolation*, not *a robust estimate*, and the earlier characterisation of the
 energy branch as raising no doubts was wrong.
 
-A natural check exists and has not been run: the **between-country** relationship
-spans precisely the range into which the scenario moves. If the cross-sectional
-slope resembles the within slope, the extrapolation has an empirical basis.
+## I.4b The cross-sectional check
+
+The check proposed above was run: does the **between-unit** relationship — the
+classic between estimator, each unit collapsed to its time-mean, regressed with no
+fixed effects — resemble the within slope the benchmark identifies? The between
+estimator draws on a different source of variation (permanent differences across
+units) than the within estimator (year-to-year wobble inside a unit), so agreement
+between the two is not guaranteed by construction; if it holds, the within slope's
+extrapolation to an out-of-sample level has support beyond the narrow range that
+identifies it. Script: `Amoc/Code/cross_section_check.R`.
+
+**Crop (gdd_mj, between-NUTS3, on the benchmark's own estimation sample):**
+
+| crop | n (NUTS3) | within (t) | between (t) | ratio |
+|---|---|---|---|---|
+| Soft wheat | 787 | −3.06×10⁻⁴ (−2.28) | −1.20×10⁻³ (**−10.59**) | 3.93 |
+| Durum wheat | 345 | −3.72×10⁻⁴ (−2.36) | −5.10×10⁻⁴ (−3.40) | 1.37 |
+| Spring barley | 603 | −5.93×10⁻⁴ (−4.34) | −6.94×10⁻⁴ (−6.87) | 1.17 |
+| Winter barley | 730 | −6.37×10⁻⁴ (−4.14) | −1.03×10⁻³ (−10.10) | 1.61 |
+
+Same sign on all four crops, and the between estimate is *more* precisely
+determined than the within one (787 NUTS3 identify a slope far more tightly than
+the within estimator's year-to-year wobble does), 1.2 to 3.9 times larger in
+magnitude. This is real corroboration of one specific thing: **the sign of the
+gdd_mj coefficient is not an artefact of the within-estimator's narrow identifying
+variation** — an independent source of variation, differences between regions
+rather than between years, points the same way.
+
+**It does not corroborate the causal interpretation.** The phenological-misalignment
+problem of §I.5–§I.6 is a property of the fixed Mar–Jul window itself, and that
+window is fixed in the between comparison exactly as it is in the within one: a
+warm region, like a warm year, is sampled at a later phenological stage by a
+calendar window that does not move. The between check cannot distinguish "colder
+regions have a genuinely different thermal dose–response" from "colder regions
+also have systematically different phenological timing relative to a fixed
+calendar window" — both would produce the same negative between-NUTS3 slope. So
+this result licenses extrapolating the *sign* of the fixed-window effect with more
+confidence than before; it does not rehabilitate spec A as a dose–response
+estimate, and does not bear on spec C at all.
+
+**Energy (between-country, on each benchmark's own estimation sample):**
+
+| regressor | n (countries) | within (t) | between (t) | ratio |
+|---|---|---|---|---|
+| HDD calendar | 29 | 6.52×10⁻⁵ (4.20) | 1.93×10⁻⁴ (1.06) | 2.95 |
+| CDD JJA | 29 | 1.53×10⁻⁴ (2.73) | 3.25×10⁻⁴ (0.24) | 2.13 |
+| HDD Oct–Mar | 25 | 1.45×10⁻⁴ (2.49) | −4.49×10⁻⁴ (−0.95) | −3.11 |
+
+**Inconclusive**, and should be reported as such rather than as either confirming or
+refuting the extrapolation. With only 25–29 countries the between estimator has
+essentially no power: none of the three point estimates is distinguishable from
+zero (|t| ≤ 1.06), and HDD Oct–Mar's point estimate **changes sign** relative to
+the within slope, though that reversal is itself not statistically meaningful.
+HDD calendar and CDD JJA at least have the right sign and a plausible order of
+magnitude (2–3×, comparable to the crop ratios); HDD Oct–Mar does not even offer
+that. The extrapolation caveat of §I.4 therefore stands where it was — this check
+had the power to corroborate it for crop, and did; it did not have the power to do
+either for energy.
 
 ---
 
@@ -225,9 +280,19 @@ cooling by roughly eight to one. The magnitude is subject to the extrapolation o
 **Not supported.** Any statement about the sign or magnitude of the crop yield
 effect. The fixed-window figure fails on two independent grounds — an unidentified
 thermal coefficient (§I.5) and a band that crosses zero in 16 of 20 bins (§I.3) —
-and the thermal-time alternative is not identified either (§I.6).
+and the thermal-time alternative is not identified either (§I.6). The
+cross-sectional check (§I.4b) corroborates the *sign* of the fixed-window gdd
+coefficient from an independent source of variation, but cannot speak to the
+phenological-misalignment problem, which is a property of the fixed window that
+the between comparison shares with the within one.
 
-**Not examined.** The cross-sectional check of §I.4; the selection induced by the
-812-of-1 507 region coverage (Appendix H, §H.5); the stability of the crop-area
-weights; and whether the ΔSv definition inherited in Appendix F is the appropriate
-measure of AMOC state.
+**Partially examined, and mixed.** The energy extrapolation of §I.4 was checked
+cross-sectionally (§I.4b) and found inconclusive rather than confirmed: with only
+25–29 countries the between estimator has no power to distinguish its point
+estimates from zero, and one of the three regressors (HDD Oct–Mar) flips sign in
+the point estimate. The extrapolation caveat therefore stands as stated in §I.4,
+neither strengthened nor weakened with any real precision.
+
+**Not examined.** The selection induced by the 812-of-1 507 region coverage
+(Appendix H, §H.5); the stability of the crop-area weights; and whether the ΔSv
+definition inherited in Appendix F is the appropriate measure of AMOC state.
