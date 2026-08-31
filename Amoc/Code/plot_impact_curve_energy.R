@@ -5,9 +5,10 @@
 # (Appendix I, H.7): the windows are calendar constructions (the heating year, Oct-Mar, JJA) that
 # correspond to actual consumption cycles, not to a biological process whose timing shifts with
 # temperature. The per-hosing-year band (Appendix I) is drawn for IPSL-CM6A-LR and EC-Earth3, the
-# two models it was computed for. ISIMIP markers as in plot_impact_curve_crop.R: a vertical line at
-# the AMOC level each model's own ssp126 run implies, a horizontal line at the ISIMIP branch's own
-# effect at that level - the actual prediction check, not an assumed agreement.
+# two models it was computed for. Two reference markers as in plot_impact_curve_crop.R, from TWO
+# DIFFERENT sources: a vertical line at the AMOC level each model's own ssp126 CMIP6 run implies
+# (ocean circulation diagnostic, NOT ISIMIP3b), and a horizontal line at the effect the ISIMIP3b
+# branch itself computes at that warming - the actual prediction check, not an assumed agreement.
 #
 # NAMING NOTE, applies throughout this file: loop/argument variables are `mdl` and `fl`, never
 # `model` or `fuel`. Inside data.table's `[`, a bare `E[model == model]` or `E[fuel == fuel]`
@@ -40,11 +41,11 @@ panel <- function(mdl, fl, ylim) {
 
   key <- ISIMIP_KEY[mdl]
   if (!is.na(key) && key %in% Iso[fuel == fl]$model) {
-    tgt <- isimip_target_sv(mdl)
+    tgt <- ssp126_target_sv(mdl)
     abline(v = tgt, col = "grey40", lty = 3)
     yI <- Iso[model == key & fuel == fl]$pct
     abline(h = yI, col = "grey40", lty = 2)
-    text(tgt, ylim[2], sprintf("ISIMIP %.1f Sv", tgt), col = "grey30", cex = 0.65, pos = 2, srt = 90, offset = 0.3)
+    text(tgt, ylim[2], sprintf("ssp126 %.1f Sv", tgt), col = "grey30", cex = 0.65, pos = 2, srt = 90, offset = 0.3)
   }
   title(main = mdl, cex.main = 1)
 }
@@ -75,8 +76,8 @@ for (fl in FUELS) {
   text(0.5, 0.70, "constructions matching real consumption cycles, no window ambiguity", cex = 0.72, col = "grey30")
   text(0.5, 0.55, "shaded band: range across the bin's individual hosing years,", cex = 0.7, col = "grey30")
   text(0.5, 0.48, "IPSL-CM6A-LR and EC-Earth3 only (Appendix I)", cex = 0.7, col = "grey30")
-  text(0.5, 0.32, "vertical/horizontal grey lines: ISIMIP-projected AMOC level and", cex = 0.7, col = "grey30")
-  text(0.5, 0.25, "the ISIMIP branch's own effect at that level (Appendix J)", cex = 0.7, col = "grey30")
+  text(0.5, 0.32, "vertical line: ssp126 AMOC target (own CMIP6 run, not ISIMIP);", cex = 0.7, col = "grey30")
+  text(0.5, 0.25, "horizontal: the ISIMIP3b branch's own effect at that warming (Appendix J)", cex = 0.7, col = "grey30")
   text(0.5, 0.10, "caveat (Appendix I, I.4): the AMOC bins extrapolate the linear response", cex = 0.65, col = "grey40")
   text(0.5, 0.04, "function up to ~9 s.d. beyond the range that identifies the coefficients", cex = 0.65, col = "grey40")
 }

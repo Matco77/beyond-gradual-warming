@@ -9,12 +9,14 @@
 # on IPSL-CM6A-LR and EC-Earth3 - the two models it was computed for - as the range across the
 # individual years that populate each bin, not an analytic error bar.
 #
-# ISIMIP markers (Appendix J): a vertical line at the AMOC level each model's OWN ssp126 run implies
-# (read from the k10 target files, not hardcoded), and a horizontal line at the effect the ISIMIP
-# branch computes independently at that warming. Where the AMOC curve crosses the vertical line is
-# the prediction the delta-method scenario makes for that level; the horizontal line is what the
-# ISIMIP branch says directly. Agreement between the two is not assumed by construction - it is
-# the actual check this figure exists to show.
+# Two reference markers, from TWO DIFFERENT sources - do not conflate them. The vertical line is
+# each model's OWN ssp126 CMIP6 run's real projected AMOC decline (ocean circulation diagnostic,
+# not ISIMIP3b - see plot_impact_common.R::ssp126_target_sv). The horizontal line is the effect the
+# ISIMIP3b branch (Appendix J, bias-adjusted surface fields) computes independently at that
+# warming. Where the AMOC curve crosses the vertical line is the prediction the delta-method
+# scenario makes for that Sv level; the horizontal line is what the ISIMIP branch says directly.
+# Agreement between the two is not assumed by construction - it is the actual check this figure
+# exists to show.
 source(path.expand("~/Library/CloudStorage/OneDrive-UniversitàCommercialeLuigiBocconi/1.Tesi/Amoc/Code/plot_impact_common.R"))
 
 A <- totalise(fread(file.path(d, "amoc_impact_crop_eu.csv")),   c("model", "bin_id", "delta_sv", "n_years"))
@@ -49,15 +51,15 @@ panel <- function(mdl, ylim, show_legend = FALSE) {
 
   key <- ISIMIP_KEY[mdl]
   if (!is.na(key) && key %in% IsoA$model) {
-    tgt <- isimip_target_sv(mdl)
+    tgt <- ssp126_target_sv(mdl)
     abline(v = tgt, col = "grey40", lty = 3)
     yA <- IsoA[model == key]$pct; yC <- IsoC[model == key]$pct
     abline(h = yA, col = "grey40", lty = 2); abline(h = yC, col = "grey40", lty = 3)
-    text(tgt, ylim[2], sprintf("ISIMIP %.1f Sv", tgt), col = "grey30", cex = 0.65, pos = 2, srt = 90, offset = 0.3)
+    text(tgt, ylim[2], sprintf("ssp126 %.1f Sv", tgt), col = "grey30", cex = 0.65, pos = 2, srt = 90, offset = 0.3)
   }
   title(main = mdl, cex.main = 1)
   if (show_legend) legend("topright", bg = "white", box.col = NA, cex = 0.65,
-    legend = c("spec A (Mar-Jul)", "spec C (thermal window)", "spec A per-year range", "ISIMIP target Sv", "ISIMIP effect (A / C)"),
+    legend = c("spec A (Mar-Jul)", "spec C (thermal window)", "spec A per-year range", "ssp126 AMOC target", "ISIMIP effect (A / C)"),
     col = c(col, col, rgb(rgbcol[1], rgbcol[2], rgbcol[3], 0.5), "grey40", "grey40"), lty = c(1,2,NA,3,2), pch = c(16,21,15,NA,NA),
     lwd = c(2,1.4,NA,1,1), pt.cex = c(1,0.9,1.6,1,1))
 }
@@ -88,7 +90,7 @@ text(0.5, 0.58, "neither total is a standalone estimate (Appendix I) -", cex = 0
 text(0.5, 0.51, "reported together so the specification sensitivity is visible", cex = 0.75, col = "grey30")
 text(0.5, 0.36, "shaded band: range across the bin's individual hosing years,", cex = 0.7, col = "grey30")
 text(0.5, 0.29, "spec A only, IPSL-CM6A-LR and EC-Earth3 (Appendix I)", cex = 0.7, col = "grey30")
-text(0.5, 0.14, "vertical/horizontal grey lines: ISIMIP-projected AMOC level and", cex = 0.7, col = "grey30")
-text(0.5, 0.07, "the ISIMIP branch's own effect at that level (Appendix J)", cex = 0.7, col = "grey30")
+text(0.5, 0.14, "vertical line: ssp126 AMOC target (own CMIP6 run, not ISIMIP);", cex = 0.7, col = "grey30")
+text(0.5, 0.07, "horizontal: the ISIMIP3b branch's own effect at that warming (Appendix J)", cex = 0.7, col = "grey30")
 dev.off()
 cat("wrote", file.path(out, "impact_curve_crop.pdf"), "\n")

@@ -14,10 +14,15 @@ ISIMIP_KEY <- c("IPSL-CM6A-LR" = "ipsl-cm6a-lr", "EC-Earth3" = "ec-earth3")
 
 pct <- function(x) 100 * (exp(x) - 1)          # log-effect -> % change, used throughout Phase 2/3
 
-# ISIMIP-projected AMOC weakening under each model's OWN ssp126 run (Appendix A/E), read from the
-# k10 target files rather than hardcoded, so a re-run of that pipeline cannot silently drift from
-# the number plotted here. HadGEM has no such file (no ISIMIP-forcing branch for it - Appendix J).
-isimip_target_sv <- function(model) {
+# The AMOC decline each model's OWN ssp126 run projects, read from the k10 target files rather
+# than hardcoded, so a re-run of that pipeline cannot silently drift from the number plotted here.
+# NOT from ISIMIP3b: ISIMIP3b (Appendix J) is a bias-adjusted SURFACE product (tas/tasmin/tasmax/
+# pr) with no ocean circulation output at all. This target comes from each model's own ssp126
+# CMIP6 run's ocean diagnostic instead - Terhaar's msftyz-based reconstruction for IPSL-CM6A-LR,
+# an own vo-based reconstruction for EC-Earth3 (Amoc/Code/anomaly/plot_amoc_sv_ssp126.R), as
+# min(ssp126 AMOC) - mean(1850-1900 historical AMOC). HadGEM has no such file (no target computed
+# for it in that earlier pipeline stage).
+ssp126_target_sv <- function(model) {
   f <- file.path(d, sprintf("amoc_effect_%s_u03_target_k10.nc", model))
   if (!file.exists(f)) return(NA_real_)
   nc <- nc_open(f); v <- ncatt_get(nc, 0, "target_delta_sv")$value; nc_close(nc)
