@@ -127,22 +127,26 @@ This is a property of the arithmetic, not of the specification, and it holds
 regardless of which crop specification is trusted — confirming the sign flip is
 not an artefact of the ISIMIP construction.
 
-**Crop, both specifications, area-weighted Europe:**
+**Crop, all three specifications, area-weighted Europe:**
 
-| | spec A (fixed Mar–Jul) | spec C (thermal-time window) |
-|---|---|---|
-| EC-Earth3 | −10.30 % | −0.47 % |
-| IPSL-CM6A-LR | −8.70 % | −0.30 % |
+| | spec A (fixed Mar–Jul) | spec C (thermal-time window) | spec D (C + window length) |
+|---|---|---|---|
+| EC-Earth3 | −10.30 % | −0.47 % | −0.49 % |
+| IPSL-CM6A-LR | −8.70 % | −0.30 % | +0.30 % |
 
 The same caveat as Appendix I applies without modification: spec A carries the
 phenological-misalignment problem (fixed calendar window, negative `gdd`
 coefficient), and spec C is mechanically unable to identify a thermal dose-response
 (the window is defined by a fixed accumulation of thermal time, so the `gdd` term
 inside it contributes essentially nothing — **+0.01 %** here, matching the near-zero
-contribution found throughout Appendix I, §I.6). **Neither total is a defensible
-standalone estimate of the crop effect**; both are reported so the specification
-sensitivity is visible on this branch exactly as it is on the AMOC branch, rather
-than presenting a single confident number that the AMOC-branch analysis has already
+contribution found throughout Appendix I, §I.6). Spec D (Appendix I, §I.7b) adds
+window length, which unlike `gdd` under spec C keeps real identifying variation
+(31–37 % of its raw variance survives the fixed effects, against 0.0 % for `gdd`);
+its effect here sits close to spec C's on both models, **not** back toward spec A's
+magnitude. **None of the three totals is a defensible standalone estimate of the
+crop effect**; all three are reported so the specification sensitivity is visible
+on this branch exactly as it is on the AMOC branch, rather than presenting a single
+confident number that the AMOC-branch analysis has already
 shown not to be trustworthy.
 
 **Energy, pop-weighted Europe:**

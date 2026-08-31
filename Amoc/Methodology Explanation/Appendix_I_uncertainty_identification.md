@@ -264,9 +264,81 @@ to the **extensive margin**, which neither specification carries as a regressor:
 Under strong cooling the season lengthens and, in a growing share of regions,
 accumulated thermal time never reaches the closing anchor within the calendar year.
 This is a larger statement than any coefficient in §I.5, and it is not represented in
-either estimated response function. The obvious next specification would carry window
-length, or an indicator of completion, among the regressors; that has not been
-estimated here.
+either estimated response function. The obvious next specification carries window
+length among the regressors — it is estimated in §I.7b.
+
+---
+
+## I.7b Spec D: the thermal window plus window length
+
+Spec D is spec C's five regressors (§I.6) with `n_day` — the number of days inside
+the thermal window, already computed by the window construction (§G.6) but never
+used as a regressor by either A or C — added:
+
+$$\ln y = \beta_1\,\text{gdd} + \beta_2\,\text{heat} + \beta_3\,\text{frost} +
+\beta_4\,\text{precip} + \beta_5\,\text{precip}^2 + \beta_6\,\text{n\_day} +
+\text{NUTS}_3[t,t^2] + \text{year}$$
+
+fitted on the identical sample as specs A and C. Script:
+`Amoc/Code/amoc_impact_specD.R` (AMOC branch) and `isimip_impact_specD.R` (ISIMIP).
+
+**`n_day` is identified where `gdd` under spec C was not.** Repeating the test of
+§I.6:
+
+| crop | within s.d. of n_day | share of raw variance surviving the FE | mean n_day |
+|---|---|---|---|
+| Soft wheat | 11.8 days | **35.6 %** | 148 |
+| Durum wheat | 8.7 days | **37.3 %** | 152 |
+| Spring barley | 12.1 days | **31.1 %** | 146 |
+| Winter barley | 11.0 days | **32.1 %** | 149 |
+
+Compare to gdd's 0.0 % under spec C (§I.6): window length is not absorbed by the
+fixed effects the way accumulated thermal time inside the window is, because the
+window's *length* is exactly the margin that responds to a shifted climate while its
+*content* is pinned by construction. This is the identification spec C structurally
+lacked.
+
+**The coefficient on n_day itself is not uniformly significant.** Positive in three
+of four crops, but only durum clears a conventional threshold:
+
+| crop | n_day coefficient (t) | gdd (t) | heat (t) |
+|---|---|---|---|
+| Soft wheat | +8.04×10⁻⁴ (1.01) | −3.60×10⁻⁴ (−1.09) | −6.45×10⁻⁴ (**−2.07**) |
+| Durum wheat | +2.89×10⁻³ (**2.01**) | −1.15×10⁻³ (**−2.72**) | +1.70×10⁻⁴ (0.83) |
+| Spring barley | −1.51×10⁻⁴ (−0.17) | +4.24×10⁻⁴ (0.90) | −1.13×10⁻³ (**−6.81**) |
+| Winter barley | +1.16×10⁻³ (1.30) | −1.17×10⁻⁴ (−0.45) | −8.33×10⁻⁴ (−0.54) |
+
+A longer season is associated with higher yield for durum (clearly) and weakly for
+soft wheat and winter barley; spring barley shows no relationship. Spec D is
+therefore not itself a clean, uniformly significant finding — but it does not need
+to be, to answer the question this section asks.
+
+**The question it answers: does adding a real, identified regressor pull the
+picture back toward spec A's positive result?** No.
+
+| bin ΔSv | A (fixed window) | C (thermal window) | D (+ n_day) |
+|---|---|---|---|
+| IPSL, −8.5 Sv | **+8.77 %** | −0.72 % | −0.56 % |
+| IPSL, −6.5 Sv | +4.69 % | −2.18 % | −2.65 % |
+| EC-Earth3, −8.5 Sv | **+6.05 %** | −1.44 % | −1.90 % |
+| HadGEM3-GC3-1MM, −13.5 Sv | **+10.17 %** | +2.00 % | +2.87 % |
+| ISIMIP, IPSL-CM6A-LR | **−8.70 %** | −0.30 % | +0.30 % |
+| ISIMIP, EC-Earth3 | **−10.30 %** | −0.47 % | −0.49 % |
+
+D sits close to C in every case shown, on both branches, and neither is anywhere
+near A's magnitude or, on most bins, its sign. Where D moves away from C it is
+usually further from A, not back toward it (IPSL −8.5 Sv: C = −0.72 %, D = −0.56 %,
+both far from A's +8.77 %; HadGEM3-GC3-1MM −13.5 Sv: C = +2.00 %, D = +2.87 %, both
+far below A's +10.17 %). Adding the one regressor Appendix I identified as missing
+does not rehabilitate spec A; it leaves the picture where spec C left it — small,
+inconsistently signed across bins and models, an order of magnitude below spec A —
+now with a specification whose window-length term is at least identified.
+
+This still does not amount to a defensible point estimate of the crop effect. It
+narrows what remains open: not "which of three specifications is right", but "the
+effect, if any, is small and this family of specifications cannot pin down its sign
+at this magnitude" — which is itself a finding, and a different one from where §I.6
+left off.
 
 ---
 
@@ -277,14 +349,25 @@ models: AMOC weakening raises household energy demand, with heating dominating
 cooling by roughly eight to one. The magnitude is subject to the extrapolation of
 §I.4 and should be reported with it.
 
-**Not supported.** Any statement about the sign or magnitude of the crop yield
-effect. The fixed-window figure fails on two independent grounds — an unidentified
-thermal coefficient (§I.5) and a band that crosses zero in 16 of 20 bins (§I.3) —
-and the thermal-time alternative is not identified either (§I.6). The
+**Not supported.** A point estimate of the crop yield effect, from any of the three
+specifications estimated. The fixed-window figure (spec A) fails on two independent
+grounds — an unidentified thermal coefficient (§I.5) and a band that crosses zero in
+16 of 20 bins (§I.3). The thermal-time window (spec C) cannot identify the thermal
+dose by construction (§I.6). Adding window length (spec D, §I.7b) is identified
+where C was not, but does not rehabilitate spec A's magnitude or, on most bins, its
+sign — it lands close to spec C on both the AMOC and the ISIMIP branch. The
 cross-sectional check (§I.4b) corroborates the *sign* of the fixed-window gdd
 coefficient from an independent source of variation, but cannot speak to the
-phenological-misalignment problem, which is a property of the fixed window that
-the between comparison shares with the within one.
+phenological-misalignment problem, which is a property of the fixed window that the
+between comparison shares with the within one.
+
+**Supported, narrowly.** That the large positive crop effect of spec A is a
+specification artefact and not a robust finding: three independent specifications
+that address the phenological-misalignment problem (C, D) or draw on independent
+variation (the between estimator, §I.4b, which corroborates only the *sign* of A's
+own coefficient, not its causal reading) all place the effect far below spec A's
+magnitude, mostly negative or near zero rather than the +2 % to +10 % spec A
+reports.
 
 **Partially examined, and mixed.** The energy extrapolation of §I.4 was checked
 cross-sectionally (§I.4b) and found inconclusive rather than confirmed: with only
