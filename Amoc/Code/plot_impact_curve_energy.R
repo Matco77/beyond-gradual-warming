@@ -27,7 +27,7 @@ source(path.expand("~/Library/CloudStorage/OneDrive-UniversitàCommercialeLuigiB
 
 E    <- totalise(fread(file.path(d, "amoc_impact_energy_eu.csv")), c("model", "bin_id", "delta_sv", "n_years", "fuel"))
 BND  <- fread(file.path(d, "amoc_band_total.csv"))         # branch %in% {"energy Electricity","energy Natural gas"}
-ISB  <- fread(file.path(d, "isimip_band_total.csv"))       # ssp126 per-year band, same branch keys
+ISB  <- fread(file.path(d, "isimip_band_total.csv"))[crop == "ALL"]   # ssp126 per-year band (crop col is "ALL" for energy; the crop branches also carry per-crop rows)
 IS   <- totalise(fread(file.path(d, "isimip_bin_impact_energy_eu.csv")), c("model", "bin_id", "delta_sv", "n_years", "fuel"))
 FUELS <- c("Electricity", "Natural gas")
 BND_KEY <- c(Electricity = "energy Electricity", `Natural gas` = "energy Natural gas")

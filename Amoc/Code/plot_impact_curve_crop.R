@@ -23,7 +23,7 @@ source(path.expand("~/Library/CloudStorage/OneDrive-UniversitàCommercialeLuigiB
 A <- totalise(fread(file.path(d, "amoc_impact_crop_eu.csv")),   c("model", "bin_id", "delta_sv", "n_years"))
 C <- totalise(fread(file.path(d, "amoc_impact_cropgw_eu.csv")), c("model", "bin_id", "delta_sv", "n_years"))
 BND <- fread(file.path(d, "amoc_band_total.csv"))[branch == "crop"]         # spec A only, IPSL+EC
-ISB <- fread(file.path(d, "isimip_band_total.csv"))[branch == "crop"]      # ssp126 per-year band, spec A
+ISB <- fread(file.path(d, "isimip_band_total.csv"))[branch == "crop" & crop == "ALL"]   # ssp126 per-year band, spec A, all-crop aggregate (per-crop rows: plot_impact_curve_crop_bycrop.R)
 IS  <- totalise(fread(file.path(d, "isimip_bin_impact_crop_eu.csv")), c("model", "bin_id", "delta_sv", "n_years"))
 
 panel <- function(mdl, ylim, show_legend = FALSE) {

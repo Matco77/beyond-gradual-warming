@@ -14,9 +14,13 @@
 #
 # Nothing about the chain is reimplemented: the fields come from isimip_bin_fields.R's mode = "year",
 # the replay from the same scenario_engine.R, and the beta application from the same
-# crop_effect()/energy_effect()/gw_fit as isimip_impact_bins.R's central estimate - only the
+# crop_effect()/energy_effect()/gw_fit as isimip_bin_impact_bins.R's central estimate - only the
 # grouping key changes (bin_id -> bin_id + ssp_year), so the band cannot silently disagree with the
 # number it is a band around.
+#
+# The two crop branches are kept PER CROP (Soft/Durum wheat, Spring/Winter barley) all the way to
+# the output; energy has no crop split. The all-crop number of the central estimate is the
+# area-weighted mean of the per-crop rows, so nothing is lost by carrying the split.
 source(path.expand("~/Library/CloudStorage/OneDrive-UniversitàCommercialeLuigiBocconi/1.Tesi/Amoc/Code/scenario_engine.R"))
 invisible(capture.output(
   source(path.expand("~/Library/CloudStorage/OneDrive-UniversitàCommercialeLuigiBocconi/1.Tesi/Amoc/Code/amoc_impact.R"))))
@@ -59,7 +63,7 @@ band_one <- function(branch, m) {
 
   eu <- if (branch == "crop") {
     merge(crop_effect(res, KEY), w_crop[, .(w = sum(w)), by = .(cntr, crop)], by = c("cntr", "crop"))[
-      , .(dln = weighted.mean(dln, w)), by = c(KEY, "component")][, branch := "crop"][]
+      , .(dln = weighted.mean(dln, w)), by = c(KEY, "component", "crop")][, branch := "crop"][]
   } else if (branch == "crop_gddwin") {
     h <- hist_gw[, .(NUTS_ID, year, gdd, heat, frost, precip)]
     sc2 <- copy(res); setnames(sc2, c("gdd", "heat", "frost", "precip"), paste0(c("gdd", "heat", "frost", "precip"), "_s"))
@@ -76,7 +80,7 @@ band_one <- function(branch, m) {
     setnames(ce, paste0("e_", GW_X), GW_X)
     ce <- melt(ce, id.vars = c(KEY, "cntr", "crop"), variable.name = "component", value.name = "dln")
     merge(ce, w_crop[, .(w = sum(w)), by = .(cntr, crop)], by = c("cntr", "crop"))[
-      , .(dln = weighted.mean(dln, w)), by = c(KEY, "component")][, branch := "crop_gddwin"][]
+      , .(dln = weighted.mean(dln, w)), by = c(KEY, "component", "crop")][, branch := "crop_gddwin"][]
   } else {
     merge(energy_effect(res, KEY), w_pop, by = c("cntr", "country_id"))[
       , .(dln = weighted.mean(dln, w)), by = c(KEY, "fuel", "component")][
@@ -91,32 +95,60 @@ BAND <- rbindlist(lapply(c("crop_gddwin", "crop", "energy"),
                          function(b) rbindlist(lapply(ISIMIP_MODELS, function(m) band_one(b, m)), fill = TRUE)),
                   fill = TRUE)
 
+# ALL-CROP band, reconstructed from the per-crop BAND above - no second replay needed. The EU
+# aggregation inside band_one() is a weighted mean over (cntr, crop) cells; a weighted mean is
+# linear, so summing per-crop EU numbers with weight W_k = total area of crop k (sum over cntr) is
+# EXACTLY the same all-crop EU number crop_effect()/amoc_impact.R would produce directly - checked
+# algebraically, not assumed. crop = NA marks "no split", same convention energy already used before
+# the split existed.
+# crop = "ALL" (not NA) marks the all-crop row: NA does not survive the fwrite/fread round-trip
+# (comes back as ""), so a downstream is.na() filter would silently break.
+Wk        <- w_crop[, .(W = sum(w)), by = crop]
+all_crop  <- merge(BAND[!is.na(crop)], Wk, by = "crop")[
+  , .(dln = weighted.mean(dln, W)), by = .(branch, model, bin_id, delta_sv, n_years, ssp_year, component)][
+  , crop := "ALL"]
+BAND <- rbindlist(list(BAND, all_crop), use.names = TRUE, fill = TRUE)
+BAND[is.na(crop), crop := "ALL"]   # energy rows: never split, so they already ARE the all-crop row
+
 ## ---- disperse across the ssp126 years of each bin ------------------------------------------------
+# central estimate, kept PER CROP for the two crop branches (energy has no crop split), PLUS the
+# all-crop row (crop = NA) read straight from the *_eu.csv files - same reason as the BAND
+# reconstruction above, but here the all-crop file already exists, no need to re-derive it.
+wc <- w_crop[, .(w = sum(w)), by = .(cntr, crop)]
+cpc <- function(file, br) merge(fread(file.path(d, file)), wc, by = c("cntr", "crop"))[
+  , .(central = weighted.mean(dln, w)), by = .(model, bin_id, crop, component)][, branch := br][]
+allcrop <- function(file, br) fread(file.path(d, file))[
+  , .(model, bin_id, crop = "ALL", component, central = dln, branch = br)]
 central <- rbind(
-  fread(file.path(d, "isimip_bin_impact_crop_eu.csv"))[, .(model, bin_id, component, central = dln, branch = "crop")],
-  fread(file.path(d, "isimip_bin_impact_cropgw_eu.csv"))[, .(model, bin_id, component, central = dln, branch = "crop_gddwin")],
-  fread(file.path(d, "isimip_bin_impact_energy_eu.csv"))[, .(model, bin_id, component, central = dln,
-                                                              branch = paste("energy", fuel))])
+  cpc("isimip_bin_impact_crop_country.csv",   "crop"),
+  cpc("isimip_bin_impact_cropgw_country.csv", "crop_gddwin"),
+  allcrop("isimip_bin_impact_crop_eu.csv",   "crop"),
+  allcrop("isimip_bin_impact_cropgw_eu.csv", "crop_gddwin"),
+  fread(file.path(d, "isimip_bin_impact_energy_eu.csv"))[
+    , .(model, bin_id, crop = "ALL", component, central = dln, branch = paste("energy", fuel))],
+  use.names = TRUE)
 
 band <- BAND[, .(n = .N, mean = mean(dln), sd = sd(dln), lo = min(dln), hi = max(dln)),
-             by = .(branch, model, bin_id, component)]
-band <- merge(band, central, by = c("branch", "model", "bin_id", "component"), all.x = TRUE)
-fwrite(band[order(branch, model, bin_id, component)], file.path(d, "isimip_band_summary.csv"))
+             by = .(branch, model, bin_id, component, crop)]
+band <- merge(band, central, by = c("branch", "model", "bin_id", "component", "crop"), all.x = TRUE)
+fwrite(band[order(branch, model, bin_id, crop, component)], file.path(d, "isimip_band_summary.csv"))
 
-tot  <- BAND[, .(dln = sum(dln)), by = .(branch, model, bin_id, ssp_year)][   # total = sum of components
-  , .(n = .N, mean = mean(dln), sd = sd(dln), lo = min(dln), hi = max(dln)), by = .(branch, model, bin_id)]
-ctot <- central[, .(central = sum(central)), by = .(branch, model, bin_id)]
-tot  <- merge(tot, ctot, by = c("branch", "model", "bin_id"), all.x = TRUE)
-fwrite(tot[order(branch, model, bin_id)], file.path(d, "isimip_band_total.csv"))
+tot  <- BAND[, .(dln = sum(dln)), by = .(branch, model, bin_id, crop, ssp_year)][   # total = sum of components
+  , .(n = .N, mean = mean(dln), sd = sd(dln), lo = min(dln), hi = max(dln)), by = .(branch, model, bin_id, crop)]
+ctot <- central[, .(central = sum(central)), by = .(branch, model, bin_id, crop)]
+tot  <- merge(tot, ctot, by = c("branch", "model", "bin_id", "crop"), all.x = TRUE)
+fwrite(tot[order(branch, model, bin_id, crop)], file.path(d, "isimip_band_total.csv"))
 
 pc <- function(x) 100 * (exp(x) - 1)
-for (br in sort(unique(tot$branch))) for (m in unique(tot[branch == br]$model)) {
-  z <- tot[branch == br & model == m][order(bin_id)]
+for (br in sort(unique(tot$branch))) for (m in unique(tot[branch == br]$model))
+  for (cr in unique(tot[branch == br & model == m]$crop)) {
+  z <- tot[branch == br & model == m & crop == cr][order(bin_id)]
   if (!nrow(z)) next
-  cat(sprintf("\n=== %s | %s | total effect, spread across the bin's ssp126 years ===\n", br, m))
+  cat(sprintf("\n=== %s | %s | %s | total effect, spread across the bin's ssp126 years ===\n",
+              br, m, if (cr == "ALL") "all crops" else cr))
   cat(sprintf("  %7s %4s %10s %10s %9s %10s %10s\n", "bin Sv", "n", "central%", "mean%", "sd(log)%", "min%", "max%"))
   for (i in seq_len(nrow(z)))
     cat(sprintf("  %7.1f %4d %9.2f%% %9.2f%% %8.2f%% %9.2f%% %9.2f%%\n", z$bin_id[i], z$n[i],
                 pc(z$central[i]), pc(z$mean[i]), 100 * z$sd[i], pc(z$lo[i]), pc(z$hi[i])))
 }
-cat("\nwrote isimip_band_{summary,total}.csv\n")
+cat("\nwrote isimip_band_{summary,total}.csv (per crop for the crop branches)\n")
