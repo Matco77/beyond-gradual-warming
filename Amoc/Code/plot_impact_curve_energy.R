@@ -12,6 +12,11 @@
 # caveat: the two branches' delta_Sv are not on identical footing (piControl-relative vs
 # historical-relative baseline) - see plot_impact_common.R header.
 #
+# ISIMIP per-year band (Appendix J.6, isimip_impact_band.R): a narrow bar drawn just right of each
+# ISIMIP triangle (x offset, so it does not sit on top of the NAHosMIP band), spanning the range of
+# the final effect across that bin's individual ssp126 years - same construction as the hosing-year
+# band, applied to isimip_bin_fields.R's mode = "year" fields instead of NAHosMIP's.
+#
 # NAMING NOTE, applies throughout this file: loop/argument variables are `mdl` and `fl`, never
 # `model` or `fuel`. Inside data.table's `[`, a bare `E[model == model]` or `E[fuel == fuel]`
 # resolves the right-hand name to the COLUMN itself before the calling scope, so it silently
@@ -21,6 +26,7 @@ source(path.expand("~/Library/CloudStorage/OneDrive-UniversitàCommercialeLuigiB
 
 E    <- totalise(fread(file.path(d, "amoc_impact_energy_eu.csv")), c("model", "bin_id", "delta_sv", "n_years", "fuel"))
 BND  <- fread(file.path(d, "amoc_band_total.csv"))         # branch %in% {"energy Electricity","energy Natural gas"}
+ISB  <- fread(file.path(d, "isimip_band_total.csv"))       # ssp126 per-year band, same branch keys
 IS   <- totalise(fread(file.path(d, "isimip_bin_impact_energy_eu.csv")), c("model", "bin_id", "delta_sv", "n_years", "fuel"))
 FUELS <- c("Electricity", "Natural gas")
 BND_KEY <- c(Electricity = "energy Electricity", `Natural gas` = "energy Natural gas")
@@ -41,6 +47,12 @@ panel <- function(mdl, fl, ylim) {
   lines(z$delta_sv, z$pct, col = col, lwd = 2); points(z$delta_sv, z$pct, col = col, pch = 16, cex = 1.1)
   label_n(z$delta_sv, z$pct, z$n_years, col)
 
+  isb <- ISB[model == mdl & branch == BND_KEY[fl]]
+  if (nrow(isb))
+    for (i in seq_len(nrow(isb)))
+      segments(isb$bin_id[i] + 0.12, pct(isb$lo[i]), isb$bin_id[i] + 0.12, pct(isb$hi[i]),
+               col = tint(col, 0.5), lwd = 3, lend = 1)
+
   is <- IS[model == mdl & fuel == fl][order(delta_sv)]
   if (nrow(is)) {
     lines(is$delta_sv, is$pct, col = col, lwd = 1.4, lty = ISIMIP_LTY)
@@ -54,8 +66,9 @@ pdf(file.path(out, "impact_curve_energy.pdf"), width = 13, height = 8)
 for (fl in FUELS) {
   sub <- E[fuel == fl]
   bl  <- BND[branch == BND_KEY[fl]]
+  isb <- ISB[branch == BND_KEY[fl]]
   isf <- IS[fuel == fl]
-  yr  <- range(pct(c(sub$dln, bl$lo, bl$hi, isf$dln)), na.rm = TRUE)
+  yr  <- range(pct(c(sub$dln, bl$lo, bl$hi, isf$dln, isb$lo, isb$hi)), na.rm = TRUE)
   yr  <- yr + c(-1, 1) * 0.08 * diff(yr)
   xr  <- range(sub$delta_sv)
 
@@ -81,6 +94,7 @@ for (fl in FUELS) {
   text(0.5, 0.70, "constructions matching real consumption cycles, no window ambiguity", cex = 0.72, col = "grey30")
   text(0.5, 0.52, "shaded band: range across the bin's individual hosing years,", cex = 0.7, col = "grey30")
   text(0.5, 0.45, "IPSL-CM6A-LR and EC-Earth3 only (Appendix I)", cex = 0.7, col = "grey30")
+  text(0.5, 0.39, "offset narrow bar: same range across the ISIMIP bin's ssp126 years (Appendix J.6)", cex = 0.62, col = "grey30")
   text(0.5, 0.33, "triangles: ISIMIP3b/ssp126, binned by year-level AMOC (Appendix J.5),", cex = 0.65, col = "grey30")
   text(0.5, 0.27, "at the delta_Sv levels it shares with NAHosMIP - IPSL and EC-Earth3 only", cex = 0.65, col = "grey30")
   text(0.5, 0.21, "caveat: delta_Sv baseline differs (piControl vs historical mean), see Appendix J.5", cex = 0.62, col = "grey40")
