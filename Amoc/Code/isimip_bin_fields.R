@@ -34,7 +34,7 @@
 # Output: isimip_bin_fields_<model>.nc, SAME schema as amoc_bin_fields_<MODEL>_u03.nc (dims lon, lat,
 # month, bin; delta_tas/delta_tasmin/delta_tasmax K additive, pr_ratio dimensionless; bin_lo/bin_hi/
 # n_years/delta_sv_mean) so scenario_replay_isimip_bins.R can reuse bin_scenarios() unchanged.
-suppressMessages({library(ncdf4)})
+suppressMessages({library(ncdf4); library(data.table)})
 d <- path.expand("~/Library/CloudStorage/OneDrive-UniversitàCommercialeLuigiBocconi/1.Tesi/Amoc/datasets")
 source(path.expand("~/Library/CloudStorage/OneDrive-UniversitàCommercialeLuigiBocconi/1.Tesi/Amoc/Code/isimip_common.R"))
 
@@ -86,18 +86,38 @@ sv_bins <- function(model) {
   list(bins = bins, base = base, n_ssp_years = length(yr))
 }
 
-## ---- one model -------------------------------------------------------------------------------
-build <- function(model) {
+## ---- one model ---------------------------------------------------------------------------------
+# mode = "bin"  : one field per delta_Sv bin, averaged over the bin's ssp126 years (as above).
+# mode = "year" : one field per individual ssp126 year, for the Phase 2-style uncertainty band
+#                 (isimip_impact_band.R). Same bins (already intersected with NAHosMIP's kept
+#                 bin_lo), only the grouping of years differs - mirrors amoc_bin_fields.R's own
+#                 mode = "year" so the band cannot drift from the central estimate through a second
+#                 implementation of the climatology.
+build <- function(model, mode = "bin") {
   disp <- DISPLAY[[model]]
   g <- isimip_grid(model); lon <- g$lon; lat <- g$lat; oy <- g$oy
-  B <- sv_bins(model); bins <- B$bins; nb <- length(bins)
-  cat(sprintf("%-14s ssp126 years available %d (%d-%d) | historical AMOC baseline %.3f Sv | bins kept %d\n",
-              disp, B$n_ssp_years, min(SSP_YEARS), max(SSP_YEARS), B$base, nb))
-  cat(sprintf("   bins: %s\n", paste(sapply(bins, function(b)
+  B <- sv_bins(model); bins <- B$bins
+  if (mode == "year") {                               # one group per ssp126 year, bins kept as-is
+    # NOTE: dsv here is the PARENT BIN's mean, not the individual year's own AMOC value - matching
+    # amoc_bin_fields.R's own mode = "year" convention (its B$dsv is the bin's floor()-based series,
+    # not a re-derivation per year). Good enough for the band: the band groups by bin_id (from lo/hi)
+    # regardless, and delta_sv_mean is reported for context, not used in the beta application itself.
+    yrs_bins <- bins
+    bins <- rbindlist(lapply(seq_along(yrs_bins), function(bi) {
+      b <- yrs_bins[[bi]]
+      data.table(y = b$years, lo = b$lo, hi = b$hi, dsv = b$dsv)
+    }))[order(y)]
+    bins <- lapply(seq_len(nrow(bins)), function(i)
+      list(lo = bins$lo[i], hi = bins$hi[i], years = bins$y[i], dsv = bins$dsv[i], ssp_year = bins$y[i]))
+  }
+  nb <- length(bins)
+  cat(sprintf("%-14s [%s] ssp126 years available %d (%d-%d) | historical AMOC baseline %.3f Sv | groups %d\n",
+              disp, mode, B$n_ssp_years, min(SSP_YEARS), max(SSP_YEARS), B$base, nb))
+  if (mode == "bin") cat(sprintf("   bins: %s\n", paste(sapply(bins, function(b)
     sprintf("%d:%d(dSv=%.2f)", b$lo, length(b$years), b$dsv)), collapse = " ")))
   if (!nb) { cat("   no bin overlaps NAHosMIP's range for this model - nothing written\n\n"); return(invisible(NULL)) }
 
-  ## fixed historical climatology (same for every bin, exactly as isimip_delta_fields.R computes it)
+  ## fixed historical climatology (same for every bin/year, exactly as isimip_delta_fields.R computes it)
   hist_clim <- setNames(lapply(VARS, function(v) clim_monthly(path_for(model, "historical", v), HIST_WIN)[, oy, , drop = FALSE]), VARS)
 
   out <- list()
@@ -114,19 +134,25 @@ build <- function(model) {
   }
 
   dx <- ncdim_def("lon", "degrees_east", lon); dy <- ncdim_def("lat", "degrees_north", lat)
-  dm <- ncdim_def("month", "1", 1:12); db <- ncdim_def("bin", "Sv", sapply(bins, function(b) b$lo + 0.5))
+  dm <- ncdim_def("month", "1", 1:12)
+  db <- if (mode == "bin") ncdim_def("bin", "Sv", sapply(bins, function(b) b$lo + 0.5))
+        else ncdim_def("bin", "1", seq_along(bins))    # one slot per ssp126 year - duplicate Sv
+                                                        # values (multiple years share a bin) are not
+                                                        # valid dim coordinates, same fix amoc_bin_fields.R uses
   un <- c(delta_tas = "K", delta_tasmin = "K", delta_tasmax = "K", pr_ratio = "1")
   vars <- lapply(names(out), function(k) ncvar_def(k, un[[k]], list(dx, dy, dm, db), NA, prec = "double"))
   meta <- list(ncvar_def("bin_lo", "Sv", db, NA, prec = "double"),
                ncvar_def("bin_hi", "Sv", db, NA, prec = "double"),
                ncvar_def("n_years", "1", db, NA, prec = "double"),
-               ncvar_def("delta_sv_mean", "Sv", db, NA, prec = "double"))
-  f <- file.path(d, sprintf("isimip_bin_fields_%s.nc", model))
+               ncvar_def("delta_sv_mean", "Sv", db, NA, prec = "double"),
+               ncvar_def("ssp_year", "1", db, NA, prec = "double"))
+  f <- file.path(d, sprintf("isimip_%s_fields_%s.nc", if (mode == "bin") "bin" else "year", model))
   nc <- nc_create(f, c(vars, meta))
   for (k in names(out)) ncvar_put(nc, k, out[[k]])
   ncvar_put(nc, "bin_lo", sapply(bins, `[[`, "lo")); ncvar_put(nc, "bin_hi", sapply(bins, `[[`, "hi"))
   ncvar_put(nc, "n_years", sapply(bins, function(b) length(b$years)))
   ncvar_put(nc, "delta_sv_mean", sapply(bins, `[[`, "dsv"))
+  ncvar_put(nc, "ssp_year", if (mode == "year") sapply(bins, `[[`, "ssp_year") else rep(NA_real_, nb))
   ncatt_put(nc, 0, "model", disp)
   ncatt_put(nc, 0, "experiment", "ssp126 (ISIMIP3b w5e5, bias-adjusted)")
   ncatt_put(nc, 0, "delta_sv_definition", "AMOC(26N, ssp126 year) minus mean(AMOC(26N, historical 1850-2014)) - NOT a piControl baseline, see file header")
@@ -143,3 +169,7 @@ build <- function(model) {
 
 invisible(lapply(c("ipsl-cm6a-lr", "ec-earth3"), build))
 cat("ISIMIP bin fields done.\n")
+
+cat("\n-- per-year fields for the uncertainty band --\n")
+invisible(lapply(c("ipsl-cm6a-lr", "ec-earth3"), build, mode = "year"))
+cat("ISIMIP year fields done.\n")
