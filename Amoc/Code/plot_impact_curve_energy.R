@@ -12,10 +12,11 @@
 # caveat: the two branches' delta_Sv are not on identical footing (piControl-relative vs
 # historical-relative baseline) - see plot_impact_common.R header.
 #
-# ISIMIP per-year band (Appendix J.6, isimip_impact_band.R): a narrow bar drawn just right of each
-# ISIMIP triangle (x offset, so it does not sit on top of the NAHosMIP band), spanning the range of
-# the final effect across that bin's individual ssp126 years - same construction as the hosing-year
-# band, applied to isimip_bin_fields.R's mode = "year" fields instead of NAHosMIP's.
+# ISIMIP per-year band (Appendix J.6, isimip_impact_band.R): a narrow bar (thinner than the NAHosMIP
+# band) at the ISIMIP bin's own delta_sv, spanning the range of the final effect across that bin's
+# individual ssp126 years - same construction as the hosing-year band, applied to
+# isimip_bin_fields.R's mode = "year" fields instead of NAHosMIP's. Both bands sit at their own
+# curve's delta_sv (bin-mean AMOC weakening), not the integer bin label.
 #
 # NAMING NOTE, applies throughout this file: loop/argument variables are `mdl` and `fl`, never
 # `model` or `fuel`. Inside data.table's `[`, a bare `E[model == model]` or `E[fuel == fuel]`
@@ -38,22 +39,24 @@ panel <- function(mdl, fl, ylim) {
   plot(NA, xlim = xlim, ylim = ylim, xlab = expression(Delta*"Sv"), ylab = "demand effect (%)")
   grid(col = "grey90"); abline(h = 0, col = "grey60", lty = 3)
 
-  bnd <- BND[model == mdl & branch == BND_KEY[fl]]
+  # every band is drawn at its own curve's delta_sv (bin-mean AMOC weakening), NOT the bin label
+  # bin_id, so the bar sits under the point it belongs to.
+  bnd <- merge(BND[model == mdl & branch == BND_KEY[fl]], z[, .(bin_id, delta_sv)], by = "bin_id")
   if (nrow(bnd))
     for (i in seq_len(nrow(bnd)))
-      segments(bnd$bin_id[i], pct(bnd$lo[i]), bnd$bin_id[i], pct(bnd$hi[i]),
+      segments(bnd$delta_sv[i], pct(bnd$lo[i]), bnd$delta_sv[i], pct(bnd$hi[i]),
                col = tint(col, 0.35), lwd = 5, lend = 1)
 
   lines(z$delta_sv, z$pct, col = col, lwd = 2); points(z$delta_sv, z$pct, col = col, pch = 16, cex = 1.1)
   label_n(z$delta_sv, z$pct, z$n_years, col)
 
-  isb <- ISB[model == mdl & branch == BND_KEY[fl]]
+  is <- IS[model == mdl & fuel == fl][order(delta_sv)]
+  isb <- merge(ISB[model == mdl & branch == BND_KEY[fl]], is[, .(bin_id, delta_sv)], by = "bin_id")
   if (nrow(isb))
     for (i in seq_len(nrow(isb)))
-      segments(isb$bin_id[i] + 0.12, pct(isb$lo[i]), isb$bin_id[i] + 0.12, pct(isb$hi[i]),
+      segments(isb$delta_sv[i], pct(isb$lo[i]), isb$delta_sv[i], pct(isb$hi[i]),
                col = tint(col, 0.5), lwd = 3, lend = 1)
 
-  is <- IS[model == mdl & fuel == fl][order(delta_sv)]
   if (nrow(is)) {
     lines(is$delta_sv, is$pct, col = col, lwd = 1.4, lty = ISIMIP_LTY)
     points(is$delta_sv, is$pct, col = col, pch = ISIMIP_PCH, cex = 1.1)
@@ -94,7 +97,7 @@ for (fl in FUELS) {
   text(0.5, 0.70, "constructions matching real consumption cycles, no window ambiguity", cex = 0.72, col = "grey30")
   text(0.5, 0.52, "shaded band: range across the bin's individual hosing years,", cex = 0.7, col = "grey30")
   text(0.5, 0.45, "IPSL-CM6A-LR and EC-Earth3 only (Appendix I)", cex = 0.7, col = "grey30")
-  text(0.5, 0.39, "offset narrow bar: same range across the ISIMIP bin's ssp126 years (Appendix J.6)", cex = 0.62, col = "grey30")
+  text(0.5, 0.39, "narrow bar (thinner): same range across the ISIMIP bin's ssp126 years (Appendix J.6)", cex = 0.62, col = "grey30")
   text(0.5, 0.33, "triangles: ISIMIP3b/ssp126, binned by year-level AMOC (Appendix J.5),", cex = 0.65, col = "grey30")
   text(0.5, 0.27, "at the delta_Sv levels it shares with NAHosMIP - IPSL and EC-Earth3 only", cex = 0.65, col = "grey30")
   text(0.5, 0.21, "caveat: delta_Sv baseline differs (piControl vs historical mean), see Appendix J.5", cex = 0.62, col = "grey40")

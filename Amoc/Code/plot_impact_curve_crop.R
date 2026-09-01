@@ -13,11 +13,17 @@
 # and EC-Earth3 panels only, at the delta_Sv bins isimip_bin_fields.R shares with NAHosMIP. Residual
 # caveat: the two branches' delta_Sv are not on identical footing (piControl-relative vs
 # historical-relative baseline) - see plot_impact_common.R header.
+#
+# ISIMIP per-year band (Appendix J.6, isimip_impact_band.R): a narrow bar (thinner than the NAHosMIP
+# band) at the spec-A ISIMIP bin's own delta_sv, spanning the range of the final effect across that
+# bin's individual ssp126 years - same construction as the hosing-year band, spec A only (branch
+# "crop"), IPSL-CM6A-LR and EC-Earth3. Both bands sit at their own curve's delta_sv, not the bin label.
 source(path.expand("~/Library/CloudStorage/OneDrive-UniversitàCommercialeLuigiBocconi/1.Tesi/Amoc/Code/plot_impact_common.R"))
 
 A <- totalise(fread(file.path(d, "amoc_impact_crop_eu.csv")),   c("model", "bin_id", "delta_sv", "n_years"))
 C <- totalise(fread(file.path(d, "amoc_impact_cropgw_eu.csv")), c("model", "bin_id", "delta_sv", "n_years"))
 BND <- fread(file.path(d, "amoc_band_total.csv"))[branch == "crop"]         # spec A only, IPSL+EC
+ISB <- fread(file.path(d, "isimip_band_total.csv"))[branch == "crop"]      # ssp126 per-year band, spec A
 IS  <- totalise(fread(file.path(d, "isimip_bin_impact_crop_eu.csv")), c("model", "bin_id", "delta_sv", "n_years"))
 
 panel <- function(mdl, ylim, show_legend = FALSE) {
@@ -36,10 +42,12 @@ panel <- function(mdl, ylim, show_legend = FALSE) {
   plot(NA, xlim = xlim, ylim = ylim, xlab = expression(Delta*"Sv"), ylab = "yield effect (%)")
   grid(col = "grey90"); abline(h = 0, col = "grey60", lty = 3)
 
-  bnd <- BND[model == mdl]
+  # every band is drawn at its own curve's delta_sv (bin-mean AMOC weakening), NOT the bin label
+  # bin_id, so the bar sits under the point it belongs to.
+  bnd <- merge(BND[model == mdl], a[, .(bin_id, delta_sv)], by = "bin_id")
   if (nrow(bnd)) {
     for (i in seq_len(nrow(bnd)))
-      segments(bnd$bin_id[i], pct(bnd$lo[i]), bnd$bin_id[i], pct(bnd$hi[i]),
+      segments(bnd$delta_sv[i], pct(bnd$lo[i]), bnd$delta_sv[i], pct(bnd$hi[i]),
                col = tint(col, 0.35), lwd = 5, lend = 1)
   }
   lines(a$delta_sv, a$pct, col = col, lwd = 2); points(a$delta_sv, a$pct, col = col, pch = 16, cex = 1.1)
@@ -47,6 +55,12 @@ panel <- function(mdl, ylim, show_legend = FALSE) {
   label_n(a$delta_sv, a$pct, a$n_years, col)
 
   is <- IS[model == mdl][order(delta_sv)]
+  isb <- merge(ISB[model == mdl], is[, .(bin_id, delta_sv)], by = "bin_id")
+  if (nrow(isb))
+    for (i in seq_len(nrow(isb)))
+      segments(isb$delta_sv[i], pct(isb$lo[i]), isb$delta_sv[i], pct(isb$hi[i]),
+               col = tint(col, 0.5), lwd = 3, lend = 1)
+
   if (nrow(is)) {
     lines(is$delta_sv, is$pct, col = col, lwd = 1.4, lty = ISIMIP_LTY)
     points(is$delta_sv, is$pct, col = col, pch = ISIMIP_PCH, cex = 1.1)
@@ -55,12 +69,13 @@ panel <- function(mdl, ylim, show_legend = FALSE) {
 
   title(main = mdl, cex.main = 1)
   if (show_legend) legend("topright", bg = "white", box.col = NA, cex = 0.65,
-    legend = c("spec A (Mar-Jul)", "spec C (thermal window)", "spec A per-year range", "ISIMIP-bin (ssp126, spec A)"),
-    col = c(col, col, tint(col, 0.5), col), lty = c(1,2,NA,ISIMIP_LTY), pch = c(16,21,15,ISIMIP_PCH),
-    lwd = c(2,1.4,NA,1.4), pt.cex = c(1,0.9,1.6,1.1))
+    legend = c("spec A (Mar-Jul)", "spec C (thermal window)", "spec A per-year range",
+               "ISIMIP-bin (ssp126, spec A)", "ISIMIP per-year range"),
+    col = c(col, col, tint(col, 0.5), col, tint(col, 0.5)), lty = c(1,2,NA,ISIMIP_LTY,NA),
+    pch = c(16,21,15,ISIMIP_PCH,15), lwd = c(2,1.4,NA,1.4,NA), pt.cex = c(1,0.9,1.6,1.1,1.2))
 }
 
-xr <- range(A$delta_sv); yr <- range(pct(c(A$dln, C$dln, BND$lo, BND$hi, IS$dln)), na.rm = TRUE)
+xr <- range(A$delta_sv); yr <- range(pct(c(A$dln, C$dln, BND$lo, BND$hi, IS$dln, ISB$lo, ISB$hi)), na.rm = TRUE)
 yr <- yr + c(-1, 1) * 0.08 * diff(yr)
 
 pdf(file.path(out, "impact_curve_crop.pdf"), width = 13, height = 8)
@@ -88,6 +103,7 @@ text(0.5, 0.58, "neither total is a standalone estimate (Appendix I) -", cex = 0
 text(0.5, 0.51, "reported together so the specification sensitivity is visible", cex = 0.75, col = "grey30")
 text(0.5, 0.34, "shaded band: range across the bin's individual hosing years,", cex = 0.7, col = "grey30")
 text(0.5, 0.27, "spec A only, IPSL-CM6A-LR and EC-Earth3 (Appendix I)", cex = 0.7, col = "grey30")
+text(0.5, 0.21, "narrow bar (thinner): same range across the ISIMIP bin's ssp126 years (Appendix J.6)", cex = 0.62, col = "grey30")
 text(0.5, 0.15, "triangles: ISIMIP3b/ssp126, binned by year-level AMOC (Appendix J.5),", cex = 0.65, col = "grey30")
 text(0.5, 0.09, "spec A, at the delta_Sv levels it shares with NAHosMIP - IPSL and EC-Earth3 only", cex = 0.65, col = "grey30")
 text(0.5, 0.03, "caveat: delta_Sv baseline differs (piControl vs historical mean), see Appendix J.5", cex = 0.62, col = "grey40")
