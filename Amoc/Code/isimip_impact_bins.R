@@ -16,9 +16,14 @@ cat("beta, weights and both crop specifications loaded (AMOC central estimate re
 
 pct <- function(x) 100 * (exp(x) - 1)
 
+# emissions scenario, from ISIMIP_SCEN (default ssp126). ssp126 reads/writes bare names (unchanged);
+# any other scenario carries a _<scen> suffix on the scenario inputs and the impact outputs.
+SCEN <- Sys.getenv("ISIMIP_SCEN", "ssp126")
+SFX  <- if (SCEN == "ssp126") "" else paste0("_", SCEN)
+
 ## ---- fixed-window crop (spec A) and energy, at BINKEY resolution --------------------------------
-ce_A <- crop_effect("scenario_isimip_bins_crop_window.csv.gz")
-ee   <- energy_effect("scenario_isimip_bins_energy_country.csv.gz")
+ce_A <- crop_effect(sprintf("scenario_isimip_bins_crop_window%s.csv.gz", SFX))
+ee   <- energy_effect(sprintf("scenario_isimip_bins_energy_country%s.csv.gz", SFX))
 
 ce_A_eu <- merge(ce_A, w_crop[, .(w = sum(w)), by = .(cntr, crop)], by = c("cntr", "crop"))[
   , .(dln = weighted.mean(dln, w)), by = c(BINKEY, "component")]
@@ -26,7 +31,7 @@ ee_eu <- merge(ee, w_pop, by = c("cntr", "country_id"))[
   , .(dln = weighted.mean(dln, w)), by = c(BINKEY, "fuel", "component")]
 
 ## ---- thermal-window crop (spec C), same construction as isimip_impact.R -------------------------
-sc_C <- fread(file.path(d, "scenario_isimip_bins_crop_gddwin.csv.gz"))
+sc_C <- fread(file.path(d, sprintf("scenario_isimip_bins_crop_gddwin%s.csv.gz", SFX)))
 h_C  <- hist_gw[, .(NUTS_ID, year, gdd, heat, frost, precip)]
 setnames(sc_C, c("gdd", "heat", "frost", "precip"), paste0(c("gdd", "heat", "frost", "precip"), "_s"))
 z_C  <- merge(sc_C, h_C, by = c("NUTS_ID", "year"))
@@ -45,12 +50,12 @@ ce_C <- melt(ce_C, id.vars = c(BINKEY, "cntr", "crop"), variable.name = "compone
 ce_C_eu <- merge(ce_C, w_crop[, .(w = sum(w)), by = .(cntr, crop)], by = c("cntr", "crop"))[
   , .(dln = weighted.mean(dln, w)), by = c(BINKEY, "component")]
 
-fwrite(ce_A,    file.path(d, "isimip_bin_impact_crop_country.csv"))
-fwrite(ce_A_eu, file.path(d, "isimip_bin_impact_crop_eu.csv"))
-fwrite(ce_C,    file.path(d, "isimip_bin_impact_cropgw_country.csv"))
-fwrite(ce_C_eu, file.path(d, "isimip_bin_impact_cropgw_eu.csv"))
-fwrite(ee,      file.path(d, "isimip_bin_impact_energy_country.csv"))
-fwrite(ee_eu,   file.path(d, "isimip_bin_impact_energy_eu.csv"))
+fwrite(ce_A,    file.path(d, sprintf("isimip_bin_impact_crop_country%s.csv", SFX)))
+fwrite(ce_A_eu, file.path(d, sprintf("isimip_bin_impact_crop_eu%s.csv", SFX)))
+fwrite(ce_C,    file.path(d, sprintf("isimip_bin_impact_cropgw_country%s.csv", SFX)))
+fwrite(ce_C_eu, file.path(d, sprintf("isimip_bin_impact_cropgw_eu%s.csv", SFX)))
+fwrite(ee,      file.path(d, sprintf("isimip_bin_impact_energy_country%s.csv", SFX)))
+fwrite(ee_eu,   file.path(d, sprintf("isimip_bin_impact_energy_eu%s.csv", SFX)))
 
 ## ---- report: both crop specs, per model x bin, next to the NAHosMIP curve at the same levels ----
 cat("\n================ ISIMIP bins: crop, effect on ln(yield), area-weighted Europe ================\n")

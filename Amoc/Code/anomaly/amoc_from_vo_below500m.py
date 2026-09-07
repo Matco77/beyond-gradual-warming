@@ -82,8 +82,10 @@ ESGF_NODE = "esgf.ceda.ac.uk"
 DATASET_ID = {
     "historical": "CMIP6.CMIP.EC-Earth-Consortium.EC-Earth3.historical.r1i1p1f1.Omon.vo.gn." + ESGF_VERSION,
     "ssp126": "CMIP6.ScenarioMIP.EC-Earth-Consortium.EC-Earth3.ssp126.r1i1p1f1.Omon.vo.gn." + ESGF_VERSION,
+    "ssp370": "CMIP6.ScenarioMIP.EC-Earth-Consortium.EC-Earth3.ssp370.r1i1p1f1.Omon.vo.gn." + ESGF_VERSION,
 }
-YEARS = {"historical": (1850, 2014), "ssp126": (2015, 2100)}
+YEARS = {"historical": (1850, 2014), "ssp126": (2015, 2100), "ssp370": (2015, 2100)}
+EXPERIMENTS = ("historical", "ssp126", "ssp370")
 
 # Le Bars, Compute_amoc_from_vo.py
 RE = 6.371e6                       # :133  radius of the Earth
@@ -349,7 +351,7 @@ def main():
         return 0 if self_check(g) else 1
 
     for j in (a.row or sorted(ROWS)):
-        for exp in ("historical", "ssp126"):
+        for exp in EXPERIMENTS:
             s = series(exp, j, g)
             print(f"{os.path.basename(write(exp, j, s, a.outdir))}  "
                   f"{s['lat'].mean():.4f}N  mean {s['deep'].mean():.3f} Sv  "

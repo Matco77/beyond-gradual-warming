@@ -2,7 +2,11 @@
 # Author: Marco Bova
 source(path.expand("~/Library/CloudStorage/OneDrive-UniversitàCommercialeLuigiBocconi/1.Tesi/Amoc/Code/amoc_impact_specD.R"))
 
-sc_D_iso <- fread(file.path(d, "scenario_isimip_crop_gddwin.csv"))
+# emissions scenario, from ISIMIP_SCEN (default ssp126); _<scen> suffix on inputs and outputs.
+SCEN <- Sys.getenv("ISIMIP_SCEN", "ssp126")
+SFX  <- if (SCEN == "ssp126") "" else paste0("_", SCEN)
+
+sc_D_iso <- fread(file.path(d, sprintf("scenario_isimip_crop_gddwin%s.csv", SFX)))
 h_D_iso  <- hist_gw[, .(NUTS_ID, year, gdd, heat, frost, precip, n_day)]
 setnames(sc_D_iso, c("gdd","heat","frost","precip","n_day"), paste0(c("gdd","heat","frost","precip","n_day"), "_s"))
 zDi <- merge(sc_D_iso, h_D_iso, by = c("NUTS_ID", "year"))
@@ -20,12 +24,12 @@ setnames(ceD_iso, paste0("e_", D_X), D_X)
 ceD_iso <- melt(ceD_iso, id.vars = c("model", "cntr", "crop"), variable.name = "component", value.name = "dln")
 ceD_iso_eu <- merge(ceD_iso, w_crop[, .(w = sum(w)), by = .(cntr, crop)], by = c("cntr", "crop"))[
   , .(dln = weighted.mean(dln, w)), by = c("model", "component")]
-fwrite(ceD_iso,    file.path(d, "isimip_impact_specD_country.csv"))
-fwrite(ceD_iso_eu, file.path(d, "isimip_impact_specD_eu.csv"))
+fwrite(ceD_iso,    file.path(d, sprintf("isimip_impact_specD_country%s.csv", SFX)))
+fwrite(ceD_iso_eu, file.path(d, sprintf("isimip_impact_specD_eu%s.csv", SFX)))
 
 ## ---- report: A, C, D side by side for ISIMIP ----------------------------------------------------
-A_iso <- fread(file.path(d, "isimip_impact_crop_eu.csv"))[, .(dlnA = sum(dln)), by = model]
-C_iso <- fread(file.path(d, "isimip_impact_cropgw_eu.csv"))[, .(dlnC = sum(dln)), by = model]
+A_iso <- fread(file.path(d, sprintf("isimip_impact_crop_eu%s.csv", SFX)))[, .(dlnA = sum(dln)), by = model]
+C_iso <- fread(file.path(d, sprintf("isimip_impact_cropgw_eu%s.csv", SFX)))[, .(dlnC = sum(dln)), by = model]
 D_iso <- ceD_iso_eu[, .(dlnD = sum(dln)), by = model]
 cmp_iso <- merge(merge(A_iso, C_iso, by = "model"), D_iso, by = "model")
 cat("\n============ ISIMIP: crop, spec A vs spec C vs spec D, Europe ============\n")

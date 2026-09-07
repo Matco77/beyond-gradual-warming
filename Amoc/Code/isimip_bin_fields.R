@@ -41,26 +41,44 @@ source(path.expand("~/Library/CloudStorage/OneDrive-UniversitàCommercialeLuigiB
 VARS      <- c("tas", "tasmin", "tasmax", "pr")
 MIN_YEARS <- 3L
 HIST_WIN  <- 1985:2014          # fixed historical climatology, same window as isimip_delta_fields.R
-SSP_YEARS <- 2071:2100          # the only ssp126 years ISIMIP3b climate data was downloaded for
+SSP_YEARS <- 2071:2100          # the only future years ISIMIP3b climate data was downloaded for
+
+# emissions scenario, from ISIMIP_SCEN (default ssp126). ssp126 keeps the bare output names
+# (unchanged); any other scenario writes isimip_{bin,year}_fields_<model>_<scen>.nc.
+SCEN <- Sys.getenv("ISIMIP_SCEN", "ssp126")
+SFX  <- if (SCEN == "ssp126") "" else paste0("_", SCEN)
 
 # file-model-id -> display name used everywhere else (COL, MODELS in plot_impact_common.R)
 DISPLAY <- c("ipsl-cm6a-lr" = "IPSL-CM6A-LR", "ec-earth3" = "EC-Earth3")
 
-## ---- AMOC-at-26N annual series, same files/readers as plot_amoc_sv_ssp126.R -------------------
+## ---- AMOC-at-26N annual series -----------------------------------------------------------------
+# ssp126 sources are Terhaar (IPSL) and the own vo reconstruction (EC-Earth3), as plot_amoc_sv_ssp126.R.
+# Terhaar published no ssp370, so for ssp370: IPSL from raw msftyz, Terhaar-calibrated
+# (amoc_ipsl_from_msftyz.py); EC-Earth3 from the same vo pipeline (amoc_from_vo_below500m.py, ssp370).
+# The historical baseline is unchanged in both cases. The IPSL ssp370 series carries a ~+0.2 Sv
+# scalar calibration to Terhaar's level so its anomaly against Terhaar historical stays consistent;
+# this is a first-order match (msftyz-vs-Terhaar rmse ~0.9 Sv), reported as a caveat, not hidden.
 read_terhaar <- function(f) { nc <- nc_open(f)
   d <- list(t = as.numeric(ncvar_get(nc, "year")), a = as.numeric(ncvar_get(nc, "amoc"))); nc_close(nc); d }
 read_ecearth <- function(f) { nc <- nc_open(f)
   d <- list(t = floor(as.numeric(ncvar_get(nc, "time"))), a = as.numeric(ncvar_get(nc, "amoc"))); nc_close(nc); d }
 
+SSP_AMOC <- list(
+  "ipsl-cm6a-lr" = list(
+    ssp126 = function() read_terhaar(file.path(d, "terhaar_amoc/amoc/amoc/26.5N/ssp126/amoc_ssp126_IPSL_IPSL-CM6A-LR_r1i1p1f1.nc")),
+    ssp370 = function() read_terhaar(file.path(d, "amoc_ipsl_msftyz_26N_ssp370_2015_2100.nc"))),
+  "ec-earth3" = list(
+    ssp126 = function() read_ecearth(file.path(d, "ecearth3_amoc26N_vo_below500m_ssp126_2015_2100.nc")),
+    ssp370 = function() read_ecearth(file.path(d, "ecearth3_amoc26N_vo_below500m_ssp370_2015_2100.nc"))))
+
 amoc_series <- function(model) {
-  if (model == "ipsl-cm6a-lr") {
-    hist <- read_terhaar(file.path(d, "terhaar_amoc/amoc/amoc/26.5N/historical/amoc_historical_IPSL_IPSL-CM6A-LR_r1i1p1f1.nc"))
-    ssp  <- read_terhaar(file.path(d, "terhaar_amoc/amoc/amoc/26.5N/ssp126/amoc_ssp126_IPSL_IPSL-CM6A-LR_r1i1p1f1.nc"))
-  } else {
-    hist <- read_ecearth(file.path(d, "ecearth3_amoc26N_vo_below500m_historical_1850_2014.nc"))
-    ssp  <- read_ecearth(file.path(d, "ecearth3_amoc26N_vo_below500m_ssp126_2015_2100.nc"))
-  }
-  list(hist = hist, ssp = ssp)
+  hist <- if (model == "ipsl-cm6a-lr")
+    read_terhaar(file.path(d, "terhaar_amoc/amoc/amoc/26.5N/historical/amoc_historical_IPSL_IPSL-CM6A-LR_r1i1p1f1.nc"))
+  else
+    read_ecearth(file.path(d, "ecearth3_amoc26N_vo_below500m_historical_1850_2014.nc"))
+  reader <- SSP_AMOC[[model]][[SCEN]]
+  if (is.null(reader)) stop(sprintf("no AMOC-26N %s series for %s", SCEN, model))
+  list(hist = hist, ssp = reader())
 }
 
 ## ---- delta_Sv per ssp126 year (restricted to SSP_YEARS), floored to bins, intersected with the --
@@ -111,8 +129,8 @@ build <- function(model, mode = "bin") {
       list(lo = bins$lo[i], hi = bins$hi[i], years = bins$y[i], dsv = bins$dsv[i], ssp_year = bins$y[i]))
   }
   nb <- length(bins)
-  cat(sprintf("%-14s [%s] ssp126 years available %d (%d-%d) | historical AMOC baseline %.3f Sv | groups %d\n",
-              disp, mode, B$n_ssp_years, min(SSP_YEARS), max(SSP_YEARS), B$base, nb))
+  cat(sprintf("%-14s [%s|%s] future years available %d (%d-%d) | historical AMOC baseline %.3f Sv | groups %d\n",
+              disp, SCEN, mode, B$n_ssp_years, min(SSP_YEARS), max(SSP_YEARS), B$base, nb))
   if (mode == "bin") cat(sprintf("   bins: %s\n", paste(sapply(bins, function(b)
     sprintf("%d:%d(dSv=%.2f)", b$lo, length(b$years), b$dsv)), collapse = " ")))
   if (!nb) { cat("   no bin overlaps NAHosMIP's range for this model - nothing written\n\n"); return(invisible(NULL)) }
@@ -124,7 +142,7 @@ build <- function(model, mode = "bin") {
   for (v in VARS) {
     key <- if (v == "pr") "pr_ratio" else paste0("delta_", v)
     m <- array(NA_real_, c(length(lon), length(lat), 12, nb))
-    fs <- path_for(model, "ssp126", v)
+    fs <- path_for(model, SCEN, v)
     for (bi in seq_len(nb)) {
       C <- clim_monthly(fs, bins[[bi]]$years)[, oy, , drop = FALSE]
       m[, , , bi] <- if (v == "pr") { r <- C / hist_clim[[v]]; r[!is.finite(r)] <- 1; r } else C - hist_clim[[v]]
@@ -146,7 +164,7 @@ build <- function(model, mode = "bin") {
                ncvar_def("n_years", "1", db, NA, prec = "double"),
                ncvar_def("delta_sv_mean", "Sv", db, NA, prec = "double"),
                ncvar_def("ssp_year", "1", db, NA, prec = "double"))
-  f <- file.path(d, sprintf("isimip_%s_fields_%s.nc", if (mode == "bin") "bin" else "year", model))
+  f <- file.path(d, sprintf("isimip_%s_fields_%s%s.nc", if (mode == "bin") "bin" else "year", model, SFX))
   nc <- nc_create(f, c(vars, meta))
   for (k in names(out)) ncvar_put(nc, k, out[[k]])
   ncvar_put(nc, "bin_lo", sapply(bins, `[[`, "lo")); ncvar_put(nc, "bin_hi", sapply(bins, `[[`, "hi"))
@@ -154,12 +172,14 @@ build <- function(model, mode = "bin") {
   ncvar_put(nc, "delta_sv_mean", sapply(bins, `[[`, "dsv"))
   ncvar_put(nc, "ssp_year", if (mode == "year") sapply(bins, `[[`, "ssp_year") else rep(NA_real_, nb))
   ncatt_put(nc, 0, "model", disp)
-  ncatt_put(nc, 0, "experiment", "ssp126 (ISIMIP3b w5e5, bias-adjusted)")
-  ncatt_put(nc, 0, "delta_sv_definition", "AMOC(26N, ssp126 year) minus mean(AMOC(26N, historical 1850-2014)) - NOT a piControl baseline, see file header")
-  ncatt_put(nc, 0, "binning", sprintf("floor to 1 Sv, bins with >= %d ssp126 years kept, INTERSECTED with NAHosMIP's kept bin_lo for this model", MIN_YEARS))
+  ncatt_put(nc, 0, "experiment", sprintf("%s (ISIMIP3b w5e5, bias-adjusted)", SCEN))
+  ncatt_put(nc, 0, "delta_sv_definition", sprintf("AMOC(26N, %s year) minus mean(AMOC(26N, historical 1850-2014)) - NOT a piControl baseline, see file header", SCEN))
+  ncatt_put(nc, 0, "binning", sprintf("floor to 1 Sv, bins with >= %d %s years kept, INTERSECTED with NAHosMIP's kept bin_lo for this model", MIN_YEARS, SCEN))
   ncatt_put(nc, 0, "historical_reference_window", paste(range(HIST_WIN), collapse = "-"))
-  ncatt_put(nc, 0, "ssp126_years_available", paste(range(SSP_YEARS), collapse = "-"))
-  ncatt_put(nc, 0, "pr_note", "ssp126-bin/historical ratio, bin mean per calendar month; [0.1,10] clamp applied by the consumer")
+  ncatt_put(nc, 0, "ssp_years_available", paste(range(SSP_YEARS), collapse = "-"))
+  ncatt_put(nc, 0, "pr_note", sprintf("%s-bin/historical ratio, bin mean per calendar month; [0.1,10] clamp applied by the consumer", SCEN))
+  if (model == "ipsl-cm6a-lr" && SCEN == "ssp370")
+    ncatt_put(nc, 0, "amoc_source_caveat", "IPSL ssp370 AMOC-26N is from raw msftyz, Terhaar-calibrated (amoc_ipsl_from_msftyz.py), not Terhaar's own product (he published no ssp370); msftyz-vs-Terhaar rmse ~0.9 Sv")
   ncatt_put(nc, 0, "grid", "ISIMIP3b native grid (already cropped to Europe at download), lat reordered increasing")
   ncatt_put(nc, 0, "created", format(Sys.time(), "%Y-%m-%d %H:%M"))
   nc_close(nc)

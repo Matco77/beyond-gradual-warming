@@ -30,9 +30,14 @@ cat("beta, weights and both crop specifications loaded (AMOC central estimate re
 
 ISIMIP_MODELS <- c("ipsl-cm6a-lr", "ec-earth3")     # file ids, as scenario_replay_isimip_bins.R uses
 KEY <- c(BINKEY, "ssp_year")
+# emissions scenario, from ISIMIP_SCEN (default ssp126). ssp126 reads/writes bare names (unchanged);
+# any other scenario carries a _<scen> suffix on the per-year field input, the per-crop central
+# inputs, the checkpoint caches, and the band outputs.
+SCEN <- Sys.getenv("ISIMIP_SCEN", "ssp126")
+SFX  <- if (SCEN == "ssp126") "" else paste0("_", SCEN)
 BND <- grab(path.expand("~/Library/CloudStorage/OneDrive-UniversitàCommercialeLuigiBocconi/1.Tesi/Amoc/Code/scenario_replay_isimip_bins.R"),
             c("bin_file", "bin_scenarios"))
-BND$bin_file <- function(m) file.path(d, sprintf("isimip_year_fields_%s.nc", m))   # per-year fields
+BND$bin_file <- function(m) file.path(d, sprintf("isimip_year_fields_%s%s.nc", m, SFX))   # per-year fields
 
 year_scen <- function(S, m) {
   sc <- BND$bin_scenarios(S, m)
@@ -49,7 +54,7 @@ year_scen <- function(S, m) {
 ## ---- one model, one branch: replay every ssp126 year, then apply beta straight away -------------
 # CHECKPOINTED per (branch, model): a 48h job with no checkpoint is a 48h job that restarts from
 # zero on any interruption. Delete the cache file to force a recompute.
-cache <- function(branch, m) file.path(d, sprintf("isimip_band_%s_%s.csv", branch, gsub("[^A-Za-z0-9]", "", m)))
+cache <- function(branch, m) file.path(d, sprintf("isimip_band_%s_%s%s.csv", branch, gsub("[^A-Za-z0-9]", "", m), SFX))
 
 band_one <- function(branch, m) {
   f <- cache(branch, m)
@@ -120,24 +125,24 @@ cpc <- function(file, br) merge(fread(file.path(d, file)), wc, by = c("cntr", "c
 allcrop <- function(file, br) fread(file.path(d, file))[
   , .(model, bin_id, crop = "ALL", component, central = dln, branch = br)]
 central <- rbind(
-  cpc("isimip_bin_impact_crop_country.csv",   "crop"),
-  cpc("isimip_bin_impact_cropgw_country.csv", "crop_gddwin"),
-  allcrop("isimip_bin_impact_crop_eu.csv",   "crop"),
-  allcrop("isimip_bin_impact_cropgw_eu.csv", "crop_gddwin"),
-  fread(file.path(d, "isimip_bin_impact_energy_eu.csv"))[
+  cpc(sprintf("isimip_bin_impact_crop_country%s.csv", SFX),   "crop"),
+  cpc(sprintf("isimip_bin_impact_cropgw_country%s.csv", SFX), "crop_gddwin"),
+  allcrop(sprintf("isimip_bin_impact_crop_eu%s.csv", SFX),   "crop"),
+  allcrop(sprintf("isimip_bin_impact_cropgw_eu%s.csv", SFX), "crop_gddwin"),
+  fread(file.path(d, sprintf("isimip_bin_impact_energy_eu%s.csv", SFX)))[
     , .(model, bin_id, crop = "ALL", component, central = dln, branch = paste("energy", fuel))],
   use.names = TRUE)
 
 band <- BAND[, .(n = .N, mean = mean(dln), sd = sd(dln), lo = min(dln), hi = max(dln)),
              by = .(branch, model, bin_id, component, crop)]
 band <- merge(band, central, by = c("branch", "model", "bin_id", "component", "crop"), all.x = TRUE)
-fwrite(band[order(branch, model, bin_id, crop, component)], file.path(d, "isimip_band_summary.csv"))
+fwrite(band[order(branch, model, bin_id, crop, component)], file.path(d, sprintf("isimip_band_summary%s.csv", SFX)))
 
 tot  <- BAND[, .(dln = sum(dln)), by = .(branch, model, bin_id, crop, ssp_year)][   # total = sum of components
   , .(n = .N, mean = mean(dln), sd = sd(dln), lo = min(dln), hi = max(dln)), by = .(branch, model, bin_id, crop)]
 ctot <- central[, .(central = sum(central)), by = .(branch, model, bin_id, crop)]
 tot  <- merge(tot, ctot, by = c("branch", "model", "bin_id", "crop"), all.x = TRUE)
-fwrite(tot[order(branch, model, bin_id, crop)], file.path(d, "isimip_band_total.csv"))
+fwrite(tot[order(branch, model, bin_id, crop)], file.path(d, sprintf("isimip_band_total%s.csv", SFX)))
 
 pc <- function(x) 100 * (exp(x) - 1)
 for (br in sort(unique(tot$branch))) for (m in unique(tot[branch == br]$model))

@@ -11,15 +11,21 @@
 # side. See Appendix G (methodology) for the argument in full and its cost: a monthly delta cannot
 # express a change in the SHAPE of the daily distribution, in neither branch.
 #
-# There are no delta_Sv bins on this branch - ISIMIP is one emissions trajectory (ssp126), not an
-# ensemble indexed by AMOC state - so this is one scenario per model, not forty.
+# There are no delta_Sv bins on this branch - ISIMIP is one emissions trajectory, not an ensemble
+# indexed by AMOC state - so this is one scenario per model, not forty.
+#
+# EMISSIONS SCENARIO. From ISIMIP_SCEN (default ssp126). ssp126 reads/writes the bare file names
+# (unchanged); any other scenario gets a _<scen> suffix on both the delta-field input and the
+# scenario outputs, so ssp370 runs alongside ssp126 without disturbing it.
 source(path.expand("~/Library/CloudStorage/OneDrive-UniversitàCommercialeLuigiBocconi/1.Tesi/Amoc/Code/scenario_engine.R"))
 
 # ISIMIP's own model list, kept separate from scenario_replay_bins.R's AMOC-branch MODELS: the two
 # never need to be the same set, and coupling them would make an AMOC-only model addition silently
 # require an ISIMIP field that does not exist.
 MODELS <- c("ipsl-cm6a-lr", "ec-earth3")
-field_file <- function(m) file.path(d, sprintf("isimip_delta_fields_%s.nc", m))
+SCEN   <- Sys.getenv("ISIMIP_SCEN", "ssp126")
+SFX    <- if (SCEN == "ssp126") "" else paste0("_", SCEN)
+field_file <- function(m) file.path(d, sprintf("isimip_delta_fields_%s%s.nc", m, SFX))
 
 ## ---- per-model field -> E-OBS cells (bilinear on cell centres, same as bin_scenarios()) --------
 isimip_scenario <- function(S, model) {
@@ -75,9 +81,9 @@ run_branch <- function(branch, out_file) {
   invisible(out)
 }
 
-OUT <- c(energy      = "scenario_isimip_energy_country.csv",
-         crop        = "scenario_isimip_crop_window.csv",
-         crop_gddwin = "scenario_isimip_crop_gddwin.csv")
+OUT <- c(energy      = sprintf("scenario_isimip_energy_country%s.csv", SFX),
+         crop        = sprintf("scenario_isimip_crop_window%s.csv", SFX),
+         crop_gddwin = sprintf("scenario_isimip_crop_gddwin%s.csv", SFX))
 BRANCHES <- if (length(commandArgs(TRUE))) commandArgs(TRUE) else names(OUT)
 for (b in BRANCHES) run_branch(b, OUT[[b]])
-cat("\nISIMIP branch done.\n")
+cat(sprintf("\nISIMIP branch done (%s).\n", SCEN))

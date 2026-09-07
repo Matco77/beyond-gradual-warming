@@ -23,9 +23,14 @@ cat("beta, weights and both crop specifications loaded (AMOC central estimate re
 KEY <- "model"
 pct <- function(x) 100 * (exp(x) - 1)
 
+# emissions scenario, from ISIMIP_SCEN (default ssp126). ssp126 reads/writes bare names (unchanged);
+# any other scenario carries a _<scen> suffix on both the scenario inputs and the impact outputs.
+SCEN <- Sys.getenv("ISIMIP_SCEN", "ssp126")
+SFX  <- if (SCEN == "ssp126") "" else paste0("_", SCEN)
+
 ## ---- fixed-window crop (spec A) and energy -----------------------------------------------------
-ce_A <- crop_effect("scenario_isimip_crop_window.csv", KEY)
-ee   <- energy_effect("scenario_isimip_energy_country.csv", KEY)
+ce_A <- crop_effect(sprintf("scenario_isimip_crop_window%s.csv", SFX), KEY)
+ee   <- energy_effect(sprintf("scenario_isimip_energy_country%s.csv", SFX), KEY)
 
 ce_A_eu <- merge(ce_A, w_crop[, .(w = sum(w)), by = .(cntr, crop)], by = c("cntr", "crop"))[
   , .(dln = weighted.mean(dln, w)), by = c(KEY, "component")]
@@ -33,7 +38,7 @@ ee_eu <- merge(ee, w_pop, by = c("cntr", "country_id"))[
   , .(dln = weighted.mean(dln, w)), by = c(KEY, "fuel", "component")]
 
 ## ---- thermal-window crop (spec C), same construction as amoc_impact_gddwin.R --------------------
-sc_C <- fread(file.path(d, "scenario_isimip_crop_gddwin.csv"))
+sc_C <- fread(file.path(d, sprintf("scenario_isimip_crop_gddwin%s.csv", SFX)))
 h_C  <- hist_gw[, .(NUTS_ID, year, gdd, heat, frost, precip)]
 setnames(sc_C, c("gdd", "heat", "frost", "precip"), paste0(c("gdd", "heat", "frost", "precip"), "_s"))
 z_C  <- merge(sc_C, h_C, by = c("NUTS_ID", "year"))
@@ -52,15 +57,15 @@ ce_C <- melt(ce_C, id.vars = c(KEY, "cntr", "crop"), variable.name = "component"
 ce_C_eu <- merge(ce_C, w_crop[, .(w = sum(w)), by = .(cntr, crop)], by = c("cntr", "crop"))[
   , .(dln = weighted.mean(dln, w)), by = c(KEY, "component")]
 
-fwrite(ce_A,    file.path(d, "isimip_impact_crop_country.csv"))
-fwrite(ce_A_eu, file.path(d, "isimip_impact_crop_eu.csv"))
-fwrite(ce_C,    file.path(d, "isimip_impact_cropgw_country.csv"))
-fwrite(ce_C_eu, file.path(d, "isimip_impact_cropgw_eu.csv"))
-fwrite(ee,      file.path(d, "isimip_impact_energy_country.csv"))
-fwrite(ee_eu,   file.path(d, "isimip_impact_energy_eu.csv"))
+fwrite(ce_A,    file.path(d, sprintf("isimip_impact_crop_country%s.csv", SFX)))
+fwrite(ce_A_eu, file.path(d, sprintf("isimip_impact_crop_eu%s.csv", SFX)))
+fwrite(ce_C,    file.path(d, sprintf("isimip_impact_cropgw_country%s.csv", SFX)))
+fwrite(ce_C_eu, file.path(d, sprintf("isimip_impact_cropgw_eu%s.csv", SFX)))
+fwrite(ee,      file.path(d, sprintf("isimip_impact_energy_country%s.csv", SFX)))
+fwrite(ee_eu,   file.path(d, sprintf("isimip_impact_energy_eu%s.csv", SFX)))
 
 ## ---- coverage, same restriction as the AMOC branch and reported for the same reason -------------
-.scn <- fread(file.path(d, "scenario_isimip_crop_window.csv"), select = "NUTS_ID")
+.scn <- fread(file.path(d, sprintf("scenario_isimip_crop_window%s.csv", SFX)), select = "NUTS_ID")
 cat(sprintf("\ncoverage | crop: scenario %d NUTS3 -> effect on %d NUTS3 in %d countries (%.0f%%)\n",
             uniqueN(.scn$NUTS_ID), uniqueN(w_crop$NUTS_ID), uniqueN(ce_A$cntr),
             100 * uniqueN(w_crop$NUTS_ID) / uniqueN(.scn$NUTS_ID)))

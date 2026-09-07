@@ -25,10 +25,15 @@
 # checked in isolation) for both `model` and `fuel` before shipping the plot.
 source(path.expand("~/Library/CloudStorage/OneDrive-UniversitàCommercialeLuigiBocconi/1.Tesi/Amoc/Code/plot_impact_common.R"))
 
+# ISIMIP emissions scenario for the overlay, from ISIMIP_SCEN (default ssp126). NAHosMIP curve/band
+# are scenario-independent; only the ISIMIP triangles/band change. ssp126 -> bare PDF name.
+ISCEN <- Sys.getenv("ISIMIP_SCEN", "ssp126")
+ISFX  <- if (ISCEN == "ssp126") "" else paste0("_", ISCEN)
+
 E    <- totalise(fread(file.path(d, "amoc_impact_energy_eu.csv")), c("model", "bin_id", "delta_sv", "n_years", "fuel"))
 BND  <- fread(file.path(d, "amoc_band_total.csv"))         # branch %in% {"energy Electricity","energy Natural gas"}
-ISB  <- fread(file.path(d, "isimip_band_total.csv"))[crop == "ALL"]   # ssp126 per-year band (crop col is "ALL" for energy; the crop branches also carry per-crop rows)
-IS   <- totalise(fread(file.path(d, "isimip_bin_impact_energy_eu.csv")), c("model", "bin_id", "delta_sv", "n_years", "fuel"))
+ISB  <- fread(file.path(d, sprintf("isimip_band_total%s.csv", ISFX)))[crop == "ALL"]   # per-year band (crop col is "ALL" for energy)
+IS   <- totalise(fread(file.path(d, sprintf("isimip_bin_impact_energy_eu%s.csv", ISFX))), c("model", "bin_id", "delta_sv", "n_years", "fuel"))
 FUELS <- c("Electricity", "Natural gas")
 BND_KEY <- c(Electricity = "energy Electricity", `Natural gas` = "energy Natural gas")
 
@@ -65,7 +70,7 @@ panel <- function(mdl, fl, ylim) {
   title(main = mdl, cex.main = 1)
 }
 
-pdf(file.path(out, "impact_curve_energy.pdf"), width = 13, height = 8)
+pdf(file.path(out, sprintf("impact_curve_energy%s.pdf", ISFX)), width = 13, height = 8)
 for (fl in FUELS) {
   sub <- E[fuel == fl]
   bl  <- BND[branch == BND_KEY[fl]]
@@ -88,7 +93,7 @@ for (fl in FUELS) {
   }
   title(main = "All models - comparison", cex.main = 1)
   legend("topleft", bg = "white", box.col = NA, cex = 0.7,
-    legend = c(MODELS, "ISIMIP-bin (ssp126)"), col = c(COL[MODELS], "grey30"),
+    legend = c(MODELS, sprintf("ISIMIP-bin (%s)", ISCEN)), col = c(COL[MODELS], "grey30"),
     lwd = c(rep(2, length(MODELS)), NA), pch = c(rep(16, length(MODELS)), ISIMIP_PCH))
 
   plot.new()
@@ -97,12 +102,12 @@ for (fl in FUELS) {
   text(0.5, 0.70, "constructions matching real consumption cycles, no window ambiguity", cex = 0.72, col = "grey30")
   text(0.5, 0.52, "shaded band: range across the bin's individual hosing years,", cex = 0.7, col = "grey30")
   text(0.5, 0.45, "IPSL-CM6A-LR and EC-Earth3 only (Appendix I)", cex = 0.7, col = "grey30")
-  text(0.5, 0.39, "narrow bar (thinner): same range across the ISIMIP bin's ssp126 years (Appendix J.6)", cex = 0.62, col = "grey30")
-  text(0.5, 0.33, "triangles: ISIMIP3b/ssp126, binned by year-level AMOC (Appendix J.5),", cex = 0.65, col = "grey30")
+  text(0.5, 0.39, sprintf("narrow bar (thinner): same range across the ISIMIP bin's %s years (Appendix J.6)", ISCEN), cex = 0.62, col = "grey30")
+  text(0.5, 0.33, sprintf("triangles: ISIMIP3b/%s, binned by year-level AMOC (Appendix J.5),", ISCEN), cex = 0.65, col = "grey30")
   text(0.5, 0.27, "at the delta_Sv levels it shares with NAHosMIP - IPSL and EC-Earth3 only", cex = 0.65, col = "grey30")
   text(0.5, 0.21, "caveat: delta_Sv baseline differs (piControl vs historical mean), see Appendix J.5", cex = 0.62, col = "grey40")
   text(0.5, 0.08, "caveat (Appendix I, I.4): the AMOC bins extrapolate the linear response", cex = 0.65, col = "grey40")
   text(0.5, 0.02, "function up to ~9 s.d. beyond the range that identifies the coefficients", cex = 0.65, col = "grey40")
 }
 dev.off()
-cat("wrote", file.path(out, "impact_curve_energy.pdf"), "\n")
+cat("wrote", file.path(out, sprintf("impact_curve_energy%s.pdf", ISFX)), "\n")

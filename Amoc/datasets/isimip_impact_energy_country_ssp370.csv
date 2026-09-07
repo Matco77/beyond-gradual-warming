@@ -1,0 +1,167 @@
+model,cntr,country_id,component,dln,fuel
+ec-earth3,AT,AUT,hdd_calendar,-0.0840254856612714,Electricity
+ipsl-cm6a-lr,AT,AUT,hdd_calendar,-0.0768398292059217,Electricity
+ec-earth3,BE,BEL,hdd_calendar,-0.0683121123788037,Electricity
+ipsl-cm6a-lr,BE,BEL,hdd_calendar,-0.0659422169780578,Electricity
+ec-earth3,BG,BGR,hdd_calendar,-0.0768253098665757,Electricity
+ipsl-cm6a-lr,BG,BGR,hdd_calendar,-0.0626234203123012,Electricity
+ec-earth3,CY,CYP,hdd_calendar,-0.0337863162737716,Electricity
+ipsl-cm6a-lr,CY,CYP,hdd_calendar,-0.0270909251613702,Electricity
+ec-earth3,CZ,CZE,hdd_calendar,-0.0846882124252318,Electricity
+ipsl-cm6a-lr,CZ,CZE,hdd_calendar,-0.0806242884830006,Electricity
+ec-earth3,DE,DEU,hdd_calendar,-0.0762633051948178,Electricity
+ipsl-cm6a-lr,DE,DEU,hdd_calendar,-0.0758817764702834,Electricity
+ec-earth3,DK,DNK,hdd_calendar,-0.0786351203541679,Electricity
+ipsl-cm6a-lr,DK,DNK,hdd_calendar,-0.0758878153225917,Electricity
+ec-earth3,EE,EST,hdd_calendar,-0.104783816809559,Electricity
+ipsl-cm6a-lr,EE,EST,hdd_calendar,-0.101020474877126,Electricity
+ec-earth3,EL,GRC,hdd_calendar,-0.0505564514333107,Electricity
+ipsl-cm6a-lr,EL,GRC,hdd_calendar,-0.0407528593101851,Electricity
+ec-earth3,ES,ESP,hdd_calendar,-0.047827598450454,Electricity
+ipsl-cm6a-lr,ES,ESP,hdd_calendar,-0.0413948787750268,Electricity
+ec-earth3,FI,FIN,hdd_calendar,-0.117232948119808,Electricity
+ipsl-cm6a-lr,FI,FIN,hdd_calendar,-0.110296133384109,Electricity
+ec-earth3,FR,FRA,hdd_calendar,-0.0640131018805123,Electricity
+ipsl-cm6a-lr,FR,FRA,hdd_calendar,-0.0596289510200483,Electricity
+ec-earth3,HR,HRV,hdd_calendar,-0.0664518849298112,Electricity
+ipsl-cm6a-lr,HR,HRV,hdd_calendar,-0.0612816767938947,Electricity
+ec-earth3,HU,HUN,hdd_calendar,-0.0748150616699634,Electricity
+ipsl-cm6a-lr,HU,HUN,hdd_calendar,-0.0690069531629093,Electricity
+ec-earth3,IE,IRL,hdd_calendar,-0.0675461846110453,Electricity
+ipsl-cm6a-lr,IE,IRL,hdd_calendar,-0.0608987315484486,Electricity
+ec-earth3,IT,ITA,hdd_calendar,-0.0563817445756369,Electricity
+ipsl-cm6a-lr,IT,ITA,hdd_calendar,-0.0494457872078586,Electricity
+ec-earth3,LT,LTU,hdd_calendar,-0.0950133451819637,Electricity
+ipsl-cm6a-lr,LT,LTU,hdd_calendar,-0.0948382743803246,Electricity
+ec-earth3,LU,LUX,hdd_calendar,-0.074904302487407,Electricity
+ipsl-cm6a-lr,LU,LUX,hdd_calendar,-0.0729824750171841,Electricity
+ec-earth3,LV,LVA,hdd_calendar,-0.0959543623897941,Electricity
+ipsl-cm6a-lr,LV,LVA,hdd_calendar,-0.0959879302077173,Electricity
+ec-earth3,MT,MLT,hdd_calendar,-0.0355175646364559,Electricity
+ipsl-cm6a-lr,MT,MLT,hdd_calendar,-0.0314572497726243,Electricity
+ec-earth3,NL,NLD,hdd_calendar,-0.0679676554976059,Electricity
+ipsl-cm6a-lr,NL,NLD,hdd_calendar,-0.0655468771746333,Electricity
+ec-earth3,NO,NOR,hdd_calendar,-0.105921059440541,Electricity
+ipsl-cm6a-lr,NO,NOR,hdd_calendar,-0.090329842448283,Electricity
+ec-earth3,PL,POL,hdd_calendar,-0.0857342012880001,Electricity
+ipsl-cm6a-lr,PL,POL,hdd_calendar,-0.0858073012224224,Electricity
+ec-earth3,PT,PRT,hdd_calendar,-0.0404982769531545,Electricity
+ipsl-cm6a-lr,PT,PRT,hdd_calendar,-0.0373858077412619,Electricity
+ec-earth3,RO,ROU,hdd_calendar,-0.0821524722472066,Electricity
+ipsl-cm6a-lr,RO,ROU,hdd_calendar,-0.0710621945369044,Electricity
+ec-earth3,SE,SWE,hdd_calendar,-0.0982561715946083,Electricity
+ipsl-cm6a-lr,SE,SWE,hdd_calendar,-0.0894015925670917,Electricity
+ec-earth3,SI,SVN,hdd_calendar,-0.0792926656337403,Electricity
+ipsl-cm6a-lr,SI,SVN,hdd_calendar,-0.0724644943242904,Electricity
+ec-earth3,SK,SVK,hdd_calendar,-0.0882675371081619,Electricity
+ipsl-cm6a-lr,SK,SVK,hdd_calendar,-0.0805870675321996,Electricity
+ec-earth3,UK,GBR,hdd_calendar,-0.0711317531690471,Electricity
+ipsl-cm6a-lr,UK,GBR,hdd_calendar,-0.0619893967352379,Electricity
+ec-earth3,AT,AUT,cdd_jja,0.0441216780442858,Electricity
+ipsl-cm6a-lr,AT,AUT,cdd_jja,0.0421070473056807,Electricity
+ec-earth3,BE,BEL,cdd_jja,0.0301460986867337,Electricity
+ipsl-cm6a-lr,BE,BEL,cdd_jja,0.0246517701709925,Electricity
+ec-earth3,BG,BGR,cdd_jja,0.0726344385214659,Electricity
+ipsl-cm6a-lr,BG,BGR,cdd_jja,0.0602679031686308,Electricity
+ec-earth3,CY,CYP,cdd_jja,0.0556027179813347,Electricity
+ipsl-cm6a-lr,CY,CYP,cdd_jja,0.0542378808938173,Electricity
+ec-earth3,CZ,CZE,cdd_jja,0.0389945540357608,Electricity
+ipsl-cm6a-lr,CZ,CZE,cdd_jja,0.0383278809281708,Electricity
+ec-earth3,DE,DEU,cdd_jja,0.0335174539058552,Electricity
+ipsl-cm6a-lr,DE,DEU,cdd_jja,0.0321399681300027,Electricity
+ec-earth3,DK,DNK,cdd_jja,0.0159948770259912,Electricity
+ipsl-cm6a-lr,DK,DNK,cdd_jja,0.0155836638066024,Electricity
+ec-earth3,EE,EST,cdd_jja,0.0161080173623398,Electricity
+ipsl-cm6a-lr,EE,EST,cdd_jja,0.024769577437175,Electricity
+ec-earth3,EL,GRC,cdd_jja,0.0787831403857954,Electricity
+ipsl-cm6a-lr,EL,GRC,cdd_jja,0.0702031861588045,Electricity
+ec-earth3,ES,ESP,cdd_jja,0.0700968499444569,Electricity
+ipsl-cm6a-lr,ES,ESP,cdd_jja,0.0499341864959033,Electricity
+ec-earth3,FI,FIN,cdd_jja,0.0138404128570339,Electricity
+ipsl-cm6a-lr,FI,FIN,cdd_jja,0.0213283055028774,Electricity
+ec-earth3,FR,FRA,cdd_jja,0.0471776447621981,Electricity
+ipsl-cm6a-lr,FR,FRA,cdd_jja,0.0369343880191495,Electricity
+ec-earth3,HR,HRV,cdd_jja,0.0777684102681585,Electricity
+ipsl-cm6a-lr,HR,HRV,cdd_jja,0.0602841719987997,Electricity
+ec-earth3,HU,HUN,cdd_jja,0.0714213420778022,Electricity
+ipsl-cm6a-lr,HU,HUN,cdd_jja,0.0606409086260145,Electricity
+ec-earth3,IE,IRL,cdd_jja,0.00540988761706319,Electricity
+ipsl-cm6a-lr,IE,IRL,cdd_jja,0.00557070042358488,Electricity
+ec-earth3,IT,ITA,cdd_jja,0.0827662559586661,Electricity
+ipsl-cm6a-lr,IT,ITA,cdd_jja,0.0622388741243967,Electricity
+ec-earth3,LT,LTU,cdd_jja,0.0226084399947168,Electricity
+ipsl-cm6a-lr,LT,LTU,cdd_jja,0.0342007011567807,Electricity
+ec-earth3,LU,LUX,cdd_jja,0.0368398281698034,Electricity
+ipsl-cm6a-lr,LU,LUX,cdd_jja,0.0326072281235657,Electricity
+ec-earth3,LV,LVA,cdd_jja,0.0201246737673817,Electricity
+ipsl-cm6a-lr,LV,LVA,cdd_jja,0.031615919887432,Electricity
+ec-earth3,MT,MLT,cdd_jja,0.0792326922156894,Electricity
+ipsl-cm6a-lr,MT,MLT,cdd_jja,0.0683069296965487,Electricity
+ec-earth3,NL,NLD,cdd_jja,0.0240662667495801,Electricity
+ipsl-cm6a-lr,NL,NLD,cdd_jja,0.0197507523704979,Electricity
+ec-earth3,NO,NOR,cdd_jja,0.00812486314392947,Electricity
+ipsl-cm6a-lr,NO,NOR,cdd_jja,0.00952001346728436,Electricity
+ec-earth3,PL,POL,cdd_jja,0.0358123185153315,Electricity
+ipsl-cm6a-lr,PL,POL,cdd_jja,0.0386901131923864,Electricity
+ec-earth3,PT,PRT,cdd_jja,0.030160710102569,Electricity
+ipsl-cm6a-lr,PT,PRT,cdd_jja,0.0284204686685009,Electricity
+ec-earth3,RO,ROU,cdd_jja,0.0674776991357702,Electricity
+ipsl-cm6a-lr,RO,ROU,cdd_jja,0.0596748105342175,Electricity
+ec-earth3,SE,SWE,cdd_jja,0.0155872403322696,Electricity
+ipsl-cm6a-lr,SE,SWE,cdd_jja,0.0187401221725283,Electricity
+ec-earth3,SI,SVN,cdd_jja,0.0582262304066887,Electricity
+ipsl-cm6a-lr,SI,SVN,cdd_jja,0.0449130061562259,Electricity
+ec-earth3,SK,SVK,cdd_jja,0.0502297732574432,Electricity
+ipsl-cm6a-lr,SK,SVK,cdd_jja,0.0443278952803137,Electricity
+ec-earth3,UK,GBR,cdd_jja,0.00345082387479889,Electricity
+ipsl-cm6a-lr,UK,GBR,cdd_jja,0.00314572878892439,Electricity
+ec-earth3,AT,AUT,hdd_octmar,-0.124064431824448,Natural gas
+ipsl-cm6a-lr,AT,AUT,hdd_octmar,-0.111869790994628,Natural gas
+ec-earth3,BE,BEL,hdd_octmar,-0.0958952768982337,Natural gas
+ipsl-cm6a-lr,BE,BEL,hdd_octmar,-0.097449582542256,Natural gas
+ec-earth3,BG,BGR,hdd_octmar,-0.124893000809337,Natural gas
+ipsl-cm6a-lr,BG,BGR,hdd_octmar,-0.0960780026667871,Natural gas
+ec-earth3,CZ,CZE,hdd_octmar,-0.125675113389825,Natural gas
+ipsl-cm6a-lr,CZ,CZE,hdd_octmar,-0.118810270350613,Natural gas
+ec-earth3,DE,DEU,hdd_octmar,-0.109845589566239,Natural gas
+ipsl-cm6a-lr,DE,DEU,hdd_octmar,-0.112596850256022,Natural gas
+ec-earth3,DK,DNK,hdd_octmar,-0.108186013048544,Natural gas
+ipsl-cm6a-lr,DK,DNK,hdd_octmar,-0.109222478576257,Natural gas
+ec-earth3,EE,EST,hdd_octmar,-0.149576892122506,Natural gas
+ipsl-cm6a-lr,EE,EST,hdd_octmar,-0.144936046115661,Natural gas
+ec-earth3,EL,GRC,hdd_octmar,-0.0912900171584606,Natural gas
+ipsl-cm6a-lr,EL,GRC,hdd_octmar,-0.0720309030107324,Natural gas
+ec-earth3,ES,ESP,hdd_octmar,-0.0755462971565251,Natural gas
+ipsl-cm6a-lr,ES,ESP,hdd_octmar,-0.0677532766496799,Natural gas
+ec-earth3,FR,FRA,hdd_octmar,-0.0929335984550673,Natural gas
+ipsl-cm6a-lr,FR,FRA,hdd_octmar,-0.0890266727088432,Natural gas
+ec-earth3,HR,HRV,hdd_octmar,-0.108177209477248,Natural gas
+ipsl-cm6a-lr,HR,HRV,hdd_octmar,-0.099987036310364,Natural gas
+ec-earth3,HU,HUN,hdd_octmar,-0.123949944066273,Natural gas
+ipsl-cm6a-lr,HU,HUN,hdd_octmar,-0.113428105776753,Natural gas
+ec-earth3,IE,IRL,hdd_octmar,-0.0825781600624471,Natural gas
+ipsl-cm6a-lr,IE,IRL,hdd_octmar,-0.0749704691973558,Natural gas
+ec-earth3,IT,ITA,hdd_octmar,-0.0949692486592738,Natural gas
+ipsl-cm6a-lr,IT,ITA,hdd_octmar,-0.0834996418561364,Natural gas
+ec-earth3,LT,LTU,hdd_octmar,-0.144258997752243,Natural gas
+ipsl-cm6a-lr,LT,LTU,hdd_octmar,-0.141293930140784,Natural gas
+ec-earth3,LU,LUX,hdd_octmar,-0.104235730746968,Natural gas
+ipsl-cm6a-lr,LU,LUX,hdd_octmar,-0.1049806864702,Natural gas
+ec-earth3,LV,LVA,hdd_octmar,-0.142188918557942,Natural gas
+ipsl-cm6a-lr,LV,LVA,hdd_octmar,-0.142050623959078,Natural gas
+ec-earth3,NL,NLD,hdd_octmar,-0.0946818306555369,Natural gas
+ipsl-cm6a-lr,NL,NLD,hdd_octmar,-0.0966127472932394,Natural gas
+ec-earth3,PL,POL,hdd_octmar,-0.129781545420783,Natural gas
+ipsl-cm6a-lr,PL,POL,hdd_octmar,-0.129840566546658,Natural gas
+ec-earth3,PT,PRT,hdd_octmar,-0.062464975504995,Natural gas
+ipsl-cm6a-lr,PT,PRT,hdd_octmar,-0.0600432907660023,Natural gas
+ec-earth3,RO,ROU,hdd_octmar,-0.134056030601467,Natural gas
+ipsl-cm6a-lr,RO,ROU,hdd_octmar,-0.110606705835842,Natural gas
+ec-earth3,SE,SWE,hdd_octmar,-0.135396198673248,Natural gas
+ipsl-cm6a-lr,SE,SWE,hdd_octmar,-0.123390235322154,Natural gas
+ec-earth3,SI,SVN,hdd_octmar,-0.117208557681815,Natural gas
+ipsl-cm6a-lr,SI,SVN,hdd_octmar,-0.107525042568855,Natural gas
+ec-earth3,SK,SVK,hdd_octmar,-0.133817424887407,Natural gas
+ipsl-cm6a-lr,SK,SVK,hdd_octmar,-0.119707614653048,Natural gas
+ec-earth3,UK,GBR,hdd_octmar,-0.084640592962429,Natural gas
+ipsl-cm6a-lr,UK,GBR,hdd_octmar,-0.0745748871275016,Natural gas

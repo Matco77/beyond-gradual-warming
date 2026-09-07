@@ -33,7 +33,7 @@ MODELS = ["ipsl-cm6a-lr", "ec-earth3"]
 VARS   = ["tas", "tasmin", "tasmax", "pr"]
 # reference vs future window. Files come in decade chunks, so historical pulls 1981-2020 and
 # ssp126 pulls 2071-2100; the exact windows are applied when the monthly delta is built.
-WINDOWS = {"historical": (1985, 2014), "ssp126": (2071, 2100)}
+WINDOWS = {"historical": (1985, 2014), "ssp126": (2071, 2100), "ssp370": (2071, 2100)}
 # Wider than the ISIMIP suggestion (-15..40, 34..72), which covers only 95.0% of the E-OBS cells
 # the two branches use. This box covers 100% (Iceland included), so the ISIMIP and AMOC branches
 # run on the identical geography and the comparison carries no procedural difference.

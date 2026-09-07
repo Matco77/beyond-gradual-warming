@@ -7,7 +7,11 @@
 source(path.expand("~/Library/CloudStorage/OneDrive-UniversitàCommercialeLuigiBocconi/1.Tesi/Amoc/Code/scenario_engine.R"))
 
 MODELS <- c("ipsl-cm6a-lr", "ec-earth3")           # file-id list; display name comes from the .nc attribute
-bin_file <- function(m) file.path(d, sprintf("isimip_bin_fields_%s.nc", m))
+# emissions scenario, from ISIMIP_SCEN (default ssp126). ssp126 reads/writes bare names (unchanged);
+# any other scenario gets a _<scen> suffix on the bin-field input and the scenario outputs.
+SCEN <- Sys.getenv("ISIMIP_SCEN", "ssp126")
+SFX  <- if (SCEN == "ssp126") "" else paste0("_", SCEN)
+bin_file <- function(m) file.path(d, sprintf("isimip_bin_fields_%s%s.nc", m, SFX))
 
 ## ---- per-bin fields -> E-OBS cells (identical to scenario_replay_bins.R::bin_scenarios) --------
 bin_scenarios <- function(S, model) {
@@ -71,9 +75,9 @@ run_branch <- function(branch, out_file) {
   invisible(out)
 }
 
-OUT <- c(energy      = "scenario_isimip_bins_energy_country.csv.gz",
-         crop        = "scenario_isimip_bins_crop_window.csv.gz",
-         crop_gddwin = "scenario_isimip_bins_crop_gddwin.csv.gz")
+OUT <- c(energy      = sprintf("scenario_isimip_bins_energy_country%s.csv.gz", SFX),
+         crop        = sprintf("scenario_isimip_bins_crop_window%s.csv.gz", SFX),
+         crop_gddwin = sprintf("scenario_isimip_bins_crop_gddwin%s.csv.gz", SFX))
 BRANCHES <- if (length(commandArgs(TRUE))) commandArgs(TRUE) else names(OUT)
 for (b in BRANCHES) run_branch(b, OUT[[b]])
-cat("\nISIMIP bin branch done.\n")
+cat(sprintf("\nISIMIP bin branch done (%s).\n", SCEN))

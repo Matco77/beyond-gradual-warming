@@ -20,11 +20,17 @@
 # "crop"), IPSL-CM6A-LR and EC-Earth3. Both bands sit at their own curve's delta_sv, not the bin label.
 source(path.expand("~/Library/CloudStorage/OneDrive-UniversitàCommercialeLuigiBocconi/1.Tesi/Amoc/Code/plot_impact_common.R"))
 
+# ISIMIP emissions scenario for the overlay, from ISIMIP_SCEN (default ssp126). The NAHosMIP curve
+# and band are scenario-independent; only the ISIMIP triangles/band change. ssp126 writes the bare
+# PDF name (unchanged); any other scenario writes impact_curve_crop_<scen>.pdf.
+ISCEN <- Sys.getenv("ISIMIP_SCEN", "ssp126")
+ISFX  <- if (ISCEN == "ssp126") "" else paste0("_", ISCEN)
+
 A <- totalise(fread(file.path(d, "amoc_impact_crop_eu.csv")),   c("model", "bin_id", "delta_sv", "n_years"))
 C <- totalise(fread(file.path(d, "amoc_impact_cropgw_eu.csv")), c("model", "bin_id", "delta_sv", "n_years"))
 BND <- fread(file.path(d, "amoc_band_total.csv"))[branch == "crop"]         # spec A only, IPSL+EC
-ISB <- fread(file.path(d, "isimip_band_total.csv"))[branch == "crop" & crop == "ALL"]   # ssp126 per-year band, spec A, all-crop aggregate (per-crop rows: plot_impact_curve_crop_bycrop.R)
-IS  <- totalise(fread(file.path(d, "isimip_bin_impact_crop_eu.csv")), c("model", "bin_id", "delta_sv", "n_years"))
+ISB <- fread(file.path(d, sprintf("isimip_band_total%s.csv", ISFX)))[branch == "crop" & crop == "ALL"]   # per-year band, spec A, all-crop aggregate (per-crop rows: plot_impact_curve_crop_bycrop.R)
+IS  <- totalise(fread(file.path(d, sprintf("isimip_bin_impact_crop_eu%s.csv", ISFX))), c("model", "bin_id", "delta_sv", "n_years"))
 
 panel <- function(mdl, ylim, show_legend = FALSE) {
   # NOTE: the loop/argument variable is deliberately NOT called `model` - inside data.table's `[`,
@@ -70,7 +76,7 @@ panel <- function(mdl, ylim, show_legend = FALSE) {
   title(main = mdl, cex.main = 1)
   if (show_legend) legend("topright", bg = "white", box.col = NA, cex = 0.65,
     legend = c("spec A (Mar-Jul)", "spec C (thermal window)", "spec A per-year range",
-               "ISIMIP-bin (ssp126, spec A)", "ISIMIP per-year range"),
+               sprintf("ISIMIP-bin (%s, spec A)", ISCEN), "ISIMIP per-year range"),
     col = c(col, col, tint(col, 0.5), col, tint(col, 0.5)), lty = c(1,2,NA,ISIMIP_LTY,NA),
     pch = c(16,21,15,ISIMIP_PCH,15), lwd = c(2,1.4,NA,1.4,NA), pt.cex = c(1,0.9,1.6,1.1,1.2))
 }
@@ -78,7 +84,7 @@ panel <- function(mdl, ylim, show_legend = FALSE) {
 xr <- range(A$delta_sv); yr <- range(pct(c(A$dln, C$dln, BND$lo, BND$hi, IS$dln, ISB$lo, ISB$hi)), na.rm = TRUE)
 yr <- yr + c(-1, 1) * 0.08 * diff(yr)
 
-pdf(file.path(out, "impact_curve_crop.pdf"), width = 13, height = 8)
+pdf(file.path(out, sprintf("impact_curve_crop%s.pdf", ISFX)), width = 13, height = 8)
 par(mfrow = c(2, 3), mar = c(4.2, 4.2, 2.5, 1))
 for (i in seq_along(MODELS)) panel(MODELS[i], yr, show_legend = (i == 1))
 
@@ -103,9 +109,9 @@ text(0.5, 0.58, "neither total is a standalone estimate (Appendix I) -", cex = 0
 text(0.5, 0.51, "reported together so the specification sensitivity is visible", cex = 0.75, col = "grey30")
 text(0.5, 0.34, "shaded band: range across the bin's individual hosing years,", cex = 0.7, col = "grey30")
 text(0.5, 0.27, "spec A only, IPSL-CM6A-LR and EC-Earth3 (Appendix I)", cex = 0.7, col = "grey30")
-text(0.5, 0.21, "narrow bar (thinner): same range across the ISIMIP bin's ssp126 years (Appendix J.6)", cex = 0.62, col = "grey30")
-text(0.5, 0.15, "triangles: ISIMIP3b/ssp126, binned by year-level AMOC (Appendix J.5),", cex = 0.65, col = "grey30")
+text(0.5, 0.21, sprintf("narrow bar (thinner): same range across the ISIMIP bin's %s years (Appendix J.6)", ISCEN), cex = 0.62, col = "grey30")
+text(0.5, 0.15, sprintf("triangles: ISIMIP3b/%s, binned by year-level AMOC (Appendix J.5),", ISCEN), cex = 0.65, col = "grey30")
 text(0.5, 0.09, "spec A, at the delta_Sv levels it shares with NAHosMIP - IPSL and EC-Earth3 only", cex = 0.65, col = "grey30")
 text(0.5, 0.03, "caveat: delta_Sv baseline differs (piControl vs historical mean), see Appendix J.5", cex = 0.62, col = "grey40")
 dev.off()
-cat("wrote", file.path(out, "impact_curve_crop.pdf"), "\n")
+cat("wrote", file.path(out, sprintf("impact_curve_crop%s.pdf", ISFX)), "\n")

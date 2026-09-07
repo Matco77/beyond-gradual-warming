@@ -17,14 +17,19 @@
 # same convention as plot_impact_curve_crop.R.
 source(path.expand("~/Library/CloudStorage/OneDrive-UniversitàCommercialeLuigiBocconi/1.Tesi/Amoc/Code/plot_impact_common.R"))
 
+# ISIMIP emissions scenario, from ISIMIP_SCEN (default ssp126); ssp126 -> bare PDF name,
+# any other scenario -> impact_curve_crop_bycrop_<scen>.pdf reading the _<scen> band/central CSVs.
+ISCEN <- Sys.getenv("ISIMIP_SCEN", "ssp126")
+ISFX  <- if (ISCEN == "ssp126") "" else paste0("_", ISCEN)
+
 CROPS <- c("Soft wheat", "Durum wheat", "Spring barley", "Winter barley")   # regression.R crop_set order
 MDLS  <- c("IPSL-CM6A-LR", "EC-Earth3")
 
 # per-crop TOTAL (summed components) central + band, straight from isimip_impact_band.R's output.
 # crop == "ALL" is the area-weighted aggregate (that is plot_impact_curve_crop.R); drop it here.
-T <- fread(file.path(d, "isimip_band_total.csv"))[branch %in% c("crop", "crop_gddwin") & crop %in% CROPS]
+T <- fread(file.path(d, sprintf("isimip_band_total%s.csv", ISFX)))[branch %in% c("crop", "crop_gddwin") & crop %in% CROPS]
 # delta_sv per (model, bin_id): the bands/points are drawn there, not at the integer bin_id
-DSV <- unique(fread(file.path(d, "isimip_bin_impact_crop_country.csv"))[, .(model, bin_id, delta_sv)])
+DSV <- unique(fread(file.path(d, sprintf("isimip_bin_impact_crop_country%s.csv", ISFX)))[, .(model, bin_id, delta_sv)])
 T   <- merge(T, DSV, by = c("model", "bin_id"))
 
 yr <- range(pct(c(T$central, T$lo, T$hi)), na.rm = TRUE); yr <- yr + c(-1, 1) * 0.08 * diff(yr)
@@ -52,18 +57,18 @@ panel <- function(cr, show_legend = FALSE) {
     pch = c(15, 15, ISIMIP_PCH, NA), lwd = c(NA, NA, 1.6, 1.3), pt.cex = c(1.4, 1.4, 1.2, NA))
 }
 
-pdf(file.path(out, "impact_curve_crop_bycrop.pdf"), width = 13, height = 8)
+pdf(file.path(out, sprintf("impact_curve_crop_bycrop%s.pdf", ISFX)), width = 13, height = 8)
 par(mfrow = c(2, 3), mar = c(4.2, 4.2, 2.5, 1))
 for (i in seq_along(CROPS)) panel(CROPS[i], show_legend = (i == 1))
 
 plot.new()
 text(0.5, 0.90, "Crop yield effect vs AMOC-weakening bin (delta_Sv), per crop", cex = 1.0, font = 2)
-text(0.5, 0.78, "ISIMIP3b/ssp126 branch only (Appendix J.5-J.6), IPSL-CM6A-LR and EC-Earth3", cex = 0.7, col = "grey30")
+text(0.5, 0.78, sprintf("ISIMIP3b/%s branch only (Appendix J.5-J.6), IPSL-CM6A-LR and EC-Earth3", ISCEN), cex = 0.7, col = "grey30")
 text(0.5, 0.70, "at the delta_Sv levels shared with NAHosMIP", cex = 0.7, col = "grey30")
 text(0.5, 0.56, "solid triangle + dotted line = spec A (fixed Mar-Jul window)", cex = 0.7, col = "grey30")
-text(0.5, 0.49, "narrow bar = spec A range across the bin's individual ssp126 years", cex = 0.7, col = "grey30")
+text(0.5, 0.49, sprintf("narrow bar = spec A range across the bin's individual %s years", ISCEN), cex = 0.7, col = "grey30")
 text(0.5, 0.42, "dashed line = spec C (thermal-time window), no band (Appendix J.6)", cex = 0.7, col = "grey30")
 text(0.5, 0.26, "y-axis shared across the four crop panels so magnitudes compare", cex = 0.66, col = "grey40")
 text(0.5, 0.19, "the all-crop area-weighted aggregate is plot_impact_curve_crop.pdf", cex = 0.66, col = "grey40")
 dev.off()
-cat("wrote", file.path(out, "impact_curve_crop_bycrop.pdf"), "\n")
+cat("wrote", file.path(out, sprintf("impact_curve_crop_bycrop%s.pdf", ISFX)), "\n")
