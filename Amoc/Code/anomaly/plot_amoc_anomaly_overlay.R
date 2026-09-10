@@ -10,12 +10,15 @@
 ## distinguishable from the dashed hosing line at this line width - checked on the rendered PDF,
 ## not assumed. Dashed therefore means "hosing, top axis" and nothing else.
 ##
-## SSP3-7.0 SOURCES, not symmetric with SSP1-2.6 - Terhaar published no ssp370 for any model:
-##   EC-Earth3 : same vo pipeline as its ssp126 series (amoc_from_vo_below500m.py, ssp370).
-##   IPSL      : from raw msftyz, scalar-calibrated to Terhaar's level (amoc_ipsl_from_msftyz.py);
-##               msftyz-vs-Terhaar rmse ~0.9 Sv, so the IPSL ssp370 LEVEL is approximate. The
-##               anomaly is taken against the same Terhaar historical as ssp126, and the
-##               calibration is what makes that subtraction consistent to first order.
+## SOURCES - one pipeline per model, covering the historical reference and BOTH scenarios, so a
+## SSP1-2.6-vs-SSP3-7.0 difference cannot partly measure a change of diagnostic:
+##   EC-Earth3 : own vo below-500m reconstruction (amoc_from_vo_below500m.py).
+##   IPSL      : raw msftyz (amoc_ipsl_from_msftyz.py). Terhaar's published IPSL series is NOT used:
+##               he has no ssp370, and his ssp126 is a different run (extends to 2214, 2071-2100 mean
+##               10.07 Sv vs 9.43 here). The msftyz pipeline reproduces his HISTORICAL at corr 0.9971
+##               / debiased rmse 0.081 Sv, which is the gate that licenses the substitution.
+## The two MODELS use different diagnostics - EC-Earth3 publishes no msftyz for the scenarios,
+## checked on ESGF - but each model's anomaly is internally consistent, which is what matters here.
 library(ncdf4)
 
 ds  <- "/Users/Bova/Library/CloudStorage/OneDrive-UniversitàCommercialeLuigiBocconi/1.Tesi/Amoc/datasets"
@@ -49,19 +52,23 @@ read_hos <- function(m) {                         # M26: hos/con(time), time = y
 ## ---- projection anomalies (recompute 1850-1900 reference from each own historical) ----
 ref_mean <- function(d) mean(d$a[d$t >= 1850 & d$t <= 1900], na.rm = TRUE)
 
-ec_hist  <- read_ecearth(file.path(ds, "ecearth3_amoc26N_vo_below500m_historical_1850_2014.nc"))
-ip_hist  <- read_terhaar(file.path(ds, "terhaar_amoc/amoc/amoc/26.5N/historical/amoc_historical_IPSL_IPSL-CM6A-LR_r1i1p1f1.nc"))
-cut2100  <- function(d) { k <- d$t <= 2100; list(t = d$t[k], a = d$a[k]) }   # IPSL ssp126 runs to 2214
+cut2100 <- function(d) { k <- d$t <= 2100; list(t = d$t[k], a = d$a[k]) }
 
-# scenario -> per-model reader+file. Each anomaly uses its model's OWN historical reference.
+# per model: one reader, the historical reference file, and the file for each scenario. Same
+# AMOC_SRC layout as isimip_bin_fields.R, so the figure and the binning cannot drift apart.
 SRC <- list(
-  "ssp126" = list("EC-Earth3"    = function() read_ecearth(file.path(ds, "ecearth3_amoc26N_vo_below500m_ssp126_2015_2100.nc")),
-                  "IPSL-CM6A-LR" = function() read_terhaar(file.path(ds, "terhaar_amoc/amoc/amoc/26.5N/ssp126/amoc_ssp126_IPSL_IPSL-CM6A-LR_r1i1p1f1.nc"))),
-  "ssp370" = list("EC-Earth3"    = function() read_ecearth(file.path(ds, "ecearth3_amoc26N_vo_below500m_ssp370_2015_2100.nc")),
-                  "IPSL-CM6A-LR" = function() read_terhaar(file.path(ds, "amoc_ipsl_msftyz_26N_ssp370_2015_2100.nc"))))
-REF  <- list("EC-Earth3" = ref_mean(ec_hist), "IPSL-CM6A-LR" = ref_mean(ip_hist))
-SCEN <- names(SRC)
+  "EC-Earth3" = list(
+    read = read_ecearth, hist = "ecearth3_amoc26N_vo_below500m_historical_1850_2014.nc",
+    scen = c(ssp126 = "ecearth3_amoc26N_vo_below500m_ssp126_2015_2100.nc",
+             ssp370 = "ecearth3_amoc26N_vo_below500m_ssp370_2015_2100.nc")),
+  "IPSL-CM6A-LR" = list(
+    read = read_terhaar,                        # msftyz files carry the same (year, amoc) schema
+    hist = "amoc_ipsl_msftyz_26N_historical_1850_2014.nc",
+    scen = c(ssp126 = "amoc_ipsl_msftyz_26N_ssp126_2015_2100.nc",
+             ssp370 = "amoc_ipsl_msftyz_26N_ssp370_2015_2100.nc")))
+REF  <- sapply(names(SRC), function(m) ref_mean(SRC[[m]]$read(file.path(ds, SRC[[m]]$hist))))
 LAB  <- c(ssp126 = "SSP1-2.6", ssp370 = "SSP3-7.0")
+SCEN <- names(LAB)                              # SRC is keyed by MODEL, so scenarios come from LAB
 # a darker version of a colour: a*colour, i.e. mixed toward black. Opaque, no alpha, so it needs
 # no PDF transparency support (same reason plot_impact_common.R::tint() avoids alpha).
 shade    <- function(col, a) { x <- col2rgb(col) / 255; rgb(x[1]*a, x[2]*a, x[3]*a) }
@@ -69,7 +76,9 @@ scen_col <- function(col, s) if (s == "ssp370") shade(col, 0.55) else col
 
 proj <- lapply(SCEN, function(s) {
   z <- lapply(names(cols), function(m) {
-    d <- cut2100(SRC[[s]][[m]]()); list(t = d$t, d = d$a - REF[[m]])
+    S <- SRC[[m]]
+    d <- cut2100(S$read(file.path(ds, S$scen[[s]])))
+    list(t = d$t, d = d$a - REF[[m]])
   }); names(z) <- names(cols); z
 }); names(proj) <- SCEN
 

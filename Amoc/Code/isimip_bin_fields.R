@@ -52,33 +52,44 @@ SFX  <- if (SCEN == "ssp126") "" else paste0("_", SCEN)
 DISPLAY <- c("ipsl-cm6a-lr" = "IPSL-CM6A-LR", "ec-earth3" = "EC-Earth3")
 
 ## ---- AMOC-at-26N annual series -----------------------------------------------------------------
-# ssp126 sources are Terhaar (IPSL) and the own vo reconstruction (EC-Earth3), as plot_amoc_sv_ssp126.R.
-# Terhaar published no ssp370, so for ssp370: IPSL from raw msftyz, Terhaar-calibrated
-# (amoc_ipsl_from_msftyz.py); EC-Earth3 from the same vo pipeline (amoc_from_vo_below500m.py, ssp370).
-# The historical baseline is unchanged in both cases. The IPSL ssp370 series carries a ~+0.2 Sv
-# scalar calibration to Terhaar's level so its anomaly against Terhaar historical stays consistent;
-# this is a first-order match (msftyz-vs-Terhaar rmse ~0.9 Sv), reported as a caveat, not hidden.
+# ONE METHOD PER MODEL, for the historical baseline and for EVERY scenario. Anything else would let
+# a ssp126-vs-ssp370 difference partly measure a change of diagnostic instead of a change of forcing.
+#   IPSL-CM6A-LR : raw msftyz, one pipeline for historical/ssp126/ssp370 (amoc_ipsl_from_msftyz.py).
+#   EC-Earth3    : own vo below-500m reconstruction, same three experiments (amoc_from_vo_below500m.py).
+# The two MODELS use different diagnostics - forced by data availability, not preference - but each
+# model's anomaly is internally consistent, which is what the ΔSv binning needs.
+#
+# TERHAAR IS NO LONGER READ HERE. His published IPSL series covers historical/piControl/ssp126/ssp585
+# but not ssp370, so ssp370 had to be derived from msftyz anyway; keeping Terhaar for ssp126 alone
+# would have mixed methods across the two scenarios of one model. The msftyz pipeline reproduces
+# Terhaar's IPSL HISTORICAL at corr 0.9971 / debiased rmse 0.081 Sv (gate in amoc_ipsl_from_msftyz.py),
+# so nothing is lost by the switch. It does NOT reproduce his ssp126 (corr 0.78) because that file is
+# a different run - it extends to 2214 and its 2071-2100 mean is 10.07 Sv against 9.43 Sv here; a lag
+# scan puts the best match at lag 0, so it is a data difference, not a misalignment. Consequence,
+# stated rather than buried: the IPSL ssp126 bins here are ~0.5 Sv deeper than they were when this
+# branch read Terhaar's ssp126.
 read_terhaar <- function(f) { nc <- nc_open(f)
   d <- list(t = as.numeric(ncvar_get(nc, "year")), a = as.numeric(ncvar_get(nc, "amoc"))); nc_close(nc); d }
 read_ecearth <- function(f) { nc <- nc_open(f)
   d <- list(t = floor(as.numeric(ncvar_get(nc, "time"))), a = as.numeric(ncvar_get(nc, "amoc"))); nc_close(nc); d }
 
-SSP_AMOC <- list(
+AMOC_SRC <- list(
   "ipsl-cm6a-lr" = list(
-    ssp126 = function() read_terhaar(file.path(d, "terhaar_amoc/amoc/amoc/26.5N/ssp126/amoc_ssp126_IPSL_IPSL-CM6A-LR_r1i1p1f1.nc")),
-    ssp370 = function() read_terhaar(file.path(d, "amoc_ipsl_msftyz_26N_ssp370_2015_2100.nc"))),
+    read = read_terhaar,                      # msftyz files carry the same (year, amoc) schema
+    hist = "amoc_ipsl_msftyz_26N_historical_1850_2014.nc",
+    scen = c(ssp126 = "amoc_ipsl_msftyz_26N_ssp126_2015_2100.nc",
+             ssp370 = "amoc_ipsl_msftyz_26N_ssp370_2015_2100.nc")),
   "ec-earth3" = list(
-    ssp126 = function() read_ecearth(file.path(d, "ecearth3_amoc26N_vo_below500m_ssp126_2015_2100.nc")),
-    ssp370 = function() read_ecearth(file.path(d, "ecearth3_amoc26N_vo_below500m_ssp370_2015_2100.nc"))))
+    read = read_ecearth,
+    hist = "ecearth3_amoc26N_vo_below500m_historical_1850_2014.nc",
+    scen = c(ssp126 = "ecearth3_amoc26N_vo_below500m_ssp126_2015_2100.nc",
+             ssp370 = "ecearth3_amoc26N_vo_below500m_ssp370_2015_2100.nc")))
 
 amoc_series <- function(model) {
-  hist <- if (model == "ipsl-cm6a-lr")
-    read_terhaar(file.path(d, "terhaar_amoc/amoc/amoc/26.5N/historical/amoc_historical_IPSL_IPSL-CM6A-LR_r1i1p1f1.nc"))
-  else
-    read_ecearth(file.path(d, "ecearth3_amoc26N_vo_below500m_historical_1850_2014.nc"))
-  reader <- SSP_AMOC[[model]][[SCEN]]
-  if (is.null(reader)) stop(sprintf("no AMOC-26N %s series for %s", SCEN, model))
-  list(hist = hist, ssp = reader())
+  S <- AMOC_SRC[[model]]
+  f <- S$scen[[SCEN]]
+  if (is.null(f) || is.na(f)) stop(sprintf("no AMOC-26N %s series for %s", SCEN, model))
+  list(hist = S$read(file.path(d, S$hist)), ssp = S$read(file.path(d, f)))
 }
 
 ## ---- delta_Sv per ssp126 year (restricted to SSP_YEARS), floored to bins, intersected with the --
@@ -178,8 +189,9 @@ build <- function(model, mode = "bin") {
   ncatt_put(nc, 0, "historical_reference_window", paste(range(HIST_WIN), collapse = "-"))
   ncatt_put(nc, 0, "ssp_years_available", paste(range(SSP_YEARS), collapse = "-"))
   ncatt_put(nc, 0, "pr_note", sprintf("%s-bin/historical ratio, bin mean per calendar month; [0.1,10] clamp applied by the consumer", SCEN))
-  if (model == "ipsl-cm6a-lr" && SCEN == "ssp370")
-    ncatt_put(nc, 0, "amoc_source_caveat", "IPSL ssp370 AMOC-26N is from raw msftyz, Terhaar-calibrated (amoc_ipsl_from_msftyz.py), not Terhaar's own product (he published no ssp370); msftyz-vs-Terhaar rmse ~0.9 Sv")
+  ncatt_put(nc, 0, "amoc_source", if (model == "ipsl-cm6a-lr")
+    "raw msftyz, one pipeline for historical and every scenario (amoc_ipsl_from_msftyz.py); reproduces Terhaar's IPSL historical at corr 0.9971 / debiased rmse 0.081 Sv. Terhaar's ssp126 is NOT used: it is a different run (extends to 2214)."
+    else "own vo below-500m reconstruction, one pipeline for historical and every scenario (amoc_from_vo_below500m.py)")
   ncatt_put(nc, 0, "grid", "ISIMIP3b native grid (already cropped to Europe at download), lat reordered increasing")
   ncatt_put(nc, 0, "created", format(Sys.time(), "%Y-%m-%d %H:%M"))
   nc_close(nc)
