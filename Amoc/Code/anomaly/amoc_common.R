@@ -41,7 +41,8 @@ publish_file <- function(tmp, dest) {
 ## ---- piControl directory for an anomaly path ----
 pic_dir_for <- function(p) file.path(pic_root, switch(basename(dirname(p)),
   "ECHearth3_anomaly" = "EC-Earth3", "LL_anomaly" = "HadGEM3-GC31-LL",
-  "MM_anomaly" = "HadGEM3-GC31-MM", stop("unknown model folder: ", basename(dirname(p)))))
+  "MM_anomaly" = "HadGEM3-GC31-MM", "IPSL_anomaly" = "IPSL-CM6A-LR",
+  stop("unknown model folder: ", basename(dirname(p)))))
 
 ## ---- one nc -> Europe CUBE (lon, lat, time) on the native grid (no interp) ----
 read_europe_cube <- function(path, region = europe) {
@@ -53,6 +54,9 @@ read_europe_cube <- function(path, region = europe) {
   if (lat[1] > lat[length(lat)]) { oy <- order(lat); lat <- lat[oy]; v <- v[, oy, ] }
   ix  <- which(lon >= region$lon[1] & lon <= region$lon[2])
   iy  <- which(lat >= region$lat[1] & lat <= region$lat[2])
+  # pr is stored in the anomaly files as kg m-2 s-1 (CMIP6 native); convert ONCE
+  # here to mm/day (x 86400 s/day). Every downstream "mm/day" label -- plots,
+  # CSVs, and the exported delta_*_lastthird.nc -- relies on this single point.
   if (vn == "pr") v <- v * 86400
   list(lon = lon[ix], lat = lat[iy], v = v[ix, iy, , drop = FALSE], vn = vn)
 }
@@ -113,6 +117,39 @@ box_mean <- function(fld, lon, lat, box) {
   iy <- which(lat >= box$lat[1] & lat <= box$lat[2])
   if (!length(ix) || !length(iy)) return(NA_real_)
   wmean(fld[ix, iy, drop = FALSE], lon[ix], lat[iy])
+}
+
+## ---- country name per cell centre (NA = sea), cached per model grid ----
+## Used by plot_delta_timeseries (country panels) and amoc_delta_effect_contrast
+## (land-only plateau). Caller must guard with requireNamespace("maps").
+.country_cache <- new.env()
+cell_country <- function(model_key, lon, lat) {
+  if (!is.null(.country_cache[[model_key]])) return(.country_cache[[model_key]])
+  g  <- expand.grid(lon = lon, lat = lat)             # lon fastest -> matches matrix() flatten
+  cc <- sub(":.*", "", maps::map.where("world", g$lon, g$lat))  # strip subregion suffix
+  .country_cache[[model_key]] <- cc; cc
+}
+
+## ---- annual-mean piControl climatology FIELD (Europe crop), cached ----
+## Used for the relative (%) precipitation page: % = 100 * delta / clim.
+## Annual mean = mean of the monthly means (equal month weights); pr arrives
+## in mm/day via read_europe_cube, matching the delta's units.
+.pic_field_cache <- new.env()
+pic_annual_field <- function(model, vn) {
+  key <- paste(model, vn)
+  if (!is.null(.pic_field_cache[[key]])) return(.pic_field_cache[[key]])
+  pf <- sort(list.files(file.path(pic_root, model), pattern = paste0("^", vn, "_Amon_"), full.names = TRUE))
+  stopifnot(length(pf) > 0)
+  cat("  [clim field]", model, vn, "from", length(pf), "control file(s) ...\n")
+  acc <- NULL; nt <- 0; cb <- NULL
+  for (f in pf) {
+    cb  <- read_europe_cube(f)
+    s   <- apply(cb$v, c(1, 2), sum)
+    acc <- if (is.null(acc)) s else acc + s
+    nt  <- nt + dim(cb$v)[3]
+  }
+  .pic_field_cache[[key]] <- list(lon = cb$lon, lat = cb$lat, clim = acc / nt)
+  .pic_field_cache[[key]]
 }
 
 ## ---- plotting helpers shared by the two map scripts ----

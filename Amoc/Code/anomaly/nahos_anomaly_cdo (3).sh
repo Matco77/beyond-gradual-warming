@@ -153,8 +153,11 @@ do_var () {
   # Precipitation ALSO gets a multiplicative ratio field R = hosing / climatology
   # (same 1850-1949 denominator as the additive anomaly). R is the quantity the
   # ISIMIP stressing step applies as pr_AMOC = pr_ISIMIP * R. Temperature stays
-  # additive only (a ratio of interval-scale K is meaningless). The additive pr
-  # anomaly above is untouched, so the diagnostics keep reading mm/day as before.
+  # additive only (a ratio of interval-scale K is meaningless). UNITS: the
+  # additive pr anomaly stays in native kg m-2 s-1 (CMIP6); the R diagnostics
+  # convert ONCE at read (amoc_common.R read_europe_cube, x86400 -> mm/day)
+  # before labelling plots/CSVs mm/day. The ratio itself is dimensionless: its
+  # units attribute is set to "1" below.
   # ponytail: ymondiv blows up where climatological precip ~ 0 (global deserts, and a
   # few dry Mediterranean-summer cells: measured Europe max ~110x, ~0.3% of cell-months
   # > 5x). Stored FAITHFUL/unclipped here; clamp R to a physical band (e.g. [0.1, 10])
@@ -162,7 +165,7 @@ do_var () {
   if [[ "$V" == "pr" ]]; then
     local rname="pr_ratio_${PROTO}_over_piControl_1850-1949.nc"
     echo "[5b] pr ratio = hosing / climatology  (for ISIMIP stressing)"
-    cdo -O ymondiv "$hos_m" "$pic_clim" "${TMP}/${rname}"
+    cdo -O setunit,'1' -ymondiv "$hos_m" "$pic_clim" "${TMP}/${rname}"
     echo "[6b] publish -> ${OUT_DIR}"
     publish "${TMP}/${rname}" "${OUT_DIR}/${rname}" || true
   fi

@@ -139,7 +139,8 @@ it is a lower bound (C.2). Detection is an **effect size**, chosen for honesty
 about the short control; it reports magnitude relative to internal variability
 rather than a calibrated false-positive rate. The control is de-drifted only
 linearly; for EC-Earth3, whose contemporaneous parallel window is unavailable,
-the whole quasi-stationary post-spin-up control (model years 2259–2759) is used
+the whole quasi-stationary post-spin-up control (model years 2259–2759;
+2259–2757 for tasmax) is used
 as the reference, so a residual long-term drift is not perfectly removed
 (Appendix A.3). Finally, the diagnostics read the additive anomaly for every
 variable; the multiplicative precipitation field enters only the coupling of

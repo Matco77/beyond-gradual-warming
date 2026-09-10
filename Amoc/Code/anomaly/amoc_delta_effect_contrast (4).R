@@ -21,8 +21,17 @@
 #
 # Headline is the LEVEL (plateau), never a growing slope: constant-
 # step hosing -> NEW EQUILIBRIUM (ramp-then-plateau), so a flat
-# anomaly in the late run is the CORRECT, expected result. A model
-# still cooling at the end (HadGEM-MM) -> its delta is a LOWER bound.
+# anomaly in the late run is the CORRECT, expected result. A run whose
+# window still trends (see plateau_trend; 2026-07 data check: EC-Earth3 u03
+# and HadGEM-LL u03 tas still deepening) -> its |delta| is a LOWER bound.
+#
+# WINDOW CHOICE: the FINAL THIRD is this study's OPERATIONAL definition of
+# the late-run window. Late-window time-mean differencing follows the hosing
+# literature (Stouffer et al. 2006 J.Clim 19:1365; Jackson et al. 2015
+# Clim.Dyn 45:3299 and 2023 GMD 16:1975; Bellomo et al. 2023 Clim.Dyn
+# 61:3397, EC-Earth3 hosing over the Euro-Atlantic); the n/3 length itself
+# is a convention of this analysis, not taken from those papers, and
+# plateau_trend reports per run how settled the window actually is.
 #
 # Reuses the v8 readers verbatim (same Europe window, same cos-lat
 # weighting, same de-drifted piControl). One pass, ONE top-level map
@@ -32,6 +41,7 @@
 
 library(ncdf4)   # Pierce, D. (2023). ncdf4: Interface to Unidata netCDF.
 library(fields)  # Nychka et al. (2021). fields: Tools for Spatial Data.
+have_maps <- requireNamespace("maps", quietly = TRUE)   # land mask for plateau_land
 
 ## rename-proof: source amoc_common.R from THIS script's own folder
 ## (keeps working if the folder is moved/renamed; run via `Rscript "<this file>"`).
@@ -62,15 +72,36 @@ process_one <- function(path, delta_dir) {
   model <- switch(basename(dirname(path)),
                   "ECHearth3_anomaly" = "EC-Earth3",
                   "LL_anomaly"        = "HadGEM3-GC31-LL",
-                  "MM_anomaly"        = "HadGEM3-GC31-MM")
+                  "MM_anomaly"        = "HadGEM3-GC31-MM",
+                  "IPSL_anomaly"      = "IPSL-CM6A-LR")
   proto <- if (grepl("u03", basename(path))) "u03" else "g01"
   vn    <- strsplit(basename(path), "_")[[1]][1]
 
-  ## Europe-mean monthly anomaly -> settled PLATEAU (last third)
-  ts      <- europe_monthly_means(path)
+  ## one cube read serves the EU series, the land-only series and the delta field
+  cb <- read_europe_cube(path)
+  dv <- dim(cb$v); ncell <- dv[1] * dv[2]
+
+  ## Europe-mean monthly anomaly (whole window: land+sea) -> settled PLATEAU
+  ts      <- masked_mean_series(cb$v, cb$lat, seq_len(ncell))
   n       <- length(ts); pl <- max(12, round(n / 3))
-  plateau <- mean(tail(ts, pl))
+  plateau <- mean(tail(ts, pl), na.rm = TRUE)
   run_yr  <- round(n / 12)
+
+  ## settledness diagnostic: linear trend INSIDE the averaging window,
+  ## in units per decade. |trend| large vs sd_window => run not settled =>
+  ## |plateau| underestimates the end state (lower bound).
+  win     <- tail(ts, pl); yrw <- seq_along(win) / 12
+  trend10 <- 10 * unname(coef(lm(win ~ yrw))[2])
+
+  ## LAND-ONLY plateau: the window mean includes the NE Atlantic (cold-blob
+  ## edge), which pulls tas down relative to what land impacts will see.
+  ## Land cells = cell centre inside a country polygon (maps::map.where).
+  plateau_land <- NA_real_
+  if (have_maps) {
+    sel_land <- which(!is.na(cell_country(basename(dirname(path)), cb$lon, cb$lat)))
+    if (length(sel_land))
+      plateau_land <- mean(tail(masked_mean_series(cb$v, cb$lat, sel_land), pl), na.rm = TRUE)
+  }
 
   ## EFFECT SIZE = plateau / control plateau-length-mean sd (matched timescale)
   ctrl   <- get_control_series(path); ctrl_a <- ctrl - mean(ctrl)
@@ -79,8 +110,7 @@ process_one <- function(path, delta_dir) {
   effect <- if (is.finite(ratio) && ratio >= EFFECT_K) "YES" else "no"
 
   ## per-cell LATE-RUN mean -> the delta field (matured weak-AMOC state)
-  cb   <- read_europe_cube(path)
-  dv   <- dim(cb$v); M <- matrix(cb$v, dv[1] * dv[2], dv[3])
+  M    <- matrix(cb$v, ncell, dv[3])
   late <- rowMeans(M[, (n - pl + 1):n, drop = FALSE], na.rm = TRUE)
   fld  <- matrix(late, dv[1], dv[2]); fld[is.nan(fld)] <- NA
 
@@ -90,11 +120,13 @@ process_one <- function(path, delta_dir) {
   out_nc <- file.path(delta_dir, sprintf("delta_%s_%s_%s_lastthird.nc", model, proto, vn))
   write_delta_nc(out_nc, cb$lon, cb$lat, fld, vn)
 
-  cat(sprintf("  %-16s %s %-6s | run=%3dyr  plateau=%+.3f  sd_win=%.3f  ratio=%5.2f  effect=%-3s  NW-Med=%+.3f\n",
-              model, proto, vn, run_yr, plateau, sd_wm, ratio, effect, grad))
+  cat(sprintf("  %-16s %s %-6s | run=%3dyr  plateau=%+.3f (land %+.3f, trend %+.3f/dec)  sd_win=%.3f  ratio=%5.2f  effect=%-3s  NW-Med=%+.3f\n",
+              model, proto, vn, run_yr, plateau, plateau_land, trend10, sd_wm, ratio, effect, grad))
 
   data.frame(model = model, protocol = proto, variable = vn, run_years = run_yr,
-             plateau = round(plateau, 3), sd_window = round(sd_wm, 3),
+             plateau = round(plateau, 3), plateau_land = round(plateau_land, 3),
+             plateau_trend = round(trend10, 3),
+             sd_window = round(sd_wm, 3),
              effect_ratio = round(ratio, 2), effect = effect,
              NW_minus_Med = round(grad, 3), delta_file = basename(out_nc),
              stringsAsFactors = FALSE)
@@ -133,7 +165,12 @@ files <- c(
   file.path(base, "MM_anomaly/pr_anomaly_u03-hos_minus_piControl_1850-1949.nc"),
   file.path(base, "MM_anomaly/tas_anomaly_u03-hos_minus_piControl_1850-1949.nc"),
   file.path(base, "MM_anomaly/tasmax_anomaly_u03-hos_minus_piControl_1850-1949.nc"),
-  file.path(base, "MM_anomaly/tasmin_anomaly_u03-hos_minus_piControl_1850-1949.nc")
+  file.path(base, "MM_anomaly/tasmin_anomaly_u03-hos_minus_piControl_1850-1949.nc"),
+  # IPSL-CM6A-LR: u03-hos only (no g01 in the atmospheric tar), reconstructed tasmin/tasmax
+  file.path(base, "IPSL_anomaly/pr_Amon_IPSL-CM6A-LR_hos-u03-hos_anomaly.nc"),
+  file.path(base, "IPSL_anomaly/tas_Amon_IPSL-CM6A-LR_hos-u03-hos_anomaly.nc"),
+  file.path(base, "IPSL_anomaly/tasmax_Amon_IPSL-CM6A-LR_hos-u03-hos_anomaly.nc"),
+  file.path(base, "IPSL_anomaly/tasmin_Amon_IPSL-CM6A-LR_hos-u03-hos_anomaly.nc")
 )
 
 rows    <- lapply(files, function(p) {
@@ -152,8 +189,11 @@ publish_file(csv_tmp, csv_path)
 cat("\n================ AMOC EFFECT + MODEL CONTRAST ================\n")
 print(contrast, row.names = FALSE)
 cat("\n  effect = YES when |plateau| >=", EFFECT_K, "x control plateau-length-mean sd\n")
-cat("  NW_minus_Med < 0  => NW-amplified cooling = AMOC fingerprint (not a uniform offset)\n")
-cat("  NOTE: HadGEM-MM is still cooling at year 100 -> its delta field is a LOWER bound.\n")
+cat("  NW_minus_Med < 0  => NW-amplified cooling = AMOC fingerprint (temperature logic,\n")
+cat("                       not a uniform offset; the pr value is for reference only)\n")
+cat("  plateau_trend = linear trend INSIDE the averaging window (units per decade);\n")
+cat("  |trend| large vs sd_window => run not settled => |plateau| is a LOWER bound\n")
+cat("  (2026-07 data check: EC-Earth3 u03 and HadGEM-LL u03 tas still deepening).\n")
 cat("\nDelta fields ->", delta_dir, "\nContrast CSV ->", csv_path, "\nALL DONE\n")
 
 ## ---- to eyeball any delta field afterwards (two lines) ----

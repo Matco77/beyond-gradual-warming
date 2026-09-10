@@ -13,8 +13,9 @@
 #
 # Significance is computed on PER-YEAR seasonal means (within-season
 # weather averaged out) and matched to the delta's averaging length.
-# CAVEAT: EC-Earth3 (500-yr control) pins sigma well; HadGEM (100-yr)
-# gives ~3 independent windows per cell, so its contour is indicative.
+# CAVEAT: the control sd uses ALL archived control years (MAX_PIC_FILES = Inf):
+# EC-Earth3 501 yr and HadGEM-LL 2000 yr pin sigma well; HadGEM-MM 500 yr gives
+# ~15 independent 33-yr windows per cell -- adequate, contour still indicative.
 #
 # CALENDAR: monthly files start in JANUARY (CMIP Amon standard).
 # Reuses the v8 Europe crop. Native grids only. No nested indexing
@@ -34,10 +35,14 @@ source(file.path(if (length(.self)) dirname(normalizePath(.self)) else getwd(), 
 ## panel_grid, pal_for, pic_dir_for, and read_europe_cube (used below as the
 ## native-grid reader).
 
-START_MONTH   <- 1
+## Files verified to start in January (CMIP Amon). NOTE: "DJF" is the
+## CALENDAR-year variant (Jan, Feb, Dec of the same year); it is applied
+## identically to hosing and control, so the effect size stays consistent.
 season_months <- list(DJF = c(12, 1, 2), JJA = c(6, 7, 8))
 
 ## ---- native-grid Europe cube: identical to amoc_common's read_europe_cube ----
+## (despite the _raw name it inherits the pr kg m-2 s-1 -> mm/day conversion
+## done once in amoc_common.R, so the mm/day labels below are correct)
 read_europe_cube_raw <- read_europe_cube
 
 ## ---- monthly cube -> per-year seasonal-mean cube (nlon x nlat x ny) ----
@@ -83,11 +88,12 @@ runs <- list(
   list(model = "HadGEM3-GC31-LL", proto = "g01", folder = "LL_anomaly"),
   list(model = "HadGEM3-GC31-LL", proto = "u03", folder = "LL_anomaly"),
   list(model = "HadGEM3-GC31-MM", proto = "g01", folder = "MM_anomaly"),
-  list(model = "HadGEM3-GC31-MM", proto = "u03", folder = "MM_anomaly")
+  list(model = "HadGEM3-GC31-MM", proto = "u03", folder = "MM_anomaly"),
+  list(model = "IPSL-CM6A-LR",    proto = "u03", folder = "IPSL_anomaly")   # u03 only (no g01)
 )
 base <- "/Users/Bova/Library/CloudStorage/OneDrive-UniversitàCommercialeLuigiBocconi/1.Tesi/Amoc/datasets/anomaly_output"
 anomaly_path <- function(r, vn) file.path(base, r$folder,
-  if (r$folder == "ECHearth3_anomaly") sprintf("%s_Amon_EC-Earth3_hos-%s-hos_anomaly.nc", vn, r$proto)
+  if (r$folder %in% c("ECHearth3_anomaly", "IPSL_anomaly")) sprintf("%s_Amon_%s_hos-%s-hos_anomaly.nc", vn, r$model, r$proto)
   else sprintf("%s_anomaly_%s-hos_minus_piControl_1850-1949.nc", vn, r$proto))
 
 vars     <- c("tas", "pr", "tasmax", "tasmin")
@@ -127,11 +133,14 @@ compute_seasonal <- function(r, vn, season) {
   out <- file.path(seas_dir, sprintf("seasonal_%s_%s_%s_%s_lastthird.nc", r$model, r$proto, vn, season))
   write_seasonal_nc(out, ac$lon, ac$lat, delta, snr, vn)
 
-  robust <- mean(abs(snr) >= EFFECT_K, na.rm = TRUE)
+  ## robust fraction AREA-WEIGHTED (cos-lat) so it really is "% of Europe",
+  ## not "% of grid cells" (equal counting overweights high latitudes ~2.7x)
+  W  <- matrix(cos(ac$lat * pi / 180), length(ac$lon), length(ac$lat), byrow = TRUE)
+  ok <- is.finite(snr)
+  robust <- if (any(ok)) sum(W[ok] * (abs(snr[ok]) >= EFFECT_K)) / sum(W[ok]) else NA_real_
   cat(sprintf("  %-16s %s %-6s %s | mean delta %+.2f | robust cells %4.0f%%\n",
               r$model, r$proto, vn, season,
-              { W <- matrix(cos(ac$lat * pi/180), length(ac$lon), length(ac$lat), byrow = TRUE)
-                sum(delta * W, na.rm = TRUE) / sum(W * !is.na(delta)) }, 100 * robust))
+              sum(delta * W, na.rm = TRUE) / sum(W * !is.na(delta)), 100 * robust))
   list(r = r, lon = ac$lon, lat = ac$lat, delta = delta, snr = snr, robust = robust)
 }
 
@@ -148,7 +157,7 @@ render_robust_table <- function(S) {
                match(paste(w$model, w$proto), vapply(runs, function(r) paste(r$model, r$proto), character(1))))
   w <- w[ord, ]
   plot.new(); plot.window(c(0, 1), c(0, 1))
-  title("Robust-cell fraction: % of Europe with |effect| >= 2 (per cell)")
+  title("Robust-cell fraction: % of Europe (area-weighted) with |effect| >= 2 per cell")
   cx <- c(0.03, 0.42, 0.64, 0.80); y0 <- 0.93; dy <- min(0.045, 0.84 / (nrow(w) + 1))
   text(cx, y0, c("Model / protocol", "Variable", "DJF %", "JJA %"), font = 2, adj = 0, cex = 0.8)
   for (i in seq_len(nrow(w))) {

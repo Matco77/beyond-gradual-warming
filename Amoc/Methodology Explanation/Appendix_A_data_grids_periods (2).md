@@ -65,19 +65,33 @@ that window differs by model:
 
 | Model            | Hosing run (period)        | piControl baseline period | Basis |
 |------------------|----------------------------|---------------------------|-------|
-| EC-Earth3        | g01-hos 1850–1899; u03-hos 1850–1949 | full piControl 2259–2759 | parallel window unavailable (see below) |
-| HadGEM3-GC31-LL  | g01-hos 2050–2149          | 1850–1949                 | parallel branch window |
-| HadGEM3-GC31-MM  | g01-hos 2050–2149          | 1850–1949                 | parallel branch window |
+| EC-Earth3        | g01-hos 1850–1899; u03-hos 1850–1949 | full piControl 2259–2759 (tasmax: 2259–2757) | parallel window unavailable (see below) |
+| HadGEM3-GC31-LL  | g01/u03-hos 2050–2149      | 1850–1949                 | first archived century (see below) |
+| HadGEM3-GC31-MM  | g01/u03-hos 2050–2149      | 1850–1949                 | first archived century (see below) |
 
-For the two HadGEM3 configurations the hosing runs branch from piControl years
-1850–1949, which are present in the archive; these years are used directly as
-the baseline, so control drift is cancelled.
+For the two HadGEM3 configurations the NAHosMIP files record no branch
+metadata (`branch_method = "no parent"`), so the branch year cannot be read
+from the data themselves. The hosing time axes (2050–2149) continue the parent
+piControl calendar, and a piControl segment covering exactly those years
+(2050–2149) is distributed alongside the hosing runs — consistent with a
+branch near control year 2050 — but that segment is **not** used here. The
+baseline is instead the first archived piControl century, 1850–1949, which is
+protocol-independent and therefore shared by g01-hos and u03-hos, keeping the
+two anomaly sets directly comparable. The cost of this choice is that any slow
+control drift between 1850–1949 and the hosing-parallel years is not
+cancelled. Its magnitude was measured directly for HadGEM3-GC31-LL `tas`: the
+monthly climatology of piControl 2050–2149 minus that of 1850–1949 differs by
++0.11 K in the global annual mean, with isolated cell-month differences up to
+6.1 K confined to sea-ice regions — small against the multi-kelvin hosing
+signal over the analysis domain, but stated here for transparency.
 
 For EC-Earth3 the run metadata indicate that the hosing experiment branches
 from the **piControl-spinup** phase (`branch_time_in_parent = 0`), an epoch not
-retained in the published piControl output (which spans model years 2259–2759).
+retained in the published piControl output (which spans model years 2259–2759;
+the archived `tasmax` ends at 2757, i.e. 499 of the 501 years).
 No contemporaneous parallel window is therefore available. The **entire
-published piControl (2259–2759)** is used instead as the unforced reference.
+published piControl (2259–2759; 2259–2757 for tasmax)** is used instead as the
+unforced reference.
 This is justified because the EC-Earth3 piControl is quasi-stationary after
 spin-up, so its long-term mean seasonal cycle is a representative control state.
 The single consequence is that any residual long-term drift in the control is
