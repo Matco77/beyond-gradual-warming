@@ -47,3 +47,9 @@ Amoc/datasets/*.csv.gz
 # *.tar above already covers the 2.6 GB of CMIP6 tarballs that land here.
 wget-log*
 .wget_script_*.status
+wget_script_*.sh
+
+# Animation frames/GIFs: 39 MB of pure output, rebuilt by
+# Amoc/Code/anomaly/animate_yearly_anomaly.R from the anomaly cubes. The static
+# figures ARE tracked; only the animations are not, on size alone.
+Amoc/Plots_Anomaly/animations/
