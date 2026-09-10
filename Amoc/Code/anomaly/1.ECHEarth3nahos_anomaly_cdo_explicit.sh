@@ -9,9 +9,13 @@
 # BASELINE WINDOW NOTE (read once, write one sentence in thesis):
 #   EC-Earth3 hosing branched from piControl-spinup at branch_time_in_parent=0
 #   (days since 1850-01-01). That spinup epoch is NOT among the piControl files
-#   on disk (which cover model years 2259-2759). There is therefore no
-#   contemporaneous parallel chunk to select, as there was for HadGEM3 (2050-
-#   2149). We use the FULL available piControl (2259-2759) as the unforced
+#   on disk (which cover model years 2259-2759; the tasmax archive ends 2757).
+#   There is therefore no contemporaneous parallel chunk to select.
+#   (HadGEM3 comparison note: its NAHosMIP files carry NO branch metadata
+#   (branch_method="no parent"); the HadGEM3 script uses piControl 1850-1949,
+#   the first archived century, NOT the parallel 2050-2149 piControl chunk
+#   that ships in the NAHosMIP folders. See Appendix A.3.)
+#   We use the FULL available piControl (2259-2759) as the unforced
 #   reference climatology. After spinup EC-Earth3 piControl is quasi-stationary,
 #   so its long-term mean seasonal cycle is a sound reference state.
 #   (NAHosMIP protocol: Jackson et al., 2023, Geosci. Model Dev. 16:1975-1995.)
@@ -40,7 +44,9 @@ OUT_DIR="${ROOT}/anomaly_output/ECHearth3_anomaly"
 TMP="${OUT_DIR}/tmp"
 mkdir -p "$OUT_DIR" "$TMP"
 
-# ---- piControl monthly file globs (501 chunk files, one year each) ----------
+# ---- piControl monthly file globs, one year each ----------------------------
+# tas/pr/tasmin: 501 files (2259-2759). tasmax: 499 files (2259-2757; 2758-59
+# missing from the archive) -> its climatology averages 499 years, not 501.
 PIC_TAS_GLOB="${PIC_DIR}/tas_Amon_EC-Earth3_piControl_r1i1p1f1_gr_*.nc"
 PIC_PR_GLOB="${PIC_DIR}/pr_Amon_EC-Earth3_piControl_r1i1p1f1_gr_*.nc"
 PIC_TASMIN_GLOB="${PIC_DIR}/tasmin_Amon_EC-Earth3_piControl_r1i1p1f1_gr_*.nc"
@@ -60,7 +66,7 @@ build_pic_clim () {
   local merged="${TMP}/${V}_pic_merged.nc"
   local clim="${TMP}/${V}_pic_clim.nc"
   if [ -f "$clim" ]; then echo "  pic clim $V already built"; return; fi
-  echo "  [pic] mergetime ${V} (this is the slow step, 501 files) ..."
+  echo "  [pic] mergetime ${V} (this is the slow step, ~500 files) ..."
   cdo -O mergetime ${GLOB} "$merged"
   echo "  [pic] ymonmean ${V} -> 12-month climatology"
   cdo -O ymonmean "$merged" "$clim"
@@ -110,15 +116,17 @@ do_var () {
   # pr ALSO gets the multiplicative ratio R = hosing / climatology, on the SAME
   # grid-matched clim_use and 2259-2759 reference as the additive anomaly above.
   # R is what the ISIMIP step applies as pr_AMOC = pr_ISIMIP * R; temperature stays
-  # additive only (a ratio of interval-scale K is meaningless). The additive pr
-  # anomaly is unchanged, so the diagnostics keep reading it as before.
+  # additive only (a ratio of interval-scale K is meaningless).
+  # UNITS: the additive pr anomaly stays in native kg m-2 s-1 (CMIP6); the R
+  # diagnostics convert ONCE at read (amoc_common.R read_europe_cube, x86400 ->
+  # mm/day). The ratio is dimensionless: its units attribute is set to "1".
   # ponytail: ymondiv blows up where climatological precip ~ 0 (deserts / a few dry
   # cells). Stored faithful/unclipped; clamp R to a physical band (e.g. [0.1, 10]) or
   # mask tiny-climatology cells in the ISIMIP-application step (matches HadGEM builder).
   if [ "$V" = "pr" ]; then
     local ratio="${OUT_DIR}/${V}_Amon_EC-Earth3_${LABEL}_ratio.nc"
     echo "  pr ratio = hosing / pic climatology (ymondiv)  (for ISIMIP stressing)"
-    cdo -O ymondiv "$HOS" "$clim_use" "$ratio"
+    cdo -O setunit,'1' -ymondiv "$HOS" "$clim_use" "$ratio"
     echo "  -> $(basename "$ratio")"
   fi
 }
@@ -126,7 +134,7 @@ do_var () {
 # ---------------------------------------------------------------------------
 # Build the four piControl climatologies once
 # ---------------------------------------------------------------------------
-echo "### Building piControl climatologies (whole run 2259-2759) ###"
+echo "### Building piControl climatologies (whole run 2259-2759; tasmax ends 2757) ###"
 build_pic_clim tas    "$PIC_TAS_GLOB"
 build_pic_clim pr     "$PIC_PR_GLOB"
 build_pic_clim tasmin "$PIC_TASMIN_GLOB"
@@ -157,4 +165,4 @@ done
 echo
 echo "Done. Per-month, per-native-cell anomalies in:"
 echo "  $OUT_DIR"
-echo "hosing monthly  -  piControl (2259-2759) 12-month climatology."
+echo "hosing monthly  -  piControl full-run 12-month climatology (2259-2759; tasmax 2259-2757)."

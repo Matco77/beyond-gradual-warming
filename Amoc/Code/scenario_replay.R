@@ -1,77 +1,63 @@
-# Delta-method scenario replay (SKETCH) - energy side.
-# Perturb the daily E-OBS record by a climate delta (AMOC hosing or ISIMIP), then recompute the
-# country HDD/CDD with the SAME within-day construction used in estimation (sources
-# weather_indicators.R). This guarantees the response-function regressor is built identically in
-# estimation and replay -> beta is transportable to the counterfactual climate.
+# Delta-method scenario replay, delta_fields runs - ENERGY side.
+# Perturb the daily E-OBS record by a climate delta, then recompute the country HDD/CDD with the
+# SAME construction used in estimation. All of that now lives in scenario_engine.R, shared with the
+# crop runner and with the AMOC bin runner, so there is one machine and one self-check rather than
+# a copy per scenario source.
 #
-# Why delta method: the AMOC signal (delta_fields/) is coarse (annual + DJF/JJA seasonal, ~2deg
-# grid), so it can only supply a LEVEL shift per season, not sub-seasonal variability. The daily
-# and within-day variability come from observed E-OBS; the model supplies only the change. Both
-# scenarios (A=ISIMIP, B=AMOC) should run through this same module for a clean head-to-head.
+# These are the "last third" deltas: the end-state of each hosing run, one level shift per cell.
+# They are NOT the per-bin fields - for the impact-vs-Sv curve see scenario_replay_bins.R, which
+# resolves the delta by calendar month and by delta_Sv bin. This runner is kept as the reference
+# point those bins are read against.
 #
-# Crop side is the identical pattern on the NUTS3 crosswalk (6.eobs_to_nuts_crosswalk) with the
-# crop indicators from weather_indicators.R; left as the documented extension.
+# Runs are AUTO-DISCOVERED from delta_fields/ (every model x protocol that has a tas delta), so
+# IPSL-CM6A-LR (u03 only) and any new model are picked up with no code edit. Replayed over the
+# energy estimation window (YRS_ENERGY) so scenario and historical share the estimation sample.
+# Remaining TODO: these deltas are ANNUAL and applied to every month (the seasonal DJF/JJA fields
+# exist but carry no CRS, so terra cannot grid them). The bin fields do not have that limitation.
 # Author: Marco Bova
-suppressMessages({library(terra); library(ncdf4); library(Matrix); library(data.table)})
-d <- path.expand("~/Library/CloudStorage/OneDrive-UniversitàCommercialeLuigiBocconi/1.Tesi/Amoc/datasets")
-source(path.expand("~/Library/CloudStorage/OneDrive-UniversitàCommercialeLuigiBocconi/1.Tesi/Amoc/Code/weather_indicators.R"))
-ncf <- function(v) file.path(d, sprintf("EOBS/%s_ens_mean_0.25deg_reg_v31.0e.nc", v))
+source(path.expand("~/Library/CloudStorage/OneDrive-UniversitàCommercialeLuigiBocconi/1.Tesi/Amoc/Code/scenario_engine.R"))
 
-## ---- scenario spec ------------------------------------------------------------------------
-MODEL <- "HadGEM3-GC31-LL"; EXP <- "g01"    # AMOC hosing (g01 strong, u03 weaker). "" = no delta.
-YRS   <- 2010:2019                          # baseline years to perturb (demo window; use full record for production)
+delta_dir <- file.path(d, "delta_fields")
+# auto-discover (model, exp) from the tas delta files: delta_<MODEL>_<EXP>_tas_lastthird.nc
+RUNS <- lapply(list.files(delta_dir, "^delta_.*_tas_lastthird\\.nc$"), function(f) {
+  s <- sub("^delta_(.*)_tas_lastthird\\.nc$", "\\1", f)        # <MODEL>_<EXP>
+  list(model = sub("_[^_]*$", "", s), exp = sub(".*_", "", s)) # model may carry hyphens, exp is the last _token
+})
+cat("runs discovered:", paste(sapply(RUNS, function(r) paste(r$model, r$exp)), collapse = " | "), "\n\n")
 
-## ---- 1. load AMOC deltas, regrid coarse model grid -> E-OBS grid ---------------------------
+# delta_fields sit on a regular grid that terra can read, so they keep the terra bilinear resample
+# they were built with. (The bin fields go through fields::interp.surface instead, because terra
+# rejects the native model grids: "lat not regularly spaced". Both are bilinear on cell centres.)
 tmpl <- rast(ncf("tg"))[[1]]
-# per-cell delta by calendar month. Sketch uses the ANNUAL delta for every month (single field,
-# georeferences cleanly). SEASONAL refinement (DJF for Dec-Feb, JJA for Jun-Aug -> the winter-
-# dominant AMOC cooling) needs delta_fields/seasonal/*.nc re-exported with a CRS: they currently
-# carry no GDAL geotransform, so terra can't grid them. Plug the DJF/JJA fields in here once fixed.
-month_delta <- function(var) {
-  if (EXP == "") return(matrix(0, ncell(tmpl), 12))
-  ann <- values(resample(rast(file.path(d, sprintf("delta_fields/delta_%s_%s_%s_lastthird.nc", MODEL, EXP, var))),
-                          tmpl, method = "bilinear"))[, 1]
-  matrix(ann, ncell(tmpl), 12)
+month_delta <- function(S, model, exp, var) {
+  ann <- values(resample(rast(file.path(delta_dir, sprintf("delta_%s_%s_%s_lastthird.nc", model, exp, var))),
+                         tmpl, method = "bilinear"))[, 1]
+  matrix(ann[S$cells], length(S$cells), 12)                    # annual delta, every month
 }
-DTG <- month_delta("tas"); DTX <- month_delta("tasmax"); DTN <- month_delta("tasmin")
 
-## ---- 2. pop weights + ncdf cell mapping (same as energyweather) ----------------------------
-wp <- fread(file.path(d, "12.eobs_population_weights.csv"))
-cells <- sort(unique(wp$eobs_cell_id)); col <- match(wp$eobs_cell_id, cells)
-cntrs <- sort(unique(wp$cntr));         row <- match(wp$cntr, cntrs)
-Wp <- sparseMatrix(i = row, j = col, x = wp$w_pop, dims = c(length(cntrs), length(cells)))
-xy <- xyFromCell(tmpl, cells)
-nc0 <- nc_open(ncf("tg")); nc_lon <- ncvar_get(nc0,"longitude"); nc_lat <- ncvar_get(nc0,"latitude")
-tvec <- as.Date(ncvar_get(nc0,"time"), origin="1950-01-01"); nc_close(nc0); nlon <- length(nc_lon)
-loni <- match(round(xy[,1],3), round(nc_lon,3)); lati <- match(round(xy[,2],3), round(nc_lat,3))
-ncdf_row <- (lati-1)*nlon + loni; yr <- as.integer(format(tvec,"%Y")); mo <- as.integer(format(tvec,"%m"))
-# delta per participating cell (rows align to `cells`)
-dtg <- DTG[cells,]; dtx <- DTX[cells,]; dtn <- DTN[cells,]
-wmean <- function(v){p<-!is.na(v);v[!p]<-0; r<-as.matrix(Wp%*%v)/as.matrix(Wp%*%(p*1));r[!is.finite(r)]<-NA;r}
+S <- eobs_setup("energy")
+cat("-- zero-delta self-check --\n"); selfcheck(S)
 
-## ---- 3. perturb daily E-OBS + recompute country HDD/CDD (identical construction) -----------
-ncs <- list(tg=nc_open(ncf("tg")), tx=nc_open(ncf("tx")), tn=nc_open(ncf("tn")))
-rd <- function(nc,v,ti){a<-ncvar_get(nc,v,start=c(1,1,ti[1]),count=c(-1,-1,length(ti)));dim(a)<-c(nlon*length(nc_lat),length(ti));a[ncdf_row,,drop=FALSE]}
-out <- vector("list", length(YRS))
-for (k in seq_along(YRS)) { ti <- which(yr==YRS[k]); mm <- mo[ti]
-  TG<-rd(ncs$tg,"tg",ti)+dtg[,mm]; TX<-rd(ncs$tx,"tx",ti)+dtx[,mm]; TN<-rd(ncs$tn,"tn",ti)+dtn[,mm]  # delta method
-  hdd<-wmean(within_day(TG,TX,TN,hdd_hinge)); cdd<-wmean(within_day(TG,TX,TN,cdd_hinge))
-  out[[k]] <- data.table(cntr=rep(cntrs,length(ti)), date=rep(tvec[ti],each=length(cntrs)),
-                         hdd=as.vector(hdd), cdd=as.vector(cdd)); cat(YRS[k],"done\n"); flush.console() }
-for (nc in ncs) nc_close(nc)
-dt <- rbindlist(out); dt[,`:=`(y=year(date),m=month(date))]
-scen <- dt[, .(hdd_calendar=sum(hdd), cdd_jja=sum(cdd[m %in% 6:8])), by=.(cntr,year=y)]
+scen <- lapply(RUNS, function(r) list(dtg = month_delta(S, r$model, r$exp, "tas"),
+                                      dtx = month_delta(S, r$model, r$exp, "tasmax"),
+                                      dtn = month_delta(S, r$model, r$exp, "tasmin"),
+                                      Rr  = matrix(1, length(S$cells), 12)))   # unused on this branch
+names(scen) <- sapply(RUNS, function(r) paste(r$model, r$exp, sep = "|"))
+res <- run_scenarios(S, scen)
+res[, c("model", "exp") := tstrsplit(id, "|", fixed = TRUE)][, id := NULL]
 
-## ---- 4. compare scenario vs historical (same years) ---------------------------------------
-hist <- fread(file.path(d,"13.eobs_country_energy_weather_weighted.csv"))[year %in% YRS, .(cntr,year,hdd_calendar,cdd_jja)]
-cmp <- merge(scen, hist, by=c("cntr","year"), suffixes=c("_scen","_hist"))
-cat("\n=== AMOC", MODEL, EXP, "vs historical (", min(YRS),"-",max(YRS),"), pop-weighted country-year means ===\n")
-cat("  HDD calendar: hist", round(mean(cmp$hdd_calendar_hist)), "-> scen", round(mean(cmp$hdd_calendar_scen)),
-    "(", sprintf("%+.1f%%", 100*(mean(cmp$hdd_calendar_scen)/mean(cmp$hdd_calendar_hist)-1)), ")\n")
-cat("  CDD JJA:      hist", round(mean(cmp$cdd_jja_hist)), "-> scen", round(mean(cmp$cdd_jja_scen)),
-    "(", sprintf("%+.1f%%", 100*(mean(cmp$cdd_jja_scen)/mean(cmp$cdd_jja_hist)-1)), ")\n")
-cat("  hottest-CDD countries, hist -> scen:\n")
-print(cmp[year==max(YRS)][order(-cdd_jja_hist)][1:5, .(cntr, cdd_hist=round(cdd_jja_hist), cdd_scen=round(cdd_jja_scen))])
+VAL <- c("hdd_calendar", "hdd_octmar", "cdd_jja")
+setcolorder(res, c("model", "exp", "cntr", "year", VAL))
+fwrite(res, file.path(d, "scenario_energy_country.csv"))
+cat("\nwrote scenario_energy_country.csv | rows", nrow(res), "| runs", uniqueN(res[, .(model, exp)]), "\n")
 
-## ---- self-check: EXP=="" (zero delta) must reproduce historical exactly --------------------
-# run this file with EXP<-"" to verify the replay machinery adds nothing when the delta is zero.
+## ---- what the perturbation did, per run ------------------------------------------------------
+hist <- fread(file.path(d, "13.eobs_country_energy_weather_weighted.csv"))[year %in% S$YRS]
+M <- function(x) mean(x, na.rm = TRUE)          # MT (Malta) is off-domain in E-OBS -> NA hdd, skip it
+for (r in RUNS) {
+  z <- res[model == r$model & exp == r$exp]
+  cat("\n=== AMOC", r$model, r$exp, "vs historical (", min(S$YRS), "-", max(S$YRS),
+      "), pop-weighted country-year means ===\n")
+  for (v in VAL) cat(sprintf("  %-13s hist %6.0f -> scen %6.0f (%+.1f%%)\n",
+                             v, M(hist[[v]]), M(z[[v]]), 100 * (M(z[[v]]) / M(hist[[v]]) - 1)))
+}

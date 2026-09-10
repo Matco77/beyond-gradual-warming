@@ -1,0 +1,11 @@
+model,component,dln
+ec-earth3,gdd_mj,-0.107526327984871
+ipsl-cm6a-lr,gdd_mj,-0.0909742714703746
+ec-earth3,heat_mj,-0.0217051414379408
+ipsl-cm6a-lr,heat_mj,-0.0191390560236519
+ec-earth3,frost_mj,0.0214399466042744
+ipsl-cm6a-lr,frost_mj,0.0209647847977394
+ec-earth3,precip_mj,0.0147404229078644
+ipsl-cm6a-lr,precip_mj,0.00359921597337637
+ec-earth3,precip_mj2,-0.0156667908769414
+ipsl-cm6a-lr,precip_mj2,-0.00545384151101593

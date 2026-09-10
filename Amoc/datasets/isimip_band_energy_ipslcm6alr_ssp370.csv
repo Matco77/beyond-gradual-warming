@@ -1,0 +1,88 @@
+model,bin_id,delta_sv,n_years,ssp_year,fuel,component,dln,branch
+IPSL-CM6A-LR,-4.5,-4.3892,1,2071,Electricity,hdd_calendar,-0.023390920778825,energy Electricity
+IPSL-CM6A-LR,-3.5,-3.5859,1,2072,Electricity,hdd_calendar,-0.0439176787976376,energy Electricity
+IPSL-CM6A-LR,-2.5,-2.381,1,2073,Electricity,hdd_calendar,-0.0534193738782651,energy Electricity
+IPSL-CM6A-LR,-2.5,-2.381,1,2074,Electricity,hdd_calendar,-0.0538180747667514,energy Electricity
+IPSL-CM6A-LR,-2.5,-2.381,1,2075,Electricity,hdd_calendar,-0.0332985308787385,energy Electricity
+IPSL-CM6A-LR,-2.5,-2.381,1,2076,Electricity,hdd_calendar,-0.0645604819815766,energy Electricity
+IPSL-CM6A-LR,-4.5,-4.3892,1,2077,Electricity,hdd_calendar,-0.0575962625027102,energy Electricity
+IPSL-CM6A-LR,-5.5,-5.4831,1,2078,Electricity,hdd_calendar,-0.0681020799211511,energy Electricity
+IPSL-CM6A-LR,-3.5,-3.5859,1,2079,Electricity,hdd_calendar,-0.0687981916279382,energy Electricity
+IPSL-CM6A-LR,-2.5,-2.381,1,2080,Electricity,hdd_calendar,-0.0535095006240198,energy Electricity
+IPSL-CM6A-LR,-4.5,-4.3892,1,2081,Electricity,hdd_calendar,-0.0570823419079397,energy Electricity
+IPSL-CM6A-LR,-4.5,-4.3892,1,2082,Electricity,hdd_calendar,-0.0528447794011534,energy Electricity
+IPSL-CM6A-LR,-4.5,-4.3892,1,2083,Electricity,hdd_calendar,-0.0580112220439932,energy Electricity
+IPSL-CM6A-LR,-4.5,-4.3892,1,2084,Electricity,hdd_calendar,-0.0520612401190365,energy Electricity
+IPSL-CM6A-LR,-5.5,-5.4831,1,2085,Electricity,hdd_calendar,-0.0650968223492832,energy Electricity
+IPSL-CM6A-LR,-3.5,-3.5859,1,2086,Electricity,hdd_calendar,-0.0694999779414452,energy Electricity
+IPSL-CM6A-LR,-3.5,-3.5859,1,2087,Electricity,hdd_calendar,-0.0619324774512312,energy Electricity
+IPSL-CM6A-LR,-4.5,-4.3892,1,2088,Electricity,hdd_calendar,-0.0720671573911858,energy Electricity
+IPSL-CM6A-LR,-3.5,-3.5859,1,2089,Electricity,hdd_calendar,-0.0619961082483667,energy Electricity
+IPSL-CM6A-LR,-3.5,-3.5859,1,2090,Electricity,hdd_calendar,-0.0684795962198994,energy Electricity
+IPSL-CM6A-LR,-4.5,-4.3892,1,2091,Electricity,hdd_calendar,-0.0818042280514426,energy Electricity
+IPSL-CM6A-LR,-5.5,-5.4831,1,2092,Electricity,hdd_calendar,-0.0766974440780649,energy Electricity
+IPSL-CM6A-LR,-4.5,-4.3892,1,2093,Electricity,hdd_calendar,-0.079770307650592,energy Electricity
+IPSL-CM6A-LR,-2.5,-2.381,1,2094,Electricity,hdd_calendar,-0.0781317470359038,energy Electricity
+IPSL-CM6A-LR,-3.5,-3.5859,1,2095,Electricity,hdd_calendar,-0.0684744672640503,energy Electricity
+IPSL-CM6A-LR,-5.5,-5.4831,1,2096,Electricity,hdd_calendar,-0.0815362961447691,energy Electricity
+IPSL-CM6A-LR,-4.5,-4.3892,1,2098,Electricity,hdd_calendar,-0.0851964026368915,energy Electricity
+IPSL-CM6A-LR,-4.5,-4.3892,1,2099,Electricity,hdd_calendar,-0.069146552734702,energy Electricity
+IPSL-CM6A-LR,-4.5,-4.3892,1,2100,Electricity,hdd_calendar,-0.0648334155679439,energy Electricity
+IPSL-CM6A-LR,-4.5,-4.3892,1,2071,Electricity,cdd_jja,0.0258551983889131,energy Electricity
+IPSL-CM6A-LR,-3.5,-3.5859,1,2072,Electricity,cdd_jja,0.0388550928928224,energy Electricity
+IPSL-CM6A-LR,-2.5,-2.381,1,2073,Electricity,cdd_jja,0.027146050201348,energy Electricity
+IPSL-CM6A-LR,-2.5,-2.381,1,2074,Electricity,cdd_jja,0.0203848679351468,energy Electricity
+IPSL-CM6A-LR,-2.5,-2.381,1,2075,Electricity,cdd_jja,0.0305730521056416,energy Electricity
+IPSL-CM6A-LR,-2.5,-2.381,1,2076,Electricity,cdd_jja,0.0304053125254322,energy Electricity
+IPSL-CM6A-LR,-4.5,-4.3892,1,2077,Electricity,cdd_jja,0.0375549218823901,energy Electricity
+IPSL-CM6A-LR,-5.5,-5.4831,1,2078,Electricity,cdd_jja,0.0322834790693239,energy Electricity
+IPSL-CM6A-LR,-3.5,-3.5859,1,2079,Electricity,cdd_jja,0.0339195824582996,energy Electricity
+IPSL-CM6A-LR,-2.5,-2.381,1,2080,Electricity,cdd_jja,0.0272554635904997,energy Electricity
+IPSL-CM6A-LR,-4.5,-4.3892,1,2081,Electricity,cdd_jja,0.0291062062902734,energy Electricity
+IPSL-CM6A-LR,-4.5,-4.3892,1,2082,Electricity,cdd_jja,0.04911744331369,energy Electricity
+IPSL-CM6A-LR,-4.5,-4.3892,1,2083,Electricity,cdd_jja,0.0285527454072607,energy Electricity
+IPSL-CM6A-LR,-4.5,-4.3892,1,2084,Electricity,cdd_jja,0.0385886362943675,energy Electricity
+IPSL-CM6A-LR,-5.5,-5.4831,1,2085,Electricity,cdd_jja,0.0252739849651008,energy Electricity
+IPSL-CM6A-LR,-3.5,-3.5859,1,2086,Electricity,cdd_jja,0.0299922252105137,energy Electricity
+IPSL-CM6A-LR,-3.5,-3.5859,1,2087,Electricity,cdd_jja,0.0357522850801232,energy Electricity
+IPSL-CM6A-LR,-4.5,-4.3892,1,2088,Electricity,cdd_jja,0.0331822506506603,energy Electricity
+IPSL-CM6A-LR,-3.5,-3.5859,1,2089,Electricity,cdd_jja,0.0418002404607786,energy Electricity
+IPSL-CM6A-LR,-3.5,-3.5859,1,2090,Electricity,cdd_jja,0.0423209914497853,energy Electricity
+IPSL-CM6A-LR,-4.5,-4.3892,1,2091,Electricity,cdd_jja,0.045808160297125,energy Electricity
+IPSL-CM6A-LR,-5.5,-5.4831,1,2092,Electricity,cdd_jja,0.0485538716328987,energy Electricity
+IPSL-CM6A-LR,-4.5,-4.3892,1,2093,Electricity,cdd_jja,0.0492350427076389,energy Electricity
+IPSL-CM6A-LR,-2.5,-2.381,1,2094,Electricity,cdd_jja,0.0469273100938556,energy Electricity
+IPSL-CM6A-LR,-3.5,-3.5859,1,2095,Electricity,cdd_jja,0.0669165548521207,energy Electricity
+IPSL-CM6A-LR,-5.5,-5.4831,1,2096,Electricity,cdd_jja,0.0521596706751129,energy Electricity
+IPSL-CM6A-LR,-4.5,-4.3892,1,2098,Electricity,cdd_jja,0.0353281653656453,energy Electricity
+IPSL-CM6A-LR,-4.5,-4.3892,1,2099,Electricity,cdd_jja,0.0473204650529103,energy Electricity
+IPSL-CM6A-LR,-4.5,-4.3892,1,2100,Electricity,cdd_jja,0.0409235869097915,energy Electricity
+IPSL-CM6A-LR,-4.5,-4.3892,1,2071,Natural gas,hdd_octmar,-0.0174457417900085,energy Natural gas
+IPSL-CM6A-LR,-3.5,-3.5859,1,2072,Natural gas,hdd_octmar,-0.0569354110065062,energy Natural gas
+IPSL-CM6A-LR,-2.5,-2.381,1,2073,Natural gas,hdd_octmar,-0.0792839996618697,energy Natural gas
+IPSL-CM6A-LR,-2.5,-2.381,1,2074,Natural gas,hdd_octmar,-0.0821095804262818,energy Natural gas
+IPSL-CM6A-LR,-2.5,-2.381,1,2075,Natural gas,hdd_octmar,-0.0453965337408991,energy Natural gas
+IPSL-CM6A-LR,-2.5,-2.381,1,2076,Natural gas,hdd_octmar,-0.09786427605002,energy Natural gas
+IPSL-CM6A-LR,-4.5,-4.3892,1,2077,Natural gas,hdd_octmar,-0.0893124777650025,energy Natural gas
+IPSL-CM6A-LR,-5.5,-5.4831,1,2078,Natural gas,hdd_octmar,-0.103345722242561,energy Natural gas
+IPSL-CM6A-LR,-3.5,-3.5859,1,2079,Natural gas,hdd_octmar,-0.104780430330383,energy Natural gas
+IPSL-CM6A-LR,-2.5,-2.381,1,2080,Natural gas,hdd_octmar,-0.0728750919120686,energy Natural gas
+IPSL-CM6A-LR,-4.5,-4.3892,1,2081,Natural gas,hdd_octmar,-0.082540185183299,energy Natural gas
+IPSL-CM6A-LR,-4.5,-4.3892,1,2082,Natural gas,hdd_octmar,-0.07677252512606,energy Natural gas
+IPSL-CM6A-LR,-4.5,-4.3892,1,2083,Natural gas,hdd_octmar,-0.0898326407983927,energy Natural gas
+IPSL-CM6A-LR,-4.5,-4.3892,1,2084,Natural gas,hdd_octmar,-0.0805947606369589,energy Natural gas
+IPSL-CM6A-LR,-5.5,-5.4831,1,2085,Natural gas,hdd_octmar,-0.0944364727736039,energy Natural gas
+IPSL-CM6A-LR,-3.5,-3.5859,1,2086,Natural gas,hdd_octmar,-0.103512045711473,energy Natural gas
+IPSL-CM6A-LR,-3.5,-3.5859,1,2087,Natural gas,hdd_octmar,-0.0927520154214844,energy Natural gas
+IPSL-CM6A-LR,-4.5,-4.3892,1,2088,Natural gas,hdd_octmar,-0.117213052241019,energy Natural gas
+IPSL-CM6A-LR,-3.5,-3.5859,1,2089,Natural gas,hdd_octmar,-0.0908562669302291,energy Natural gas
+IPSL-CM6A-LR,-3.5,-3.5859,1,2090,Natural gas,hdd_octmar,-0.103475057523634,energy Natural gas
+IPSL-CM6A-LR,-4.5,-4.3892,1,2091,Natural gas,hdd_octmar,-0.128783974801661,energy Natural gas
+IPSL-CM6A-LR,-5.5,-5.4831,1,2092,Natural gas,hdd_octmar,-0.115669111105218,energy Natural gas
+IPSL-CM6A-LR,-4.5,-4.3892,1,2093,Natural gas,hdd_octmar,-0.123702809136023,energy Natural gas
+IPSL-CM6A-LR,-2.5,-2.381,1,2094,Natural gas,hdd_octmar,-0.122233173664117,energy Natural gas
+IPSL-CM6A-LR,-3.5,-3.5859,1,2095,Natural gas,hdd_octmar,-0.0954630461244103,energy Natural gas
+IPSL-CM6A-LR,-5.5,-5.4831,1,2096,Natural gas,hdd_octmar,-0.125022387565073,energy Natural gas
+IPSL-CM6A-LR,-4.5,-4.3892,1,2098,Natural gas,hdd_octmar,-0.12647877596043,energy Natural gas
+IPSL-CM6A-LR,-4.5,-4.3892,1,2099,Natural gas,hdd_octmar,-0.099317866506431,energy Natural gas
+IPSL-CM6A-LR,-4.5,-4.3892,1,2100,Natural gas,hdd_octmar,-0.0909699019852421,energy Natural gas

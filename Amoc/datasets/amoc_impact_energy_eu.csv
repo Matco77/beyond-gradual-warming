@@ -1,0 +1,121 @@
+model,bin_id,delta_sv,n_years,fuel,component,dln
+EC-Earth3,-9.5,-9.1554,4,Electricity,hdd_calendar,0.0380607053809427
+EC-Earth3,-8.5,-8.4726,15,Electricity,hdd_calendar,0.0547106905442203
+EC-Earth3,-7.5,-7.5562,20,Electricity,hdd_calendar,0.0402424187726944
+EC-Earth3,-6.5,-6.4767,21,Electricity,hdd_calendar,0.0309616715016742
+EC-Earth3,-5.5,-5.3342,8,Electricity,hdd_calendar,0.0266583300773519
+EC-Earth3,-4.5,-4.5495,8,Electricity,hdd_calendar,0.0361751742096524
+EC-Earth3,-3.5,-3.3459,9,Electricity,hdd_calendar,0.032213080493396
+EC-Earth3,-2.5,-2.4493,5,Electricity,hdd_calendar,0.0235224592662177
+EC-Earth3,-1.5,-1.3807,6,Electricity,hdd_calendar,0.00822912521418222
+EC-Earth3,-0.5,-0.6596,3,Electricity,hdd_calendar,0.00423821415115326
+HadGEM3-GC3-1LL,-8.5,-8.3848,12,Electricity,hdd_calendar,0.0418577226829065
+HadGEM3-GC3-1LL,-7.5,-7.5599,19,Electricity,hdd_calendar,0.0334071842140769
+HadGEM3-GC3-1LL,-6.5,-6.5442,24,Electricity,hdd_calendar,0.037831372879344
+HadGEM3-GC3-1LL,-5.5,-5.5797,10,Electricity,hdd_calendar,0.0269763343292528
+HadGEM3-GC3-1LL,-4.5,-4.5263,6,Electricity,hdd_calendar,0.0280301409963995
+HadGEM3-GC3-1LL,-3.5,-3.7835,7,Electricity,hdd_calendar,0.0329630255999427
+HadGEM3-GC3-1LL,-2.5,-2.4504,6,Electricity,hdd_calendar,0.0221786051847288
+HadGEM3-GC3-1LL,-1.5,-1.3098,8,Electricity,hdd_calendar,0.0116942087840942
+HadGEM3-GC3-1LL,-0.5,-0.331,6,Electricity,hdd_calendar,0.00442899531530502
+HadGEM3-GC3-1MM,-14.5,-14.3032,4,Electricity,hdd_calendar,0.0914737818201307
+HadGEM3-GC3-1MM,-13.5,-13.3931,8,Electricity,hdd_calendar,0.101039058517773
+HadGEM3-GC3-1MM,-12.5,-12.588,13,Electricity,hdd_calendar,0.0941675198396004
+HadGEM3-GC3-1MM,-11.5,-11.5321,21,Electricity,hdd_calendar,0.088305134890549
+HadGEM3-GC3-1MM,-10.5,-10.4803,10,Electricity,hdd_calendar,0.0755353441365046
+HadGEM3-GC3-1MM,-9.5,-9.6161,7,Electricity,hdd_calendar,0.0597814404186622
+HadGEM3-GC3-1MM,-8.5,-8.6582,7,Electricity,hdd_calendar,0.052096924851782
+HadGEM3-GC3-1MM,-7.5,-7.6345,8,Electricity,hdd_calendar,0.0458430945277328
+HadGEM3-GC3-1MM,-6.5,-6.4299,4,Electricity,hdd_calendar,0.0326445887003982
+HadGEM3-GC3-1MM,-5.5,-5.3528,4,Electricity,hdd_calendar,0.0249211660807119
+HadGEM3-GC3-1MM,-4.5,-4.3969,4,Electricity,hdd_calendar,0.0173494396802453
+IPSL-CM6A-LR,-9.5,-9.3401,5,Electricity,hdd_calendar,0.0685885054095861
+IPSL-CM6A-LR,-8.5,-8.4598,8,Electricity,hdd_calendar,0.0715154218267031
+IPSL-CM6A-LR,-7.5,-7.5255,19,Electricity,hdd_calendar,0.0560735717170656
+IPSL-CM6A-LR,-6.5,-6.5577,11,Electricity,hdd_calendar,0.0645327542624274
+IPSL-CM6A-LR,-5.5,-5.5623,13,Electricity,hdd_calendar,0.038812419629454
+IPSL-CM6A-LR,-4.5,-4.3507,11,Electricity,hdd_calendar,0.0230723960490761
+IPSL-CM6A-LR,-3.5,-3.4644,8,Electricity,hdd_calendar,0.0287689636278788
+IPSL-CM6A-LR,-2.5,-2.5669,9,Electricity,hdd_calendar,0.0145146601191438
+IPSL-CM6A-LR,-1.5,-1.2909,6,Electricity,hdd_calendar,0.0216958528528836
+IPSL-CM6A-LR,-0.5,-0.6347,8,Electricity,hdd_calendar,0.00401930135459424
+EC-Earth3,-9.5,-9.1554,4,Electricity,cdd_jja,-0.00823993459322141
+EC-Earth3,-8.5,-8.4726,15,Electricity,cdd_jja,-0.00726320681173076
+EC-Earth3,-7.5,-7.5562,20,Electricity,cdd_jja,-0.00750282343481944
+EC-Earth3,-6.5,-6.4767,21,Electricity,cdd_jja,-0.00429997784591972
+EC-Earth3,-5.5,-5.3342,8,Electricity,cdd_jja,-0.00405010070159186
+EC-Earth3,-4.5,-4.5495,8,Electricity,cdd_jja,-0.00427417447418201
+EC-Earth3,-3.5,-3.3459,9,Electricity,cdd_jja,-0.00451505038344885
+EC-Earth3,-2.5,-2.4493,5,Electricity,cdd_jja,-0.00360540050250956
+EC-Earth3,-1.5,-1.3807,6,Electricity,cdd_jja,-0.00303024150402939
+EC-Earth3,-0.5,-0.6596,3,Electricity,cdd_jja,0.0029131983734817
+HadGEM3-GC3-1LL,-8.5,-8.3848,12,Electricity,cdd_jja,-0.00537443716475012
+HadGEM3-GC3-1LL,-7.5,-7.5599,19,Electricity,cdd_jja,-0.00439616820392812
+HadGEM3-GC3-1LL,-6.5,-6.5442,24,Electricity,cdd_jja,-0.00583862839793382
+HadGEM3-GC3-1LL,-5.5,-5.5797,10,Electricity,cdd_jja,-0.00321943809399197
+HadGEM3-GC3-1LL,-4.5,-4.5263,6,Electricity,cdd_jja,-0.00446801305124797
+HadGEM3-GC3-1LL,-3.5,-3.7835,7,Electricity,cdd_jja,-0.0047501375105267
+HadGEM3-GC3-1LL,-2.5,-2.4504,6,Electricity,cdd_jja,-0.00279639313123329
+HadGEM3-GC3-1LL,-1.5,-1.3098,8,Electricity,cdd_jja,-0.00117011434116504
+HadGEM3-GC3-1LL,-0.5,-0.331,6,Electricity,cdd_jja,-0.00144053536617389
+HadGEM3-GC3-1MM,-14.5,-14.3032,4,Electricity,cdd_jja,-0.00895131752003429
+HadGEM3-GC3-1MM,-13.5,-13.3931,8,Electricity,cdd_jja,-0.0102280908842478
+HadGEM3-GC3-1MM,-12.5,-12.588,13,Electricity,cdd_jja,-0.00915987551690885
+HadGEM3-GC3-1MM,-11.5,-11.5321,21,Electricity,cdd_jja,-0.0092576834966103
+HadGEM3-GC3-1MM,-10.5,-10.4803,10,Electricity,cdd_jja,-0.00936325233086539
+HadGEM3-GC3-1MM,-9.5,-9.6161,7,Electricity,cdd_jja,-0.00550244017560093
+HadGEM3-GC3-1MM,-8.5,-8.6582,7,Electricity,cdd_jja,-0.006331060668898
+HadGEM3-GC3-1MM,-7.5,-7.6345,8,Electricity,cdd_jja,-0.00726295785069584
+HadGEM3-GC3-1MM,-6.5,-6.4299,4,Electricity,cdd_jja,-0.00430181154643852
+HadGEM3-GC3-1MM,-5.5,-5.3528,4,Electricity,cdd_jja,-0.00380203888782555
+HadGEM3-GC3-1MM,-4.5,-4.3969,4,Electricity,cdd_jja,-0.00218399903715819
+IPSL-CM6A-LR,-9.5,-9.3401,5,Electricity,cdd_jja,-0.00887136052535842
+IPSL-CM6A-LR,-8.5,-8.4598,8,Electricity,cdd_jja,-0.00877638475497938
+IPSL-CM6A-LR,-7.5,-7.5255,19,Electricity,cdd_jja,-0.00672507342890543
+IPSL-CM6A-LR,-6.5,-6.5577,11,Electricity,cdd_jja,-0.0067914455146378
+IPSL-CM6A-LR,-5.5,-5.5623,13,Electricity,cdd_jja,-0.00577880560975145
+IPSL-CM6A-LR,-4.5,-4.3507,11,Electricity,cdd_jja,-0.00287962600916655
+IPSL-CM6A-LR,-3.5,-3.4644,8,Electricity,cdd_jja,-0.00440793079647037
+IPSL-CM6A-LR,-2.5,-2.5669,9,Electricity,cdd_jja,-0.00340812606338201
+IPSL-CM6A-LR,-1.5,-1.2909,6,Electricity,cdd_jja,-0.00313823152502558
+IPSL-CM6A-LR,-0.5,-0.6347,8,Electricity,cdd_jja,-0.000207647358744587
+EC-Earth3,-9.5,-9.1554,4,Natural gas,hdd_octmar,0.0484521555138654
+EC-Earth3,-8.5,-8.4726,15,Natural gas,hdd_octmar,0.0757102445290502
+EC-Earth3,-7.5,-7.5562,20,Natural gas,hdd_octmar,0.0521940962247984
+EC-Earth3,-6.5,-6.4767,21,Natural gas,hdd_octmar,0.0435845046729828
+EC-Earth3,-5.5,-5.3342,8,Natural gas,hdd_octmar,0.0362272599923065
+EC-Earth3,-4.5,-4.5495,8,Natural gas,hdd_octmar,0.0499257926014346
+EC-Earth3,-3.5,-3.3459,9,Natural gas,hdd_octmar,0.0462496341551396
+EC-Earth3,-2.5,-2.4493,5,Natural gas,hdd_octmar,0.0328325989386261
+EC-Earth3,-1.5,-1.3807,6,Natural gas,hdd_octmar,0.0118530237001032
+EC-Earth3,-0.5,-0.6596,3,Natural gas,hdd_octmar,0.00286579069340289
+HadGEM3-GC3-1LL,-8.5,-8.3848,12,Natural gas,hdd_octmar,0.0558733399870022
+HadGEM3-GC3-1LL,-7.5,-7.5599,19,Natural gas,hdd_octmar,0.0422264801605502
+HadGEM3-GC3-1LL,-6.5,-6.5442,24,Natural gas,hdd_octmar,0.053084356060346
+HadGEM3-GC3-1LL,-5.5,-5.5797,10,Natural gas,hdd_octmar,0.0363450112000302
+HadGEM3-GC3-1LL,-4.5,-4.5263,6,Natural gas,hdd_octmar,0.037488978173142
+HadGEM3-GC3-1LL,-3.5,-3.7835,7,Natural gas,hdd_octmar,0.0425995388736363
+HadGEM3-GC3-1LL,-2.5,-2.4504,6,Natural gas,hdd_octmar,0.0247132874221519
+HadGEM3-GC3-1LL,-1.5,-1.3098,8,Natural gas,hdd_octmar,0.0135199031350688
+HadGEM3-GC3-1LL,-0.5,-0.331,6,Natural gas,hdd_octmar,8.07098196827658e-05
+HadGEM3-GC3-1MM,-14.5,-14.3032,4,Natural gas,hdd_octmar,0.118934076159073
+HadGEM3-GC3-1MM,-13.5,-13.3931,8,Natural gas,hdd_octmar,0.136296045178916
+HadGEM3-GC3-1MM,-12.5,-12.588,13,Natural gas,hdd_octmar,0.122675899659665
+HadGEM3-GC3-1MM,-11.5,-11.5321,21,Natural gas,hdd_octmar,0.117466422284111
+HadGEM3-GC3-1MM,-10.5,-10.4803,10,Natural gas,hdd_octmar,0.0967004485468298
+HadGEM3-GC3-1MM,-9.5,-9.6161,7,Natural gas,hdd_octmar,0.0808809576341212
+HadGEM3-GC3-1MM,-8.5,-8.6582,7,Natural gas,hdd_octmar,0.0649677466228651
+HadGEM3-GC3-1MM,-7.5,-7.6345,8,Natural gas,hdd_octmar,0.054176588495406
+HadGEM3-GC3-1MM,-6.5,-6.4299,4,Natural gas,hdd_octmar,0.0416745487068863
+HadGEM3-GC3-1MM,-5.5,-5.3528,4,Natural gas,hdd_octmar,0.0276523937638916
+HadGEM3-GC3-1MM,-4.5,-4.3969,4,Natural gas,hdd_octmar,0.021593466173655
+IPSL-CM6A-LR,-9.5,-9.3401,5,Natural gas,hdd_octmar,0.0959857844969267
+IPSL-CM6A-LR,-8.5,-8.4598,8,Natural gas,hdd_octmar,0.0967546908882204
+IPSL-CM6A-LR,-7.5,-7.5255,19,Natural gas,hdd_octmar,0.0760116633548904
+IPSL-CM6A-LR,-6.5,-6.5577,11,Natural gas,hdd_octmar,0.0953661703411332
+IPSL-CM6A-LR,-5.5,-5.5623,13,Natural gas,hdd_octmar,0.0535126917787674
+IPSL-CM6A-LR,-4.5,-4.3507,11,Natural gas,hdd_octmar,0.0278882433915637
+IPSL-CM6A-LR,-3.5,-3.4644,8,Natural gas,hdd_octmar,0.0337415131487968
+IPSL-CM6A-LR,-2.5,-2.5669,9,Natural gas,hdd_octmar,0.0199027576530714
+IPSL-CM6A-LR,-1.5,-1.2909,6,Natural gas,hdd_octmar,0.0310318525320547
+IPSL-CM6A-LR,-0.5,-0.6347,8,Natural gas,hdd_octmar,0.00141543419531477

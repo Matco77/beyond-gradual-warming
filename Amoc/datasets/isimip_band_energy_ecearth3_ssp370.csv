@@ -1,0 +1,82 @@
+model,bin_id,delta_sv,n_years,ssp_year,fuel,component,dln,branch
+EC-Earth3,-2.5,-2.5448,1,2071,Electricity,hdd_calendar,-0.0582974934471856,energy Electricity
+EC-Earth3,-2.5,-2.5448,1,2072,Electricity,hdd_calendar,-0.0594629116141167,energy Electricity
+EC-Earth3,-2.5,-2.5448,1,2073,Electricity,hdd_calendar,-0.0366381136593244,energy Electricity
+EC-Earth3,-2.5,-2.5448,1,2075,Electricity,hdd_calendar,-0.0671978342622652,energy Electricity
+EC-Earth3,-2.5,-2.5448,1,2076,Electricity,hdd_calendar,-0.0635669651707707,energy Electricity
+EC-Earth3,-2.5,-2.5448,1,2077,Electricity,hdd_calendar,-0.0533117281277539,energy Electricity
+EC-Earth3,-3.5,-3.4737,1,2078,Electricity,hdd_calendar,-0.0637884683877675,energy Electricity
+EC-Earth3,-2.5,-2.5448,1,2079,Electricity,hdd_calendar,-0.0652948319921568,energy Electricity
+EC-Earth3,-2.5,-2.5448,1,2080,Electricity,hdd_calendar,-0.0708182461357488,energy Electricity
+EC-Earth3,-2.5,-2.5448,1,2081,Electricity,hdd_calendar,-0.0595442404842151,energy Electricity
+EC-Earth3,-4.5,-4.5546,1,2082,Electricity,hdd_calendar,-0.0498504531147573,energy Electricity
+EC-Earth3,-4.5,-4.5546,1,2083,Electricity,hdd_calendar,-0.0577976040232703,energy Electricity
+EC-Earth3,-2.5,-2.5448,1,2084,Electricity,hdd_calendar,-0.0644064702009573,energy Electricity
+EC-Earth3,-2.5,-2.5448,1,2085,Electricity,hdd_calendar,-0.0755141326382603,energy Electricity
+EC-Earth3,-3.5,-3.4737,1,2086,Electricity,hdd_calendar,-0.0701700026751982,energy Electricity
+EC-Earth3,-3.5,-3.4737,1,2087,Electricity,hdd_calendar,-0.0612296782128673,energy Electricity
+EC-Earth3,-3.5,-3.4737,1,2088,Electricity,hdd_calendar,-0.0750493247196199,energy Electricity
+EC-Earth3,-4.5,-4.5546,1,2089,Electricity,hdd_calendar,-0.0749979416396885,energy Electricity
+EC-Earth3,-4.5,-4.5546,1,2091,Electricity,hdd_calendar,-0.0807773767523438,energy Electricity
+EC-Earth3,-4.5,-4.5546,1,2092,Electricity,hdd_calendar,-0.0687278051938105,energy Electricity
+EC-Earth3,-4.5,-4.5546,1,2093,Electricity,hdd_calendar,-0.0686816124080437,energy Electricity
+EC-Earth3,-4.5,-4.5546,1,2094,Electricity,hdd_calendar,-0.0951872494624066,energy Electricity
+EC-Earth3,-3.5,-3.4737,1,2095,Electricity,hdd_calendar,-0.0846129197505744,energy Electricity
+EC-Earth3,-3.5,-3.4737,1,2096,Electricity,hdd_calendar,-0.0919436011162267,energy Electricity
+EC-Earth3,-3.5,-3.4737,1,2097,Electricity,hdd_calendar,-0.0825114674357628,energy Electricity
+EC-Earth3,-3.5,-3.4737,1,2099,Electricity,hdd_calendar,-0.0861372777513973,energy Electricity
+EC-Earth3,-4.5,-4.5546,1,2100,Electricity,hdd_calendar,-0.082299401397682,energy Electricity
+EC-Earth3,-2.5,-2.5448,1,2071,Electricity,cdd_jja,0.0428723183369837,energy Electricity
+EC-Earth3,-2.5,-2.5448,1,2072,Electricity,cdd_jja,0.0288656164838849,energy Electricity
+EC-Earth3,-2.5,-2.5448,1,2073,Electricity,cdd_jja,0.0343345904056448,energy Electricity
+EC-Earth3,-2.5,-2.5448,1,2075,Electricity,cdd_jja,0.0391800114106631,energy Electricity
+EC-Earth3,-2.5,-2.5448,1,2076,Electricity,cdd_jja,0.0415319419598835,energy Electricity
+EC-Earth3,-2.5,-2.5448,1,2077,Electricity,cdd_jja,0.0420832713757318,energy Electricity
+EC-Earth3,-3.5,-3.4737,1,2078,Electricity,cdd_jja,0.0466463320083707,energy Electricity
+EC-Earth3,-2.5,-2.5448,1,2079,Electricity,cdd_jja,0.0485402271420741,energy Electricity
+EC-Earth3,-2.5,-2.5448,1,2080,Electricity,cdd_jja,0.0311992606690088,energy Electricity
+EC-Earth3,-2.5,-2.5448,1,2081,Electricity,cdd_jja,0.0348723473970925,energy Electricity
+EC-Earth3,-4.5,-4.5546,1,2082,Electricity,cdd_jja,0.0366773905150096,energy Electricity
+EC-Earth3,-4.5,-4.5546,1,2083,Electricity,cdd_jja,0.0274256004483196,energy Electricity
+EC-Earth3,-2.5,-2.5448,1,2084,Electricity,cdd_jja,0.0363588449031785,energy Electricity
+EC-Earth3,-2.5,-2.5448,1,2085,Electricity,cdd_jja,0.0489669669236912,energy Electricity
+EC-Earth3,-3.5,-3.4737,1,2086,Electricity,cdd_jja,0.0388357733344521,energy Electricity
+EC-Earth3,-3.5,-3.4737,1,2087,Electricity,cdd_jja,0.0425030412429272,energy Electricity
+EC-Earth3,-3.5,-3.4737,1,2088,Electricity,cdd_jja,0.0350016899853548,energy Electricity
+EC-Earth3,-4.5,-4.5546,1,2089,Electricity,cdd_jja,0.0371643216561095,energy Electricity
+EC-Earth3,-4.5,-4.5546,1,2091,Electricity,cdd_jja,0.0437864444172719,energy Electricity
+EC-Earth3,-4.5,-4.5546,1,2092,Electricity,cdd_jja,0.0510601186008763,energy Electricity
+EC-Earth3,-4.5,-4.5546,1,2093,Electricity,cdd_jja,0.0546559420966129,energy Electricity
+EC-Earth3,-4.5,-4.5546,1,2094,Electricity,cdd_jja,0.0553248948510509,energy Electricity
+EC-Earth3,-3.5,-3.4737,1,2095,Electricity,cdd_jja,0.0519427996085907,energy Electricity
+EC-Earth3,-3.5,-3.4737,1,2096,Electricity,cdd_jja,0.0795652749394764,energy Electricity
+EC-Earth3,-3.5,-3.4737,1,2097,Electricity,cdd_jja,0.0753523962060678,energy Electricity
+EC-Earth3,-3.5,-3.4737,1,2099,Electricity,cdd_jja,0.057217767316313,energy Electricity
+EC-Earth3,-4.5,-4.5546,1,2100,Electricity,cdd_jja,0.0461502640663753,energy Electricity
+EC-Earth3,-2.5,-2.5448,1,2071,Natural gas,hdd_octmar,-0.0766701730963909,energy Natural gas
+EC-Earth3,-2.5,-2.5448,1,2072,Natural gas,hdd_octmar,-0.0943719473954929,energy Natural gas
+EC-Earth3,-2.5,-2.5448,1,2073,Natural gas,hdd_octmar,-0.0361950843475422,energy Natural gas
+EC-Earth3,-2.5,-2.5448,1,2075,Natural gas,hdd_octmar,-0.101627160056866,energy Natural gas
+EC-Earth3,-2.5,-2.5448,1,2076,Natural gas,hdd_octmar,-0.0875100641149344,energy Natural gas
+EC-Earth3,-2.5,-2.5448,1,2077,Natural gas,hdd_octmar,-0.071282846093015,energy Natural gas
+EC-Earth3,-3.5,-3.4737,1,2078,Natural gas,hdd_octmar,-0.0976245531450412,energy Natural gas
+EC-Earth3,-2.5,-2.5448,1,2079,Natural gas,hdd_octmar,-0.0938421430155319,energy Natural gas
+EC-Earth3,-2.5,-2.5448,1,2080,Natural gas,hdd_octmar,-0.112379433196575,energy Natural gas
+EC-Earth3,-2.5,-2.5448,1,2081,Natural gas,hdd_octmar,-0.0836373992440668,energy Natural gas
+EC-Earth3,-4.5,-4.5546,1,2082,Natural gas,hdd_octmar,-0.0584148243571523,energy Natural gas
+EC-Earth3,-4.5,-4.5546,1,2083,Natural gas,hdd_octmar,-0.0844983633719674,energy Natural gas
+EC-Earth3,-2.5,-2.5448,1,2084,Natural gas,hdd_octmar,-0.102523754807123,energy Natural gas
+EC-Earth3,-2.5,-2.5448,1,2085,Natural gas,hdd_octmar,-0.115554710401683,energy Natural gas
+EC-Earth3,-3.5,-3.4737,1,2086,Natural gas,hdd_octmar,-0.0995808665709681,energy Natural gas
+EC-Earth3,-3.5,-3.4737,1,2087,Natural gas,hdd_octmar,-0.0764035048984703,energy Natural gas
+EC-Earth3,-3.5,-3.4737,1,2088,Natural gas,hdd_octmar,-0.115769185340428,energy Natural gas
+EC-Earth3,-4.5,-4.5546,1,2089,Natural gas,hdd_octmar,-0.109416407620208,energy Natural gas
+EC-Earth3,-4.5,-4.5546,1,2091,Natural gas,hdd_octmar,-0.121578298813854,energy Natural gas
+EC-Earth3,-4.5,-4.5546,1,2092,Natural gas,hdd_octmar,-0.103648129383419,energy Natural gas
+EC-Earth3,-4.5,-4.5546,1,2093,Natural gas,hdd_octmar,-0.10388518504175,energy Natural gas
+EC-Earth3,-4.5,-4.5546,1,2094,Natural gas,hdd_octmar,-0.153114591044153,energy Natural gas
+EC-Earth3,-3.5,-3.4737,1,2095,Natural gas,hdd_octmar,-0.133641844401675,energy Natural gas
+EC-Earth3,-3.5,-3.4737,1,2096,Natural gas,hdd_octmar,-0.135768159516243,energy Natural gas
+EC-Earth3,-3.5,-3.4737,1,2097,Natural gas,hdd_octmar,-0.119214635391815,energy Natural gas
+EC-Earth3,-3.5,-3.4737,1,2099,Natural gas,hdd_octmar,-0.137290027151054,energy Natural gas
+EC-Earth3,-4.5,-4.5546,1,2100,Natural gas,hdd_octmar,-0.124288172283051,energy Natural gas

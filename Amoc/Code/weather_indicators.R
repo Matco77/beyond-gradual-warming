@@ -28,6 +28,15 @@ gdd_daily   <- function(tg) pmax(pmin(tg, 28) - 5, 0)  # moderate warmth, CAPPED
 heat_daily  <- function(tx) pmax(tx - 28, 0)           # extreme heat above 28 (daily max)
 frost_daily <- function(tn) (tn < 0) * 1               # frost day (daily min < 0)
 
+## --- estimation sample windows --------------------------------------------------------------
+# The replay must be run on the SAME years the beta were estimated on, otherwise the scenario-minus-
+# historical difference mixes the climate perturbation with a change of sample. These are the year
+# ranges of the two estimation panels (9.crop_panel_nuts3_estimation.csv,
+# 16.energy_panel_estimation.csv); they live here because scenario_replay.R and
+# scenario_replay_crop.R both need them and must not drift apart.
+YRS_CROP   <- 1989:2023        # crop panel (CropStatHarm yield coverage)
+YRS_ENERGY <- 1990:2024        # energy panel (Eurostat nrg_bal_c coverage)
+
 ## --- self-check -----------------------------------------------------------------------------
 if (sys.nframe() == 0) {                               # runs only when executed directly
   m <- matrix(c(10, 22, 26), 1)                        # daily means; treat as tg

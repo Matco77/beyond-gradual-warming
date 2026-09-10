@@ -30,5 +30,26 @@ Amoc/datasets/*
 *.tif
 *.tiff
 *.zip
+*.tar
+*.tar.gz
+*.tgz
 *.h5
 *.hdf5
+Amoc/isimip_download.log
+
+# Regenerable scenario replays. Amoc/datasets/*.csv is re-included above, but that
+# pattern does NOT match .csv.gz - these stay out on purpose (the crop table is
+# ~4.2 M rows, past GitHub's file limit). Rebuild with scenario_replay_bins.R /
+# scenario_replay_isimip_bins.R; see README.
+Amoc/datasets/*.csv.gz
+
+# Download cruft left in the repo root by wget / the ESGF and ISIMIP pulls.
+# *.tar above already covers the 2.6 GB of CMIP6 tarballs that land here.
+wget-log*
+.wget_script_*.status
+wget_script_*.sh
+
+# Animation frames/GIFs: 39 MB of pure output, rebuilt by
+# Amoc/Code/anomaly/animate_yearly_anomaly.R from the anomaly cubes. The static
+# figures ARE tracked; only the animations are not, on size alone.
+Amoc/Plots_Anomaly/animations/

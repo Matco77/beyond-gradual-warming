@@ -1,0 +1,7 @@
+model,fuel,component,dln
+ec-earth3,Electricity,hdd_calendar,-0.0701381030742406
+ipsl-cm6a-lr,Electricity,hdd_calendar,-0.0649878486194051
+ec-earth3,Electricity,cdd_jja,0.0436191616205764
+ipsl-cm6a-lr,Electricity,cdd_jja,0.0368902599463422
+ec-earth3,Natural gas,hdd_octmar,-0.102154444373945
+ipsl-cm6a-lr,Natural gas,hdd_octmar,-0.0958214564439727

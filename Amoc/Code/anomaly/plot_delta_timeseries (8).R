@@ -36,14 +36,7 @@ COUNTRIES <- c(
   "Spain","Sweden",                                  # EU-27
   "Switzerland","Norway","UK")                       # + non-EU requested
 
-## ---- per-grid country label for every cell (cached by model) ----
-.country_cache <- new.env()
-cell_country <- function(model_key, lon, lat) {
-  if (!is.null(.country_cache[[model_key]])) return(.country_cache[[model_key]])
-  g  <- expand.grid(lon = lon, lat = lat)             # lon fastest -> matches matrix() flatten
-  cc <- sub(":.*", "", maps::map.where("world", g$lon, g$lat))  # strip subregion suffix
-  .country_cache[[model_key]] <- cc; cc
-}
+## ---- per-grid country label: cell_country() now lives in amoc_common.R ----
 
 ## ---- LOESS trajectory + plateau for one series ----
 fit_traj <- function(ts) {
@@ -60,11 +53,12 @@ runs <- list(
   list(model = "HadGEM3-GC31-LL", proto = "g01", folder = "LL_anomaly",        col = "#0072B2"),
   list(model = "HadGEM3-GC31-LL", proto = "u03", folder = "LL_anomaly",        col = "#003A6B"),
   list(model = "HadGEM3-GC31-MM", proto = "g01", folder = "MM_anomaly",        col = "#009E73"),
-  list(model = "HadGEM3-GC31-MM", proto = "u03", folder = "MM_anomaly",        col = "#00674A")
+  list(model = "HadGEM3-GC31-MM", proto = "u03", folder = "MM_anomaly",        col = "#00674A"),
+  list(model = "IPSL-CM6A-LR",    proto = "u03", folder = "IPSL_anomaly",      col = "#e7298a")   # u03 only (no g01)
 )
 base <- "/Users/Bova/Library/CloudStorage/OneDrive-UniversitàCommercialeLuigiBocconi/1.Tesi/Amoc/datasets/anomaly_output"
 anomaly_path <- function(r, vn) file.path(base, r$folder,
-  if (r$folder == "ECHearth3_anomaly") sprintf("%s_Amon_EC-Earth3_hos-%s-hos_anomaly.nc", vn, r$proto)
+  if (r$folder %in% c("ECHearth3_anomaly", "IPSL_anomaly")) sprintf("%s_Amon_%s_hos-%s-hos_anomaly.nc", vn, r$model, r$proto)
   else sprintf("%s_anomaly_%s-hos_minus_piControl_1850-1949.nc", vn, r$proto))
 
 vars   <- c("tas", "pr", "tasmax", "tasmin")
@@ -101,7 +95,8 @@ for (vn in vars) {
       ctry <- lapply(COUNTRIES, function(C) {
         sel <- which(cc == C); if (!length(sel)) return(NULL)
         ts <- masked_mean_series(cb$v, cb$lat, sel)
-        if (!any(is.finite(ts))) NULL else fit_traj(ts)
+        if (!any(is.finite(ts))) NULL
+        else { f <- fit_traj(ts); f$n_cells <- length(sel); f }  # n_cells -> CSV
       })
       names(ctry) <- COUNTRIES
     }
@@ -117,7 +112,8 @@ for (vn in vars) {
       f <- z$country[[C]]
       if (!is.null(f)) CP <- rbind(CP, data.frame(
         variable = vn, model = z$r$model, protocol = z$r$proto, country = C,
-        plateau = round(f$plate, 3), run_years = round(length(f$ts) / 12), stringsAsFactors = FALSE))
+        plateau = round(f$plate, 3), n_cells = f$n_cells,
+        run_years = round(length(f$ts) / 12), stringsAsFactors = FALSE))
     }
   }
 
@@ -143,7 +139,7 @@ for (vn in vars) {
          legend = vapply(S, function(s) sprintf("%s %s   plateau %+.2f   ratio %.1f (%s)",
                          s$r$model, s$r$proto, s$plate, s$ratio,
                          if (s$ratio >= EFFECT_K) "effect" else "no"), character(1)))
-  mtext("grey = pooled control central-95% (deseasonalised); thick bar = settled plateau",
+  mtext("grey = control central-95% pooled across models (deseasonalised; each legend ratio uses its own model's control); thick bar = settled plateau",
         side = 3, line = 0.2, cex = 0.72, col = "grey30")
 
   ## ---- PAGE 2+: country small-multiples, paginated, SHARED y-scale ----

@@ -1,0 +1,59 @@
+fonte,modello,esperimento,variabile,units,latitudine,long_name_o_description,time_var,n_time,time_primo,time_ultimo,time_units,n_valid,media,std,min,max
+M26,CESM2,con,con_CESM2,Sv,assente,assente,time,1200,0.0,1199.0,year,1200,17.9369,0.8402,15.5235,20.8213
+M26,CESM2,hos,hos_CESM2,Sv,assente,assente,time,1200,0.0,1199.0,year,172,6.3793,3.6709,2.6661,17.8615
+M26,CESM2,r100,r100_CESM2,Sv,assente,assente,time,1200,0.0,1199.0,year,0,assente,assente,assente,assente
+M26,CESM2,r20,r20_CESM2,Sv,assente,assente,time,1200,0.0,1199.0,year,87,12.9874,2.0253,8.8667,17.968
+M26,CESM2,r50,r50_CESM2,Sv,assente,assente,time,1200,0.0,1199.0,year,191,8.1247,0.9307,5.629,10.7292
+M26,CESM2,r70,r70_CESM2,Sv,assente,assente,time,1200,0.0,1199.0,year,0,assente,assente,assente,assente
+M26,CanESM5,con,con_CanESM5,Sv,assente,assente,time,271,0.0,270.0,year,165,11.346,0.8561,8.7712,13.3837
+M26,CanESM5,hos,hos_CanESM5,Sv,assente,assente,time,271,0.0,270.0,year,101,6.0956,2.7596,2.1961,13.7359
+M26,CanESM5,r100,r100_CanESM5,Sv,assente,assente,time,271,0.0,270.0,year,0,assente,assente,assente,assente
+M26,CanESM5,r20,r20_CanESM5,Sv,assente,assente,time,271,0.0,270.0,year,101,9.189,1.0344,6.5297,11.5943
+M26,CanESM5,r50,r50_CanESM5,Sv,assente,assente,time,271,0.0,270.0,year,101,6.3097,0.9179,3.796,8.3781
+M26,CanESM5,r70,r70_CanESM5,Sv,assente,assente,time,271,0.0,270.0,year,201,4.6179,0.9433,2.2816,7.505
+M26,EC-Earth3,con,con_EC-Earth3,Sv,assente,assente,time,150,0.0,149.0,year,150,17.2377,1.449,13.8414,20.8486
+M26,EC-Earth3,hos,hos_EC-Earth3,Sv,assente,assente,time,150,0.0,149.0,year,100,11.4128,2.4334,7.8344,17.2854
+M26,EC-Earth3,r100,r100_EC-Earth3,Sv,assente,assente,time,150,0.0,149.0,year,0,assente,assente,assente,assente
+M26,EC-Earth3,r20,r20_EC-Earth3,Sv,assente,assente,time,150,0.0,149.0,year,100,16.5227,2.1005,11.9304,19.6062
+M26,EC-Earth3,r50,r50_EC-Earth3,Sv,assente,assente,time,150,0.0,149.0,year,100,14.7707,1.9951,9.8452,18.5358
+M26,EC-Earth3,r70,r70_EC-Earth3,Sv,assente,assente,time,150,0.0,149.0,year,0,assente,assente,assente,assente
+M26,HadGEM3-GC3-1LL,con,con_HadGEM3-GC3-1LL,Sv,assente,assente,time,179,0.0,178.0,year,150,15.3708,0.7446,13.3095,17.3557
+M26,HadGEM3-GC3-1LL,hos,hos_HadGEM3-GC3-1LL,Sv,assente,assente,time,179,0.0,178.0,year,145,8.976,2.5762,5.3637,15.9622
+M26,HadGEM3-GC3-1LL,r100,r100_HadGEM3-GC3-1LL,Sv,assente,assente,time,179,0.0,178.0,year,79,10.2419,1.6611,5.9906,13.3618
+M26,HadGEM3-GC3-1LL,r20,r20_HadGEM3-GC3-1LL,Sv,assente,assente,time,179,0.0,178.0,year,49,13.4356,1.4336,10.8268,16.2783
+M26,HadGEM3-GC3-1LL,r50,r50_HadGEM3-GC3-1LL,Sv,assente,assente,time,179,0.0,178.0,year,65,11.0874,1.2883,7.9771,13.4662
+M26,HadGEM3-GC3-1LL,r70,r70_HadGEM3-GC3-1LL,Sv,assente,assente,time,179,0.0,178.0,year,0,assente,assente,assente,assente
+M26,HadGEM3-GC3-1MM,con,con_HadGEM3-GC3-1MM,Sv,assente,assente,time,150,0.0,149.0,year,150,16.3264,0.8399,14.1914,18.8011
+M26,HadGEM3-GC3-1MM,hos,hos_HadGEM3-GC3-1MM,Sv,assente,assente,time,150,0.0,149.0,year,99,6.7916,3.5659,1.4925,17.3661
+M26,HadGEM3-GC3-1MM,r100,r100_HadGEM3-GC3-1MM,Sv,assente,assente,time,150,0.0,149.0,year,0,assente,assente,assente,assente
+M26,HadGEM3-GC3-1MM,r20,r20_HadGEM3-GC3-1MM,Sv,assente,assente,time,150,0.0,149.0,year,79,11.0499,1.5278,7.6008,14.1323
+M26,HadGEM3-GC3-1MM,r50,r50_HadGEM3-GC3-1MM,Sv,assente,assente,time,150,0.0,149.0,year,99,5.8404,0.7319,3.8123,7.6458
+M26,HadGEM3-GC3-1MM,r70,r70_HadGEM3-GC3-1MM,Sv,assente,assente,time,150,0.0,149.0,year,0,assente,assente,assente,assente
+M26,IPSL-CM6A-LR,con,con_IPSL-CM6A-LR,Sv,assente,assente,time,500,0.0,499.0,year,500,12.4836,1.2386,8.8824,16.0916
+M26,IPSL-CM6A-LR,hos,hos_IPSL-CM6A-LR,Sv,assente,assente,time,500,0.0,499.0,year,100,7.2462,2.6835,1.89,12.6411
+M26,IPSL-CM6A-LR,r100,r100_IPSL-CM6A-LR,Sv,assente,assente,time,500,0.0,499.0,year,150,4.8222,0.9885,1.5442,7.4991
+M26,IPSL-CM6A-LR,r20,r20_IPSL-CM6A-LR,Sv,assente,assente,time,500,0.0,499.0,year,130,11.1597,1.2661,8.0089,13.9592
+M26,IPSL-CM6A-LR,r50,r50_IPSL-CM6A-LR,Sv,assente,assente,time,500,0.0,499.0,year,80,7.2434,0.9788,3.9589,9.5535
+M26,IPSL-CM6A-LR,r70,r70_IPSL-CM6A-LR,Sv,assente,assente,time,500,0.0,499.0,year,0,assente,assente,assente,assente
+M26,MPI-ESM1-2-HR,con,con_MPI-ESM1-2-HR,Sv,assente,assente,time,151,0.0,150.0,year,150,17.3827,1.0357,15.181,20.3364
+M26,MPI-ESM1-2-HR,hos,hos_MPI-ESM1-2-HR,Sv,assente,assente,time,151,0.0,150.0,year,150,8.3182,2.8739,3.5025,17.5262
+M26,MPI-ESM1-2-HR,r100,r100_MPI-ESM1-2-HR,Sv,assente,assente,time,151,0.0,150.0,year,51,10.8973,2.8538,4.8051,15.2238
+M26,MPI-ESM1-2-HR,r20,r20_MPI-ESM1-2-HR,Sv,assente,assente,time,151,0.0,150.0,year,50,14.1253,1.8049,10.2501,17.5521
+M26,MPI-ESM1-2-HR,r50,r50_MPI-ESM1-2-HR,Sv,assente,assente,time,151,0.0,150.0,year,51,12.9254,2.7539,6.7358,16.903
+M26,MPI-ESM1-2-HR,r70,r70_MPI-ESM1-2-HR,Sv,assente,assente,time,151,0.0,150.0,year,0,assente,assente,assente,assente
+M26,MPI-ESM1-2-LR,con,con_MPI-ESM1-2-LR,Sv,assente,assente,time,200,0.0,199.0,year,200,19.5885,1.1921,16.8979,22.7159
+M26,MPI-ESM1-2-LR,hos,hos_MPI-ESM1-2-LR,Sv,assente,assente,time,200,0.0,199.0,year,200,12.4935,2.2647,7.6178,20.8235
+M26,MPI-ESM1-2-LR,r100,r100_MPI-ESM1-2-LR,Sv,assente,assente,time,200,0.0,199.0,year,51,16.0399,2.8651,9.3668,20.4392
+M26,MPI-ESM1-2-LR,r20,r20_MPI-ESM1-2-LR,Sv,assente,assente,time,200,0.0,199.0,year,50,17.8023,2.3756,13.3642,23.5911
+M26,MPI-ESM1-2-LR,r50,r50_MPI-ESM1-2-LR,Sv,assente,assente,time,200,0.0,199.0,year,51,16.9881,1.9455,11.8777,20.2403
+M26,MPI-ESM1-2-LR,r70,r70_MPI-ESM1-2-LR,Sv,assente,assente,time,200,0.0,199.0,year,0,assente,assente,assente,assente
+LeBars,EC-Earth3,historical,amoc,Sv,26.0000 (latitude),AMOC volume transport,time,165,1850.5,2014.5,assente,165,15.3716,1.3794,12.0015,19.0436
+LeBars,EC-Earth3,historical,amoc,Sv,35.0000 (latitude),AMOC volume transport,time,165,1850.5,2014.5,assente,165,14.2749,1.5718,10.9198,18.0446
+LeBars,EC-Earth3,ssp126,amoc,Sv,26.0000 (latitude),AMOC volume transport,time,86,2015.5,2100.5,assente,86,14.0172,1.6494,11.1006,18.0294
+LeBars,EC-Earth3,ssp126,amoc,Sv,35.0000 (latitude),AMOC volume transport,time,86,2015.5,2100.5,assente,86,13.1444,1.7214,10.4326,17.8818
+Terhaar,EC-Earth3,historical,amoc,assente,26.0560 (lat),"AMOC at 26.5N, computed as msftyz maximum below 500m.",year,165,1850.0,2014.0,assente,165,17.5648,1.4733,14.4376,21.6302
+Terhaar,EC-Earth3,piControl,amoc,assente,26.0560 (lat),"AMOC at 26.5N, computed as msftyz maximum below 500m.",year,251,2260.0,2510.0,assente,251,17.9522,1.691,14.1383,22.0841
+Terhaar,IPSL-CM6A-LR,historical,amoc,assente,26.9526 (nav_lat); 26.9079 (lat),"AMOC at 26.5N, computed as msftyz maximum below 500m.",year,165,1850.0,2014.0,assente,165,12.7414,1.0074,9.859,15.2398
+Terhaar,IPSL-CM6A-LR,piControl,amoc,assente,26.9526 (nav_lat); 26.9079 (lat),"AMOC at 26.5N, computed as msftyz maximum below 500m.",year,251,1910.0,2160.0,assente,251,12.3566,1.3501,8.7589,16.0658
+Terhaar,IPSL-CM6A-LR,ssp126,amoc,assente,26.9526 (nav_lat); 26.9079 (lat),"AMOC at 26.5N, computed as msftyz maximum below 500m.",year,200,2015.0,2214.0,assente,200,10.563,0.7989,8.4161,13.2363
+Terhaar,IPSL-CM6A-LR,ssp585,amoc,assente,26.9526 (nav_lat); 26.9079 (lat),"AMOC at 26.5N, computed as msftyz maximum below 500m.",year,86,2015.0,2100.0,assente,86,9.6151,1.6545,5.7008,13.461

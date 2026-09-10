@@ -1,0 +1,22 @@
+model,bin_id,delta_sv,n_years,fuel,component,dln
+EC-Earth3,-4.5,-4.5546,8,Electricity,hdd_calendar,-0.0731119716393488
+EC-Earth3,-3.5,-3.4737,8,Electricity,hdd_calendar,-0.0781691746237643
+EC-Earth3,-2.5,-2.5448,11,Electricity,hdd_calendar,-0.0621931555924603
+IPSL-CM6A-LR,-5.5,-5.4831,4,Electricity,hdd_calendar,-0.0735902193589779
+IPSL-CM6A-LR,-4.5,-4.3892,12,Electricity,hdd_calendar,-0.0641568517698383
+IPSL-CM6A-LR,-3.5,-3.5859,7,Electricity,hdd_calendar,-0.0641056246094196
+IPSL-CM6A-LR,-2.5,-2.381,6,Electricity,hdd_calendar,-0.0570929186897337
+EC-Earth3,-4.5,-4.5546,8,Electricity,cdd_jja,0.0432321897681299
+EC-Earth3,-3.5,-3.4737,8,Electricity,cdd_jja,0.0520040997034746
+EC-Earth3,-2.5,-2.5448,11,Electricity,cdd_jja,0.0380284222146859
+IPSL-CM6A-LR,-5.5,-5.4831,4,Electricity,cdd_jja,0.0388373498215093
+IPSL-CM6A-LR,-4.5,-4.3892,12,Electricity,cdd_jja,0.037291833519872
+IPSL-CM6A-LR,-3.5,-3.5859,7,Electricity,cdd_jja,0.039997702217969
+IPSL-CM6A-LR,-2.5,-2.381,6,Electricity,cdd_jja,0.0295698375761641
+EC-Earth3,-4.5,-4.5546,8,Natural gas,hdd_octmar,-0.107957426499651
+EC-Earth3,-3.5,-3.4737,8,Natural gas,hdd_octmar,-0.115199573895138
+EC-Earth3,-2.5,-2.5448,11,Natural gas,hdd_octmar,-0.0893419897506293
+IPSL-CM6A-LR,-5.5,-5.4831,4,Natural gas,hdd_octmar,-0.11042288987606
+IPSL-CM6A-LR,-4.5,-4.3892,12,Natural gas,hdd_octmar,-0.0946691136795273
+IPSL-CM6A-LR,-3.5,-3.5859,7,Natural gas,hdd_octmar,-0.0929857367380772
+IPSL-CM6A-LR,-2.5,-2.381,6,Natural gas,hdd_octmar,-0.0839474577083994

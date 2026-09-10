@@ -21,6 +21,9 @@
 #   7.eobs_nuts3_crop_weather_monthly.csv NUTS_ID, year, month, gdd, heat, frost, precip
 suppressMessages({library(terra); library(sf); library(ncdf4); library(Matrix); library(dplyr); library(data.table)})
 sf_use_s2(FALSE)
+# daily indicator formulas live in ONE place, shared with the scenario replay: a response
+# function is only transportable if the regressor is built identically in estimation and replay.
+source(path.expand("~/Library/CloudStorage/OneDrive-UniversitàCommercialeLuigiBocconi/1.Tesi/Amoc/Code/weather_indicators.R"))
 
 d   <- path.expand("~/Library/CloudStorage/OneDrive-UniversitàCommercialeLuigiBocconi/1.Tesi/Amoc/datasets")
 ncf <- function(v) file.path(d, sprintf("EOBS/%s_ens_mean_0.25deg_reg_v31.0e.nc", v))
@@ -122,10 +125,10 @@ ind_month <- function(mat, mm, fun) {
 out <- vector("list", length(years))
 for (k in seq_along(years)) {
   y <- years[k]; ti <- which(yr == y); mm <- mo[ti]
-  gdd   <- ind_month(read_year(ncs$tg, "tg", ti), mm, function(x) pmax(pmin(x, 28) - 5, 0))
-  heat  <- ind_month(read_year(ncs$tx, "tx", ti), mm, function(x) pmax(x - 28, 0))
-  frost <- ind_month(read_year(ncs$tn, "tn", ti), mm, function(x) (x < 0) * 1)
-  prec  <- ind_month(read_year(ncs$rr, "rr", ti), mm, function(x) x)
+  gdd   <- ind_month(read_year(ncs$tg, "tg", ti), mm, gdd_daily)     # weather_indicators.R
+  heat  <- ind_month(read_year(ncs$tx, "tx", ti), mm, heat_daily)
+  frost <- ind_month(read_year(ncs$tn, "tn", ti), mm, frost_daily)
+  prec  <- ind_month(read_year(ncs$rr, "rr", ti), mm, identity)
   months <- sort(unique(mm))
   out[[k]] <- data.table(
     NUTS_ID = rep(nuts_ids, times = length(months)),
