@@ -1,174 +1,186 @@
 # Appendix N — From NAHosMIP to E-OBS: the subtraction and the daily application
 
-Two operations turn the hosing experiment into weather that the response functions can read:
-a **subtraction** (hosing minus piControl, then averaged by level of AMOC weakening) and an
-**application** (the resulting monthly change added to every observed E-OBS day before any
-indicator is computed). This appendix states both as the code implements them. The file and line
-references are in §N.4, and the numbers in the tables are read from the data files.
+The hosing experiment reaches the response functions in two moves:
+
+1. **Subtraction** (model world, monthly, native grid): what the hosing run changes relative to piControl, grouped by how much the AMOC has weakened.
+2. **Application** (observed world, daily, E-OBS 0.25°): that monthly change added to every observed day, before any indicator is computed.
+
+Everything below follows the code (file and line references in §N.6). The numbers are read from the data files.
 
 ---
 
-## N.0 Notation
+## N.0 The chain in one picture
 
-| symbol | meaning |
+```
+ MODEL WORLD  (NAHosMIP u03-hos + piControl · native grid · MONTHLY)
+ ─────────────────────────────────────────────────────────────────────────────────────────────
+   piControl months ──[mean of each calendar month]──────────────►  climatology      12 per cell
+                                                                          │
+   hosing months ─────[minus that month's climatology (T);               │
+                        divided by it (P)]───────────────────────►  anomaly of EVERY hosing month
+                                                                          │
+   AMOC index ────────[hosing year − mean piControl AMOC]─►  ΔSv(year) ─[1-Sv bin, ≥3 years]
+                                                                          │
+                                        [mean of the anomalies over the bin's years, month by month]
+                                                                          ▼
+                                                                 δ_bin(month, cell)  12 per cell per bin
+ ─────────────────────────────────────────────────────────────────────────────────────────────
+ OBSERVED WORLD  (E-OBS · 0.25° cells · DAILY · 1989–2023 crops, 1990–2024 energy)
+ ─────────────────────────────────────────────────────────────────────────────────────────────
+                                        [bilinear to E-OBS cell centres; ratio clamped to 0.1–10]
+                                                                          ▼
+   observed day (tg, tx, tn, rr) ──────────────────────────────►  (+) δ of the day's month
+                                     EVERY day, EVERY year              (×) for precipitation
+                                                                          ▼
+                                                                 shifted day
+                                                                          │ [daily indicator: the thresholds
+                                                                          │  act on each shifted day]
+                                                                          ▼
+                                             GDD · heat · frost · precip  |  HDD · CDD   per cell, per day
+                                                                          │ [sum over the days of the month]
+                                                                          ▼
+                                                                 per cell, per month
+                                                                          │ [area mean → NUTS3 · population mean → country]
+                                                                          │ [sum over the months of the crop block / energy season]
+                                                                          ▼
+                                                   X_scen(region, year)   ── vs ──   X_obs(region, year)
+                                                                                   (same chain, δ = 0;
+                                                                                    identical to the
+                                                                                    estimation files)
+                                                                          ▼
+                                             ΔX = X_scen − X_obs, year by year  →  β·ΔX  →  mean over years
+```
+
+---
+
+## N.1 Step by step
+
+| # | goes in | operation | comes out |
+|---|---|---|---|
+| 1 | piControl monthly fields, $K$ years | mean of each calendar month (`cdo ymonmean`) | climatology: 12 values per model cell |
+| 2 | hosing monthly fields | each month **minus** the climatology of the same month (T), **divided** by it (P) (`ymonsub` / `ymondiv`) | an anomaly for **every** hosing month |
+| 3 | AMOC index, hosing and piControl | $\Delta$Sv = hosing year − mean of the whole piControl AMOC series; 1-Sv bins by floor; keep bins with ≥ 3 years | the bin of each hosing year |
+| 4 | anomalies + bins | mean over the bin's years, month by month | $\delta_b$: 12 values per model cell per bin |
+| 5 | $\delta_b$ | bilinear to the E-OBS cell centres; outside the model domain "no change"; precipitation ratio clamped to [0.1, 10] | $\tilde\delta_b$: 12 values per E-OBS cell per bin |
+| 6 | observed E-OBS days + $\tilde\delta_b$ | $\tilde\delta$ of the day's month **added** (T) or **multiplied** (P), on **every** day of **every** replay year | shifted daily weather |
+| 7 | shifted days | daily indicator, threshold evaluated day by day | one value per cell per day |
+| 8 | daily values | Σ days → month (per cell); weighted mean → NUTS3 (area) or country (population); Σ months → crop block or energy season | $X^{\text{scen}}$(region, year) |
+| 9 | the same chain with $\delta=0$ | — | $X^{\text{obs}}$(region, year) = the estimation files exactly (gate) |
+| 10 | $X^{\text{scen}}$, $X^{\text{obs}}$ | difference year by year, times $\beta$, mean over the replay years | impact |
+
+Three things the table makes explicit:
+
+- **Nothing is paired in time.** Hosing months are compared with a *climatology*, not with a parallel control year.
+- **The change is a bin average.** It does not come from one hosing year.
+- **The observed record is kept whole.** Each bin replays all 35 observed years, with their own weather, shifted by the same 12 monthly values.
+
+---
+
+## N.2 A worked example: one cell, one month (illustrative numbers)
+
+| stage | numbers |
 |---|---|
-| $c$ / $g$ | native model grid cell / E-OBS 0.25° cell |
-| $h$, $k$, $y$ | hosing year, piControl year, E-OBS (replay) year |
-| $m$, $d$, $m_d$ | calendar month, day, calendar month of day $d$ |
-| $b$ | $\Delta$Sv bin (1 Sv wide) |
-| $X_v$, $P$ | monthly mean of $v\in\{\text{tas},\text{tasmin},\text{tasmax}\}$ (K); monthly precipitation |
-| $M$ | AMOC strength index (NAHosMIP M26 files: `hos_<model>`, `con_<model>`), Sv |
+| piControl July mean, one model cell (Step 1) | daily maximum (tasmax) 24.0 °C · precipitation 60 mm |
+| three hosing years with $\Delta$Sv = −4.2, −4.6, −4.9 → floor = −5 → bin **−4.5** (Step 3) | their July means: tasmax 22.1, 22.6, 22.2 °C · 48, 57, 54 mm |
+| monthly anomalies (Step 2) | −1.9, −1.4, −1.8 °C · ratios 0.80, 0.95, 0.90 |
+| bin delta for July (Step 4) | $\delta_{\text{tasmax}}$ = **−1.7 °C** · $R$ = **0.88** |
+| E-OBS cell inside that model cell (Step 5) | $\tilde\delta$ ≈ −1.7 °C, $\tilde R$ ≈ 0.88 |
+| 10 July 2003: tx 35.0 °C, rr 10.0 mm (Step 6) | tx **33.3 °C**, rr **8.8 mm** · heat 7.0 → 5.3 degree-days |
+| 10 July 1995: tx 29.0 °C (Step 6–7) | tx **27.3 °C** · heat 1.0 → **0** (the day falls below 28 °C) |
+| July of that cell (Step 8) | sum of the 31 shifted days, for every year 1989–2023, then the regional and block sums |
+
+The daily mean (tg, with $\delta_{\text{tas}}$) and the daily minimum (tn, with $\delta_{\text{tasmin}}$) go
+through the same steps, each with its own delta.
+
+The second shifted day shows why the change is applied **before** the indicators. On a warm July
+day the same −1.7 °C removes part of the heat; on a milder one it removes all of it. A change applied
+to a monthly total could not tell the two apart.
 
 ---
 
-## N.1 The subtraction: hosing minus piControl
+## N.3 The formulas
 
-**Step 1 — piControl climatology** (`cdo ymonmean`): 12 values per native cell, one per calendar month,
-averaged over the whole reference window of $K$ years.
+$c$ model cell, $g$ E-OBS cell, $h$ hosing year, $k$ piControl year, $y$ replay year, $m$ month, $d$ day ($m_d$ its month), $b$ bin.
 
-$$\bar X^{\mathrm{pi}}_v(m,c)=\frac1K\sum_{k=1}^{K}X^{\mathrm{pi}}_v(k,m,c),\qquad
-\bar P^{\mathrm{pi}}(m,c)=\frac1K\sum_{k=1}^{K}P^{\mathrm{pi}}(k,m,c)$$
+| step | formula |
+|---|---|
+| 1 | $\bar X^{\mathrm{pi}}_v(m,c)=\frac1K\sum_{k}X^{\mathrm{pi}}_v(k,m,c)$, same for $\bar P^{\mathrm{pi}}$; $v\in\{$tas, tasmin, tasmax$\}$ |
+| 2 | $a_v(h,m,c)=X^{\mathrm{hos}}_v(h,m,c)-\bar X^{\mathrm{pi}}_v(m,c)$, $\quad r(h,m,c)=P^{\mathrm{hos}}(h,m,c)/\bar P^{\mathrm{pi}}(m,c)$ |
+| 3 | $\Delta S(h)=M^{\mathrm{hos}}(h)-\frac1{K_M}\sum_k M^{\mathrm{pi}}(k)$, $\quad b(h)=\lfloor\Delta S(h)\rfloor$, $\quad Y_b=\{h: b(h)=b\}$, kept if $\lvert Y_b\rvert\ge3$ |
+| 4 | $\delta_{v,b}(m,c)=\frac1{\lvert Y_b\rvert}\sum_{h\in Y_b}a_v(h,m,c)$, $\quad R_b(m,c)=\frac1{\lvert Y_b\rvert}\sum_{h\in Y_b}r(h,m,c)$ (non-finite ratios dropped) |
+| 5 | $\tilde\delta_{v,b}(m,g),\ \tilde R_b(m,g)$ = bilinear at $g$; outside: 0 and 1; $\tilde R_b\leftarrow\min(\max(\tilde R_b,0.1),10)$ |
+| 6 | $tg'_{g,d}=tg_{g,d}+\tilde\delta_{\mathrm{tas},b}(m_d,g)$ (tx with tasmax, tn with tasmin), $\quad rr'_{g,d}=rr_{g,d}\,\tilde R_b(m_d,g)$ |
+| 7 | GDD $\max(\min(tg',28)-5,0)$ · heat $\max(tx'-28,0)$ · frost $\mathbf 1[tn'<0]$ · precip $rr'$ · HDD $\tfrac1{24}\sum_s\mathbf 1[T_s<15](18-T_s)$ · CDD $\tfrac1{24}\sum_s\mathbf 1[T_s\ge24](T_s-21)$, with $T_s=tg'+\tfrac{tx'-tn'}{2}\sin\tfrac{2\pi s}{24}$ |
+| 8 | $I_{g,m,y}=\sum_{d\in(m,y)}i_{g,d}$; crops: $X_{r,m,y}=\frac{\sum_g\omega_{rg}I_{g,m,y}}{\sum_g\omega_{rg}\mathbf 1[\text{finite}]}$ (3 dp), $X^B_{r,y}=\sum_{m\in B}X_{r,m,y}$, precip² cell-first $\sum_g\omega_{rg}(P^B_{g,y})^2/\sum_g\omega_{rg}$; energy: $X^S_{j,y}=\frac{\sum_g\pi_{jg}\sum_{m\in S}I_{g,m,y}}{\sum_g\pi_{jg}\mathbf 1[\text{finite}]}$ |
+| 9–10 | gate: $\tilde\delta=0,\tilde R=1\Rightarrow X^{\text{scen}}\equiv X^{\text{obs}}$; $\quad\Delta X_{r,y}=X^{\text{scen}}_{r,y}-X^{\text{obs}}_{r,y}$, then $\beta'\Delta X$ averaged over $y$ |
 
-**Step 2 — anomaly of every hosing month** (`cdo ymonsub`, `cdo ymondiv`). Each month of the hosing run
-minus (or, for precipitation, divided by) the climatology of the same calendar month. There is no
-pairing with a parallel control year.
+---
 
-$$a_v(h,m,c)=X^{\mathrm{hos}}_v(h,m,c)-\bar X^{\mathrm{pi}}_v(m,c),\qquad
-r(h,m,c)=\frac{P^{\mathrm{hos}}(h,m,c)}{\bar P^{\mathrm{pi}}(m,c)}$$
+## N.4 The numbers behind each step
 
-The anomaly lives on the native hosing grid. The climatology is put on that grid by a coordinate copy
-when the two grids have the same size, and by a real remap (bilinear for temperature, conservative
-for precipitation) only if they differ.
+**Table N.1 — references and bins, per model** (u03-hos)
 
-**Step 3 — AMOC weakening of each hosing year, and its bin.**
-
-$$\Delta S(h)=M^{\mathrm{hos}}(h)-\frac1{K_M}\sum_{k=1}^{K_M}M^{\mathrm{pi}}(k),\qquad b(h)=\lfloor\Delta S(h)\rfloor$$
-
-- Hosing years used: $h=1,\dots,n$, with $n=\min(\text{valid M26 hosing years},\ \text{anomaly years})$.
-- Bins are 1 Sv wide, labelled $b+0.5$, and kept only if $|Y_b|\ge3$, where $Y_b=\{h\le n:\ b(h)=b\}$.
-- A bin's level is $\overline{\Delta S}_b=\tfrac1{|Y_b|}\sum_{h\in Y_b}\Delta S(h)$.
-
-**Step 4 — bin delta fields**: the mean, over the bin's hosing years, of the monthly anomalies.
-
-$$\delta_{v,b}(m,c)=\frac1{|Y_b|}\sum_{h\in Y_b}a_v(h,m,c),\qquad
-R_b(m,c)=\frac1{|Y_b|}\sum_{h\in Y_b}r(h,m,c)$$
-
-$R_b$ is a mean of ratios. Non-finite values, such as $r=\infty$ where control precipitation is zero,
-are dropped from the mean. Output: `amoc_bin_fields_<MODEL>_u03.nc`, dims (lon, lat, month, bin),
-native grid cropped to 44°W–79°E, 22–79°N.
-
-**Table N.1 — reference windows and bins** (NAHosMIP u03-hos)
-
-| model | native grid (lon × lat) | climate reference (Step 1) | AMOC reference $K_M$, mean | hosing years used | $\Delta S$ range (Sv) | bins kept | years per bin | years in bins |
+| model | native grid | climate reference (step 1) | AMOC reference (step 3) | hosing years used | $\Delta$Sv range | bins kept | years per bin | years in bins |
 |---|---|---|---|---|---|---|---|---|
-| IPSL-CM6A-LR | 2.50° × 1.27° | piControl 1850–2349 (500 yr) | 500 yr, 12.48 Sv | 100 | −10.6 … +0.2 | −0.5 … −9.5 (10) | 5–19 | 98 |
-| EC-Earth3 | 0.70° × 0.70° | piControl 2259–2759 (501 yr; tasmax 499) | 150 yr, 17.24 Sv | 100 | −9.4 … 0.0 | −0.5 … −9.5 (10) | 3–21 | 99 |
-| HadGEM3-GC3.1-LL | 1.88° × 1.25° | piControl 1850–1949 (100 yr) | 150 yr, 15.37 Sv | 100 | −9.3 … +0.6 | −0.5 … −8.5 (9) | 6–24 | 98 |
-| HadGEM3-GC3.1-MM | 0.83° × 0.56° | piControl 1850–1949 (100 yr) | 150 yr, 16.33 Sv | 99 | −14.8 … +1.0 | −4.5 … −14.5 (11) | 4–21 | 90 |
+| IPSL-CM6A-LR | 2.50° × 1.27° | piControl 1850–2349, 500 yr | 500 yr, mean 12.48 Sv | 100 | −10.6 … +0.2 | −0.5 … −9.5 (10) | 5–19 | 98 |
+| EC-Earth3 | 0.70° × 0.70° | piControl 2259–2759, 501 yr (tasmax 499) | 150 yr, mean 17.24 Sv | 100 | −9.4 … 0.0 | −0.5 … −9.5 (10) | 3–21 | 99 |
+| HadGEM3-GC3.1-LL | 1.88° × 1.25° | piControl 1850–1949, 100 yr | 150 yr, mean 15.37 Sv | 100 | −9.3 … +0.6 | −0.5 … −8.5 (9) | 6–24 | 98 |
+| HadGEM3-GC3.1-MM | 0.83° × 0.56° | piControl 1850–1949, 100 yr | 150 yr, mean 16.33 Sv | 99 | −14.8 … +1.0 | −4.5 … −14.5 (11) | 4–21 | 90 |
 
-For IPSL-CM6A-LR and EC-Earth3, tasmin and tasmax on the hosing side are reconstructed fields
-(per-cell, per-month OLS fitted on piControl). HadGEM3 provides them natively.
+For IPSL-CM6A-LR and EC-Earth3, tasmin and tasmax on the hosing side are reconstructed (per-cell,
+per-month OLS fitted on piControl); HadGEM3 provides them natively. The anomalies live on the native
+hosing grid, cropped to 44°W–79°E, 22–79°N. The climatology is remapped (bilinear T, conservative P)
+only if its grid size differs; otherwise its coordinates are copied.
 
----
+**Table N.2 — where and when the change is applied**
 
-## N.2 The application: summing the change onto E-OBS days
-
-**Step 5 — onto the E-OBS cells.** Each (variable, month, bin) field is interpolated bilinearly to the
-E-OBS cell centres. Outside the model domain the default is "no change" ($\tilde\delta=0$, $\tilde R=1$).
-The ratio is then clamped: $\tilde R_b\leftarrow\min(\max(\tilde R_b,0.1),10)$.
-
-**Step 6 — every day of every replay year** (additive on temperature, multiplicative on precipitation):
-
-$$tg'_{g,d}=tg_{g,d}+\tilde\delta_{\mathrm{tas},b}(m_d,g),\quad
-tx'_{g,d}=tx_{g,d}+\tilde\delta_{\mathrm{tasmax},b}(m_d,g),\quad
-tn'_{g,d}=tn_{g,d}+\tilde\delta_{\mathrm{tasmin},b}(m_d,g),\quad
-rr'_{g,d}=rr_{g,d}\,\tilde R_b(m_d,g)$$
-
-The same 12 monthly values per cell are added to **every** day of their month in **every** replay
-year. No hosing year is matched to an E-OBS year: each bin replays the whole observed record, with
-its own daily and interannual variability, shifted by the bin's mean change.
-
-**Table N.2 — replay domains**
-
-| branch | E-OBS cells | years replayed | extra year read | variables |
+| branch | E-OBS cells | replay years | extra year read | variables |
 |---|---|---|---|---|
 | crop | 12,150 (NUTS3 crosswalk) | 1989–2023 | 1988 (first overwinter block) | tg, tx, tn, rr |
 | energy | 9,309 (populated cells, 33 countries) | 1990–2024 | 1989 (Oct–Dec of the first Oct–Mar season) | tg, tx, tn |
 
-**Step 7 — daily indicators, computed on the shifted days** (thresholds act day by day):
+**Table N.3 — months summed (step 8)**
 
-| indicator | daily value $i_{g,d}$ |
-|---|---|
-| GDD | $\max(\min(tg',28)-5,\ 0)$ |
-| heat | $\max(tx'-28,\ 0)$ |
-| frost | $\mathbf 1[tn'<0]$ |
-| precipitation | $rr'$ |
-| HDD | $\tfrac1{24}\sum_{s=0}^{23}\mathbf 1[T_s<15]\,(18-T_s)$ |
-| CDD | $\tfrac1{24}\sum_{s=0}^{23}\mathbf 1[T_s\ge24]\,(T_s-21)$ |
-
-where $T_s=tg'+\tfrac{tx'-tn'}{2}\sin(2\pi s/24)$: a within-day cycle sampled 24 times.
-
-**Step 8 — sums, in the order cell → month → area → block or season**
-
-$$I_{g,m,y}=\sum_{d\in(m,y)}i_{g,d}\qquad(\text{NA if any day of the month is missing})$$
-
-- **Crops**, for NUTS3 region $r$ with crosswalk weights $\omega_{rg}$: first the regional monthly value,
-  renormalised over the cells with a complete month and rounded to 3 dp, then the sum over the months
-  of block $B$.
-
-$$X_{r,m,y}=\frac{\sum_g\omega_{rg}\,I_{g,m,y}}{\sum_g\omega_{rg}\,\mathbf 1[I_{g,m,y}\ \text{finite}]},\qquad
-X^{B}_{r,y}=\sum_{m\in B}X_{r,m,y}$$
-
-  The squared precipitation term is cell-first: $\sum_g\omega_{rg}\big(P^{B}_{g,y}\big)^2\big/\sum_g\omega_{rg}$,
-  never $(X^{B}_{r,y})^2$.
-
-- **Energy**, for country $j$ with population weights $\pi_{jg}$: first the season sum per cell,
-  $S\in\{$Jan–Dec (HDD), Oct$_{y-1}$–Mar$_y$ (HDD), Jun–Aug (CDD)$\}$, then the population-weighted mean.
-
-$$X^{S}_{j,y}=\frac{\sum_g\pi_{jg}\sum_{m\in S}I_{g,m,y}}{\sum_g\pi_{jg}\,\mathbf 1[\,\cdot\ \text{finite}]}$$
-
-**Table N.3 — crop blocks (spec F, $y$ = harvest year)**
-
-| crop | overwinter block $W$ | season block $S$ |
+| crops (spec F, $y$ = harvest year) | overwinter block | season block |
 |---|---|---|
-| soft wheat (autumn-sown) | Oct$_{y-1}$ – Feb$_y$ | Mar – Aug |
-| soft wheat (spring-sown, northern regions) | — | Mar – Aug |
-| winter barley | Oct$_{y-1}$ – Feb$_y$ | Mar – Aug |
+| soft wheat, winter barley (autumn-sown) | Oct$_{y-1}$ – Feb$_y$ | Mar – Aug |
 | durum wheat | Nov$_{y-1}$ – Feb$_y$ | Mar – Aug |
+| soft wheat (spring-sown, northern regions) | — | Mar – Aug |
 | spring barley | — | Feb – Aug |
 | grain maize | — | Mar – Nov |
 | sugar beet, sunflower | — | Mar – Sep |
 
-**Step 9 — gate, and what is differenced.** With $\tilde\delta=0$ and $\tilde R=1$ the replay reproduces
-the estimation files exactly (max |difference| = 0), and this is checked before any scenario is run.
-Downstream, each replay year is compared with the same observed year,
-$\Delta X_{r,y}=X^{\text{scen}}_{r,y}-X^{\text{obs}}_{r,y}$, and $\beta'\Delta X_{r,y}$ is averaged over the replay years.
-
----
-
-## N.3 What the construction implies
-
-| feature of the code | consequence |
+| energy | months summed |
 |---|---|
-| Reference = long piControl climatology, not a parallel control segment | $\delta$ = mean hosing state minus mean unforced state. Any piControl drift between the two periods enters $\delta$; it is not measured. |
-| Climate and AMOC references come from different piControl series and windows (Table N.1) | $\Delta S$ and $\delta$ are each referenced to their own control mean. |
-| Bins hold 3–24 hosing years | A bin mean still carries internal variability, most in the 3–4-year bins (EC-Earth3 −0.5 and −9.5; HadGEM3-MM −4.5, −5.5, −6.5 and −14.5). |
-| All hosing-induced change is grouped by $\Delta S$ | $\delta$ attributes to the AMOC everything the freshwater forcing changes. |
-| One $\delta$ for all replay years | The baseline is the observed climate of 1989–2023 (energy 1990–2024), trend included. Near-linear indicators are insensitive to it, threshold indicators are not. At −4.5 Sv (mean of the 4 models) the shift applied to 1989–98 vs 2014–23 is −185 vs −191 dd for season GDD, 0 to +4% for frost, +2% for precipitation, −3%/0% for HDD — but −65 vs −76 dd for overwinter GDD (+17%), −21.7 vs −26.8 dd for CDD (+23%), and −14.6 vs −20.5 dd for heat (+40%). Crop figures are soft-wheat NUTS3 means; energy figures are country means. |
+| HDD, calendar year (electricity) | Jan – Dec |
+| HDD, heating season (gas) | Oct$_{y-1}$ – Mar$_y$ |
+| CDD (electricity) | Jun – Aug |
 
 ---
 
-## N.4 Code map
+## N.5 What the construction implies
+
+| feature | consequence |
+|---|---|
+| Reference = long piControl climatology, not a parallel control | $\delta$ = mean hosing state minus mean unforced state; any piControl drift between the two periods enters $\delta$ (not measured). |
+| AMOC and climate references from different piControl series (Table N.1) | $\Delta$Sv and $\delta$ are each referenced to their own control mean. |
+| Bins of 3–24 hosing years | A bin mean still carries internal variability, most in the 3–4-year bins (EC-Earth3 −0.5 and −9.5; HadGEM3-MM −4.5, −5.5, −6.5, −14.5). |
+| Hosing years grouped by $\Delta$Sv | Everything the freshwater forcing changes is attributed to the AMOC. |
+| One $\delta$ for all replay years | The baseline is the observed climate, trend included. At −4.5 Sv (mean of the 4 models) the shift on 1989–98 vs 2014–23: season GDD −185 vs −191 dd, frost 0 to +4 %, precipitation +2 %, HDD −3 % / 0 % — but overwinter GDD +17 %, CDD −21.7 vs −26.8 dd (+23 %), heat −14.6 vs −20.5 dd (+40 %). Threshold-at-the-warm-end indicators depend on the baseline. |
+
+---
+
+## N.6 Code map
 
 | step | file : lines |
 |---|---|
-| 1–2 piControl climatology, anomaly, ratio | `Code/anomaly/1.IPSLnahos_anomaly_cdo_explicit.sh` : 45–48, 66, 99, 110 · `1.ECHEarth3nahos_anomaly_cdo_explicit.sh` : 50–53, 72, 113, 129 · `nahos_anomaly_cdo (3).sh` : 47–48, 145, 148, 168 |
-| 2 remap only on grid-size mismatch | `1.IPSLnahos_anomaly_cdo_explicit.sh` : 50–53, 79–94 |
-| tasmin/tasmax reconstruction (IPSL, EC-Earth3) | `Code/anomaly/1.reconstruct_tasmin_tasmax_{IPSL,ECEarth3}.py` |
-| 3 $\Delta S$, bins | `Code/amoc_bin_fields.R` : 60–72 (box : 31) |
-| 4 bin means | `Code/amoc_bin_fields.R` : 111–121 |
-| 5 interpolation, defaults, clamp | `Code/scenario_replay_bins.R` : 39–43 · `Code/scenario_engine.R` : 25, 151–155 |
-| 6 daily perturbation | `Code/scenario_engine.R` : 192–197 (temperature), 241 (precipitation) |
-| 7 daily indicators | `Code/weather_indicators.R` : 14–19, 23–24, 27–29 |
-| 8 aggregation | `Code/scenario_engine.R` : 169–175 (crops), 198–218 (energy) · `Code/weather_indicators.R` : 58–65, 87 (blocks) · `Code/crop_spec_f_blocks.R` (cell-first square) |
-| 9 zero-delta gate | `Code/scenario_engine.R` : 346–348 |
+| 1–2 | `Code/anomaly/1.IPSLnahos_anomaly_cdo_explicit.sh` : 45–48, 66, 99, 110 · `1.ECHEarth3nahos_anomaly_cdo_explicit.sh` : 50–53, 72, 113, 129 · `nahos_anomaly_cdo (3).sh` : 47–48, 145, 148, 168 |
+| 2 (remap rule) | `1.IPSLnahos_anomaly_cdo_explicit.sh` : 50–53, 79–94 |
+| 2 (tasmin/tasmax, IPSL & EC-Earth3) | `Code/anomaly/1.reconstruct_tasmin_tasmax_{IPSL,ECEarth3}.py` |
+| 3 | `Code/amoc_bin_fields.R` : 60–72 (crop box : 31) |
+| 4 | `Code/amoc_bin_fields.R` : 111–121 |
+| 5 | `Code/scenario_replay_bins.R` : 39–43 · `Code/scenario_engine.R` : 25, 151–155 |
+| 6 | `Code/scenario_engine.R` : 192–197 (temperature), 241 (precipitation) |
+| 7 | `Code/weather_indicators.R` : 14–19, 23–24, 27–29 |
+| 8 | `Code/scenario_engine.R` : 169–175 (crops), 198–218 (energy) · `Code/weather_indicators.R` : 58–65, 87 · `Code/crop_spec_f_blocks.R` (cell-first square) |
+| 9 | `Code/scenario_engine.R` : 346–348 |
